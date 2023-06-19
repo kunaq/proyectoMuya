@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GDH</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/icono.svg" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: NiceAdmin - v2.5.0
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #D5161E;">
+
+    <div class="d-flex align-items-center justify-content-between">
+      <a href="welcome.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logoRB.svg" alt="">
+      </a>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+       
+        <li class="nav-item dropdown pe-3">
+
+          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="color:white">M. Huaman</span>
+          </a><!-- End Profile Iamge Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+            <li class="dropdown-header">
+              <h6>Milagros Huaman</h6>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="#">
+                <i class="bi bi-gear"></i>
+                <span>Cambio contraseña</span>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <a class="dropdown-item d-flex align-items-center" href="index.html">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Salir</span>
+              </a>
+            </li>
+
+          </ul><!-- End Profile Dropdown Items -->
+        </li><!-- End Profile Nav -->
+
+      </ul>
+    </nav><!-- End Icons Navigation -->
+
+  </header><!-- End Header -->
+
+  <!-- ======= Sidebar ======= -->
+  <aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="datosPersonales.html">
+          <i class="bi bi-person"></i>
+          <span>Datos</span>
+        </a>
+      </li><!-- End Profile Page Nav -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="boletasPago.html">
+          <i class="bi bi-card-list"></i>
+          <span>Bolestas de Pago</span>
+        </a>
+      </li><!-- End Register Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="listaVacaciones.php">
+          <i class="bx bx-swim"></i>
+          <span>Vacaciones</span>
+        </a>
+      </li><!-- End Login Page Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="listaPrestamos.html">
+          <i class="bx bx-dollar"></i>
+          <span>Prestamos</span>
+        </a>
+      </li>
+
+    </ul>
+
+  </aside><!-- End Sidebar-->
+
+  <main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Boletas de Pago</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item active">Boletas de Pago</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <section class="section contact" style="margin-top: 5rem; margin-bottom: 5rem;">
+      <div class="row gy-4 justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Busqueda por año</h5>
+              <!-- Horizontal Form -->
+              <form>
+                <div class="row mb-3">
+                  <label for="inputText" class="col-sm-1 col-form-label">Inicio</label>
+                  <div class="col-sm-1">
+                    <select name="" class="form-control" id="inicio">
+                        <option value="2020">2020</option>
+                        <option value="2020">2021</option>
+                        <option value="2020">2022</option>
+                        <option value="2020">2023</option>
+                    </select>
+                  </div>
+                  <label for="inputText" class="col-sm-1 col-form-label">Final</label>
+                  <div class="col-sm-1">
+                    <select name="" class="form-control" id="fin">
+                        <option value="2020">2020</option>
+                        <option value="2020">2021</option>
+                        <option value="2020">2022</option>
+                        <option value="2020">2023</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-2 ">
+                    <a href="#" class="btn btn-danger" id="buscar">Buscar</a>
+                  </div>
+                </div>
+              </form><!-- End Horizontal Form -->
+            </div>
+        </div>  
+        <div class="card" id="resultado" style="display: none;">
+            <div class="card-body">
+                <p class="card-title">&nbsp;</p>
+              <!-- Horizontal Form -->
+              <h3>2022</h3>
+              <table style="width: 100%;">
+                <tr>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Enero</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Febrero</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Marzo</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Abril</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Mayo</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Junio</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Julio</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Agosto</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Septiembre</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Octubre</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Noviembre</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Diciembre</a></td>
+                </tr>
+              </table>
+              <br>
+              <h3>2023</h3>
+              <table style="width: 100%;">
+                <tr>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Enero</a></td>
+                    <td><a href="assets/file/boleta.pdf" target="_blank"><i class="bx bx-calendar"></i>Febrero</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Marzo</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Abril</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Mayo</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Junio</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Julio</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Agosto</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Septiembre</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Octubre</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Noviembre</a></td>
+                    <td><a ><i class="bx bx-calendar"></i>Diciembre</a></td>
+                </tr>
+              </table>
+            </div>
+        </div>  
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <!-- <footer id="footer" class="footer">
+    <div class="copyright">
+      2023 © <b></b> Realizado por <a href="https://www.kunaq.pe/" style="color:#D61010" target="_blank">Kunaq y Asociados SAC</a>
+    </div>
+  </footer>End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/chart.js/chart.umd.js"></script>
+  <script src="assets/vendor/echarts/echarts.min.js"></script>
+  <script src="assets/vendor/quill/quill.min.js"></script>
+  <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.13.2/datatables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/es-mx.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script type="text/javascript">
+
+    $("#buscar").click(function(){
+        $("#resultado").css("display", "none");
+        setTimeout(function(){
+            $("#resultado").css("display", "");
+        }, 800);
+        
+    });
+
+    // $("#fin").change(function(){
+    //     $("#resultado").css("display", "none");
+    //     setTimeout(function(){
+    //         $("#resultado").css("display", "");
+    //     }, 800);
+    // });
+  
+  </script>
+
+
+</body>
+
+</html>
