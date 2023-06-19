@@ -19,6 +19,6 @@ class VerifyCsrfToken extends Middleware
         '/docAdelantoVaca',
         '/docSolicitudVaca',
         '/api/enviarDocumentos',
-        '/api/generarDocumento'
+        '/api/generarDocumento',
     ];
 }

@@ -32,7 +32,7 @@ class APIController extends Controller
             //Definimos las variables de sesión
             Session::put('codTrabajador', $responseData->response->cod_usuario);
             Session::put('docTrabajador', $responseData->response->dsc_documento);
-            Session::put('nombreTrabajador', $nombre);
+            Session::put('nombreTrabajador', $responseData->response->dsc_usuario);
 
 
             // Ejemplo de retorno de la respuesta
@@ -109,5 +109,7 @@ class APIController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    
 
 }

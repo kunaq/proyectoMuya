@@ -124,3 +124,6 @@
   </main><!-- End #main -->
 
 </x-layouts.app>
+<script type="text/javascript">
+    
+</script>
