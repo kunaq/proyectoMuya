@@ -13,31 +13,33 @@ var options = {
     'templateSelection': custom_template,
     'templateResult': custom_template,
 }
-$('#id_select2_example').select2(options);
-$('.select2-container--default .select2-selection--single').css({'height': '52px'});
+// document.getElementById('id_select2_example').select2(options);
+// document.getElementsByClassName('select2-container--default .select2-selection--single').css({'height': '52px'});
 
 // ---------------Fin script para mostrar banderas
 
 // ---------------Ocultar/mostrar contraseña
 
-$(document).ready(function() {
-    $("#show_hide_password a").on('click', function(event) {
-        event.preventDefault();
-        if($('#show_hide_password input').attr("type") == "text"){
-            $('#show_hide_password input').attr('type', 'password');
-            $('#show_hide_password i').addClass( "fa-eye-slash" );
-            $('#show_hide_password i').removeClass( "fa-eye" );
-        }else if($('#show_hide_password input').attr("type") == "password"){
-            $('#show_hide_password input').attr('type', 'text');
-            $('#show_hide_password i').removeClass( "fa-eye-slash" );
-            $('#show_hide_password i').addClass( "fa-eye" );
-        }
-    });
-});
+// $(document).ready(function() {
+//     $("#show_hide_password a").on('click', function(event) {
+//         event.preventDefault();
+//         if($('#show_hide_password input').attr("type") == "text"){
+//             $('#show_hide_password input').attr('type', 'password');
+//             $('#show_hide_password i').addClass( "fa-eye-slash" );
+//             $('#show_hide_password i').removeClass( "fa-eye" );
+//         }else if($('#show_hide_password input').attr("type") == "password"){
+//             $('#show_hide_password input').attr('type', 'text');
+//             $('#show_hide_password i').removeClass( "fa-eye-slash" );
+//             $('#show_hide_password i').addClass( "fa-eye" );
+//         }
+//     });
+// });
 
 // ---------------Fin ocultar/mostrar contraseña
 
-$("#loginBtn").click(function(){
+var boton = document.getElementById("loginBtn");
+boton.addEventListener("click",function(){
+
     // Hacer la solicitud AJAX utilizando baseUrl y apiKey
     var user = document.getElementById("dni").value;
     var passw = document.getElementById("password").value;
