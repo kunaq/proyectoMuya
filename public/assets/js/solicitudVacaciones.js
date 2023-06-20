@@ -1,13 +1,11 @@
-$('#datepickerIniSolVac').datepicker({
-    minDate: 0,
-    maxDate: "+1M",
-    language: "es",
-    autoclose: true
+flatpickr("#datepickerIniSolVac",{
+    locale:"es",
+    dateFormat: "d-m-Y"
 });
-$('#datepickerFinSolVac').datepicker({
-    minDate: 0,
-    language: "es",
-    autoclose: true
+
+flatpickr("#datepickerFinSolVac",{
+    locale:"es",
+    dateFormat: "d-m-Y"
 });
 
 function alertaSolicitud(){
@@ -21,7 +19,7 @@ function alertaSolicitud(){
         }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            var fechaIni = 
+            var fechaIni = '';
             Swal.fire({
                 icon: 'success',
                 text: 'Se ha registrado su solicitud con éxito',

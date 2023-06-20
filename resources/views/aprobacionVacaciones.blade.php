@@ -597,7 +597,7 @@
                         <div class="col-1 col-md-1" style="text-align: -webkit-center">
                             <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
                         </div>
-                        <div class="col-11 mcol-md-3" style="text-align: -webkit-center">
+                        <div class="col-11 col-md-3" style="text-align: -webkit-center">
                             <div class="form-group">
                                 <h5>Visualizar equipos de mi equipo</h5>
                             </div>
