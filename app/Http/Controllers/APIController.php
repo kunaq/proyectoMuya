@@ -113,7 +113,6 @@ class APIController extends Controller
     public function ObtenerTrabajador()
     {   
         $client = new Client();
-
         try {
             $cod_trabajador = session('codTrabajador');
             $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20555348887/'.$cod_trabajador);
@@ -121,14 +120,87 @@ class APIController extends Controller
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
-
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
-
             });
-            
             $promise->wait();
         } catch (\Exception $e) {
-            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+    public function ObtenerPagoHaberes(Request $request)
+    {   
+        $client = new Client();
+        try {
+            $cod_anno = $request['cod_anno'];
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ObtenerPagoHaberes/20555348887/'.$cod_anno);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ObtenerPagoAdelantoVacaciones(Request $request)
+    {   
+        $client = new Client();
+        try {
+            $cod_anno = $request['cod_anno'];
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ObtenerPagoAdelantoVacaciones/20555348887/'.$cod_anno);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ObtenerPagoCts(Request $request)
+    {   
+        $client = new Client();
+        try {
+            $cod_anno = $request['cod_anno'];
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ObtenerPagoCts/20555348887/'.$cod_anno);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ObtenerPagoGratificacion(Request $request)
+    {   
+        $client = new Client();
+        try {
+            $cod_anno = $request['cod_anno'];
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ObtenerPagoGratificacion/20555348887/'.$cod_anno);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }

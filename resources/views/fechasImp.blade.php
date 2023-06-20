@@ -16,15 +16,15 @@
         <div class="row col-md-6 offset-1">
           <div class="col-4 col-md-3">
             <div class="form-group">
-              <select name="annoFimp" id="annoFimp" class="form-control selectForm">
-                <option value="0" selected>2023</option>
+              <select name="annoFimp" id="annoFimp" class="form-control selectForm" >
+                <option value="2023" selected>2023</option>
                 <option value="2022">2022</option>
               </select>
             </div>
           </div>
           <div class="col-5 col-md-3" style="text-align: -webkit-center">
             <div class="form-group">
-                <h5><button class="btn btn-success btnDorado" id="buscarFimp">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
+                <h5><button class="btn btn-success btnDorado" id="buscarFimp"  onClick="BuscarPagos();">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
             </div>
           </div>
         </div>
@@ -50,12 +50,12 @@
                         <th scope="col">Junio</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Vie 24</td>
-                        <td>Mar 25</td>
-                        <td>Jue 25</td>
-                        <td>Jue 23</td>
+                        <td><span id="ENERO"></span></td>
+                        <td><span id="FEBRERO"></span></td>
+                        <td><span id="MARZO"></span></td>
+                        <td><span id="ABRIL"></span></td>
+                        <td><span id="MAYO"></span></td>
+                        <td><span id="JUNIO"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Julio</th>
@@ -66,12 +66,12 @@
                         <th scope="col">Diciembre</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Vie 24</td>
-                        <td>Lun 25</td>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Mar 26</td>
+                        <td><span id="JULIO"></span></td>
+                        <td><span id="AGOSTO"></span></td>
+                        <td><span id="SEPTIEMBRE"></span></td>
+                        <td><span id="OCTUBRE"></span></td>
+                        <td><span id="NOVIEMBRE"></span></td>
+                        <td><span id="DICIEMBRE"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -89,9 +89,9 @@
                         <th scope="col">Marzo</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Vie 24</td>
+                        <td><span id="ENEROM"></span></td>
+                        <td><span id="FEBREROM"></span></td>
+                        <td><span id="MARZOM"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Abril</th>
@@ -99,9 +99,9 @@
                         <th scope="col">Junio</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Jue 25</td>
-                        <td>Jue 23</td>
+                        <td><span id="ABRILM"></span></td>
+                        <td><span id="MAYOM"></span></td>
+                        <td><span id="JUNIOM"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Julio</th>
@@ -109,9 +109,9 @@
                         <th scope="col">Septiembre</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Vie 24</td>
-                        <td>Lun 25</td>
+                        <td><span id="JULIOM"></span></td>
+                        <td><span id="AGOSTOM"></span></td>
+                        <td><span id="SEPTIEMBREM"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Octubre</th>
@@ -119,9 +119,9 @@
                         <th scope="col">Diciembre</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Mar 26</td>
+                        <td><span id="OCTUBREM"></span></td>
+                        <td><span id="NOVIEMBREM"></span></td>
+                        <td><span id="DICIEMBREM"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -148,12 +148,12 @@
                         <th scope="col">Junio</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Vie 24</td>
-                        <td>Mar 25</td>
-                        <td>Jue 25</td>
-                        <td>Jue 23</td>
+                        <td><span id="ENERO1"></span></td>
+                        <td><span id="FEBRERO1"></span></td>
+                        <td><span id="MARZO1"></span></td>
+                        <td><span id="ABRIL1"></span></td>
+                        <td><span id="MAYO1"></span></td>
+                        <td><span id="JUNIO1"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Julio</th>
@@ -164,12 +164,12 @@
                         <th scope="col">Diciembre</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Vie 24</td>
-                        <td>Lun 25</td>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Mar 26</td>
+                        <td><span id="JULIO1"></span></td>
+                        <td><span id="AGOSTO1"></span></td>
+                        <td><span id="SEPTIEMBRE1"></span></td>
+                        <td><span id="OCTUBRE1"></span></td>
+                        <td><span id="NOVIEMBRE1"></span></td>
+                        <td><span id="DICIEMBRE1"></span></td>
                       </tr>
                     </tbody>
                     </table>
@@ -187,9 +187,9 @@
                         <th scope="col">Marzo</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Vie 24</td>
+                        <td><span id="ENERO1M"></span></td>
+                        <td><span id="FEBRERO1M"></span></td>
+                        <td><span id="MARZO1M"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Abril</th>
@@ -197,9 +197,9 @@
                         <th scope="col">Junio</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Jue 25</td>
-                        <td>Jue 23</td>
+                        <td><span id="ABRIL1M"></span></td>
+                        <td><span id="MAYO1M"></span></td>
+                        <td><span id="JUNIOM1"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Julio</th>
@@ -207,9 +207,9 @@
                         <th scope="col">Septiembre</th>
                       </tr>
                       <tr>
-                        <td>Mar 25</td>
-                        <td>Vie 24</td>
-                        <td>Lun 25</td>
+                        <td><span id="JULIO1M"></span></td>
+                        <td><span id="AGOSTO1M"></span></td>
+                        <td><span id="SEPTIEMBRE1M"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Octubre</th>
@@ -217,9 +217,9 @@
                         <th scope="col">Diciembre</th>
                       </tr>
                       <tr>
-                        <td>Mie 25</td>
-                        <td>Vie 24</td>
-                        <td>Mar 26</td>
+                        <td><span id="OCTUBRE1M"></span></td>
+                        <td><span id="NOVIMEBRE1M"></span></td>
+                        <td><span id="DICIEMBRE1M"></span></td>
                       </tr>
                     </tbody>
                     </table>
@@ -242,8 +242,8 @@
                         <th scope="col">Noviembre</th>
                       </tr>
                         <tr>
-                            <td style="border-bottom: 0;">Vie 12</td>
-                            <td style="border-bottom: 0;">Mar 14</td>
+                            <td style="border-bottom: 0;"><span id="MAYO2"></span></td>
+                            <td style="border-bottom: 0;"><span id="NOVIEMBRE2"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -263,8 +263,8 @@
                         <th scope="col">Diciembre</th>
                       </tr>
                         <tr>
-                            <td style="border-bottom: 0;">Jue 13</td>
-                            <td style="border-bottom: 0;">Jue 14</td>
+                            <td style="border-bottom: 0;"><span id="JULIO3"></span></td>
+                            <td style="border-bottom: 0;"><span id="DICIEMBRE3"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -278,3 +278,222 @@
   </main><!-- End #main -->
 
 </x-layouts.app>
+
+
+<script type="text/javascript">
+  //  var num_vacaciones_pendiente="0";
+    window.onload= function() {
+        $.ajax({
+            url: 'api/ObtenerPagoHaberes', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno":2023 },
+            success: function(result){
+              console.log('response',result)
+                //ESCRITORIO
+                document.getElementById("ENERO").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
+                document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
+
+                //MOVIL
+                document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
+                document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+        $.ajax({
+            url: 'api/ObtenerPagoAdelantoVacaciones', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno":2023 },
+            success: function(result){
+                //ESCRITORIO
+                document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+                document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
+
+                //MOVIL
+                document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+                document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO1M").innerHTML=result["response"]["MAYO"];
+                document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+
+        $.ajax({
+            url: 'api/ObtenerPagoCts', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno":2023 },
+            success: function(result){
+                document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
+                document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
+            }
+        });
+
+
+        $.ajax({
+            url: 'api/ObtenerPagoGratificacion', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno":2023 },
+            success: function(result){
+                document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
+                document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+    }
+
+
+
+        function BuscarPagos() {
+
+        var cod_anno = $('#annoFimp').val();
+        $.ajax({
+            url: 'api/ObtenerPagoHaberes', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno": cod_anno },
+            success: function(result){
+              console.log('response',result)
+                //ESCRITORIO
+                document.getElementById("ENERO").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
+                document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
+
+                //MOVIL
+                document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
+                document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+        $.ajax({
+            url: 'api/ObtenerPagoAdelantoVacaciones', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno": cod_anno  },
+            success: function(result){
+                //ESCRITORIO
+                document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+                document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
+                document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
+
+                //MOVIL
+                document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
+                document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+                document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
+                document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
+                document.getElementById("MAYO1M").innerHTML=result["response"]["MAYO"];
+                document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
+                document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
+                document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
+                document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
+                document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
+                document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
+                document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+
+        $.ajax({
+            url: 'api/ObtenerPagoCts', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno": cod_anno  },
+            success: function(result){
+                document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
+                document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
+            }
+        });
+
+
+        $.ajax({
+            url: 'api/ObtenerPagoGratificacion', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno": cod_anno  },
+            success: function(result){
+                document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
+                document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
+            }
+        });
+
+    }
+
+    
+
+</script>

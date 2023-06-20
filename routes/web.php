@@ -58,6 +58,11 @@ Route::view('/home', 'home')->name('home');
     Route::get('lista/ListarMensajeFinalizados', [ListaController::class, 'ListarMensajeFinalizados'])->name('api.ListarMensajeFinalizados');
     Route::get('lista/ListarMensajeAvisos', [ListaController::class, 'ListarMensajeAvisos'])->name('api.ListarMensajeAvisos');
     Route::get('lista/ListarDerechoHabientes', [ListaController::class, 'ListarDerechoHabientes'])->name('api.ListarDerechoHabientes');
+
+    Route::get('api/ObtenerPagoHaberes', [APIController::class, 'ObtenerPagoHaberes'])->name('api.ObtenerPagoHaberes');
+    Route::get('api/ObtenerPagoAdelantoVacaciones', [APIController::class, 'ObtenerPagoAdelantoVacaciones'])->name('api.ObtenerPagoAdelantoVacaciones');
+    Route::get('api/ObtenerPagoCts', [APIController::class, 'ObtenerPagoCts'])->name('api.ObtenerPagoCts');
+    Route::get('api/ObtenerPagoGratificacion', [APIController::class, 'ObtenerPagoGratificacion'])->name('api.ObtenerPagoGratificacion');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
