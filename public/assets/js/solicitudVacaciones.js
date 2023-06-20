@@ -1,11 +1,18 @@
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
-    dateFormat: "d-m-Y"
+    dateFormat: "d-m-Y",
+    minDate: "today"
 });
 
-flatpickr("#datepickerFinSolVac",{
-    locale:"es",
-    dateFormat: "d-m-Y"
+var fchInicio = document.getElementById('datepickerIniSolVac').value;
+var inputFchI =document.getElementById('datepickerIniSolVac');
+inputFchI.addEventListener("change",function(){
+    console.log(fchInicio);
+    flatpickr("#datepickerFinSolVac",{
+        locale:"es",
+        dateFormat: "d-m-Y",
+        minDate: fchInicio
+    });
 });
 
 function alertaSolicitud(){
