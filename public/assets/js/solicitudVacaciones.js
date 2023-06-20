@@ -8,6 +8,10 @@ flatpickr("#datepickerIniSolVac",{
 
 var inputFchInicio = document.getElementById('datepickerIniSolVac');
 inputFchInicio.addEventListener("change", function() {
+    document.getElementById('datepickerFinSolVac').value = '';
+    document.getElementById('resutSolVac').innerHTML = '';
+    document.getElementById('resutSolVac2').innerHTML = '';
+
     var fchInicio = inputFchInicio.value;
     var maximaDate = new Date();
     var fechaParts = fchInicio.split('-');
@@ -15,7 +19,6 @@ inputFchInicio.addEventListener("change", function() {
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
     maximaDate.setDate(maximaDate.getDate() + 7);
-    console.log('maximaDate', maximaDate);
 
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
@@ -25,69 +28,41 @@ inputFchInicio.addEventListener("change", function() {
         maxDate: maximaDate
     });
 
-    var formattedRange = 'Usted ha seleccionado desde '+fchInicio+" al "+fechaFin;
+    var formattedRange = 'Usted ha seleccionado desde el día '+fchInicio;
     document.getElementById('resutSolVac').innerHTML = formattedRange;
 });
 
-function contarDomingos(fechaInicio, fechaFin) {
-    var currentDate = new Date(fechaInicio);
-    var endDate = new Date(fechaFin);
-    var contadorDomingos = 0;
-  
-    while (currentDate <= endDate) {
-      if (currentDate.getDay() === 0) { // 0 representa el domingo
-        contadorDomingos++;
-      }
-      currentDate.setDate(currentDate.getDate() + 1);
-    }
-  
-    return contadorDomingos;
-  }
+var inputFchFin = document.getElementById('datepickerFinSolVac');
+inputFchFin.addEventListener("change", function() {
+    document.getElementById('resutSolVac2').innerHTML = '';
+    var fchFin = inputFchFin.value;
+    var fchIni = document.getElementById('datepickerIniSolVac').value;
 
+    var x = new Date();
+    var fechaParts = fchIni.split('-');
+    x.setDate(parseInt(fechaParts[0]));
+    x.setMonth(parseInt(fechaParts[1]) - 1);
+    x.setFullYear(parseInt(fechaParts[2]));
+    x.setDate(x.getDate());
 
+    var y = new Date();
+    var fechaParts2 = fchFin.split('-');
+    y.setDate(parseInt(fechaParts2[0]));
+    y.setMonth(parseInt(fechaParts2[1]) - 1);
+    y.setFullYear(parseInt(fechaParts2[2]));
+    y.setDate(y.getDate());
+    
+    // segundos = milisegundos/1000
+    // minutos = segundos/60
+    // horas = minutos/60
+    // Días = horas/24
+    
+    const diffInDays = Math.floor((y - x) / (1000 * 60 * 60 * 24));
 
-// var inputFchInicio = document.getElementById('datepickerIniSolVac');
-// var flatpickrInstance = null;
-
-// inputFchInicio.addEventListener("change", function() {
-//     document.getElementById('resutSolVac').innerHTML ='';
-//     var fchInicio = inputFchInicio.value;
-//     console.log('value', fchInicio);
-
-//     if (fchInicio && fchInicio.length > 0) {
-//         var maxDate = new Date();
-//         var fechaParts = fchInicio.split('-');
-//         maxDate.setDate(parseInt(fechaParts[0]));
-//         maxDate.setMonth(parseInt(fechaParts[1]) - 1);
-//         maxDate.setFullYear(parseInt(fechaParts[2]));
-//         maxDate.setDate(maxDate.getDate() + 7);
-//         console.log('maxDate', maxDate);
-        
-
-//         if (flatpickrInstance) {
-//             flatpickrInstance.set('maxDate', maxDate);
-//         } else {
-//             flatpickrInstance = inputFchInicio.flatpickr({
-//                 plugins: [new rangePlugin({ maxDate: maxDate })],
-//                 locale: "es",
-//                 dateFormat: "d-m-Y",
-//                 minDate: "today",
-//                 disable: ["30-07-2023", "31-07-2023", "08-10-2023"],
-//                 mode: "range"
-//             });
-//         }
-//     }
-// });
-
-
-
-
-function formatDate(date) {
-    var day = date.getDate();
-    var month = date.getMonth() + 1;
-    var year = date.getFullYear();
-    return day + "-" + month + "-" + year;
-}
+    var formattedRange = ' al '+fchFin+'. Cantidad de días: '+diffInDays;
+    document.getElementById('resutSolVac2').innerHTML = formattedRange;
+    
+});
 
 function alertaSolicitud(){
     Swal.fire({

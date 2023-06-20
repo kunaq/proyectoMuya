@@ -78,7 +78,7 @@
               </div>
               <div class="row">
                 <div class="col-md-8">
-                  <span id=resutSolVac></span>
+                  <span id=resutSolVac></span><span id=resutSolVac2></span>
                 </div>
               </div>
             </div>
