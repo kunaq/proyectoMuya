@@ -110,6 +110,27 @@ class APIController extends Controller
         }
     }
 
-    
+    public function ObtenerTrabajador()
+    {   
+        $client = new Client();
 
+        try {
+            $cod_trabajador = session('codTrabajador');
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20555348887/'.$cod_trabajador);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+   
 }

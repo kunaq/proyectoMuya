@@ -33,77 +33,14 @@
                             <table class="table table-striped ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="15%">F. notific.</th>
-                                        <th scope="col" width="12%">F. límite</th>
-                                        <th scope="col" width="18%">Solicitante</th>
-                                        <th scope="col" colspan="2" width="55%">Actividad</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Notificado</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Limite</th>
+                                        <th scope="col" width="20%" style="text-align: center;">Solicitante</th>
+                                        <th scope="col" width="40%" style="text-align: center;">Mensaje</th>
+                                        <th scope="col" width="10%" style="text-align: center;">Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Falta correo corporativo en el sistema de planillas.</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>13/02/2023</td>
-                                        <td>20/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Acuerdo de adelanto de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/02/2023</td>
-                                        <td>18/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Aceptar/Rechazar una solicitud de vacaciones.</td>
-                                        <td><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>No firma el "Acuerdo de adelanto de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Falta correo corporativo en el sistema de planillas.</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
+                                <tbody style="text-align: center;font-size:0.7em;" id="MensajeFinalizados"></tbody>
                             </table>
                         </div>
                     </div>
@@ -117,63 +54,14 @@
                             <table class="table table-striped ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="15%">F. notific.</th>
-                                        <th scope="col" width="12%">F. límite</th>
-                                        <th scope="col" width="18%">Solicitante</th>
-                                        <th scope="col" colspan="2" width="55%">Actividad</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Notificado</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Limite</th>
+                                        <th scope="col" width="20%" style="text-align: center;">Solicitante</th>
+                                        <th scope="col" width="40%" style="text-align: center;">Mensaje</th>
+                                        <th scope="col" width="10%" style="text-align: center;">Accion</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13/02/2023</td>
-                                        <td>20/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Acuerdo de adelanto de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/02/2023</td>
-                                        <td>18/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Aceptar/Rechazar una solicitud de vacaciones.</td>
-                                        <td><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>No firma el "Acuerdo de adelanto de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Falta correo corporativo en el sistema de planillas.</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-secondary btnTabHome">Ocultar</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody style="text-align: center;font-size:0.7em;" id="MensajePendientes"></tbody>
                             </table>
                         </div>
                     </div>    
@@ -186,84 +74,13 @@
                             <table class="table table-striped ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="15%">F. notific.</th>
-                                        <th scope="col" width="12%">F. límite</th>
-                                        <th scope="col" width="18%">Solicitante</th>
-                                        <th scope="col" colspan="2" width="55%">Actividad</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Notificado</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Limite</th>
+                                        <th scope="col" width="20%" style="text-align: center;">Solicitante</th>
+                                        <th scope="col" width="50%" style="text-align: center;">Mensaje</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13/02/2023</td>
-                                        <td>20/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Acuerdo de adelanto de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/02/2023</td>
-                                        <td>18/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Aceptar/Rechazar una solicitud de vacaciones.</td>
-                                        <td><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>No firma el "Acuerdo de adelanto de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Aceptar/Rechazar una solicitud de vacaciones.</td>
-                                        <td><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>No firma el "Acuerdo de adelanto de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Falta correo corporativo en el sistema de planillas.</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-secondary btnTabHome">Ocultar</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody style="text-align: center;font-size:0.7em;" id="MensajeAvisos"></tbody>
                             </table>
                         </div>
                     </div>    
@@ -287,29 +104,7 @@
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem; max-height: 500px;overflow-y: auto;">
                             <table class="table table-striped ">
-                                <tbody>
-                                  <tr>
-                                    <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".<br>  <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Falta correo corporativo en el sistema de planillas. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Firmar documento "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 13/02/2023<br> <b>F. límite:</b> 20/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> <button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Firmar documento "Solicitud de vacaciones".<br>  <b>F. notific:</b> 11/02/2023<br> <b>F. límite:</b> 18/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Aceptar/Rechazar una solicitud de vacaciones. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>No firma el "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones". <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                </tbody>
+                            <tbody style="text-align: center;font-size:0.7em;" id="MensajeFinalizados2"></tbody>
                             </table>
                         </div>
                     </div>
@@ -321,30 +116,7 @@
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;height: 500px;overflow-y: auto;">
                             <table class="table table-striped ">
-                                <tbody>
-                                  <tr>
-                                    <td>Firmar documento "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 13/02/2023<br> <b>F. límite:</b> 20/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> <button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Firmar documento "Solicitud de vacaciones".<br>  <b>F. notific:</b> 11/02/2023<br> <b>F. límite:</b> 18/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Aceptar/Rechazar una solicitud de vacaciones. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>No firma el "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".<br>  <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Falta correo corporativo en el sistema de planillas. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  
-                                  <tr>
-                                    <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones". <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-secondary btnTabHome">Ocultar</button></td>
-                                  </tr>                       
-                                </tbody>
+                            <tbody style="text-align: center;font-size:0.7em;" id="MensajePendientes2"></tbody>
                             </table>
                         </div>
                     </div>    
@@ -355,38 +127,7 @@
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;height: 500px;overflow-y: auto;">
                             <table class="table table-striped ">
-                                <tbody>
-                                  <tr>
-                                    <td>Firmar documento "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 13/02/2023<br> <b>F. límite:</b> 20/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> <button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Firmar documento "Solicitud de vacaciones".<br>  <b>F. notific:</b> 11/02/2023<br> <b>F. límite:</b> 18/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Aceptar/Rechazar una solicitud de vacaciones. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>No firma el "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".<br>  <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  <tr>
-                                    <td>Aceptar/Rechazar una solicitud de vacaciones. <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                  </tr>
-                                  <tr>
-                                    <td>No firma el "Acuerdo de adelanto de vacaciones". <br> <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> </td>
-                                  </tr>
-                                  <tr>
-                                    <td>Está a 5 días de iniciar sus vacaciones, debe firmar la "Solicitud de vacaciones".<br>  <b>F. notific:</b> 6/02/2023<br> <b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                  <tr>
-                                    <td>La solicitud de vacaciones ha sido cancelada por falta de firma de la "Solicitud de vacaciones". <br>  <b>F. notific:</b> 6/02/2023<br><b>F. límite:</b> 13/02/2023 <br> <b>Solicitante:</b> M. Huaman <br><button class="btn btn-secondary btnTabHome">Ocultar</button></td>
-                                  </tr> 
-                                  <tr>
-                                    <td>Falta correo corporativo en el sistema de planillas.<br>  <b>F. notific:</b> 1/02/2023<br> <b>F. límite:</b> 10/02/2023 <br> <b>Solicitante:</b> M. Huaman <br></td>
-                                  </tr>
-                                </tbody>
+                            <tbody style="text-align: center;font-size:0.7em;" id="MensajeAvisos2"></tbody>
                             </table>
                         </div>
                     </div>    
@@ -404,3 +145,173 @@
   </main><!-- End #main -->
 
 </x-layouts.app>
+
+
+<script type="text/javascript">
+  //  var num_vacaciones_pendiente="0";
+    window.onload= function() {
+        
+        $.ajax({
+        url: 'lista/ListarMensajePendientes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+          console.log('response',respuesta)
+          
+          filaData='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+            var filaAccion='';
+            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            {
+                  if(element['cod_estado'] == 'FIN')
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+                  }
+                  else
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                  }
+            }
+            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+            }
+            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
+                
+            }
+            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
+            {
+                filaAccion="";
+            }
+
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+              '<td>'+filaAccion+'</td>'+
+            '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#MensajePendientes').html(filaData);
+          $('#MensajePendientes2').html(filaData);
+        }//success
+       
+       
+    });//end ajax
+
+
+
+    $.ajax({
+        url: 'lista/ListarMensajeFinalizados', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+
+          
+          filaData='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+            var filaAccion='';
+            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            {
+                  if(element['cod_estado'] == 'FIN')
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+                  }
+                  else
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                  }
+            }
+            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+            }
+            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
+            }
+            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
+            {
+                filaAccion="";
+            }
+
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+              '<td>'+filaAccion+'</td>'+
+            '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#MensajeFinalizados').html(filaData);
+          $('#MensajeFinalizados2').html(filaData);
+        }//success
+       
+       
+    });//end ajax
+
+
+
+
+
+
+    $.ajax({
+        url: 'lista/ListarMensajeAvisos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+
+          
+          filaData='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+            '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#MensajeAvisos').html(filaData);
+          $('#MensajeAvisos2').html(filaData);
+        }//success
+       
+       
+    });//end ajax
+
+
+
+
+    }
+
+    
+
+</script>

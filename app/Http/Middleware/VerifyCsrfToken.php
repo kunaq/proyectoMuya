@@ -20,5 +20,12 @@ class VerifyCsrfToken extends Middleware
         '/docSolicitudVaca',
         '/api/enviarDocumentos',
         '/api/generarDocumento',
+
+        '/api/ObtenerTrabajador',
+        '/lista/ListarUltimosMensajes',
+        '/lista/ListarMensajePendientes',
+        '/lista/ListarMensajeFinalizados',
+        '/lista/ListarMensajeAvisos',
+        '/lista/ListarDerechoHabientes',
     ];
 }

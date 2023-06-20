@@ -27,7 +27,7 @@
               </div>
               <hr style="margin:0 1rem 1rem;color: gray;">
               <div class="text-center">
-                <p style="color: #7D7D7C;"><b>Milagros Josefina<br> Huaman Olivera</b></p>
+                <p style="color: #7D7D7C;"><b><span id="dsc_nombres3"></span><br> <span id="dsc_apellidos3"></span></b></p>
               </div>
               <br class="d-none d-md-block"><br class="d-none d-md-block"><br class="d-none d-md-block">
             </div>
@@ -55,9 +55,9 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>Milagros Josefina</td>
-                        <td>Huaman Olivera</td>
-                        <td>DNI-123456789</td>
+                        <td><span id="dsc_nombres"></span></td>
+                        <td><span id="dsc_apellidos"></span></td>
+                        <td><span id="dsc_documento"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Fecha de nacimiento</th>
@@ -65,16 +65,15 @@
                         <th scope="col">Correo personal</th>
                       </tr>
                       <tr>
-                        <td>01/01/1990</td>
-                        <td>987 654 321</td>
-                        <td>milagrosHuaman@mail.com</td>
+                        <td><span id="fch_nacimiento"></span></td>
+                        <td><span id="dsc_telefono_personal"></span></td>
+                        <td><span id="dsc_mail_personal"></span></td>
                       </tr>
                       <tr>
                         <th scope="col" colspan="3">Dirección</th>
                       </tr>
                       <tr>
-                        <td colspan="3">Dirección de prueba Urb. Genérica, Calle San José,
-                          casa 42, Distrito, Provincia, Departamento, País</td>
+                        <td colspan="3"><span id="dsc_direccion"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -92,24 +91,24 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>15/02/2020</td>
-                        <td>Consejero NI</td>
+                        <td><span id="fch_ingreso"></span></td>
+                        <td><span id="dsc_cargo"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Sede</th>
                         <th scope="col">Jefe a quien reporta</th>
                       </tr>
                       <tr>
-                        <td>San Antonio</td>
-                        <td>Maximiliano Gonzalez</td>
+                        <td><span id="dsc_localidad"></span></td>
+                        <td><span id="dsc_superior"></span></td>
                       </tr> 
                       <tr>
-                        <th scope="col">Equipo asignado</th>
+                        <th scope="col">Area asignada</th>
                         <th scope="col">Correo corporativo</th>
                       </tr>
                       <tr>
-                        <td>SAC - Administrativos Chiclayo</td>
-                        <td>mhuaman@muya.com.pe</td>
+                        <td><span id="dsc_area"></span></td>
+                        <td><span id="dsc_mail_empresa"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -121,50 +120,14 @@
                   <table class="table tableDatos">
                     <thead>
                       <tr>
-                        <th scope="col">DNI</th>
-                        <th scope="col">Nombres</th>
-                        <th scope="col">Apellidos</th>
-                        <th scope="col">Fecha de Nacimiento</th>
-                        <th scope="col">Vínculo</th>
+                        <th scope="col" style="text-align: center;">DNI</th>
+                        <th scope="col" style="text-align: center;">Nombres</th>
+                        <th scope="col" style="text-align: center;">Apellidos</th>
+                        <th scope="col" style="text-align: center;">Fecha de Nacimiento</th>
+                        <th scope="col" style="text-align: center;">Vínculo</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td>123456789</td>
-                        <td>Veronica Alexandra</td>
-                        <td>Huaman Fernández</td>
-                        <td>06/05/2012</td>
-                        <td>Hija</td>
-                      </tr>
-                      <tr>
-                        <td>123456789</td>
-                        <td>Miguel Ángel</td>
-                        <td>Huaman Fernández</td>
-                        <td>09/02/2009</td>
-                        <td>Hijo</td>
-                      </tr>
-                      <tr>
-                        <td>123456789</td>
-                        <td>Veronica Alexandra</td>
-                        <td>Huaman Fernández</td>
-                        <td>06/05/2012</td>
-                        <td>Hija</td>
-                      </tr>
-                      <tr>
-                        <td>123456789</td>
-                        <td>Miguel Ángel</td>
-                        <td>Huaman Fernández</td>
-                        <td>09/02/2009</td>
-                        <td>Hijo</td>
-                      </tr>
-                      <tr>
-                        <td>123456789</td>
-                        <td>Marco Antonio</td>
-                        <td>Fernández</td>
-                        <td>25/10/1988</td>
-                        <td>Cónyugue</td>
-                      </tr>
-                    </tbody>
+                    <tbody style="text-align: center;font-size:0.7em;" id="DerechoHabiente"></tbody>
                   </table>
                 </div>
                 <br>
@@ -192,44 +155,43 @@
                         <th scope="col">Nombres</th>
                       </tr>
                       <tr>
-                        <td>Milagros Josefina</td>
+                        <td><span id="dsc_nombres2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Apellidos</th>
                       </tr>
                       <tr>
-                        <td>Huaman Olivera</td>
+                        <td><span id="dsc_apellidos2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Documento</th>
                       </tr>
                       <tr>
-                        <td>DNI-123456789</td>
+                        <td><span id="dsc_documento2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Fecha de nacimiento</th>
                       </tr>
                       <tr>
-                        <td>01/01/1990</td>
+                        <td><span id="fch_nacimiento2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Teléfono</th>
                       </tr>
                       <tr>
-                        <td>987 654 321</td>
+                        <td><span id="dsc_telefono_personal2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Correo personal</th>
                       </tr>
                       <tr>
-                        <td>milagrosHuaman@mail.com</td>
+                        <td><span id="dsc_mail_personal2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Dirección</th>
                       </tr>
                       <tr>
-                        <td >Dirección de prueba Urb. Genérica, Calle San José,
-                          casa 42, Distrito, Provincia, Departamento, País</td>
+                        <td ><span id="dsc_direccion2"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -243,37 +205,37 @@
                         <th scope="col">Fecha de ingreso</th>
                       </tr>
                       <tr>
-                        <td>15/02/2020</td>
+                        <td><span id="fch_ingreso2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Cargo Actual</th>
                       </tr>
                       <tr>
-                        <td>Consejero NI</td>
+                        <td><span id="dsc_cargo2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Sede</th>
                       </tr>
                       <tr>
-                        <td>San Antonio</td>
+                        <td><span id="dsc_localidad2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Jefe a quien reporta</th>
                       </tr>
                       <tr>
-                        <td>Maximiliano Gonzalez</td>
+                        <td><span id="dsc_superior2"></span></td>
                       </tr>
                       <tr>
-                        <th scope="col">Equipo asignado</th>
+                        <th scope="col">Area asignada</th>
                       </tr>
                       <tr>
-                        <td>SAC - Administrativos Chiclayo</td>
+                        <td><span id="dsc_area2"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Correo corporativo</th>
                       </tr>
                       <tr>
-                        <td>mhuaman@muya.com.pe</td>
+                        <td><span id="dsc_mail_empresa2"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -283,38 +245,7 @@
                 <br>
                 <div class="table-responsive" style="margin: 0.29rem;">
                   <table class="table tableDatos">
-                    <tbody>
-                      <tr>
-                        <td>Veronica Alexandra Huaman Fernández <br>
-                          <b>DNI:</b>  123456789 <br>                          
-                          <b>F. nac.: </b>06/05/2012 <br>
-                          <b>Vínculo:</b> Hija</td>
-                      </tr>
-                      <tr>
-                        <td>Miguel Ángel Huaman Fernández <br>
-                          <b>DNI:</b> 123456789 <br>
-                          <b>F. nac.: </b>09/02/2009 <br>
-                          <b>Vínculo:</b> Hijo</td>
-                      </tr>
-                      <tr>
-                        <td>Veronica Alexandra Huaman Fernández <br>
-                          <b>DNI:</b> 123456789 <br>                          
-                          <b>F. nac.: </b>06/05/2012 <br>
-                          <b>Vínculo:</b> Hija
-                      </tr>
-                      <tr>
-                        <td>Miguel Ángel Huaman Fernández <br>
-                          <b>DNI:</b> 123456789 <br>
-                          <b>F. nac.: </b>09/02/2009 <br>
-                          <b>Vínculo:</b> Hijo</td>
-                      </tr>
-                      <tr>
-                        <td>Marco Antonio Fernández <br>
-                          <b>DNI:</b>123456789 <br>
-                          <b>F. nac.: </b>25/10/1988 <br>
-                          <b>Vínculo:</b> Cónyugue</td>
-                      </tr>
-                    </tbody>
+                  <tbody style="text-align: center;font-size:0.7em;" id="DerechoHabienteMovil"></tbody>
                   </table>
                 </div>
                 <br>
@@ -330,3 +261,106 @@
   </main><!-- End #main -->
 
 </x-layouts.app>
+
+
+<script type="text/javascript">
+  //  var num_vacaciones_pendiente="0";
+    window.onload= function() {
+        $.ajax({
+            url: 'api/ObtenerTrabajador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{},
+            success: function(result){
+                var fchNac =  result["response"]['fch_nacimiento'].split("T");
+                var fchIng =  result["response"]['fch_ingreso'].split("T");
+
+                //FOTO
+                document.getElementById("dsc_nombres3").innerHTML=result["response"]["dsc_nombres"];
+                document.getElementById("dsc_apellidos3").innerHTML=result["response"]["dsc_apellido_paterno"] +' '+result["response"]["dsc_apellido_materno"];
+
+                //ESCRITORIO
+                document.getElementById("dsc_nombres").innerHTML=result["response"]["dsc_nombres"];
+                document.getElementById("dsc_apellidos").innerHTML=result["response"]["dsc_apellido_paterno"] +' '+result["response"]["dsc_apellido_materno"];
+                document.getElementById("dsc_documento").innerHTML=result["response"]["dsc_tipo_documento"] +': '+result["response"]["dsc_documento"];
+                document.getElementById("fch_nacimiento").innerHTML=fchNac[0] ;
+                document.getElementById("dsc_telefono_personal").innerHTML=result["response"]["dsc_telefono_personal"] ;
+                document.getElementById("dsc_mail_personal").innerHTML=result["response"]["dsc_mail_personal"] ;
+                document.getElementById("dsc_direccion").innerHTML=result["response"]["dsc_direccion"] ;
+
+                document.getElementById("fch_ingreso").innerHTML=fchIng[0] ;
+                document.getElementById("dsc_cargo").innerHTML=result["response"]["dsc_cargo"] ;
+                document.getElementById("dsc_localidad").innerHTML=result["response"]["dsc_localidad"] ;
+                document.getElementById("dsc_superior").innerHTML=result["response"]["dsc_superior"] ;
+                document.getElementById("dsc_area").innerHTML=result["response"]["dsc_area"] ;
+                document.getElementById("dsc_mail_empresa").innerHTML=result["response"]["dsc_mail_empresa"] ;
+
+
+                //MOVIL
+                document.getElementById("dsc_nombres2").innerHTML=result["response"]["dsc_nombres"];
+                document.getElementById("dsc_apellidos2").innerHTML=result["response"]["dsc_apellido_paterno"] +' '+result["response"]["dsc_apellido_materno"];
+                document.getElementById("dsc_documento2").innerHTML=result["response"]["dsc_tipo_documento"] +': '+result["response"]["dsc_documento"];
+                document.getElementById("fch_nacimiento2").innerHTML=fchNac[0] ;
+                document.getElementById("dsc_telefono_personal2").innerHTML=result["response"]["dsc_telefono_personal"] ;
+                document.getElementById("dsc_mail_personal2").innerHTML=result["response"]["dsc_mail_personal"] ;
+                document.getElementById("dsc_direccion2").innerHTML=result["response"]["dsc_direccion"] ;
+             
+                document.getElementById("fch_ingreso2").innerHTML=fchIng[0] ;
+                document.getElementById("dsc_cargo2").innerHTML=result["response"]["dsc_cargo"] ;
+                document.getElementById("dsc_localidad2").innerHTML=result["response"]["dsc_localidad"] ;
+                document.getElementById("dsc_superior2").innerHTML=result["response"]["dsc_superior"] ;
+                document.getElementById("dsc_area2").innerHTML=result["response"]["dsc_area"] ;
+                document.getElementById("dsc_mail_empresa2").innerHTML=result["response"]["dsc_mail_empresa"] ;
+
+            }
+        });
+
+
+        $.ajax({
+        url: 'lista/ListarDerechoHabientes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+
+          
+          filaData='';
+          filaDataMovil='';
+          respuesta['response'].forEach(function(element){ 
+            var fchNac =  element['fch_nacimiento'].split("T");
+            
+          
+
+            filaData += '<tr>'+
+              '<td>'+element['num_documento']+'</td>'+
+              '<td>'+element['dsc_nombres']+'</td>'+
+              '<td>'+element['dsc_apellido_paterno']+' ' +element['dsc_apellido_materno']+'</td>'+
+              '<td>'+fchNac[0]+'</td>'+
+              '<td>'+element['dsc_parentesco']+'</td>'+
+            '</tr>';
+         
+            filaDataMovil += '<tr>'+
+              '<td>'+element['dsc_nombres']+element['dsc_apellido_paterno']+' '+element['dsc_apellido_materno']+'<br>'+
+              '<b>DNI:</b>'+element['num_documento']+'<br>'+
+              '<b>Nac:</b>'+fchNac[0]+'<br>'+
+              '<b>Vinculo:</b>'+element['dsc_parentesco']+'<td>'+
+            '</tr>';
+
+          });
+          //console.log(filasArray);
+          $('#DerechoHabiente').html(filaData);
+          $('#DerechoHabienteMovil').html(filaDataMovil);
+        }//success
+       
+       
+    });//end ajax
+
+
+
+    }
+
+    
+
+</script>

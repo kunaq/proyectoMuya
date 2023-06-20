@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b>MARZO</b></h1>
+                                <h1 class="card-title tarjeta-foco"><b><span id="dsc_mes_actual"></span></b></h1>
                                 <h5><button class="btn btn-success btnDorado">Descargar Boleta</button></h5>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b>25</b></h1>
+                                <h1 class="card-title tarjeta-foco"><b><span id="num_vacaciones_pendiente"></span></b></h1>
                                 <h5>Días generados de vacaciones</h5>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b>15 - ABRIL</b></h1>
+                                <h1 class="card-title tarjeta-foco"><b><span id="dsc_proxima_vacaciones"></span></b></h1>
                                 <h5 style="margin-bottom: 0;">Tus próximas vacaciones inician</h5>
                             </div>
                         </div>
@@ -58,35 +58,15 @@
                             <table class="table table-striped ">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="15%">F. notific.</th>
-                                        <th scope="col" width="12%">F. límite</th>
-                                        <th scope="col" width="18%">Solicitante</th>
-                                        <th scope="col" colspan="2" width="55%">Actividad</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Notificado</th>
+                                        <th scope="col" width="15%" style="text-align: center;">Limite</th>
+                                        <th scope="col" width="20%" style="text-align: center;">Solicitante</th>
+                                        <th scope="col" width="40%" style="text-align: center;">Mensaje</th>
+                                        <th scope="col" width="10%" style="text-align: center;">Accion</th>
+                                        
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>13/02/2023</td>
-                                        <td>20/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Convenio de adelanto de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/02/2023</td>
-                                        <td>18/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Firmar documento "Solicitud de vacaciones".</td>
-                                        <td><button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>M. Huaman</td>
-                                        <td>Aceptar/Rechazar una solicitud de vacaciones</td>
-                                        <td><button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                    </tr>
-                                </tbody>
+                                <tbody style="text-align: center;font-size:0.7em;" id="UltimoMensaje">
                             </table>
                         </div>
                     </div>  
@@ -94,6 +74,9 @@
             </div>
           </div> 
           
+
+
+
           <div class="col-sm-10 d-sm-block d-md-none">
             <div class="card">
               <div class="card-body">
@@ -101,17 +84,7 @@
                   <div class="row">
                       <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
                           <table class="table table-striped ">
-                              <tbody>
-                                  <tr>
-                                      <td>Firmar documento "Acuerdo de adelanto de vacaciones". <br>  <b>F. notific:</b> 13/02/2023<br> <b>F. límite:</b> 20/02/2023 <br> <b>Solicitante:</b> M. Huaman <br> <button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Firmar documento "Solicitud de vacaciones". <br> <b>F. notific:</b> 11/02/2023<br> <b>F. límite:</b> 18/02/2023 <br> <b>Solicitante:</b> M. Huaman<br> <button class="btn btn-success btnTabHome btnDorado">Firmar</button></td>
-                                  </tr>
-                                  <tr>
-                                      <td>Aceptar/Rechazar una solicitud de vacaciones <br>  <b>F. notific:</b> 11/02/2023<br><b>F. límite:</b> 18/02/2023 <br> <b>Solicitante:</b> M. Huaman <br> <button class="btn btn-success btnTabHome verdeMuya">Ir</button></td>
-                                  </tr>
-                              </tbody>
+                          <tbody style="text-align: center;font-size:0.7em;" id="UltimoMensajeMovil">
                           </table>
                       </div>
                   </div>  
@@ -124,6 +97,94 @@
   </main><!-- End #main -->
 
 </x-layouts.app>
+
 <script type="text/javascript">
+  //  var num_vacaciones_pendiente="0";
+    window.onload= function() {
+        $.ajax({
+            url: 'api/ObtenerTrabajador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{},
+            success: function(result){
+                document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
+                document.getElementById("dsc_proxima_vacaciones").innerHTML=result["response"]["dsc_proxima_vacaciones"];
+                document.getElementById("dsc_mes_actual").innerHTML=result["response"]["dsc_mes_actual"];
+            }
+        });
+
+
+        $.ajax({
+        url: 'lista/ListarUltimosMensajes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+
+          
+          filaData='';
+          filaDataMovil='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+            var filaAccion='';
+
+            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            {
+                  if(element['cod_estado'] == 'FIN')
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+                  }
+                  else
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                  }
+            }
+            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+            }
+            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
+                
+            }
+            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
+            {
+                filaAccion="";
+            }
+
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+              '<td>'+filaAccion+'</td>'+
+            '</tr>';
+
+            filaDataMovil += '<tr>'+
+              '<td>'+element['dsc_mensaje']+'<br>'+
+              '<b>F. notific:</b>'+fchReg[0]+'<br>'+
+              '<b>F. límite:</b>'+fchLim[0]+'</br>'+
+              '<b>Solicitante:</b>'+element['dsc_trabajador_solicitante']+'</br>'+
+               +filaAccion+'</td>'+
+            '</tr>';
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#UltimoMensaje').html(filaData);
+          $('#UltimoMensajeMovil').html(filaDataMovil);
+        }//success
+       
+       
+    });//end ajax
+
+
+    }
+
     
+
 </script>

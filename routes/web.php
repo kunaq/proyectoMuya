@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\APIController;
+use App\Http\Controllers\ListaController;
 use App\Http\Controllers\CreaPDFController;
 use App\Http\Controllers\FuncionesController;
 
@@ -50,9 +51,13 @@ Route::view('/home', 'home')->name('home');
 
     Route::get('/logout', [FuncionesController::class, 'logout'])->name('logout');
 
-
-
-
+     //-----------------------Mostrar Datos-----------------------------//
+    Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');
+    Route::get('lista/ListarUltimosMensajes', [ListaController::class, 'ListarUltimosMensajes'])->name('api.ListarUltimosMensajes');
+    Route::get('lista/ListarMensajePendientes', [ListaController::class, 'ListarMensajePendientes'])->name('api.ListarMensajePendientes');
+    Route::get('lista/ListarMensajeFinalizados', [ListaController::class, 'ListarMensajeFinalizados'])->name('api.ListarMensajeFinalizados');
+    Route::get('lista/ListarMensajeAvisos', [ListaController::class, 'ListarMensajeAvisos'])->name('api.ListarMensajeAvisos');
+    Route::get('lista/ListarDerechoHabientes', [ListaController::class, 'ListarDerechoHabientes'])->name('api.ListarDerechoHabientes');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
