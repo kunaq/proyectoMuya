@@ -1,13 +1,18 @@
-$('#datepickerIniSolVac').datepicker({
-    minDate: 0,
-    maxDate: "+1M",
-    language: "es",
-    autoclose: true
+flatpickr("#datepickerIniSolVac",{
+    locale:"es",
+    dateFormat: "d-m-Y",
+    minDate: "today"
 });
-$('#datepickerFinSolVac').datepicker({
-    minDate: 0,
-    language: "es",
-    autoclose: true
+
+var fchInicio = document.getElementById('datepickerIniSolVac').value;
+var inputFchI =document.getElementById('datepickerIniSolVac');
+inputFchI.addEventListener("change",function(){
+    console.log(fchInicio);
+    flatpickr("#datepickerFinSolVac",{
+        locale:"es",
+        dateFormat: "d-m-Y",
+        minDate: fchInicio
+    });
 });
 
 function alertaSolicitud(){
@@ -21,7 +26,7 @@ function alertaSolicitud(){
         }).then((result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-            var fechaIni = 
+            var fechaIni = '';
             Swal.fire({
                 icon: 'success',
                 text: 'Se ha registrado su solicitud con éxito',

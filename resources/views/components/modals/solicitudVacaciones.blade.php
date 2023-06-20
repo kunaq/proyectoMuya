@@ -89,17 +89,19 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
      {{-- js llamada externa --}}
-     <script src="{{asset('assets/js/solicitudVacaciones.js')}}"></script>
+     
 
      <script>
          const baseUrl = "{{ env('API_VERIFCONECT_BASE_URL') }}";
          const apiKey = "{{ env('API_VERIFCONECT_API_KEY') }}";
          const baseTokenUrl = "{{ env('API_SOLICTOKEN_BASE_URL') }}";
          const apiTokenKey = "{{ env('API_SOLICTOKEN_API_KEY') }}";
-       
+
      </script>
   
     <!-- Template Main JS File -->
+
+
     <script type='importmap'>
       {
         "imports": {

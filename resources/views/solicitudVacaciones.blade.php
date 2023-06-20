@@ -273,4 +273,5 @@
 </main><!-- End #main -->
 
 <x-modals.solicitudVacaciones/>
+
 </x-layouts.app>

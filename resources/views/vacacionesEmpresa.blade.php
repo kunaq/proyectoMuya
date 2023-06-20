@@ -11,6 +11,17 @@
             </ol>
         </nav>
     </div>
+    <section class="section dashboard d-sm-block d-md-none">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 d-md-block">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="tarjeta-vaca-foco" style="font-size: 18px; padding-top: 1rem;;">Para acceder a todas las opciones por favor ingresar desde su ordenador.</h5>  
+                    </div>
+                </div>
+            </div>        
+        </div>  
+    </section>
 
     <section class="section dashboard">
         <div class="row">
@@ -215,6 +226,7 @@
             </div>        
         </div>  
     </section>
+    
 
     <section class="section dashboard">
         <div class="row">
@@ -547,7 +559,7 @@
                         <div class="col-md-4" style="margin-bottom: 1rem;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h5 style="text-align: center; padding-top: 1rem;">Número de reprogramaciones realizadas en el año del equipo</h5>
+                                    <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;padding-bottom:1rem;">Número de reprogramaciones realizadas en el año del equipo</h5>
                                     <hr>
                                     <h1 class="tarjeta-vaca-foco"><b>23</b></h1>
                                     <hr>
