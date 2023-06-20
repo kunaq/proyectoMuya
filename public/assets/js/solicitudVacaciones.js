@@ -1,19 +1,93 @@
+
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
-    minDate: "today"
+    minDate: "today",
+    disable: ["28-07-2023", "29-07-2023","08-10-2023"],
 });
 
-var fchInicio = document.getElementById('datepickerIniSolVac').value;
-var inputFchI =document.getElementById('datepickerIniSolVac');
-inputFchI.addEventListener("change",function(){
-    console.log(fchInicio);
+var inputFchInicio = document.getElementById('datepickerIniSolVac');
+inputFchInicio.addEventListener("change", function() {
+    var fchInicio = inputFchInicio.value;
+    var maximaDate = new Date();
+    var fechaParts = fchInicio.split('-');
+    maximaDate.setDate(parseInt(fechaParts[0]));
+    maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
+    maximaDate.setFullYear(parseInt(fechaParts[2]));
+    maximaDate.setDate(maximaDate.getDate() + 7);
+    console.log('maximaDate', maximaDate);
+
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
         dateFormat: "d-m-Y",
-        minDate: fchInicio
+        minDate: fchInicio,
+        disable: ["28-07-2023", "29-07-2023","08-10-2023"],
+        maxDate: maximaDate
     });
+
+    var formattedRange = 'Usted ha seleccionado desde '+fchInicio+" al "+fechaFin;
+    document.getElementById('resutSolVac').innerHTML = formattedRange;
 });
+
+function contarDomingos(fechaInicio, fechaFin) {
+    var currentDate = new Date(fechaInicio);
+    var endDate = new Date(fechaFin);
+    var contadorDomingos = 0;
+  
+    while (currentDate <= endDate) {
+      if (currentDate.getDay() === 0) { // 0 representa el domingo
+        contadorDomingos++;
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+  
+    return contadorDomingos;
+  }
+
+
+
+// var inputFchInicio = document.getElementById('datepickerIniSolVac');
+// var flatpickrInstance = null;
+
+// inputFchInicio.addEventListener("change", function() {
+//     document.getElementById('resutSolVac').innerHTML ='';
+//     var fchInicio = inputFchInicio.value;
+//     console.log('value', fchInicio);
+
+//     if (fchInicio && fchInicio.length > 0) {
+//         var maxDate = new Date();
+//         var fechaParts = fchInicio.split('-');
+//         maxDate.setDate(parseInt(fechaParts[0]));
+//         maxDate.setMonth(parseInt(fechaParts[1]) - 1);
+//         maxDate.setFullYear(parseInt(fechaParts[2]));
+//         maxDate.setDate(maxDate.getDate() + 7);
+//         console.log('maxDate', maxDate);
+        
+
+//         if (flatpickrInstance) {
+//             flatpickrInstance.set('maxDate', maxDate);
+//         } else {
+//             flatpickrInstance = inputFchInicio.flatpickr({
+//                 plugins: [new rangePlugin({ maxDate: maxDate })],
+//                 locale: "es",
+//                 dateFormat: "d-m-Y",
+//                 minDate: "today",
+//                 disable: ["30-07-2023", "31-07-2023", "08-10-2023"],
+//                 mode: "range"
+//             });
+//         }
+//     }
+// });
+
+
+
+
+function formatDate(date) {
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+    return day + "-" + month + "-" + year;
+}
 
 function alertaSolicitud(){
     Swal.fire({

@@ -320,10 +320,11 @@
 })();
 
 // Función para formatear la fecha a "dd-mm-YYYY"
-function formatearFecha(fecha) {
-  const opciones = { day: '2-digit', month: '2-digit', year: 'numeric' };
-  const fechaFormateada = fecha.toLocaleDateString(undefined, opciones);
-  return fechaFormateada;
+function formatDate(date) {
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  return day + "-" + month + "-" + year;
 }
 
 // Función para obtener la fecha en formato "YYYY-mm-dd"

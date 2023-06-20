@@ -36,7 +36,7 @@
             Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo (correo personal del colaborador), ingresar al correo mencionado para continuar con el proceso.
         </div>
         <div class="modal-footer">
-            <a href="{{route('api.enviarDocumentos')}}"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar</button></a>
+            <a href="{{route('api.enviarDocumentos')}}"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
         </div>
         </div>
     </div>
@@ -54,7 +54,7 @@
         <div class="modal-body">
             <div class="row">
             <h5 style="font-size: 17px; padding-bottom: 1rem;">Seleccione la fecha para sus vacaciones</h5>
-            <div class="row">
+              <div class="row">
                 <div class="col-md-2" style="margin-bottom: 1rem;">
                     <div class="form-group">
                         <span>Inicio:</span>
@@ -75,7 +75,12 @@
                         <input type="text" class="form-control" id="datepickerFinSolVac" name="datepickerFinSolVac">
                     </div>
                 </div>
-            </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <span id=resutSolVac></span>
+                </div>
+              </div>
             </div>
         </div>
         <div class="modal-footer">
