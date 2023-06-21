@@ -329,6 +329,7 @@ function formatDate(date) {
 
 // Función para obtener la fecha en formato "YYYY-mm-dd"
 function obtenerFechaISO(fecha) {
+  fecha = new Date(fecha);
   var day = fecha.getDate();
   var month = fecha.getMonth() + 1;
   var year = fecha.getFullYear();

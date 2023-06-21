@@ -49,7 +49,7 @@
         <div class="modal-content">
         <div class="modal-header">
             <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalSolicitudLabel">Solicitud de vacaciones</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id="btnDissmissModSol" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="row">
@@ -79,12 +79,13 @@
               <div class="row">
                 <div class="col-md-8">
                   <span id=resutSolVac></span><span id=resutSolVac2></span>
+                  <input type="hidden" id="cantDiasSol">
                 </div>
               </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" id="solicitaVacaciones" class="btn btn-success btnDorado" onclick="alertaSolicitud();">Aceptar</button>
+            <button type="button" id="solicitaVacaciones" class="btn btn-success btnDorado">Aceptar</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
         </div>
@@ -141,5 +142,127 @@
         calendar.render();
       });
     </script>
+
+<script type="text/javascript">
+
+window.onload= function() {
+  $.ajax({
+      url: 'api/ObtenerTrabajador', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{},
+      success: function(result){
+          document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
+          document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
+      }
+  });
+
+  $.ajax({
+      url: 'lista/ListarSolicitudVacaciones', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
+      success: function(result){
+          console.log(result);
+        // var filasArray = [];
+        //   respuesta['response'].forEach(element => {
+        //     var fchReg =  element['fch_registro'].split("T");
+        //     var filaData = [
+        //         element['cod_prospecto'],
+        //         element['dsc_tipo_documento']+'-'+element['dsc_documento'],
+        //         element['dsc_prospecto'],
+        //         fchReg[0],
+        //         element['num_dias'],
+        //         element['dsc_origen'],
+        //         '<a class="btn btn-secondary form-remanso"  href="?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>',
+        //     ];
+        //     filasArray.push(filaData);
+        //   });
+        //   //console.log(filasArray);
+        //   $('#listaVacSol').DataTable({
+        //       language: {
+        //           url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+        //       },
+        //       data: filasArray,
+        //       columns: [
+        //           { title: 'Inicio' },
+        //           { title: 'Término' },
+        //           { title: 'Num. días' },
+        //           { title: 'Estado' },
+        //           { title: 'Firma' },
+        //           { title: 'Pago' },
+        //           { title: 'Acciones' },
+        //       ],
+        //       dom: 'trip',
+        //       processing: true,
+        //   });
+
+      }
+  });
+
+}
+  var btnSolicitar = document.getElementById('solicitaVacaciones');
+  btnSolicitar.addEventListener("click", function() {
+    var fchInicio = document.getElementById('datepickerIniSolVac').value;
+    var fechaParts = fchInicio.split('-');
+    var day = fechaParts[0];
+    var month = fechaParts[1];
+    var year = fechaParts[2]; 
+    fchInicio = year + "-" + month + "-" + day;
+
+    var fchFin = document.getElementById('datepickerFinSolVac').value;
+    var fechaPartsF = fchFin.split('-');
+    var dayF = fechaPartsF[0];
+    var monthF = fechaPartsF[1];
+    var yearF = fechaPartsF[2]; 
+    fchFin = yearF + "-" + monthF + "-" + dayF;
+
+    var cantDias = document.getElementById('cantDiasSol').value;
+
+    var solVac = {
+        'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
+        'fch_inicio': fchInicio,
+        'fch_fin': fchFin,
+        'fch_retorno': '2023-06-20T21:18:43.680Z',
+        'cant_dia': cantDias,
+        'flg_alerta_regla': 'NO'
+      }
+    $.ajax({
+        url: 'api/InsertarSolicitudVacaciones', 
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'solVac':solVac},
+        success: function(respuesta){
+            console.log(respuesta);
+            btnCierra = document.getElementById('btnDissmissModSol');
+            var clickEvent = new Event('click');   // Crea un evento "click"
+            btnCierra.dispatchEvent(clickEvent); // Desencadena el evento "click"
+            document.getElementById('datepickerIniSolVac').value = '';
+            document.getElementById('datepickerFinSolVac').value = '';
+            document.getElementById('cantDiasSol').value = '';
+            document.getElementById('resutSolVac').innerHTML = '';
+            document.getElementById('resutSolVac2').innerHTML = '';
+            Swal.fire({
+                icon: 'success',
+                text: 'Se ha registrado su solicitud con éxito',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            })
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+                icon: 'warning',
+                text: 'Ha ocurrido un error intentelo nuevamente.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+                })
+        }//error
+    });//ajax
+  });
+</script>
 
    

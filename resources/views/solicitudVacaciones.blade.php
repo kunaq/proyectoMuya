@@ -19,8 +19,9 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b>25</b></h1>
+                                <h1 class="card-title tarjeta-foco"><b><span id="num_vacaciones_pendiente"></span></b></h1>
                                 <h5>Días generados de vacaciones</h5>
+                                <input type="hidden" id="numVacPend" name="numVacPend">
                             </div>
                         </div>
                     </div>  
@@ -214,7 +215,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
-                            <table class="table table-striped ">
+                            <table class="table table-striped " id="listaVacSol">
                                 <tbody>
                                     <tr>
                                         <td>

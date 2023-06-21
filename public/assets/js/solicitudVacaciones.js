@@ -11,6 +11,8 @@ inputFchInicio.addEventListener("change", function() {
     document.getElementById('datepickerFinSolVac').value = '';
     document.getElementById('resutSolVac').innerHTML = '';
     document.getElementById('resutSolVac2').innerHTML = '';
+    numPend = parseInt(document.getElementById("numVacPend").value);
+    console.log('numPend',numPend);
 
     var fchInicio = inputFchInicio.value;
     var maximaDate = new Date();
@@ -18,7 +20,7 @@ inputFchInicio.addEventListener("change", function() {
     maximaDate.setDate(parseInt(fechaParts[0]));
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
-    maximaDate.setDate(maximaDate.getDate() + 7);
+    maximaDate.setDate(maximaDate.getDate() + numPend);
 
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
@@ -60,9 +62,11 @@ inputFchFin.addEventListener("change", function() {
     const diffInDays = Math.floor((y - x) / (1000 * 60 * 60 * 24));
 
     var formattedRange = ' al '+fchFin+'. Cantidad de días: '+diffInDays;
+    document.getElementById('cantDiasSol').value = diffInDays;
     document.getElementById('resutSolVac2').innerHTML = formattedRange;
     
 });
+
 
 function alertaSolicitud(){
     Swal.fire({

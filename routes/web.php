@@ -65,6 +65,11 @@ Route::view('/home', 'home')->name('home');
     Route::get('api/ObtenerPagoGratificacion', [APIController::class, 'ObtenerPagoGratificacion'])->name('api.ObtenerPagoGratificacion');
     Route::get('lista/MuestraAnhos', [ListaController::class, 'MuestraAnhos'])->name('lista.MuestraAnhos');
     Route::put('api/FinalizarMensaje', [APIController::class, 'FinalizarMensaje'])->name('api.FinalizarMensaje');
+    Route::get('lista/ListarSolicitudVacaciones', [ListaController::class, 'ListarSolicitudVacaciones'])->name('lista.ListarSolicitudVacaciones');
+
+    //------------------------Guardar datos -------------------------------
+    Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });

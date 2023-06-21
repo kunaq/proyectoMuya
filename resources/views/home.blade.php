@@ -167,7 +167,7 @@
 
             filaDataMovil += '<tr>'+
               '<td>'+element['dsc_mensaje']+'<br>'+
-              '<b>F. notific:</b>'+fchReg[0]+'<br>'+
+              '<b>F. notific:</b>'+formatDate(fchReg[0])+'<br>'+
               '<b>F. límite:</b>'+fchLim[0]+'</br>'+
               '<b>Solicitante:</b>'+element['dsc_trabajador_solicitante']+'</br>'+
                +filaAccion+'</td>'+
