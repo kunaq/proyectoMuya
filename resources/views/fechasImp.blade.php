@@ -17,8 +17,7 @@
           <div class="col-4 col-md-3">
             <div class="form-group">
               <select name="annoFimp" id="annoFimp" class="form-control selectForm" >
-                <option value="2023" selected>2023</option>
-                <option value="2022">2022</option>
+                   
               </select>
             </div>
           </div>
@@ -321,12 +320,15 @@
             }
         });
 
+        var fecha = new Date();
+	      var ano = fecha.getFullYear();
+
         $.ajax({
             url: 'api/ObtenerPagoAdelantoVacaciones', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data:{ "cod_anno":2023 },
+            data:{ "cod_anno":ano },
             success: function(result){
                 //ESCRITORIO
                 document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
@@ -364,7 +366,7 @@
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data:{ "cod_anno":2023 },
+            data:{ "cod_anno":ano },
             success: function(result){
                 document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
                 document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
@@ -377,16 +379,39 @@
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data:{ "cod_anno":2023 },
+            data:{ "cod_anno":ano },
             success: function(result){
                 document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
                 document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
             }
         });
 
+       
+
+        $.ajax({
+        url: 'lista/MuestraAnhos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                //console.log(word);
+                seleccion = '';
+                if(word['codvar'] == ano){
+                seleccion = 'selected';
+                }else{
+                seleccion = '';
+                }
+                $("#annoFimp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+
+       
     }
-
-
 
         function BuscarPagos() {
 

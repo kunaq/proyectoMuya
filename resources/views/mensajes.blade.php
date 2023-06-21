@@ -36,8 +36,7 @@
                                         <th scope="col" width="15%" style="text-align: center;">Notificado</th>
                                         <th scope="col" width="15%" style="text-align: center;">Limite</th>
                                         <th scope="col" width="20%" style="text-align: center;">Solicitante</th>
-                                        <th scope="col" width="40%" style="text-align: center;">Mensaje</th>
-                                        <th scope="col" width="10%" style="text-align: center;">Accion</th>
+                                        <th scope="col" width="50%" style="text-align: center;">Mensaje</th>
                                     </tr>
                                 </thead>
                                 <tbody style="text-align: center;font-size:0.7em;" id="MensajeFinalizados"></tbody>
@@ -226,37 +225,13 @@
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
             
-            var filaAccion='';
-            if(element['dsc_tipo_mensaje'] == 'TAREAS')
-            {
-                  if(element['cod_estado'] == 'FIN')
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
-                  }
-                  else
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
-                  }
-            }
-            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
-            }
-            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
-            }
-            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
-            {
-                filaAccion="";
-            }
+           
 
             filaData += '<tr>'+
               '<td>'+fchReg[0]+'</td>'+
               '<td>'+fchLim[0]+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
-              '<td>'+filaAccion+'</td>'+
             '</tr>';
 
 

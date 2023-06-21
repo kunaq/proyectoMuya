@@ -21,7 +21,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b><span id="dsc_mes_actual"></span></b></h1>
+                                <h1 class="card-title tarjeta-foco"><b><span id="dsc_ultima_boleta"></span></b></h1>
                                 <h5><button class="btn btn-success btnDorado">Descargar Boleta</button></h5>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
             success: function(result){
                 document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
                 document.getElementById("dsc_proxima_vacaciones").innerHTML=result["response"]["dsc_proxima_vacaciones"];
-                document.getElementById("dsc_mes_actual").innerHTML=result["response"]["dsc_mes_actual"];
+                document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
             }
         });
 
@@ -149,7 +149,7 @@
             }
             else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
             {
-                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
+                filaAccion="";
                 
             }
             else if(element['dsc_tipo_mensaje'] == 'AVISOS')

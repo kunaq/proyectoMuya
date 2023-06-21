@@ -31,5 +31,6 @@ class VerifyCsrfToken extends Middleware
         '/api/ObtenerPagoAdelantoVacaciones',
         '/api/ObtenerPagoCts',
         '/api/ObtenerPagoGratificacion',
+        '/lista/MuestraAnhos',
     ];
 }
