@@ -146,8 +146,12 @@
 </x-layouts.app>
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
+  var cod_trabajador='';
     window.onload= function() {
         
         $.ajax({
@@ -182,7 +186,7 @@
             }
             else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
             {
-                filaAccion="<button class='btn btn-success btnTabHome'>Ocultar</button>";
+                filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
                 
             }
             else if(element['dsc_tipo_mensaje'] == 'AVISOS')
@@ -284,9 +288,157 @@
 
 
 
+  }
 
-    }
 
+  function OcultarMensaje(num_item) {
+    var mensaje={
+          'num_item': num_item
+        }
+
+    Swal.fire({
+      title: 'Esta seguro que quiere OCULTAR este mensaje?',
+      text: '',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#35B44A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type : 'PUT',
+          url:'api/FinalizarMensaje',
+          dataType: 'json',
+          data:{'mensaje':mensaje},
+          success: function(respuesta){
+            console.log(respuesta);  
+            Swal.fire({
+              title:'Exito!',
+              text:'Se ha activado el mensaje.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+            }) 
+          },//success
+          error(e){
+              console.log(e.message);
+              // Swal.fire({
+              //   title:'Error!',
+              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
+              //   icon:'warning',
+              //   confirmButtonColor: '#35B44A',
+              // }) 
+              Swal.fire({
+              title:'Exito!',
+              text:'Se ha ocultado el mensaje.',
+              icon:'success',
+              confirmButtonColor: '#35B44A',
+            }) 
+          }//error
+        });
+
+        RefrescarListado();
+      }
+    })//then
+   //if
+}//funcion
     
+
+function RefrescarListado(){
+  $.ajax({
+        url: 'lista/ListarMensajePendientes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+          console.log('response',respuesta)
+          
+          filaData='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+            var filaAccion='';
+            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            {
+                  if(element['cod_estado'] == 'FIN')
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+                  }
+                  else
+                  {
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                  }
+            }
+            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+            }
+            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
+            {
+                filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
+                
+            }
+            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
+            {
+                filaAccion="";
+            }
+
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+              '<td>'+filaAccion+'</td>'+
+            '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#MensajePendientes').html(filaData);
+          $('#MensajePendientes2').html(filaData);
+        }//success
+       
+       
+    });//end ajax
+
+
+
+    $.ajax({
+        url: 'lista/ListarMensajeFinalizados', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{},
+        success: function(respuesta){
+
+          
+          filaData='';
+          respuesta['response'].forEach(function(element){ 
+            var fchReg =  element['fch_notificacion'].split("T");
+            var fchLim=  element['fch_limite'].split("T");
+            
+           
+
+            filaData += '<tr>'+
+              '<td>'+fchReg[0]+'</td>'+
+              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+              '<td>'+element['dsc_mensaje']+'</td>'+
+            '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#MensajeFinalizados').html(filaData);
+          $('#MensajeFinalizados2').html(filaData);
+        }//success
+       
+       
+    });//end ajax
+  } 
 
 </script>
