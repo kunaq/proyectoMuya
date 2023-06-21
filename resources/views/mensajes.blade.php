@@ -297,9 +297,9 @@
         }
 
     Swal.fire({
-      title: 'Esta seguro que quiere OCULTAR este mensaje?',
-      text: '',
-      icon: 'warning',
+      title: '¿Esta seguro que quiere OCULTAR este mensaje?',
+      text: 'Confirmación',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#35B44A',
       cancelButtonColor: '#d33',
@@ -312,7 +312,7 @@
           dataType: 'json',
           data:{'mensaje':mensaje},
           success: function(respuesta){
-            console.log(respuesta);  
+            //console.log(respuesta);  
             Swal.fire({
               title:'Exito!',
               text:'Se ha activado el mensaje.',
@@ -321,23 +321,20 @@
             }) 
           },//success
           error(e){
-              console.log(e.message);
-              // Swal.fire({
-              //   title:'Error!',
-              //   text:'Ha ocurrido un error, por favor intentelo mas tarde.',
-              //   icon:'warning',
-              //   confirmButtonColor: '#35B44A',
-              // }) 
+              //console.log(e.message);
               Swal.fire({
               title:'Exito!',
-              text:'Se ha ocultado el mensaje.',
+              text:'Se ha activado el mensaje.',
               icon:'success',
               confirmButtonColor: '#35B44A',
             }) 
+            RefrescarListado();
           }//error
+          
+
         });
 
-        RefrescarListado();
+       
       }
     })//then
    //if
