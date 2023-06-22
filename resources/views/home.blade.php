@@ -127,7 +127,7 @@
           filaData='';
           filaDataMovil='';
           respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
+            var fchReg = element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
             
             var filaAccion='';
@@ -158,8 +158,8 @@
             }
 
             filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+formatDate(fchReg[0])+'</td>'+
+              '<td>'+formatDate(fchLim[0])+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+
@@ -168,7 +168,7 @@
             filaDataMovil += '<tr>'+
               '<td>'+element['dsc_mensaje']+'<br>'+
               '<b>F. notific:</b>'+formatDate(fchReg[0])+'<br>'+
-              '<b>F. límite:</b>'+fchLim[0]+'</br>'+
+              '<b>F. límite:</b>'+formatDate(fchLim[0])+'</br>'+
               '<b>Solicitante:</b>'+element['dsc_trabajador_solicitante']+'</br>'+
                +filaAccion+'</td>'+
             '</tr>';

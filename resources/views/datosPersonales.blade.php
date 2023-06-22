@@ -284,12 +284,12 @@
                 document.getElementById("dsc_nombres").innerHTML=result["response"]["dsc_nombres"];
                 document.getElementById("dsc_apellidos").innerHTML=result["response"]["dsc_apellido_paterno"] +' '+result["response"]["dsc_apellido_materno"];
                 document.getElementById("dsc_documento").innerHTML=result["response"]["dsc_tipo_documento"] +': '+result["response"]["dsc_documento"];
-                document.getElementById("fch_nacimiento").innerHTML=fchNac[0] ;
+                document.getElementById("fch_nacimiento").innerHTML=formatDate(fchNac[0]) ;
                 document.getElementById("dsc_telefono_personal").innerHTML=result["response"]["dsc_telefono_personal"] ;
                 document.getElementById("dsc_mail_personal").innerHTML=result["response"]["dsc_mail_personal"] ;
                 document.getElementById("dsc_direccion").innerHTML=result["response"]["dsc_direccion"] ;
 
-                document.getElementById("fch_ingreso").innerHTML=fchIng[0] ;
+                document.getElementById("fch_ingreso").innerHTML=formatDate(fchIng[0]) ;
                 document.getElementById("dsc_cargo").innerHTML=result["response"]["dsc_cargo"] ;
                 document.getElementById("dsc_localidad").innerHTML=result["response"]["dsc_localidad"] ;
                 document.getElementById("dsc_superior").innerHTML=result["response"]["dsc_superior"] ;
@@ -301,12 +301,12 @@
                 document.getElementById("dsc_nombres2").innerHTML=result["response"]["dsc_nombres"];
                 document.getElementById("dsc_apellidos2").innerHTML=result["response"]["dsc_apellido_paterno"] +' '+result["response"]["dsc_apellido_materno"];
                 document.getElementById("dsc_documento2").innerHTML=result["response"]["dsc_tipo_documento"] +': '+result["response"]["dsc_documento"];
-                document.getElementById("fch_nacimiento2").innerHTML=fchNac[0] ;
+                document.getElementById("fch_nacimiento2").innerHTML=formatDate(fchNac[0]) ;
                 document.getElementById("dsc_telefono_personal2").innerHTML=result["response"]["dsc_telefono_personal"] ;
                 document.getElementById("dsc_mail_personal2").innerHTML=result["response"]["dsc_mail_personal"] ;
                 document.getElementById("dsc_direccion2").innerHTML=result["response"]["dsc_direccion"] ;
              
-                document.getElementById("fch_ingreso2").innerHTML=fchIng[0] ;
+                document.getElementById("fch_ingreso2").innerHTML=formatDate(fchIng[0]) ;
                 document.getElementById("dsc_cargo2").innerHTML=result["response"]["dsc_cargo"] ;
                 document.getElementById("dsc_localidad2").innerHTML=result["response"]["dsc_localidad"] ;
                 document.getElementById("dsc_superior2").innerHTML=result["response"]["dsc_superior"] ;
@@ -337,14 +337,14 @@
               '<td>'+element['num_documento']+'</td>'+
               '<td>'+element['dsc_nombres']+'</td>'+
               '<td>'+element['dsc_apellido_paterno']+' ' +element['dsc_apellido_materno']+'</td>'+
-              '<td>'+fchNac[0]+'</td>'+
+              '<td>'+formatDate(fchNac[0])+'</td>'+
               '<td>'+element['dsc_parentesco']+'</td>'+
             '</tr>';
          
             filaDataMovil += '<tr>'+
               '<td>'+element['dsc_nombres']+element['dsc_apellido_paterno']+' '+element['dsc_apellido_materno']+'<br>'+
               '<b>DNI:</b>'+element['num_documento']+'<br>'+
-              '<b>Nac:</b>'+fchNac[0]+'<br>'+
+              '<b>Nac:</b>'+formatDate(fchNac[0])+'<br>'+
               '<b>Vinculo:</b>'+element['dsc_parentesco']+'<td>'+
             '</tr>';
 
