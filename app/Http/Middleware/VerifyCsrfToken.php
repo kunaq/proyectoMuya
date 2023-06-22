@@ -20,6 +20,8 @@ class VerifyCsrfToken extends Middleware
         '/docSolicitudVaca',
         '/api/enviarDocumentos',
         '/api/generarDocumento',
+        '/api/AprobarSolicitudVacaciones',
+        '/api/RechazarSolicitudVacaciones',
 
         '/api/ObtenerTrabajador',
         '/lista/ListarUltimosMensajes',
@@ -34,6 +36,9 @@ class VerifyCsrfToken extends Middleware
         '/lista/MuestraAnhos',
         '/api/FinalizarMensaje',
         'lista/ListarSolicitudVacaciones',
+        'lista/ObtenerSolicitudVacaciones',
+        'lista/ListarVacacionesProgramadas',
+        'lista/ListarSolicitudColaboradorxAprobar',
 
         'api/InsertarSolicitudVacaciones',
         '/subir-archivo',

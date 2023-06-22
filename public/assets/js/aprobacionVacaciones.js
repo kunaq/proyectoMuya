@@ -2,22 +2,6 @@ $.extend(true, $.fn.dataTable.defaults, {
     searching: false,
     lengthChange: false,
 });
-$(document).ready(function () {
-    $("#listaColab").DataTable({
-        language: {
-            url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
-        },
-        order: [[4, "desc"]],
-    });
-});
-$(document).ready(function () {
-    $("#solAprobar").DataTable({
-        language: {
-            url: "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
-        },
-        order: [[4, "desc"]],
-    });
-});
 
 function alertaSolicitud() {
     Swal.fire({
@@ -41,9 +25,3 @@ function alertaSolicitud() {
         }
     });
 }
-$(function () {
-    $("#datepicker1").datepicker();
-    $("#datepicker2").datepicker();
-    $("#datepickerIniDes").datepicker();
-    $("#datepickerFinDes").datepicker();
-});

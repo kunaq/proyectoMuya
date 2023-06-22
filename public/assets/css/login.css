@@ -101,6 +101,11 @@ body {
     color: #919aa3;
 }
 
+.btnListaVacaciones{
+    text-align: end;
+    padding-top: 1em;
+}
+
 /*# sourceMappingURL=login.css.map */
 
 

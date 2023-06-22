@@ -325,7 +325,7 @@ function formatDate(fecha) {
   var year = fecha[0];
   var month = fecha[1];
   var day = fecha[2];
-  return day + "-" + month + "-" + year;
+  return day + "/" + month + "/" + year;
 }
 
 // Función para obtener la fecha en formato "YYYY-mm-dd"

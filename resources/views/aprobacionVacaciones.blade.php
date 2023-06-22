@@ -18,7 +18,14 @@
         <div class="col-md-10 offset-md-1 d-md-block">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" style="font-size: 18px;">Lista de colaboradores</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title" style="font-size: 18px;">Lista de colaboradores</h5>
+                        </div>
+                        <div class="col-md-2 offset-md-4 btnListaVacaciones">
+                            <button class="btn btn-success btnDorado" id="buscarDoc">Actualizar</button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
                             <div class="row">
@@ -37,7 +44,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td>Milagros Huaman A.</td>
                                                 <td>13/02/2023</td>
                                                 <td>20/02/2023</td>
@@ -50,161 +57,7 @@
                                                 <td>
                                                     <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rodrigo Montero J.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
-                                                <td>No</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adriana Jaramillo G.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>5</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
-                                                <td>No</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carlos González H.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
-                                                <td>No</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>María Huaman C.</td>
-                                                <td>13/02/2023</td>
-                                                <td>20/02/2023</td>
-                                                <td>3</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
-                                                <td>No</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ricardo Montero D.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Azucena Jaramillo G.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>5</td>
-                                                <td></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cecilia González J.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mario Huaman L.</td>
-                                                <td>13/02/2023</td>
-                                                <td>20/02/2023</td>
-                                                <td>3</td>
-                                                <td></td>
-                                                <td>No</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rachel Montero M.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ándres Jaramillo H.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>5</td>
-                                                <td></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carolina González D.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td>Si</td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -223,12 +76,19 @@
         <div class="col-md-10 offset-md-1 d-md-block">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" style="font-size: 18px;">Solicitudes por aprobar</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title" style="font-size: 18px;">Solicitudes por aprobar</h5>
+                        </div>
+                        <div class="col-md-2 offset-md-4 btnListaVacaciones">
+                            <button class="btn btn-success btnDorado" id="btnProcSolVac">Guardar</button>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
                             <div class="row">
                                 <div class="col-md-12 table-responsive" style="padding-left: 0rem;padding-right: 1rem;height: 23rem;">
-                                    <table class="table table-striped " id="solAprobar" style="text-align: center; height: 300px;">
+                                    <table class="table table-striped " id="tablaSolAprobar" style="text-align: center; height: 300px;">
                                         <thead>
                                             <tr>
                                                 <th scope="col" width="15%">Colaborador</th>
@@ -244,39 +104,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Milagros Huaman A.</td>
-                                                <td>13/02/2023</td>
-                                                <td>20/02/2023</td>
-                                                <td>3</td>
-                                                <td>28/02/2023</td>
-                                                <td>Rechazado</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rodrigo Montero J.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td>08/02/2023</td>
-                                                <td>Aprobado por el jefe</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td>Adriana Jaramillo G.</td>
                                                 <td>01/02/2023</td>
                                                 <td>08/02/2023</td>
@@ -286,156 +114,12 @@
                                                 <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
                                                 <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
                                                 <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
+                                                    <input class="form-check-input checkDorado" type="radio" name="radioBtnSol" id="aprobSol" value="APROBAR">
                                                 </td>
                                                 <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
+                                                    <input class="form-check-input checkVerde" type="radio" name="radioBtnSol" id="recSol" value="RECHAZAR">
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carlos González H.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td>12/02/2023</td>
-                                                <td></td>
-                                                <td></span></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>María Huaman C.</td>
-                                                <td>13/02/2023</td>
-                                                <td>20/02/2023</td>
-                                                <td>3</td>
-                                                <td>12/02/2023</td>
-                                                <td></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ricardo Montero D.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td>08/02/2023</td>
-                                                <td>Aprobado por el jefe</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Azucena Jaramillo G.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>5</td>
-                                                <td>28/02/2023</td>
-                                                <td>Rechazado</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cecilia González J.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td>08/02/2023</td>
-                                                <td>Aprobado por el jefe</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mario Huaman L.</td>
-                                                <td>13/02/2023</td>
-                                                <td>20/02/2023</td>
-                                                <td>3</td>
-                                                <td>08/02/2023</td>
-                                                <td>Aprobado por el jefe</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rachel Montero M.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>8</td>
-                                                <td>08/02/2023</td>
-                                                <td>Aprobado por el jefe</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ándres Jaramillo H.</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>5</td>
-                                                <td>28/02/2023</td>
-                                                <td>Rechazado</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>C. González</td>
-                                                <td>01/02/2023</td>
-                                                <td>08/02/2023</td>
-                                                <td>2</td>
-                                                <td>12/02/2023</td>
-                                                <td></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td>
-                                                    <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                </td>
-                                                <td>
-                                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                </td>
-                                            </tr>
+                                            </tr> --}}
                                         </tbody>
                                     </table>
                                 </div>
@@ -736,6 +420,230 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     calendar.render();
     });
+</script>
+
+<script type="text/javascript">
+window.onload= function() {
+    $.ajax({
+        url: 'lista/ListarVacacionesProgramadas', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
+        success: function(result){
+            //console.log(result);
+            var filasArray1 = [];
+            result['response'].forEach(element => {
+                var alertaRegla = '';
+                
+                if(element['flg_acuerdo_firmado'] == 'NO' || element['flg_acuerdo_firmado'] == ''){
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span>';
+                }else{
+                    alertaRegla = '';
+                }
+
+                var cantDias = element['cant_dia'];
+                var codTrabajador = "'"+element['cod_trabajador']+"'";
+
+                var filaData = [
+                    element['dsc_trabajador'],
+                    element['num_vacaciones_generadas'],
+                    element['num_vacaciones_programadas'],
+                    element['num_saldo'],
+                    alertaRegla,
+                    element['flg_acuerdo_firmado'],
+                    '<input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">',
+                    '<input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">'
+                ];
+                filasArray1.push(filaData);
+            });
+            //console.log(filasArray1);
+            $('#listaColab').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                data: filasArray1,
+                columns: [
+                    { title: 'Colaborador' },
+                    { title: 'Vacaciones generadas' },
+                    { title: 'Vacaciones programadas' },
+                    { title: 'Saldo' },
+                    { title: 'Alerta' },
+                    { title: 'Firma' },
+                    { title: 'No cruzar con jefe' },
+                    { title: 'No cruzar entre si' },
+                ],
+                dom: 'trip',
+                processing: true,
+            });
+            // //console.log(filasArray1);
+        }
+    });
+
+//------------------------Listado Aprobacion de solicitud----------------------------
+    $.ajax({
+        url: 'lista/ListarSolicitudColaboradorxAprobar', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
+        success: function(result){
+            //console.log(result);
+            var filasArray = [];
+            result['response'].forEach(element => {
+                var auxFecIni =  element['fch_inicio'].split("T");
+                fchIni = formatDate(auxFecIni[0]);
+                var auxFecFin =  element['fch_fin'].split("T");
+                fchFin = formatDate(auxFecFin[0]);
+                var auxFecRein =  element['fch_retorno'].split("T");
+                fchReinc = formatDate(auxFecRein[0]);
+                var alertaRegla = '';
+                var alertaReprog = '';
+                
+                if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
+                alertaRegla = '';
+                }else{
+                alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                }
+
+                if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
+                alertaReprog = '';
+                }else{
+                alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                }
+
+                var cantDias = element['cant_dia'];
+                var codTrabajador = "'"+element['cod_trabajador']+"'";
+
+                var filaData = [
+                    element['dsc_trabajador'],
+                    fchIni,
+                    fchFin,
+                    cantDias,
+                    fchReinc,
+                    element['dsc_estado'],
+                    alertaRegla,
+                    alertaReprog,
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">',
+                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">'
+                ];
+                filasArray.push(filaData);
+            });
+            //console.log(filasArray);
+            $('#tablaSolAprobar').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                data: filasArray,
+                columns: [
+                    { title: 'Colaborador' },
+                    { title: 'Inicio' },
+                    { title: 'Fin' },
+                    { title: 'Días' },
+                    { title: 'Reincorpora' },
+                    { title: 'Estado' },
+                    { title: 'Alerta reglas' },
+                    { title: 'Alerta reprog.' },
+                    { title: 'Aceptar' },
+                    { title: 'Rechazar' },
+                ],
+                dom: 'trip',
+                processing: true,
+            });
+            // //console.log(filasArray);
+        }
+    });
+}
+var btnProcesar = document.getElementById('btnProcSolVac');
+btnProcesar.addEventListener("click", function() {
+
+    var tabla = document.getElementById("tablaSolAprobar");
+    var filas = tabla.getElementsByTagName("tr");
+
+    for (var i = 0; i < filas.length; i++) {
+        var fila = filas[i];
+        var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
+        
+        for (var j = 0; j < inputsRadio.length; j++) {
+            var inputRadio = inputsRadio[j];
+            var valor = inputRadio.value;
+            //console.log("Valor seleccionado en la fila " + (i + 1) + ", radio " + (j + 1) + ": " + valor);
+            var aux = valor.split('-');
+            accion = aux[0];
+            codTrabajador = aux[1];
+            numLinea = aux[2];
+            data = {
+                'cod_trabajador': codTrabajador,
+                'num_linea': numLinea,
+                'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
+            }
+            if(accion == 'RECHAZAR'){
+               // console.log('data rechazado',data);
+                $.ajax({
+                    url: 'api/RechazarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':data},
+                    success: function(respuesta){
+                        console.log(respuesta);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se han procesado las solicitudes con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                        })
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                            })
+                    }//error
+                });//ajax
+            }else if(accion == 'APROBAR'){
+               // console.log('data aprobado',data);
+                $.ajax({
+                    url: 'api/AprobarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':data},
+                    success: function(respuesta){
+                        console.log(respuesta);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se han procesado las solicitudes con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                        })
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                            })
+                    }//error
+                });//ajax
+            }
+        }
+    }
+});
+
 </script>
 
 

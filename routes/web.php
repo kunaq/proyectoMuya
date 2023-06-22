@@ -32,6 +32,8 @@ Route::view('/home', 'home')->name('home');
     Route::get('/api/crearPdf', [CreaPDFController::class, 'generarPDF'])->name('api.convenioVacaciones');
     Route::get('/api/crearPdfSolicitud', [CreaPDFController::class, 'generarPDFSolicitud'])->name('api.docSoliVacaciones');
     Route::get('/api/enviarDocumentos', [CreaPDFController::class, 'enviarDocumentos'])->name('api.enviarDocumentos');
+    Route::get('/api/AprobarSolicitudVacaciones', [CreaPDFController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
+    Route::get('/api/RechazarSolicitudVacaciones', [CreaPDFController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
 
 
     //-----------------------Vistas PDF-----------------------------//
@@ -67,6 +69,9 @@ Route::view('/home', 'home')->name('home');
     Route::get('lista/MuestraAnhos', [ListaController::class, 'MuestraAnhos'])->name('lista.MuestraAnhos');
     Route::put('api/FinalizarMensaje', [APIController::class, 'FinalizarMensaje'])->name('api.FinalizarMensaje');
     Route::get('lista/ListarSolicitudVacaciones', [ListaController::class, 'ListarSolicitudVacaciones'])->name('lista.ListarSolicitudVacaciones');
+    Route::get('lista/ObtenerSolicitudVacaciones', [ListaController::class, 'ObtenerSolicitudVacaciones'])->name('lista.ObtenerSolicitudVacaciones');
+    Route::get('lista/ListarVacacionesProgramadas', [ListaController::class, 'ListarVacacionesProgramadas'])->name('lista.ListarVacacionesProgramadas');
+    Route::get('lista/ListarSolicitudColaboradorxAprobar', [ListaController::class, 'ListarSolicitudColaboradorxAprobar'])->name('lista.ListarSolicitudColaboradorxAprobar');
 
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');
