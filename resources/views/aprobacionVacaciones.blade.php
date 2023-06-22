@@ -81,7 +81,7 @@
                             <h5 class="card-title" style="font-size: 18px;">Solicitudes por aprobar</h5>
                         </div>
                         <div class="col-md-2 offset-md-4 btnListaVacaciones">
-                            <button class="btn btn-success btnDorado" id="btnProcSolVac">Guardar</button>
+                            <button class="btn btn-success btnDorado" id="btnProcSolVac">Actualizar</button>
                         </div>
                     </div>
                     <div class="row">

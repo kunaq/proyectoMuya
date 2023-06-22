@@ -182,7 +182,7 @@
             }
             else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
             {
-                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
             }
             else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
             {
@@ -195,8 +195,8 @@
             }
 
             filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+formatDate(fchReg[0])+'</td>'+
+              '<td>'+formatDate(fchLim[0])+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+
@@ -232,8 +232,8 @@
            
 
             filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+formatDate(fchReg[0])+'</td>'+
+              '<td>'+formatDate(fchLim[0])+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
             '</tr>';
@@ -269,8 +269,8 @@
             var fchLim=  element['fch_limite'].split("T");
             
             filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+formatDate(fchReg[0])+'</td>'+
+              '<td>'+formatDate(fchLim[0])+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
             '</tr>';
@@ -383,8 +383,8 @@ function RefrescarListado(){
             }
 
             filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+formatDate(fchReg[0])+'</td>'+
+              '<td>'+formatDate(fchLim[0])+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+

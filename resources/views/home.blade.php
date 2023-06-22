@@ -145,7 +145,7 @@
             }
             else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
             {
-                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
+                filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
             }
             else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
             {
