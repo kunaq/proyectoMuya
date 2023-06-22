@@ -5,6 +5,7 @@ use App\Http\Controllers\APIController;
 use App\Http\Controllers\ListaController;
 use App\Http\Controllers\CreaPDFController;
 use App\Http\Controllers\FuncionesController;
+use App\Http\Controllers\ArchivoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,9 @@ Route::view('/home', 'home')->name('home');
 
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');
+
+    //------------------------Subir archivo Excel--------------------------
+    Route::post('/subir-archivo', [ArchivoController::class, 'SubirArchivo'])->name('subirArchivo');
 
 // Route::get('/', function () {
 //     return view('welcome');
