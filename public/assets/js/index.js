@@ -55,7 +55,7 @@ $("#loginBtn").click(function(){
                 document.getElementById('message2').style.display = "block";
             }else{
                 document.getElementById('message2').style.display = "none";
-                //window.location.href = "home";
+                window.location.href = "home";
             }
         },//success
         error(e){
