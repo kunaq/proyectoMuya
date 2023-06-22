@@ -32,8 +32,8 @@ Route::view('/home', 'home')->name('home');
     Route::get('/api/crearPdf', [CreaPDFController::class, 'generarPDF'])->name('api.convenioVacaciones');
     Route::get('/api/crearPdfSolicitud', [CreaPDFController::class, 'generarPDFSolicitud'])->name('api.docSoliVacaciones');
     Route::get('/api/enviarDocumentos', [CreaPDFController::class, 'enviarDocumentos'])->name('api.enviarDocumentos');
-    Route::get('/api/AprobarSolicitudVacaciones', [CreaPDFController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
-    Route::get('/api/RechazarSolicitudVacaciones', [CreaPDFController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
+    Route::put('/api/AprobarSolicitudVacaciones', [APIController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
+    Route::put('/api/RechazarSolicitudVacaciones', [APIController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
 
 
     //-----------------------Vistas PDF-----------------------------//
