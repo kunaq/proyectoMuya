@@ -36,5 +36,6 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarSolicitudVacaciones',
 
         'api/InsertarSolicitudVacaciones',
+        '/subir-archivo',
     ];
 }
