@@ -110,7 +110,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
-                            <table class="table table-striped " style="text-align: center;">
+                            <table class="table table-striped " id="listaVacSol" style="text-align: center;">
                                 <thead>
                                     <tr>
                                         <th scope="col" width="15%">Inicio</th>
@@ -123,7 +123,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>13/02/2023</td>
                                         <td>20/02/2023</td>
                                         <td>3</td>
@@ -161,7 +161,7 @@
                                             <button class="btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" data-bs-title="Descargar"><span class="bi bi-download"></span></button>
                                             <button class="btn btn-secondary" disabled><span class="bi bi-pencil-square"></span></button>
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>
@@ -215,9 +215,9 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
-                            <table class="table table-striped " id="listaVacSol">
+                            <table class="table table-striped " id="listaVacSolMovil">
                                 <tbody>
-                                    <tr>
+                                    {{-- <tr>
                                         <td>
                                             <b>Inicio:</b> 13/02/2023<br>
                                             <b>Término:</b> 20/02/2023 <br>
@@ -261,7 +261,7 @@
                                                 <button class="btn btn-secondary" disabled>Edita</button>
                                             </div>  
                                         </td>
-                                    </tr>
+                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>

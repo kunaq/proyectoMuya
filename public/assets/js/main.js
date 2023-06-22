@@ -320,18 +320,19 @@
 })();
 
 // Función para formatear la fecha a "dd-mm-YYYY"
-function formatDate(date) {
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  var year = date.getFullYear();
+function formatDate(fecha) {
+  var fecha = fecha.split('-');
+  var year = fecha[0];
+  var month = fecha[1];
+  var day = fecha[2];
   return day + "-" + month + "-" + year;
 }
 
 // Función para obtener la fecha en formato "YYYY-mm-dd"
 function obtenerFechaISO(fecha) {
-  fecha = new Date(fecha);
-  var day = fecha.getDate();
-  var month = fecha.getMonth() + 1;
-  var year = fecha.getFullYear();
+  var fecha = fecha.split('-');
+  var day = fecha[0];
+  var month = fecha[1];
+  var year = fecha[2];
   return year + "-" + month + "-" + day;
 }

@@ -98,9 +98,15 @@ class CreaPDFController extends Controller
 
     }
 
-    public function enviarDocumentos(){
+    public function enviarDocumentos(Request $request){
 
         $client = new Client();
+        // $codTrabajador = $request['codigoTabajador'];
+        // $fchInicio = $request['fchIni'];
+        // $fchFin = $request['fchFin'];
+        // $fchRinc = $request['fchReinc'];
+        // $cantDias = $request['cantDias'];
+        // $accion = $request['accion'];
 
         try {
 

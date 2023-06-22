@@ -33,10 +33,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo (correo personal del colaborador), ingresar al correo mencionado para continuar con el proceso.
+            Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo ({{session('correoPTrabajador')}}), ingresar al correo mencionado para continuar con el proceso.
         </div>
         <div class="modal-footer">
-            <a href="{{route('api.enviarDocumentos')}}"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
+            <a href="#"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
         </div>
         </div>
     </div>
@@ -165,40 +165,74 @@ window.onload= function() {
       dataType: 'json',
       data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
       success: function(result){
-          console.log(result);
-        // var filasArray = [];
-        //   respuesta['response'].forEach(element => {
-        //     var fchReg =  element['fch_registro'].split("T");
-        //     var filaData = [
-        //         element['cod_prospecto'],
-        //         element['dsc_tipo_documento']+'-'+element['dsc_documento'],
-        //         element['dsc_prospecto'],
-        //         fchReg[0],
-        //         element['num_dias'],
-        //         element['dsc_origen'],
-        //         '<a class="btn btn-secondary form-remanso"  href="?CodProspecto='+element['cod_prospecto']+'" ><span class="bi bi-clipboard-check" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Gestión"></span></a>',
-        //     ];
-        //     filasArray.push(filaData);
-        //   });
-        //   //console.log(filasArray);
-        //   $('#listaVacSol').DataTable({
-        //       language: {
-        //           url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-        //       },
-        //       data: filasArray,
-        //       columns: [
-        //           { title: 'Inicio' },
-        //           { title: 'Término' },
-        //           { title: 'Num. días' },
-        //           { title: 'Estado' },
-        //           { title: 'Firma' },
-        //           { title: 'Pago' },
-        //           { title: 'Acciones' },
-        //       ],
-        //       dom: 'trip',
-        //       processing: true,
-        //   });
+        //console.log(result);
+        var filasArray = [];
+        result['response'].forEach(element => {
+            var auxFecIni =  element['fch_inicio'].split("T");
+            fchIni = formatDate(auxFecIni[0]);
+            var auxFecFin =  element['fch_fin'].split("T");
+            fchFin = formatDate(auxFecFin[0]);
+            var flgFirmado = '';
+            var disBtnFir = '';
+            var disBtnDwn = '';
+            var disBtnEdit = '';
+            if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
+              flgFirmado = 'Sin firmar';
+            }else{
+              flgFirmado = 'Firmado';
+              disBtnFir = 'disabled';
+              disBtnEdit = 'disabled';
+            }
+            var flgPagado = '';
+            if(element['flg_pagado'] == 'NO' || element['flg_pagado'] == ''){
+              flgPagado = 'No pagado';
+              disBtnDwn = 'disabled';
+            }else{
+              flgPagado = 'Pagado';
+              disBtnFir = 'disabled';
+              disBtnEdit = 'disabled';
+            }
+            if(element['flg_rechazado'] == 'SI'){
+              disBtnFir = 'disabled';
+              disBtnDwn = 'disabled';
+              disBtnEdit = 'disabled';
+            }
+            var cantDias = element['cant_dia'];
+            var fchReinc = document.getElementById("datepickerFinSolVac").value;
+            var codTrabajador = "'"+'+@php echo(session('codTrabajador')) @endphp'+"'";
 
+            var filaData = [
+                fchIni,
+                fchFin,
+                cantDias,
+                element['dsc_estado'],
+                flgFirmado,
+                flgPagado,
+                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" '+disBtnFir+' data-bs-title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+fchIni+','+fchFin+','+fchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
+                '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title = "Descargar" '+disBtnDwn+'><span class="bi bi-download"></span></button>'+
+                '<button class = "btn btn-secondary" data-bs-toggle = "tooltip" data-bs-placement="top" data-bs-custom-class = "custom-tooltip" data-bs-title = "Modificar" '+disBtnEdit+'><span class = "bi bi-pencil-square"></span></button>' 
+            ];
+            filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#listaVacSol').DataTable({
+              language: {
+                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+              },
+              data: filasArray,
+              columns: [
+                  { title: 'Inicio' },
+                  { title: 'Término' },
+                  { title: 'Num. días' },
+                  { title: 'Estado' },
+                  { title: 'Firma' },
+                  { title: 'Pago' },
+                  { title: 'Acciones' },
+              ],
+              dom: 'trip',
+              processing: true,
+          });
+          //console.log(filasArray);
       }
   });
 
@@ -237,19 +271,15 @@ window.onload= function() {
         data:{'solVac':solVac},
         success: function(respuesta){
             console.log(respuesta);
-            btnCierra = document.getElementById('btnDissmissModSol');
-            var clickEvent = new Event('click');   // Crea un evento "click"
-            btnCierra.dispatchEvent(clickEvent); // Desencadena el evento "click"
-            document.getElementById('datepickerIniSolVac').value = '';
-            document.getElementById('datepickerFinSolVac').value = '';
-            document.getElementById('cantDiasSol').value = '';
-            document.getElementById('resutSolVac').innerHTML = '';
-            document.getElementById('resutSolVac2').innerHTML = '';
             Swal.fire({
                 icon: 'success',
                 text: 'Se ha registrado su solicitud con éxito',
                 confirmButtonText: 'Continuar',
                 confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
             })
         },//success
         error(e){
@@ -263,6 +293,72 @@ window.onload= function() {
         }//error
     });//ajax
   });
+
+var btnFirmaConvenio = document.getElementById('aceptaFirma');
+btnFirmaConvenio.addEventListener("click", function() {
+  $.ajax({
+        url: 'api/enviarDocumentos', 
+        method: "get",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){
+            console.log(respuesta);
+            Swal.fire({
+                icon: 'success',
+                text: 'Se ha registrado la firma',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            })
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+                icon: 'warning',
+                text: 'Ha ocurrido un error intentelo nuevamente.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+                })
+        }//error
+    });//ajax
+
+});
+
+function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
+  $.ajax({
+        url: 'api/enviarDocumentos', 
+        method: "get",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
+        success: function(respuesta){
+            console.log(respuesta);
+            Swal.fire({
+                icon: 'success',
+                text: 'Se ha registrado la firma',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            })
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+                icon: 'warning',
+                text: 'Ha ocurrido un error intentelo nuevamente.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+                })
+        }//error
+    });//ajax
+  
+}
 </script>
 
    

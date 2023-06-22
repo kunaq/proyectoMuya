@@ -120,6 +120,8 @@ class APIController extends Controller
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
+
+                
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
             });
             $promise->wait();

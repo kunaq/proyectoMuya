@@ -665,6 +665,26 @@
                 <div class="card-body">
                     <h5 class="card-title" style="font-size: 28px;">Cargar vacaciones</h5>
                     <div class="row">
+                        <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
+                            <div class="form-group">
+                                <span>Año:</span>
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="datepickerIniDes">
+                            </div>
+                        </div>
+                        <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
+                            <div class="form-group">
+                                <span>Periodo</span>
+                            </div>
+                        </div>
+                        <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="datepickerFinDes">
+                            </div>
+                        </div>
                         <div class="col-md-2" style="text-align: -webkit-center">
                             <div class="form-group">
                                 <h5><button class="btn btn-success btnDorado" id="buscarDoc" >Cargar</button></h5>
@@ -673,7 +693,7 @@
                         <div class="col-1 col-md-1" style="text-align: -webkit-center">
                             <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
                         </div>
-                        <div class="col-11 col-md-8">
+                        <div class="col-11 col-md-3">
                             <div class="form-group">
                                 <h5>Aprobar automáticamente las vacaciones que inician el siguiente mes</h5>
                             </div>

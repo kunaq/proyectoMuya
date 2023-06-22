@@ -59,7 +59,7 @@ inputFchFin.addEventListener("change", function() {
     // horas = minutos/60
     // Días = horas/24
     
-    const diffInDays = Math.floor((y - x) / (1000 * 60 * 60 * 24));
+    const diffInDays = (Math.floor((y - x) / (1000 * 60 * 60 * 24)))+1;
 
     var formattedRange = ' al '+fchFin+'. Cantidad de días: '+diffInDays;
     document.getElementById('cantDiasSol').value = diffInDays;
