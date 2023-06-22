@@ -594,7 +594,7 @@ btnProcesar.addEventListener("click", function() {
                             confirmButtonColor: '#a18347',
                         }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload();
+                            console.log('data rechazado',data);
                         }
                         })
                     },//success
@@ -625,7 +625,7 @@ btnProcesar.addEventListener("click", function() {
                             confirmButtonColor: '#a18347',
                         }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload();
+                            console.log('data aprobado',data);
                         }
                         })
                     },//success
@@ -642,6 +642,7 @@ btnProcesar.addEventListener("click", function() {
             }
         }
     }
+    location.reload();
 });
 
 </script>
