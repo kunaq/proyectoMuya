@@ -158,12 +158,37 @@ window.onload= function() {
       }
   });
 
+  
+  var fcha = new Date();
+  var anno = fcha.getFullYear();
+  muestraListadoSolicitudes(anno,anno);
+
+  $.ajax({
+        url: 'lista/MuestraAnhos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                //console.log(word);
+                $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax muestraAnno
+
+}
+
+function muestraListadoSolicitudes(annoIni,annoFin) {
   $.ajax({
       url: 'lista/ListarSolicitudVacaciones', 
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
+      data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp','annoIni':annoIni,'annoFin':annoFin},
       success: function(result){
         //console.log(result);
         var filasArray = [];
@@ -214,6 +239,10 @@ window.onload= function() {
             ];
             filasArray.push(filaData);
           });
+          if ($.fn.dataTable.isDataTable('#listaVacSol')) {
+              $('#listaVacSol').DataTable().clear();
+              $('#listaVacSol').DataTable().destroy();        
+          }
           //console.log(filasArray);
           $('#listaVacSol').DataTable({
               language: {
@@ -235,10 +264,25 @@ window.onload= function() {
           //console.log(filasArray);
       }
   });
-
 }
-  var btnSolicitar = document.getElementById('solicitaVacaciones');
-  btnSolicitar.addEventListener("click", function() {
+
+var btnBuscarLista = document.getElementById('buscarLista');
+btnBuscarLista.addEventListener("click", function() {
+  var inicio = document.getElementById('annoIni').value;
+  var fin = document.getElementById('annoFin').value;
+  console.log('annoI',inicio)
+    muestraListadoSolicitudes(inicio,fin);
+});
+
+var btnBuscarListaMobil = document.getElementById('buscarListaMobil');
+btnBuscarListaMobil.addEventListener("click", function() {
+  var inicio = document.getElementById('annoIniMob').value;
+  var fin = document.getElementById('annoFinMob').value;
+    muestraListadoSolicitudes(inicio,fin);
+});
+
+var btnSolicitar = document.getElementById('solicitaVacaciones');
+btnSolicitar.addEventListener("click", function() {
     var fchInicio = document.getElementById('datepickerIniSolVac').value;
     var fechaParts = fchInicio.split('-');
     var day = fechaParts[0];
@@ -292,7 +336,7 @@ window.onload= function() {
                 })
         }//error
     });//ajax
-  });
+});//onclick
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {

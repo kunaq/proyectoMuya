@@ -156,13 +156,16 @@ class ListaController extends Controller
         }
     }
 
-    public function ListarSolicitudVacaciones()
+    public function ListarSolicitudVacaciones(Request $request)
     {   
         $client = new Client();
         $cod_trabajador = session('codTrabajador');
+        $annoIni = $request['annoIni'];
+        $annoFin = $request['annoFin'];
+        
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacaciones/20555348887/'.$cod_trabajador);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacaciones/20555348887/'.$cod_trabajador.'/'.$annoIni.'/'.$annoFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

@@ -33,6 +33,18 @@ class APIController extends Controller
             Session::put('codTrabajador', $responseData->response->cod_usuario);
             Session::put('docTrabajador', $responseData->response->dsc_documento);
             Session::put('nombreTrabajador', $responseData->response->dsc_usuario);
+            // Session::put('mailPerTrabajador', $responseData->response->dsc_mail_personal);
+            // Session::put('mailEmpTrabajador', $responseData->response->dsc_mail_empresa);
+            // Session::put('codSupervisor', $responseData->response->cod_supervisor);
+            // Session::put('nombreSupervisor', $responseData->response->dsc_superior );
+            // Session::put('mailPerSupervisor', $responseData->response->dsc_mail_personal_supervisor);
+            // Session::put('mailEmpSupervisor', $responseData->response->dsc_mail_empresa_supervisor);
+            // Session::put('correoEnvio', $responseData->response->dsc_mail_configuracion);
+            // Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
+            // Session::put('dscHost', $responseData->response->dsc_host_configuracion);
+            // Session::put('numHost', $responseData->response->num_host_configuracion);
+            // Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
+
 
 
             // Ejemplo de retorno de la respuesta

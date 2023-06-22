@@ -84,8 +84,6 @@
                         <div class="col-md-1" style="margin-bottom: 1rem;">
                             <div class="form-group">
                                 <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                    <option value="0" selected>2023</option>
-                                    <option value="2022">2022</option>
                                 </select>
                             </div>
                         </div>
@@ -97,14 +95,12 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <select name="annoFin" id="annoFin" class="form-control selectForm">
-                                    <option value="0" selected>2023</option>
-                                    <option value="2022">2022</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2" style="text-align: -webkit-center">
                             <div class="form-group">
-                                <h5><button class="btn btn-success btnDorado" id="buscarDoc">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
+                                <h5><button class="btn btn-success btnDorado" id="buscarLista">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
                             </div>
                         </div>
                     </div>
@@ -135,32 +131,6 @@
                                             <button class="btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" data-bs-title="Descargar"><span class="bi bi-download"></span></button>
                                             <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" data-bs-title="Modificar"><span class="bi bi-pencil-square"></span></button>
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td>11/02/2023</td>
-                                        <td>18/02/2023</td>
-                                        <td>7</td>
-                                        <td>Aprobado</td>
-                                        <td>Firmado</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <button class="btn btn-success btnDorado" disabled><span class="bi bi-vector-pen"></span></button>
-                                            <button class="btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" data-bs-title="Descargar"><span class="bi bi-download"></span></button>
-                                            <button class="btn btn-secondary" disabled><span class="bi bi-pencil-square"></span></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6/02/2023</td>
-                                        <td>13/02/2023</td>
-                                        <td>7</td>
-                                        <td>Aprobado</td>
-                                        <td>Firmado</td>
-                                        <td>Pagado</td>
-                                        <td>
-                                            <button class="btn btn-success btnDorado" disabled><span class="bi bi-vector-pen"></span></button>
-                                            <button class="btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" data-bs-title="Descargar"><span class="bi bi-download"></span></button>
-                                            <button class="btn btn-secondary" disabled><span class="bi bi-pencil-square"></span></button>
-                                        </td>
                                     </tr> --}}
                                 </tbody>
                             </table>
@@ -187,9 +157,7 @@
                         </div>
                         <div class="col-6" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                    <option value="0" selected>2023</option>
-                                    <option value="2022">2022</option>
+                                <select name="annoIniMob" id="annoIniMob" class="form-control selectForm">
                                 </select>
                             </div>
                         </div>
@@ -201,15 +169,13 @@
                         </div>
                         <div class="col-6" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <select name="annoFin" id="annoFin" class="form-control selectForm">
-                                    <option value="0" selected>2023</option>
-                                    <option value="2022">2022</option>
+                                <select name="annoFinMob" id="annoFinMob" class="form-control selectForm">
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-2" style="text-align: -webkit-center">
                             <div class="form-group">
-                                <h5><button class="btn btn-success btnDorado" id="buscarDoc">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
+                                <h5><button class="btn btn-success btnDorado" id="buscarListaMobil">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
                             </div>
                         </div>
                     </div>
