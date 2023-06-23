@@ -460,7 +460,7 @@ window.onload= function() {
                     element['num_saldo'],
                     alertaRegla,
                     element['flg_acuerdo_firmado'],
-                    '<input class="form-check-input checkDorado" type="checkbox" '+flgJefe+' value="JEFE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault">',
+                    '<input class="form-check-input checkDorado" type="checkbox" '+flgJefe+' value="JEFE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'-'+element['flg_no_cruzar_jefe_oculto']+'" id="flexCheckDefault">',
                     '<input class="form-check-input checkVerde" type="checkbox" '+flgEntre+' value="ENTRE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault2">'
                 ];
                 filasArray1.push(filaData);
@@ -684,7 +684,8 @@ btnConfig.addEventListener("click", function() {
                         valoresSeleccionados.push(checkbox.value);
                         //console.log("Valores", valoresSeleccionados);
                         var aux = valoresSeleccionados[j].split('-');
-                        flgCruce = aux[0];
+                        flgCruce = aux[4];
+                        flgCruceOcult = aux[1]
                         
                         if(flgCruce == 'JEFE'){
                             flgJefe = 'SI';

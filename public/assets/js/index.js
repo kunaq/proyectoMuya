@@ -41,14 +41,14 @@ $("#loginBtn").click(function(){
     // Hacer la solicitud AJAX utilizando baseUrl y apiKey
     var user = document.getElementById("dni").value;
     var passw = document.getElementById("password").value;
-    var oculto = md5(passw);
+    //var oculto = md5(passw);
 
     //--------------Login--------------
     $.ajax({
         url: 'api/login', 
         method: "GET",
         dataType: 'json',
-        data:{'usuario':user,'password':oculto},
+        data:{'usuario':user,'password':passw},
         crossDomain: true,
         success: function(respuesta){
             console.log(respuesta.data.mensaje);
