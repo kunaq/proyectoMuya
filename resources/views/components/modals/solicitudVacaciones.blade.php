@@ -224,7 +224,9 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             }
             var cantDias = element['cant_dia'];
             var fchReinc = document.getElementById("datepickerFinSolVac").value;
-            var codTrabajador = "'"+'+@php echo(session('codTrabajador')) @endphp'+"'";
+            var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
+            var finFchIni = "'"+auxFecIni[0]+"'";
+            var finFchFin = "'"+auxFecFin[0]+"'";
 
             var filaData = [
                 fchIni,
@@ -233,7 +235,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                 element['dsc_estado'],
                 flgFirmado,
                 flgPagado,
-                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" '+disBtnFir+' data-bs-title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+fchIni+','+fchFin+','+fchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
+                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" '+disBtnFir+' data-bs-title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
                 '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title = "Descargar" '+disBtnDwn+'><span class="bi bi-download"></span></button>'+
                 '<button class = "btn btn-secondary" data-bs-toggle = "tooltip" data-bs-placement="top" data-bs-custom-class = "custom-tooltip" data-bs-title = "Modificar" '+disBtnEdit+'><span class = "bi bi-pencil-square"></span></button>' 
             ];
@@ -372,35 +374,51 @@ btnFirmaConvenio.addEventListener("click", function() {
 });
 
 function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
+
   $.ajax({
-        url: 'api/enviarDocumentos', 
-        method: "get",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
-        success: function(respuesta){
-            console.log(respuesta);
-            Swal.fire({
-                icon: 'success',
-                text: 'Se ha registrado la firma',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#a18347',
-            }).then((result) => {
-              if (result.isConfirmed) {
-                location.reload();
-              }
-            })
-        },//success
-        error(e){
-            console.log(e.message);
-            Swal.fire({
-                icon: 'warning',
-                text: 'Ha ocurrido un error intentelo nuevamente.',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#a18347',
-                })
-        }//error
+      url: 'api/enviarCorreo', 
+      method: "post",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
+      success: function(respuesta){
+          console.log(respuesta);
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
     });//ajax
+  
+
+  // $.ajax({
+  //     url: 'api/enviarDocumentos', 
+  //     method: "get",
+  //     crossDomain: true,
+  //     dataType: 'json',
+  //     data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
+  //     success: function(respuesta){
+  //         console.log(respuesta);
+  //         Swal.fire({
+  //             icon: 'success',
+  //             text: 'Se ha registrado la firma',
+  //             confirmButtonText: 'Continuar',
+  //             confirmButtonColor: '#a18347',
+  //         }).then((result) => {
+  //           if (result.isConfirmed) {
+  //             location.reload();
+  //           }
+  //         })
+  //     },//success
+  //     error(e){
+  //         console.log(e.message);
+  //         Swal.fire({
+  //             icon: 'warning',
+  //             text: 'Ha ocurrido un error intentelo nuevamente.',
+  //             confirmButtonText: 'Continuar',
+  //             confirmButtonColor: '#a18347',
+  //             })
+  //     }//error
+  // });//ajax
   
 }
 </script>

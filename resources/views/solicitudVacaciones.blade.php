@@ -81,7 +81,7 @@
                                 <span>Inicio:</span>
                             </div>
                         </div>
-                        <div class="col-md-1" style="margin-bottom: 1rem;">
+                        <div class="col-md-2" style="margin-bottom: 1rem;">
                             <div class="form-group">
                                 <select name="annoIni" id="annoIni" class="form-control selectForm">
                                 </select>
@@ -92,7 +92,7 @@
                                 <span>Fin:</span>
                             </div>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <select name="annoFin" id="annoFin" class="form-control selectForm">
                                 </select>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ListaController;
 use App\Http\Controllers\CreaPDFController;
 use App\Http\Controllers\FuncionesController;
 use App\Http\Controllers\ArchivoController;
+use App\Http\Controllers\CorreoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +35,15 @@ Route::view('/home', 'home')->name('home');
     Route::get('/api/enviarDocumentos', [CreaPDFController::class, 'enviarDocumentos'])->name('api.enviarDocumentos');
     Route::put('/api/AprobarSolicitudVacaciones', [APIController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
     Route::put('/api/RechazarSolicitudVacaciones', [APIController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
+    Route::put('/api/ActualizarVacacionesProgramadas', [APIController::class, 'ActualizarVacacionesProgramadas'])->name('api.ActualizarVacacionesProgramadas');
 
 
     //-----------------------Vistas PDF-----------------------------//
     Route::view('/docAdelantoVaca','docAdelantoVaca')->name('docAdelantoVaca');
     Route::view('/docSolicitudVaca','docSolicitudVaca')->name('docSolicitudVaca');
+    //-----------------------Envio Correo-----------------------------//
+    Route::post('/api/enviarCorreo',[APIController::class, 'enviarCorreo'])->name('enviarCorreo');
+    //Route::post('/api/enviarCorreo',function(){return 'llego controller';});
     //-----------------------Fin vistas PDF-----------------------------//
     
     Route::view('/cambioContrasena','cambioContrasena')->name('cambioContrasena');

@@ -8,6 +8,7 @@ use GuzzleHttp\Psr7;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 
 class APIController extends Controller
@@ -33,19 +34,15 @@ class APIController extends Controller
             Session::put('codTrabajador', $responseData->response->cod_usuario);
             Session::put('docTrabajador', $responseData->response->dsc_documento);
             Session::put('nombreTrabajador', $responseData->response->dsc_usuario);
-            // Session::put('mailPerTrabajador', $responseData->response->dsc_mail_personal);
-            // Session::put('mailEmpTrabajador', $responseData->response->dsc_mail_empresa);
-            // Session::put('codSupervisor', $responseData->response->cod_supervisor);
-            // Session::put('nombreSupervisor', $responseData->response->dsc_superior );
-            // Session::put('mailPerSupervisor', $responseData->response->dsc_mail_personal_supervisor);
-            // Session::put('mailEmpSupervisor', $responseData->response->dsc_mail_empresa_supervisor);
-            // Session::put('correoEnvio', $responseData->response->dsc_mail_configuracion);
-            // Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
-            // Session::put('dscHost', $responseData->response->dsc_host_configuracion);
-            // Session::put('numHost', $responseData->response->num_host_configuracion);
-            // Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
-
-
+            Session::put('flgResponsable', $responseData->response->flg_responsable);
+            Session::put('codSupervisor', $responseData->response->cod_supervisor);
+            Session::put('mailPerSupervisor', $responseData->response->dsc_mail_personal_supervisor);
+            Session::put('mailEmpSupervisor', $responseData->response->dsc_mail_empresa_supervisor);
+            Session::put('correoEnvio', $responseData->response->dsc_mail_configuracion);
+            Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
+            Session::put('dscHost', $responseData->response->dsc_host_configuracion);
+            Session::put('numHost', $responseData->response->num_host_configuracion);
+            Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
 
             // Ejemplo de retorno de la respuesta
             return response()->json(['status' => $statusCode, 'data' => $responseData],);
@@ -314,5 +311,81 @@ class APIController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
+    }
+
+    public function ActualizarVacacionesProgramadas(Request $request)
+    {   
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = json_encode($request['data']);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ActualizarVacacionesProgramadas/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    function enviarCorreo(Request $request) {
+
+        // $destinatario = $request['destino'];
+        // $asunto = $request['asunto'];
+        // $mensaje = $request['mensaje'];
+        $mensaje = "Estimado(a) nombreDestinatario,
+
+            Tienes el siguiente mensaje por revisar en el intranet de la empresa:
+
+            Fecha de notificación: fechaNotificacion
+            Fecha límite: fechaLimite
+            Solicitante/responsable: solicitanteResponsable
+            Actividad: actividad
+
+            Puedes ingresar al intranet aquí.
+
+            Atte.
+
+            [Razón social] - Grupo Muya";
+        $destinatario='mirellyagv@gmail.com';
+        $asunto='Asunto de Prueba';
+
+        // Extraer los datos de configuración de la API
+        $correo = $request->session()->get('correoEnvio');
+        $clave = $request->session()->get('claveEnvio');
+        $host = $request->session()->get('dscHost');
+        $puerto = $request->session()->get('numHost');
+        $esSMTP = $request->session()->get('dscSmtp');
+
+        //return response()->json(compact('correo','clave','host','puerto','esSMTP'));
+        // Configurar los datos del correo saliente
+        config([
+            'mail.mailers.smtp.host' => 'smtp.office365.com',
+            'mail.mailers.smtp.port' => 587,
+            'mail.mailers.smtp.username' => 'mgonzalez@kunaq.pe',
+            'mail.mailers.smtp.password' => 'contraseña',
+            'mail.mailers.smtp.encryption' => 'TLS',
+            'mail.mailers.smtp.auth_mode' => 'PLAIN', 
+            'mail.from.address' => 'mgonzalez@kunaq.pe',
+            'mail.from.name' => 'Grupo Muya'
+        ]);
+    
+        // Enviar el correo
+        Mail::raw($mensaje, function ($message) use ($destinatario, $asunto) {
+            $message->to($destinatario);
+            $message->subject($asunto);
+            //$message->cc('echanganaqui@kunaq.pe');
+            //$message->cc('larias@kunaq.pe');
+            //$message->cc('mgonzalez@kunaq.pe');
+           // $message->cc('bgalvan@kunaq.pe');
+        });
+
     }
 }
