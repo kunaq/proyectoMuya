@@ -337,7 +337,7 @@
             filaData += '<tr>'+
               '<td>'+element['num_documento']+'</td>'+
               '<td>'+element['dsc_nombres']+'</td>'+
-              '<td>'+element['dsc_apellido_paterno']+' ' +element['dsc_apellido_materno']+'</td>'+
+              '<td>'+element['dsc_apellidos']+'</td>'+
               '<td>'+formatDate(fchNac[0])+'</td>'+
               '<td>'+element['dsc_parentesco']+'</td>'+
             '</tr>';
