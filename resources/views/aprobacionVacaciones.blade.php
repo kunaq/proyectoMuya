@@ -446,10 +446,10 @@ window.onload= function() {
                 var codTrabajador = "'"+element['cod_trabajador']+"'";
                 flgJefe = '';
                 flgEntre = '';
-                if(element['flg_no_cruzar_jefe']){
+                if(element['flg_no_cruzar_jefe'] == 'SI'){
                     flgJefe = 'checked';
                 }
-                if(element['flg_no_cruzar']){
+                if(element['flg_no_cruzar'] == 'SI'){
                     flgEntre = 'checked';
                 }
 
