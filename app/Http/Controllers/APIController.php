@@ -119,11 +119,12 @@ class APIController extends Controller
         }
     }
 
-    public function ObtenerTrabajador()
+    public function ObtenerTrabajador(Request $request)
     {   
         $client = new Client();
         try {
-            $cod_trabajador = session('codTrabajador');
+            //$cod_trabajador = session('codTrabajador');
+            $cod_trabajador = $request['cod_trabajador'];
             $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20555348887/'.$cod_trabajador);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
@@ -337,27 +338,30 @@ class APIController extends Controller
 
     function enviarCorreo(Request $request) {
 
-        // $destinatario = $request['destino'];
-        // $asunto = $request['asunto'];
-        // $mensaje = $request['mensaje'];
-        $mensaje = "Estimado(a) nombreDestinatario,
+        $destinatario = $request['destinatario'];
+        $correoDestino = $request['correoDestino'];
+        $actividad = $request['actividad'];
+        $fechaLimite = $request['fchLimite'];
+        $fechaNotificacion = $request['fchNotif'];
+        $asunto = $request['asunto'];
+        $solicitante =  $request['solicitante'];
 
-            Tienes el siguiente mensaje por revisar en el intranet de la empresa:
+        $mensaje = "Estimado(a) $destinatario,<br><br>
 
-            Fecha de notificación: fechaNotificacion
-            Fecha límite: fechaLimite
-            Solicitante/responsable: solicitanteResponsable
-            Actividad: actividad
+                    Tienes el siguiente mensaje por revisar en el intranet de la empresa:<br><br>
 
-            Puedes ingresar al intranet aquí.
+                        Fecha de notificación: $fechaNotificacion <br>
+                        Fecha límite: $fechaLimite <br>
+                        Solicitante/responsable: $solicitante <br>
+                        Actividad: $actividad <br><br>
 
-            Atte.
+            Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
+
+            Atte.<br><br>
 
             [Razón social] - Grupo Muya";
-        $destinatario='mirellyagv@gmail.com';
-        $asunto='Asunto de Prueba';
 
-        // Extraer los datos de configuración de la API
+        // Extraer los datos de configuración 
         $correo = $request->session()->get('correoEnvio');
         $clave = $request->session()->get('claveEnvio');
         $host = $request->session()->get('dscHost');
@@ -367,24 +371,24 @@ class APIController extends Controller
         //return response()->json(compact('correo','clave','host','puerto','esSMTP'));
         // Configurar los datos del correo saliente
         config([
-            'mail.mailers.smtp.host' => 'smtp.office365.com',
-            'mail.mailers.smtp.port' => 587,
-            'mail.mailers.smtp.username' => 'mgonzalez@kunaq.pe',
-            'mail.mailers.smtp.password' => 'contraseña',
+            'mail.mailers.smtp.host' => $host,
+            'mail.mailers.smtp.port' => $puerto,
+            'mail.mailers.smtp.username' => 'comprobantedepago@grupomuya.com.pe',
+            'mail.mailers.smtp.password' => '',
             'mail.mailers.smtp.encryption' => 'TLS',
             'mail.mailers.smtp.auth_mode' => 'PLAIN', 
-            'mail.from.address' => 'mgonzalez@kunaq.pe',
+            'mail.from.address' => 'comprobantedepago@grupomuya.com.pe',
             'mail.from.name' => 'Grupo Muya'
         ]);
     
         // Enviar el correo
-        Mail::raw($mensaje, function ($message) use ($destinatario, $asunto) {
-            $message->to($destinatario);
+        Mail::html($mensaje, function ($message) use ($correoDestino, $asunto) {
+            $message->to($correoDestino);
             $message->subject($asunto);
-            //$message->cc('echanganaqui@kunaq.pe');
-            //$message->cc('larias@kunaq.pe');
-            //$message->cc('mgonzalez@kunaq.pe');
-           // $message->cc('bgalvan@kunaq.pe');
+            $message->cc('echanganaqui@kunaq.pe');
+            $message->cc('larias@kunaq.pe');
+            $message->cc('mgonzalez@kunaq.pe');
+           $message->cc('bgalvan@kunaq.pe');
         });
 
     }

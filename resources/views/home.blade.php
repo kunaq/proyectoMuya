@@ -101,12 +101,13 @@
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
     window.onload= function() {
+        var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
         $.ajax({
             url: 'api/ObtenerTrabajador', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data:{},
+            data:{'cod_trabajador':codTrabajador},
             success: function(result){
                 document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
                 document.getElementById("dsc_proxima_vacaciones").innerHTML=result["response"]["dsc_proxima_vacaciones"];

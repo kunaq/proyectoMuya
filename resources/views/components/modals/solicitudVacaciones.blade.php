@@ -146,12 +146,13 @@
 <script type="text/javascript">
 
 window.onload= function() {
+  var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{},
+      data:{'cod_trabajador':codTrabajador},
       success: function(result){
           document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
@@ -225,8 +226,8 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             var cantDias = element['cant_dia'];
             var fchReinc = document.getElementById("datepickerFinSolVac").value;
             var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
-            var finFchIni = "'"+auxFecIni[0]+"'";
-            var finFchFin = "'"+auxFecFin[0]+"'";
+            var finFchIni = "'"+fchIni+"'";
+            var finFchFin = "'"+fchFin+"'";
 
             var filaData = [
                 fchIni,
@@ -376,13 +377,40 @@ btnFirmaConvenio.addEventListener("click", function() {
 function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
 
   $.ajax({
-      url: 'api/enviarCorreo', 
-      method: "post",
+      url: 'api/ObtenerTrabajador', 
+      method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
+      data:{'cod_trabajador':codTra},
       success: function(respuesta){
           console.log(respuesta);
+          var dscTra = respuesta['response']['dsc_trabajador'];
+          var correoTra = respuesta['response']['dsc_mail_personal'];
+          var fechaActual = new Date();
+          var dia = fechaActual.getDate();
+          var mes = fechaActual.getMonth() + 1;
+          var anio = fechaActual.getFullYear();
+          var diaFormateado = dia < 10 ? '0' + dia : dia;
+          var mesFormateado = mes < 10 ? '0' + mes : mes;
+          var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+          var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+          var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+          var asunto = 'Envio de solicitud de vacaciones';
+
+          $.ajax({
+              url: 'api/enviarCorreo', 
+              method: "post",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
+              success: function(respuesta){
+                  console.log(respuesta);
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });//ajax
+
       },//success
       error(e){
           console.log(e.message);
@@ -390,35 +418,35 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
     });//ajax
   
 
-  // $.ajax({
-  //     url: 'api/enviarDocumentos', 
-  //     method: "get",
-  //     crossDomain: true,
-  //     dataType: 'json',
-  //     data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
-  //     success: function(respuesta){
-  //         console.log(respuesta);
-  //         Swal.fire({
-  //             icon: 'success',
-  //             text: 'Se ha registrado la firma',
-  //             confirmButtonText: 'Continuar',
-  //             confirmButtonColor: '#a18347',
-  //         }).then((result) => {
-  //           if (result.isConfirmed) {
-  //             location.reload();
-  //           }
-  //         })
-  //     },//success
-  //     error(e){
-  //         console.log(e.message);
-  //         Swal.fire({
-  //             icon: 'warning',
-  //             text: 'Ha ocurrido un error intentelo nuevamente.',
-  //             confirmButtonText: 'Continuar',
-  //             confirmButtonColor: '#a18347',
-  //             })
-  //     }//error
-  // });//ajax
+  $.ajax({
+      url: 'api/enviarDocumentos', 
+      method: "get",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
+      success: function(respuesta){
+          console.log(respuesta);
+          Swal.fire({
+              icon: 'success',
+              text: 'Se ha registrado la firma',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+          })
+      },//success
+      error(e){
+          console.log(e.message);
+          Swal.fire({
+              icon: 'warning',
+              text: 'Ha ocurrido un error intentelo nuevamente.',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+              })
+      }//error
+  });//ajax
   
 }
 </script>
