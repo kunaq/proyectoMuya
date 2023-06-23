@@ -265,13 +265,14 @@
 
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
+  var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
     window.onload= function() {
         $.ajax({
             url: 'api/ObtenerTrabajador', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',
-            data:{},
+            data:{'cod_trabajador':codTrabajador},
             success: function(result){
                 var fchNac =  result["response"]['fch_nacimiento'].split("T");
                 var fchIng =  result["response"]['fch_ingreso'].split("T");

@@ -146,7 +146,7 @@
 <script type="text/javascript">
 
 window.onload= function() {
-  var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
+  var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",

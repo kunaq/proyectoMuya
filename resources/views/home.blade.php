@@ -101,7 +101,7 @@
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
     window.onload= function() {
-        var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
+        var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
         $.ajax({
             url: 'api/ObtenerTrabajador', 
             method: "GET",
