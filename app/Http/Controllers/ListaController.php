@@ -205,10 +205,10 @@ class ListaController extends Controller
         }
     }
 
-    public function ListarVacacionesProgramadas()
+    public function ListarVacacionesProgramadas(Request $request)
     {   
         $client = new Client();
-        $cod_trabajador = session('codTrabajador');
+        $cod_trabajador = $request['codTrabajador'];
         try {
                           
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarVacacionesProgramadas/20555348887/'.$cod_trabajador);
