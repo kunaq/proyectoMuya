@@ -3,10 +3,10 @@
 <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #155450;">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="home" class="logo d-flex align-items-center d-none d-md-block">
+      <a href="home" id="anclaLogo" class="logo d-flex align-items-center d-none d-md-block">
         <img src="assets/img/GM-BLANCO.png" alt="">
       </a>
-      <a href="home" class="logo logo-sm d-flex align-items-center d-sm-block d-md-none">
+      <a href="home" id="anclaLogoMobil" class="logo logo-sm d-flex align-items-center d-sm-block d-md-none">
         <img src="assets/img/GM-BLANCO-SM.png" alt="">
       </a>
       <i class="bi bi-list toggle-sidebar-btn "></i>
@@ -30,7 +30,7 @@
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li>
+            <li id="anclaCambContr">
               <a class="dropdown-item d-flex align-items-center" href="{{route('cambioContrasena')}}">
                 <i class="bi bi-gear"></i>
                 <span>Cambio contraseña</span>

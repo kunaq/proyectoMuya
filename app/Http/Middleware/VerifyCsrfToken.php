@@ -25,6 +25,7 @@ class VerifyCsrfToken extends Middleware
         '/api/ActualizarVacacionesProgramadas',
         '/api/InsertarMensajeTrabajador',
         '/api/enviarCorreo',
+        '/actualizaContrasenna',
 
         '/api/ObtenerTrabajador',
         '/lista/ListarUltimosMensajes',
