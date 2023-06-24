@@ -260,7 +260,7 @@
                         </div>
                         <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="datepicker1">
+                                <input type="text" class="form-control" id="datepicker1" placeholder="Seleccione..">
                             </div>
                         </div>
                         <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
@@ -270,7 +270,7 @@
                         </div>
                         <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="datepicker2">
+                                <input type="text" class="form-control" id="datepicker2" disabled>
                             </div>
                         </div>
                         <div class="col-md-2" style="text-align: -webkit-center">
@@ -308,7 +308,7 @@
                         </div>
                         <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="datepickerIniDes">
+                                <input type="text" class="form-control" id="datepickerIniDes" placeholder="Seleccione..">
                             </div>
                         </div>
                         <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
@@ -318,7 +318,7 @@
                         </div>
                         <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="datepickerFinDes">
+                                <input type="text" class="form-control" id="datepickerFinDes" disabled>
                             </div>
                         </div>
                         <div class="col-md-2" style="text-align: -webkit-center">

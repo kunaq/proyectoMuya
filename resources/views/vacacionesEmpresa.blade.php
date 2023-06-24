@@ -306,7 +306,7 @@
                             </div>
                             <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="datepicker1">
+                                    <input type="text" class="form-control" id="datepicker1" placeholder="Seleccione..">
                                 </div>
                             </div>
                             <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
@@ -316,7 +316,7 @@
                             </div>
                             <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="datepicker2">
+                                    <input type="text" class="form-control" id="datepicker2" disabled>
                                 </div>
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center">
@@ -353,7 +353,7 @@
                             </div>
                             <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="datepicker3">
+                                    <input type="text" class="form-control" id="datepicker3" placeholder="Seleccione..">
                                 </div>
                             </div>
                             <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
@@ -363,7 +363,7 @@
                             </div>
                             <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="datepicker4">
+                                    <input type="text" class="form-control" id="datepicker4" disabled>
                                 </div>
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center">
@@ -442,7 +442,7 @@
 <x-modals.vacacionesEmpresa/>
 
 </x-layouts.app>
-
+<script src="{{asset('assets/js/vacacionesEmpresa.js')}}"></script>
 <script type="text/javascript">
     window.onload= function() {
         $.ajax({

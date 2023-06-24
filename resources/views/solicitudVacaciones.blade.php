@@ -94,7 +94,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <select name="annoFin" id="annoFin" class="form-control selectForm">
+                                <select name="annoFin" id="annoFin" class="form-control selectForm" disabled>
                                 </select>
                             </div>
                         </div>
@@ -242,3 +242,4 @@
 <x-modals.solicitudVacaciones/>
 
 </x-layouts.app>
+<script src="{{asset('assets/js/solicitudVacaciones.js')}}"></script>

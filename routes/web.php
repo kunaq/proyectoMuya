@@ -8,6 +8,10 @@ use App\Http\Controllers\FuncionesController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\CorreoController;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +24,16 @@ use App\Http\Controllers\CorreoController;
 */
 
 Route::view('/home', 'home')->name('home');
+Route::get('/adios', function (Request $request): RedirectResponse {
+    Auth::logout();
+ 
+    $request->session()->invalidate();
+ 
+    $request->session()->regenerateToken();
+ 
+    return redirect('/');
+    
+})->name('logout');
 
 
 
@@ -59,7 +73,7 @@ Route::view('/home', 'home')->name('home');
     Route::view('/','index')->name('index');
 
 
-    Route::get('/logout', [FuncionesController::class, 'logout'])->name('logout');
+    // Route::get('/logout', [FuncionesController::class, 'logout'])->name('logout');
 
      //-----------------------Mostrar Datos-----------------------------//
     Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');

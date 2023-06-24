@@ -269,6 +269,39 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
   });
 }
 
+var fIni = document.getElementById('annoIni');
+fIni.addEventListener('change', function() {
+  var startDate = document.getElementById("annoIni").value;
+    var endDateSelect = document.getElementById("annoFin");
+    var endDateOptions = endDateSelect.options;
+
+    // Se habilita el campo de fecha fin..
+    endDateSelect.removeAttribute("disabled");
+
+    // Mostrar todas las opciones de fecha de fin
+    for (var i = 0; i < endDateOptions.length; i++) {
+      endDateOptions[i].style.display = "";
+    }
+
+    // Verificar si se ha seleccionado una fecha de inicio
+    if (startDate) {
+      // Filtrar las opciones de fecha de fin
+      for (var i = 0; i < endDateOptions.length; i++) {
+        var endDate = endDateOptions[i].value;
+
+        if (endDate < startDate) {
+          // Ocultar las opciones menores a la fecha de inicio
+          endDateOptions[i].style.display = "none";
+        }
+      }
+
+      // Restablecer el valor seleccionado de la fecha de fin si es inválido
+      if (endDateSelect.value < startDate) {
+        endDateSelect.value = startDate;
+      }
+    }
+});
+
 var btnBuscarLista = document.getElementById('buscarLista');
 btnBuscarLista.addEventListener("click", function() {
   var inicio = document.getElementById('annoIni').value;
