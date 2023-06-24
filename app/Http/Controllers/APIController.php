@@ -336,6 +336,28 @@ class APIController extends Controller
         }
     }
 
+    public function InsertarMensajeTrabajador(Request $request)
+    {   
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = json_encode($request['data']);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/InsertarMensajeTrabajador/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     function enviarCorreo(Request $request) {
 
         $destinatario = $request['destinatario'];

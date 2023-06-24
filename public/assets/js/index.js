@@ -51,12 +51,19 @@ $("#loginBtn").click(function(){
         data:{'usuario':user,'password':passw},
         crossDomain: true,
         success: function(respuesta){
-            console.log(respuesta.data.mensaje);
-            if(respuesta.data.mensaje != 'OK'){
+            console.log('flg_bloq',respuesta.data.response.flg_bloqueado);
+            if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
-            }else{
+            }else if(respuesta.data.response.flg_bloqueado == 'SI'){
+                document.getElementById('message3').style.display = "block";
+            }else if(respuesta.data.mensaje == 'OK' && respuesta.data.response.flg_bloqueado == 'NO'){
                 document.getElementById('message2').style.display = "none";
-                window.location.href = "home";
+                document.getElementById('message3').style.display = "none";
+                if (passw == 'kunaq2024') {
+                    window.location.href = "primerCambio";
+                }else{
+                    window.location.href = "home";
+                }
             }
         },//success
         error(e){

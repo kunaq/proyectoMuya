@@ -36,6 +36,7 @@ Route::view('/home', 'home')->name('home');
     Route::put('/api/AprobarSolicitudVacaciones', [APIController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
     Route::put('/api/RechazarSolicitudVacaciones', [APIController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
     Route::put('/api/ActualizarVacacionesProgramadas', [APIController::class, 'ActualizarVacacionesProgramadas'])->name('api.ActualizarVacacionesProgramadas');
+    Route::put('/api/InsertarMensajeTrabajador', [APIController::class, 'InsertarMensajeTrabajador'])->name('api.InsertarMensajeTrabajador');
 
 
     //-----------------------Vistas PDF-----------------------------//
@@ -47,6 +48,7 @@ Route::view('/home', 'home')->name('home');
     //-----------------------Fin vistas PDF-----------------------------//
     
     Route::view('/cambioContrasena','cambioContrasena')->name('cambioContrasena');
+    Route::view('/primerCambio','primerCambio')->name('primerCambio');
     Route::view('/configXtrabajador','configXtrabajador')->name('configXtrabajador');
     Route::view('/delegacion','delegacion')->name('delegacion');
     Route::view('/mensajes','mensajes')->name('mensajes');

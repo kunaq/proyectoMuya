@@ -44,6 +44,9 @@
                                 <div id="message2">
                                     <span style="color: red;">Usuario o clave inválido.</span>
                                 </div>
+                                <div id="message3">
+                                    <span style="color: red;">El usuario se encuentra bloqueado temporalmente por exceso de intentos fallidos.</span>
+                                </div>
                             </div>
                         </div>
                         <a href="#" class="btn btn-block login-btn mb-4" id="loginBtn">Ingresar</a>

@@ -808,8 +808,8 @@ btnConfig.addEventListener("click", function() {
                         'cod_grupo_vacaciones': grupoVac,
                         'cod_trabajador': codTrabajador,
                         'num_linea': numLinea,
-                        'flg_no_cruzar_jefe': '',
-                        'flg_no_cruzar': ''
+                        'flg_no_cruzar_jefe': 'NO',
+                        'flg_no_cruzar': 'NO'
                     }
                     $.ajax({
                         url: 'api/ActualizarVacacionesProgramadas', 

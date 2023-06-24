@@ -286,6 +286,7 @@ btnBuscarListaMobil.addEventListener("click", function() {
 
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
+
     var fchInicio = document.getElementById('datepickerIniSolVac').value;
     var fechaParts = fchInicio.split('-');
     var day = fechaParts[0];
@@ -306,7 +307,7 @@ btnSolicitar.addEventListener("click", function() {
         'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
         'fch_inicio': fchInicio,
         'fch_fin': fchFin,
-        'fch_retorno': '2023-06-20T21:18:43.680Z',
+        'fch_retorno': '2023-06-20',
         'cant_dia': cantDias,
         'flg_alerta_regla': 'NO'
       }
@@ -318,6 +319,7 @@ btnSolicitar.addEventListener("click", function() {
         data:{'solVac':solVac},
         success: function(respuesta){
             console.log(respuesta);
+            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
             Swal.fire({
                 icon: 'success',
                 text: 'Se ha registrado su solicitud con éxito',
@@ -325,7 +327,7 @@ btnSolicitar.addEventListener("click", function() {
                 confirmButtonColor: '#a18347',
             }).then((result) => {
               if (result.isConfirmed) {
-                location.reload();
+                //location.reload();
               }
             })
         },//success
@@ -339,7 +341,7 @@ btnSolicitar.addEventListener("click", function() {
                 })
         }//error
     });//ajax
-});//onclick
+});//onclick solicitar vacaciones
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
@@ -357,7 +359,7 @@ btnFirmaConvenio.addEventListener("click", function() {
                 confirmButtonColor: '#a18347',
             }).then((result) => {
               if (result.isConfirmed) {
-                location.reload();
+                //location.reload();
               }
             })
         },//success
@@ -374,7 +376,7 @@ btnFirmaConvenio.addEventListener("click", function() {
 
 });
 
-function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
+function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -393,16 +395,38 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var diaFormateado = dia < 10 ? '0' + dia : dia;
           var mesFormateado = mes < 10 ? '0' + mes : mes;
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+          var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
           var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Envio de solicitud de vacaciones';
 
+          // $.ajax({
+          //     url: 'api/enviarCorreo', 
+          //     method: "post",
+          //     crossDomain: true,
+          //     dataType: 'json',
+          //     data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
+          //     success: function(respuesta){
+          //         console.log(respuesta);
+          //     },//success
+          //     error(e){
+          //         console.log(e.message);
+          //     }//error
+          // });//ajax
+            console.log(fchFin-7);
+          data = {
+            'cod_trabajador': codTra,
+            'cod_mensaje': '4001',
+            'fch_notificacion': fchBD,
+            'fch_limite': ''
+          }
+
           $.ajax({
-              url: 'api/enviarCorreo', 
-              method: "post",
+              url: 'api/InsertarMensajeTrabajador', 
+              method: "put",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
+              data:{'data':data},
               success: function(respuesta){
                   console.log(respuesta);
               },//success
@@ -415,8 +439,10 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
       error(e){
           console.log(e.message);
       }//error
-    });//ajax
-  
+    });//ajax  
+}
+
+function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
 
   $.ajax({
       url: 'api/enviarDocumentos', 
@@ -447,7 +473,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
               })
       }//error
   });//ajax
-  
+
 }
 </script>
 
