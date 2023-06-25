@@ -38,7 +38,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title tarjeta-foco"><b><span id="dsc_proxima_vacaciones"></span></b></h1>
-                                <h5 style="margin-bottom: 0;">Tus próximas vacaciones inician</h5>
+                                <h5 style="margin-bottom: 0;" id="proxVac">Tus próximas vacaciones inician</h5>
                             </div>
                         </div>
                     </div>  
@@ -112,6 +112,12 @@
                 document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
                 document.getElementById("dsc_proxima_vacaciones").innerHTML=result["response"]["dsc_proxima_vacaciones"];
                 document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
+
+                if (result["response"]['fch_proxima_vacaciones']==null) {
+                    document.getElementById("proxVac").style.display = "none";
+                }else{
+                    document.getElementById("proxVac").style.display = "block";
+                }
             }
         });
 
