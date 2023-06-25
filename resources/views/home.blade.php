@@ -36,9 +36,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body">
-                                <h1 class="card-title tarjeta-foco"><b><span id="dsc_proxima_vacaciones"></span></b></h1>
-                                <h5 style="margin-bottom: 0;">Tus próximas vacaciones inician</h5>
+                            <div class="card-body" id="dsc_proxima_vacaciones">
+                                {{-- <h1 class="card-title tarjeta-foco"><b><span id="dsc_proxima_vacaciones"></span></b></h1>
+                                <h5 style="margin-bottom: 0;" id="proxVac">Tus próximas vacaciones inician</h5> --}}
                             </div>
                         </div>
                     </div>  
@@ -110,8 +110,25 @@
             data:{'cod_trabajador':codTrabajador},
             success: function(result){
                 document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
-                document.getElementById("dsc_proxima_vacaciones").innerHTML=result["response"]["dsc_proxima_vacaciones"];
                 document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
+                var aux =result["response"]["dsc_proxima_vacaciones"];
+                
+                if (aux == 'NO REGISTRADO') {
+                var parentElement = document.getElementById("dsc_proxima_vacaciones");
+                parentElement.style.padding ='0.5em';
+                var h1Element = document.createElement("h1");
+                h1Element.className = "card-title tarjeta-foco";
+                h1Element.style.padding = '0em';
+                h1Element.innerHTML = "<b>No hay </br> Vacaciones registradas</b>";
+                parentElement.appendChild(h1Element);
+            }
+            else{
+                    var h5Element = document.createElement("h5");
+                    h5Element.style.marginBottom = "0";
+                    h5Element.id = "proxVac";
+                    h5Element.textContent = "Tus próximas vacaciones inician";
+                    parentElement.appendChild(h5Element);
+                }
             }
         });
 
