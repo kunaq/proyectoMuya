@@ -156,6 +156,17 @@ window.onload= function() {
       success: function(result){
           document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
+          fch_ingreso = result["response"]["fch_ingreso_planilla"];
+          var fechaActual = new Date();
+          var auxFech = new Date(fch_ingreso);
+          var diferenciaMilisegundos = fechaActual - auxFech;
+          var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
+          var botonConvenio = document.getElementById("btnFirmarConvenio");
+          if (diferenciaAnios < 1) {
+            botonConvenio.disabled = true;
+          } else {
+            botonConvenio.disabled = false;
+          }
       }
   });
 
@@ -193,6 +204,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
       success: function(result){
         //console.log(result);
         var filasArray = [];
+        var filasMovil = [];
         result['response'].forEach(element => {
             var auxFecIni =  element['fch_inicio'].split("T");
             fchIni = formatDate(auxFecIni[0]);
@@ -241,6 +253,26 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                 '<button class = "btn btn-secondary" data-bs-toggle = "tooltip" data-bs-placement="top" data-bs-custom-class = "custom-tooltip" data-bs-title = "Modificar" '+disBtnEdit+'><span class = "bi bi-pencil-square"></span></button>' 
             ];
             filasArray.push(filaData);
+
+            var filaDataMovil = [
+              '<tr>'+
+                '<td>'+
+                    '<b>Inicio:</b> '+fchIni+'<br>'+
+                    '<b>Término:</b> '+fchFin+' <br>'+
+                    '<b>Número de días:</b> '+cantDias+' <br>'+
+                    '<b>Estado:</b> '+element['dsc_estado']+'<br>'+
+                    '<b>Firma:</b> '+flgFirmado+' <br>'+
+                    '<b>Pago:</b> '+flgPagado+' <br><br>'+
+                    '<div style="text-align-last: center;">'+
+                        '<button class="btn btn-success btnDorado" '+disBtnFir+'>Firma</button>'+
+                        '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
+                        '<button class="btn btn-secondary" '+disBtnEdit+'>Edita</button>'+
+                    '</div>'+  
+                '</td>'+
+              '</tr>'
+            ];
+
+            filasMovil.push(filaDataMovil);
           });
           if ($.fn.dataTable.isDataTable('#listaVacSol')) {
               $('#listaVacSol').DataTable().clear();
@@ -248,26 +280,28 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           }
           //console.log(filasArray);
           $('#listaVacSol').DataTable({
-              language: {
-                  url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-              },
-              data: filasArray,
-              columns: [
-                  { title: 'Inicio' },
-                  { title: 'Término' },
-                  { title: 'Num. días' },
-                  { title: 'Estado' },
-                  { title: 'Firma' },
-                  { title: 'Pago' },
-                  { title: 'Acciones' },
-              ],
-              dom: 'trip',
-              processing: true,
-          });
-          //console.log(filasArray);
-      }
-  });
-}
+            language: {
+              url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+            },
+            data: filasArray,
+            columns: [
+              { title: 'Inicio' },
+              { title: 'Término' },
+              { title: 'Num. días' },
+              { title: 'Estado' },
+              { title: 'Firma' },
+              { title: 'Pago' },
+              { title: 'Acciones' },
+            ],
+            dom: 'trip',
+            processing: true,
+          });//datatable
+
+          $('#bodySolicitudMovil').html(filasMovil);
+
+      }//success
+  });//ajax
+}//funcion
 
 var fIni = document.getElementById('annoIni');
 fIni.addEventListener('change', function() {
@@ -307,13 +341,6 @@ btnBuscarLista.addEventListener("click", function() {
   var inicio = document.getElementById('annoIni').value;
   var fin = document.getElementById('annoFin').value;
   console.log('annoI',inicio)
-    muestraListadoSolicitudes(inicio,fin);
-});
-
-var btnBuscarListaMobil = document.getElementById('buscarListaMobil');
-btnBuscarListaMobil.addEventListener("click", function() {
-  var inicio = document.getElementById('annoIniMob').value;
-  var fin = document.getElementById('annoFinMob').value;
     muestraListadoSolicitudes(inicio,fin);
 });
 

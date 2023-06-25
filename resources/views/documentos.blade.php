@@ -35,16 +35,12 @@
                                 <div class="col-6 col-md-3" style="margin-bottom: 1rem;">
                                     <div class="form-group">
                                         <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                            <option value="2023">2023</option>
-                                            <option value="2022">2022</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3">
                                     <div class="form-group">
                                         <select name="annoFin" id="annoFin" class="form-control selectForm" disabled>
-                                            <option value="2023">2023</option>
-                                            <option value="2022">2022</option>
                                         </select>
                                     </div>
                                 </div>
@@ -131,14 +127,38 @@
     </main><!-- End #main -->
 
     <!-- Template Main JS File -->
-    <script type="text/javascript">
-        document.getElementById("buscarDoc").addEventListener("click", function(e){
-      obj = document.getElementById("resultado");
-      obj.removeAttribute('hidden', 'true');
-      obj.addAttribute('hidden', 'false');
-    });
+<script type="text/javascript">
 
-    var fIni = document.getElementById('annoIni');
+
+window.onload= function() {  
+
+  $.ajax({
+        url: 'lista/MuestraAnhos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                //console.log(word);
+                $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax muestraAnno
+
+}
+
+
+document.getElementById("buscarDoc").addEventListener("click", function(e){
+    obj = document.getElementById("resultado");
+    obj.removeAttribute('hidden', 'true');
+    obj.addAttribute('hidden', 'false');
+});
+
+var fIni = document.getElementById('annoIni');
 fIni.addEventListener('change', function() {
     var startDate = document.getElementById("annoIni").value;
     var endDateSelect = document.getElementById("annoFin");
@@ -171,6 +191,6 @@ fIni.addEventListener('change', function() {
     }
 });
     
-    </script>
+</script>
 
 </x-layouts.app>

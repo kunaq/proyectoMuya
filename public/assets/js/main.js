@@ -336,3 +336,67 @@ function obtenerFechaISO(fecha) {
   var year = fecha[2];
   return year + "-" + month + "-" + day;
 }
+
+function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchFin,fchRinc,cantDias,asunto,actividad) {
+
+  $.ajax({
+      url: 'api/ObtenerTrabajador', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'cod_trabajador':codTra},
+      success: function(respuesta){
+          console.log(respuesta);
+          var dscTra = respuesta['response']['dsc_trabajador'];
+          var correoTra = respuesta['response']['dsc_mail_personal'];
+
+          var fechaActual = new Date();
+          var dia = fechaActual.getDate();
+          var mes = fechaActual.getMonth() + 1;
+          var anio = fechaActual.getFullYear();
+          var diaFormateado = dia < 10 ? '0' + dia : dia;
+          var mesFormateado = mes < 10 ? '0' + mes : mes;
+          var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+          var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+          var solicitante = dscSolicitante;
+
+          $.ajax({
+              url: 'api/enviarCorreo', 
+              method: "post",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
+              success: function(respuesta){
+                  console.log(respuesta);
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });//ajax
+          data = {
+            'cod_trabajador': codTra,
+            'cod_mensaje': codMensaje,
+            'fch_notificacion': fchBD,
+            'fch_limite': ''
+          }
+
+          $.ajax({
+              url: 'api/InsertarMensajeTrabajador', 
+              method: "put",
+              crossDomain: true,
+              dataType: 'json',
+              data:{'data':data},
+              success: function(respuesta){
+                  console.log(respuesta);
+              },//success
+              error(e){
+                  console.log(e.message);
+              }//error
+          });//ajax
+
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+    });//ajax  
+}
