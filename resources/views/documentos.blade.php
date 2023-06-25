@@ -1,5 +1,44 @@
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <style>
+        span.select2.select2-container.select2-container--classic{
+            width: 100% !important;
+        }
+        /* Personalización del tema Classic */
+        .select2-container--classic .select2-selection--single {
+          height: 2em;
+          border-radius: 4px;
+          background-color: #f2f2f2;
+          border: 1px solid #ccc;
+        }
+        .select2-container--classic .select2-selection--single .select2-selection__rendered {
+          line-height: 2em;
+        }
+    
+        .select2-container--classic .select2-selection--single .select2-selection__arrow {
+          /* top: 6px; */
+          height: 1.9em;
+        }
+        .select2-container--classic.select2-container--open .select2-dropdown {
+        border-color: #155450;
+    }
+        .select2-container--classic.select2-container--open .select2-selection--single {
+        border: 1px solid #155450;
+        }
+        .select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable {
+            background-color: #155450;
+            color: #fff;
+        }
+    
+        .select2-container--classic .select2-results__option {
+          padding: 0.5em 0.8em;
+        }
+    
+        /* Otros estilos personalizados */
+        /* .my-select2 {
+          width: 200px;
+        } */
+    </style>
 <x-layouts.app title="documentos" meta-description="documentos meta description">
-
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>Documentos</h1>
@@ -20,8 +59,8 @@
                             <div class="row">
                                 <div class="col-md-4" style="margin-bottom: 1rem;">
                                     <div class="form-group">
-                                        <select name="tipoDoc" id="tipoDoc" class="form-control selectForm">
-                                            <option value="0" selected disabled>Seleccione un tipo de documento...
+                                        <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
+                                            <option value="">Seleccione un tipo de documento...
                                             </option>
                                             <option value="11001">Boleta de pago</option>
                                             <option value="11002">Constancia de CTS</option>
@@ -123,11 +162,17 @@
                 </div>
             </div>
         </section>
-
+        
     </main><!-- End #main -->
+    
+</x-layouts.app>
 
     <!-- Template Main JS File -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
 <script type="text/javascript">
+
 
 
 window.onload= function() {  
@@ -142,6 +187,7 @@ window.onload= function() {
                 //console.log(word);
                 $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
                 $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+
             });
         },//success
         error(e){
@@ -149,8 +195,18 @@ window.onload= function() {
         }//error
     });//ajax muestraAnno
 
+    
 }
-
+$(document).ready(function(){
+    $('.js-example-basic-single').select2({
+        language: "es",
+        theme: "classic",
+            width: 'resolve',
+            placeholder: "Seleccione un tipo de documento...",
+            allowClear: true,
+            // dir: "rtl",
+    });
+});
 
 document.getElementById("buscarDoc").addEventListener("click", function(e){
     obj = document.getElementById("resultado");
@@ -190,7 +246,5 @@ fIni.addEventListener('change', function() {
       }
     }
 });
-    
-</script>
 
-</x-layouts.app>
+</script>
