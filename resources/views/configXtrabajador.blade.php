@@ -169,9 +169,9 @@
                             <div class="col-12 col-md-4 offset-md-2">
                                 <p>No puede salir de vacaciones los últimos</p>
                             </div>
-                            <div class=" col-3 col-md-1">
+                            <div class=" col-3 col-md-2">
                                 <div class="form-group">
-                                    <input class="form-control " type="tel" value="">
+                                    <input id="diasMes" class="form-control " type="number" min="0" max="30" value="">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
@@ -477,6 +477,16 @@
             allowClear: true,
             // dir: "rtl",
         });
-
+        //-----valida dias maximos 30----
+        var input = document.getElementById("diasMes");
+        input.addEventListener("input", function() {
+            var value = parseInt(input.value);
+            if (value > 30) {
+            input.value = 30;
+            }
+        });
+        //-------------------------------
     });
+
+    
     </script>
