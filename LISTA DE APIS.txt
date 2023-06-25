@@ -126,7 +126,7 @@ PERIODO
 
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ListarPeriodoGratificacion/20555348887/2023
 
-REGLA
+REGLAS
 
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglas/20555348887
 
@@ -146,3 +146,17 @@ CONFIGURACION
         "dsc_documento": "40059627",
         "dsc_clave": "clave123"
         }
+
+VENTANAS Y PERFILES
+
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ListarVentana/20555348887/TRA00011
+
+PARAMETRO
+       
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ListarParametro/20555348887
+        
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ObtenerParametro/20555348887/P0001
+
+TRABAJADOR CORREO
+    
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerCorreo/20555348887/40059627
