@@ -4,6 +4,40 @@
     span.select2.select2-container.select2-container--classic{
         width: 100% !important;
     }
+    /* Personalización del tema Classic */
+    .select2-container--classic .select2-selection--single {
+      height: 2em;
+      border-radius: 4px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+    }
+    .select2-container--classic .select2-selection--single .select2-selection__rendered {
+      line-height: 2em;
+    }
+
+    .select2-container--classic .select2-selection--single .select2-selection__arrow {
+      /* top: 6px; */
+      height: 1.9em;
+    }
+    .select2-container--classic.select2-container--open .select2-dropdown {
+    border-color: #155450;
+}
+    .select2-container--classic.select2-container--open .select2-selection--single {
+    border: 1px solid #155450;
+    }
+    .select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: #155450;
+        color: #fff;
+    }
+
+    .select2-container--classic .select2-results__option {
+      padding: 0.5em 0.8em;
+    }
+
+    /* Otros estilos personalizados */
+    /* .my-select2 {
+      width: 200px;
+    } */
 </style>
 <x-layouts.app title="cambioContrasena" meta-description="Cambio de contrasena meta description">
 
@@ -36,8 +70,8 @@
                         <div class="row">
                             <div class="col-md-8 offset-md-3">
                                 <div class="form-group">
-                                    <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                        <option value="0" selected disabled>Escriba el nombre del trabajador</option>
+                                    <select name="tipoDoc1" id="tipoDoc1" class="form-control selectForm js-example-diacritics">
+                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
                                         <option value="11001">Alfredo Ponce</option>
                                         <option value="11002">Juan Chavez</option>
                                         <option value="11003">Mercedes Huaman</option>
@@ -117,8 +151,8 @@
                             </div>
                             <div class=" col-12 col-md-5">
                                 <div class="form-group">
-                                    <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                        <option value="0" selected disabled>Escriba el nombre del trabajador</option>
+                                    <select name="tipoDoc2" id="tipoDoc2" class="form-control selectForm js-example-diacritics">
+                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
                                         <option value="11001">Alfredo Ponce</option>
                                         <option value="11002">Juan Chavez</option>
                                         <option value="11003">Mercedes Huaman</option>
@@ -170,8 +204,8 @@
                             </div>
                             <div class=" col-12 col-md-5">
                                 <div class="form-group">
-                                    <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                        <option value="0" selected disabled>Escriba el nombre del trabajador</option>
+                                    <select name="tipoDoc3" id="tipoDoc3" class="form-control selectForm js-example-diacritics">
+                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
                                         <option value="11001">Alfredo Ponce</option>
                                         <option value="11002">Juan Chavez</option>
                                         <option value="11003">Mercedes Huaman</option>
@@ -430,11 +464,19 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     <script src="{{asset('assets/js/configXtrabajador.js')}}"></script>
     <script>
     $(document).ready(function(){
-        $('.js-example-basic-single').select2({
-            theme: "classic"
+
+        $('select').select2({
+            language: "es",
+            theme: "classic",
+            width: 'resolve',
+            placeholder: "Escriba el nombre del trabajador",
+            allowClear: true,
+            // dir: "rtl",
         });
+
     });
     </script>
