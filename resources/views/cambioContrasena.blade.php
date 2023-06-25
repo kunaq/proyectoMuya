@@ -16,9 +16,9 @@
       <div class="row">
         <div class="col-md-10 offset-md-1">
           <div class="card">
+            <form action="#" id="formCambioPass">
               <div class="card-body">
                   <h5 class="card-title">Cambiar contraseña</h5>
-
                   <div class="row">
                     <div class="col-md-2 offset-md-3">
                       <p>Actual</p>
@@ -29,7 +29,7 @@
                           <div class="input-group" id="show_hide_password1">
                             <input type="password" name="actualpass" id="actualpass" class="form-control" required>
                             <div class="input-group-append">
-                                <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
+                              <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
                             </div>
                           </div>
                         </div>
@@ -67,13 +67,13 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                          <div class="input-group" id="show_hide_password3">
-                            <!-- <input type="text" name="nuevapass2" id="nuevapass2" class="form-control" required> -->
-                            <input type="password" name="nuevapass2" id="nuevapass2" class="form-control" required>
-                            <div class="input-group-append">
-                                <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
-                            </div>
+                        <div class="input-group" id="show_hide_password3">
+                          <!-- <input type="text" name="nuevapass2" id="nuevapass2" class="form-control" required> -->
+                          <input type="password" name="nuevapass2" id="nuevapass2" class="form-control" required>
+                          <div class="input-group-append">
+                              <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
                           </div>
+                        </div>
                         <div id="message2">
                           <span style="color: red;">Las contraseñas no coinciden</span>
                         </div>
@@ -87,6 +87,7 @@
                     </div>
                   </div>
               </div>
+            </form>
           </div>
         </div>  
       </div>  

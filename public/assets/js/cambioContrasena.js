@@ -47,6 +47,7 @@ var length = document.getElementById("length");
 var envia = document.getElementById("envia");
 var verPass = document.getElementById("nuevapass2");
 var mensaje = document.getElementById("message2");
+var passAct = document.getElementById("actualpass");
 
 myInput.onkeyup = function () {
     // Validate lowercase letters
@@ -107,7 +108,7 @@ myInput.onkeyup = function () {
 };
 
 verPass.onkeyup = function () {
-    console.log(mensaje.style.display);
+    //console.log(mensaje.style.display);
     if (validoTodo.classList == "validTodo" && myInput.value == verPass.value) {
         mensaje.style.display = "none";
         envia.disabled = false;
@@ -118,3 +119,57 @@ verPass.onkeyup = function () {
         envia.disabled = true;
     }
 };
+
+envia.addEventListener("click", function() {
+    var form = document.getElementById("formCambioPass");
+    form.addEventListener("submit", function(event) {
+      // Detener el envío del formulario
+        event.preventDefault();
+    });
+    var dsc_clave = verPass.value;
+    if (passAct.value.trim() != 0) {      
+        $.ajax({
+            url: 'actualizaContrasenna', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'dsc_clave':dsc_clave},
+            success: function(respuesta){
+                console.log(respuesta);
+                Swal.fire({
+                icon: 'success',
+                text: 'Se ha registrado su nueva clave con éxito',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "home";
+                    }
+                })
+            },//success
+            error(e){
+                //console.log(e.responseText);
+                if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se ha registrado su nueva clave con éxito',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "home";
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'Ha ocurrido un error intentelo nuevamente.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    })
+                }
+            }//error
+        });//ajax
+    }
+});
+

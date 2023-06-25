@@ -1,0 +1,148 @@
+
+GUARDA MENSAJE
+
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/InsertarMensajeTrabajador/20555348887
+        {
+            "cod_trabajador": "string",
+            "cod_mensaje": "string",
+            "fch_notificacion": "string",
+            "fch_limite": "string"
+        }
+
+SOLICITUD DE VACACIONES
+
+    LISTADO (GET) https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacaciones/20555348887/TRA00011
+
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/InsertarSolicitudVacaciones/20555348887
+        {
+            "cod_trabajador": "string",
+            "fch_inicio": "2023-06-20T21:18:43.680Z",
+            "fch_fin": "2023-06-20T21:18:43.680Z",
+            "fch_retorno": "2023-06-20T21:18:43.680Z",
+            "cant_dia": 0,
+            "flg_alerta_regla": "string"
+        }
+
+    APRUEBA VACACIONES
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/AprobarSolicitudVacaciones/20555348887
+
+    RECHAZA VACACIONES
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/RechazarSolicitudVacaciones/20555348887
+        {
+            "cod_trabajador": "string",
+            "num_linea": 0,
+            "cod_trabajador_accion": "string"
+        }
+
+    FIRMA SOLICITUD DE VACACIONES (PROCESO BIGDAVI)
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/FirmarSolicitudVacaciones/20555348887
+
+    REPROGRAMAR VACACIONES
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ReprogramarSolicitudVacaciones/20555348887
+        {
+            "cod_trabajador": "string",
+            "num_linea": 0,
+            "cod_trabajador_accion": "string"
+        }
+
+LISTA DE COLABORADORES
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudColaboradorxAprobar/20555348887/TRA00011
+
+VACACIONES PROGRAMADAS
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarVacacionesProgramadas/20555348887/TRA00011
+
+OBTENER SOLICITUD VACACIONES
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerSolicitudVacaciones/20555348887/TRA00011/1
+
+GRABAR SOLICITUD 
+
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/InsertarSolicitudVacaciones/20555348887
+        {
+            "cod_trabajador": "string",
+            "fch_inicio": "2023-06-20T21:18:43.680Z",
+            "fch_fin": "2023-06-20T21:18:43.680Z",
+            "fch_retorno": "2023-06-20T21:18:43.680Z",
+            "cant_dia": 0,
+            "flg_alerta_regla": "string"
+        }
+
+CONTROL ENVIOS ¿?
+
+    ObtenerControlEnvio/ruc/nro transaccion
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerControlEnvio/20555348887/20  
+
+    ListarControlEnvio/ruc    
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ListarControlEnvio/20555348887    
+
+    InsertarControlEnvio/ruc
+
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/InsertarControlEnvio/20555348887
+        {
+            "cod_formato": "11001",
+            "cod_sede": "00008",
+            "cod_trabajador": "TRA01204",
+            "num_anno": 2023,
+            "num_mes": 2,
+            "dsc_iddocumento": ""
+        }
+
+LOGUEO
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Logueo/LogueoUsuario/20555348887/40059627/clave123
+
+TRABAJADOR
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerTrabajador/20555348887/TRA00011
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ListarDerechoHabientes/20555348887/TRA00011
+
+
+AUDITORIA
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Auditoria/ListarAuditoria/20555348887/TRA00011
+
+MENSAJE
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/ListarMensajePendientes/20555348887/TRA00011 
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/ListarMensajeFinalizados/20555348887/TRA00011
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/ListarMensajeAvisos/20555348887/TRA00011 
+ 
+PARAMETRO
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ListarParametro/20555348887
+
+PERIODO
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ListarPeriodoLaboral/20555348887/2023
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ListarPeriodoLabora/20555348887/2023
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Periodo/ListarPeriodoGratificacion/20555348887/2023
+
+REGLA
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglas/20555348887
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglasJefe/20555348887
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglasTrabajador/20555348887
+ 
+VACACIONES
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacaciones/20555348887/TRA00011
+
+CONFIGURACION
+
+    PUT  https://webapiportalplanillamuya.azurewebsites.net/api/Configuracion/ActualizarClave
+        {
+        "dsc_ruc_empresa": "20555348887",
+        "dsc_documento": "40059627",
+        "dsc_clave": "clave123"
+        }
