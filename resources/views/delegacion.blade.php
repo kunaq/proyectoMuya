@@ -31,15 +31,7 @@
                       </div>
                       <div class="col-md-8">
                         <div class="form-group">
-                            <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                <option value="0" selected>Escriba el nombre del trabajador</option>
-                                <option value="11001">Alfredo Ponce</option>
-                                <option value="11002">Juan Chavez</option>
-                                <option value="11003">Mercedes Huaman</option>
-                                <option value="11004">Rodrigo Montero</option>
-                                <option value="11005">Adriana Jaramillo</option>
-                                <option value="11006">María Huaman</option>
-                            </select>
+                          <h5><b>{{session('nombreTrabajador')}}</b></h5>
                         </div>
                       </div>
                     </div>
