@@ -202,7 +202,7 @@
                             <div class="col-12 col-md-4 offset-md-2">
                                 <p>Trabajador quien supervisa su asistencia</p>
                             </div>
-                            <div class=" col-12 col-md-5">
+                            <div class=" col-12 col-md-5" style="margin-bottom: 1rem">
                                 <div class="form-group">
                                     <select name="tipoDoc3" id="tipoDoc3" class="form-control selectForm js-example-diacritics">
                                         <option value="" selected disabled>Escriba el nombre del trabajador</option>
@@ -217,10 +217,17 @@
                             </div>
                         </div>
                         <br><br>
+                        <div class="row">
+                            <div class="col-12 col-md-2 offset-md-10" style="text-align: -webkit-center">
+                                <div class="form-group">
+                                    <h5><button class="btn btn-success btnDorado" id="">Guardar</button></h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>  
-        </div>  
+        </div>
     </section>
 
     <section class="section dashboard">
