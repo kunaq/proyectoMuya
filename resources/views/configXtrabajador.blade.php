@@ -455,8 +455,10 @@
               document.getElementById("dsc_grupo").value =result["response"]["dsc_grupo"];
               document.getElementById("cod_comisionista").value =result["response"]["cod_comisionista"];
               document.getElementById("dsc_comisionista").value =result["response"]["dsc_comisionista"];
-              var responsa=result["response"]["cod_supervisor"];
-              document.getElementById("Responsable").value =responsa;
+
+              var responsa=document.getElementById("Responsable") ;
+              responsa.value=result["response"]["cod_supervisor"];
+
               flg_existe_config=result["response"]["flg_existe_config"];
             }
         });
