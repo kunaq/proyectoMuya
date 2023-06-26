@@ -493,7 +493,7 @@ window.onload= function() {
         }
     });
 
-//------------------------Listado Aprobacion de solicitud----------------------------
+    //------------------------Listado Aprobacion de solicitud----------------------------
     $.ajax({
         url: 'lista/ListarSolicitudColaboradorxAprobar', 
         method: "GET",
@@ -566,6 +566,21 @@ window.onload= function() {
             // //console.log(filasArray);
         }
     });
+
+    $.ajax({
+        url: 'lista/ListarReglasJefe', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            console.log(respuesta);
+            var body = document.getElementById('bodyRegla');
+            body.innerHTML = respuesta['response'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ListarReglasJefe
 }
 
 //-----------------------Procesar solicitudes de vacaciones---------------------

@@ -368,20 +368,37 @@ class APIController extends Controller
         $asunto = $request['asunto'];
         $solicitante =  $request['solicitante'];
 
-        $mensaje = "Estimado(a) $destinatario,<br><br>
+        if($request['accion'] == 'olvido'){
 
-                    Tienes el siguiente mensaje por revisar en el intranet de la empresa:<br><br>
-
-                        Fecha de notificación: $fechaNotificacion <br>
-                        Fecha límite: $fechaLimite <br>
-                        Solicitante/responsable: $solicitante <br>
-                        Actividad: $actividad <br><br>
-
+            $mensaje =  $mensaje = "Estimado(a) $destinatario,<br><br>
+            
+            Ingrese al sistema con su DNI y la siguiente contraseña de recuperación:<br><br>
+            
+            Contraseña: GMUYA2024 <br>
+            
             Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
-
+            
             Atte.<br><br>
-
+            
             [Razón social] - Grupo Muya";
+
+        }else{
+            
+            $mensaje = "Estimado(a) $destinatario,<br><br>
+            
+            Tienes el siguiente mensaje por revisar en el intranet de la empresa:<br><br>
+            
+            Fecha de notificación: $fechaNotificacion <br>
+            Fecha límite: $fechaLimite <br>
+            Solicitante/responsable: $solicitante <br>
+            Actividad: $actividad <br><br>
+            
+            Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
+            
+            Atte.<br><br>
+            
+            [Razón social] - Grupo Muya";
+        }
 
         // Extraer los datos de configuración 
         $correo = $request->session()->get('correoEnvio');
