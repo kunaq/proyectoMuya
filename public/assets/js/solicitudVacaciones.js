@@ -13,15 +13,16 @@ inputFchInicio.addEventListener("change", function() {
     numPend = parseInt(document.getElementById("numVacPend").value);
     //console.log('numPend',numPend);
 
+    
+    var parametroY = parseInt(document.getElementById('parametroY').value);
+
     var fchInicio = inputFchInicio.value;
     var maximaDate = new Date();
     var fechaParts = fchInicio.split('-');
     maximaDate.setDate(parseInt(fechaParts[0]));
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
-    maximaDate.setDate(maximaDate.getDate() + numPend);
-
-    var cantDias = parseInt(document.getElementById('cantDiasSol').value);
+    maximaDate.setDate(maximaDate.getDate() + numPend + parametroY);
     
     var ctdProgVac = parseInt(document.getElementById('ctdProgPeriodo').value);
     console.log('ctdProgVac',ctdProgVac);
