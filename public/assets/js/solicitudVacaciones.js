@@ -138,8 +138,13 @@ function descargaDoc() {
     console.log('descargar');
 }
 
-function reprograma(cantDias,numLinea) {
+function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
     document.getElementById('cantDiasSol').value = cantDias;
     document.getElementById('numLinea').value = numLinea;
-    document.getElementById('reprogramacion').value = 'SI';    
+    document.getElementById('reprogramacion').value = 'SI';
+    document.getElementById('fchInicioRech').value = fhcIni;
+    document.getElementById('fchFinRech').value = fchFin;
+    document.getElementById('fchReincRech').value = fchReini;    
+    document.getElementById('cantDiasRech').value = cantDias;
+
 }
