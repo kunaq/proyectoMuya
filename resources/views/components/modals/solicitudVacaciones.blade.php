@@ -80,6 +80,8 @@
                         <input type="hidden" id="fchFinRech">
                         <input type="hidden" id="fchReincRech">
                         <input type="hidden" id="cantDiasRech">
+                        <input type="hidden" id="ctdProgPeriodo">
+                        <input type="hidden" id="parametroY">
                       </div>
                     </div>
                   </div>
@@ -151,6 +153,7 @@ window.onload= function() {
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   var botonSolicitud = document.getElementById("btnSolicitarVac");
   var botonConvenio = document.getElementById("btnFirmarConvenio");
+  document.getElementById("ctdProgPeriodo").value = '@php echo(session('ctdProgVac')) @endphp';
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
@@ -172,12 +175,12 @@ window.onload= function() {
           }
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
           if (diferenciaMeses < 3) {
-            botonSolicitud.disabled = true;
+           // botonSolicitud.disabled = true;
           } else {
             botonSolicitud.disabled = false;
           }
           if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
-            botonSolicitud.disabled = true;
+           // botonSolicitud.disabled = true;
             botonConvenio.disabled = false;
           }else {
             botonSolicitud.disabled = false;
@@ -241,11 +244,11 @@ window.onload= function() {
             diaPagoHaberes = new Date(pagoHaberes);
             var fechaActual = new Date();
             if(diaPagoHaberes < fechaActual){
-              botonSolicitud.disabled = true;
+             // botonSolicitud.disabled = true;
             }else{
               botonSolicitud.disabled = false;
             }
-          console.log('pagoHaberes',diaPagoHaberes < fechaActual);
+          //console.log('pagoHaberes',diaPagoHaberes < fechaActual);
         }
     });//pago de haberes
 
@@ -437,6 +440,37 @@ btnSolicitar.addEventListener("click", function() {
       }
 
     var reprog = document.getElementById('reprogramacion').value;
+    
+    $.ajax({
+        url: 'api/ObtenerCoincidenciaVacaciones', 
+        method: "get",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){
+            console.log(respuesta);
+
+
+            // Swal.fire({
+            //     icon: 'success',
+            //     text: 'Se ha registrado la firma',
+            //     confirmButtonText: 'Continuar',
+            //     confirmButtonColor: '#a18347',
+            // }).then((result) => {
+            //   if (result.isConfirmed) {
+            //     //location.reload();
+            //   }
+            // })
+        },//success
+        error(e){
+            console.log(e.message);
+            Swal.fire({
+                icon: 'warning',
+                text: 'Ha ocurrido un error intentelo nuevamente.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+                })
+        }//error
+    });//ajax 
 
     if(reprog == 'NO'){
       $.ajax({
@@ -485,7 +519,7 @@ btnSolicitar.addEventListener("click", function() {
           method: "PUT",
           crossDomain: true,
           dataType: 'json',
-          data:{'data':data},
+          data:{'solVac':data},
           success: function(respuesta){
               console.log(respuesta);
               enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,cantDiacantDiasRechs);
