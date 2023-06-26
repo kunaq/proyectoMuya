@@ -149,6 +149,8 @@
 window.onload= function() {
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
+  var botonSolicitud = document.getElementById("btnSolicitarVac");
+  var botonConvenio = document.getElementById("btnFirmarConvenio");
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
@@ -163,27 +165,34 @@ window.onload= function() {
           var auxFech = new Date(fch_ingreso);
           var diferenciaMilisegundos = fechaActual - auxFech;
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
-          var botonConvenio = document.getElementById("btnFirmarConvenio");
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;
           } else {
             botonConvenio.disabled = false;
           }
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
-          var botonSolicitud = document.getElementById("btnSolicitarVac");
           if (diferenciaMeses < 3) {
             botonSolicitud.disabled = true;
           } else {
             botonSolicitud.disabled = false;
           }
+          if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
+            botonSolicitud.disabled = true;
+            botonConvenio.disabled = false;
+          }else {
+            botonSolicitud.disabled = false;
+            botonConvenio.disabled = true;
+          }
           numUltDias = result['response']['num_ultimo_dias'];
       }
   });//ajax obtener trabajador
 
-  
   var fcha = new Date();
   var anno = fcha.getFullYear();
+  var mes = fcha.getMonth();
   muestraListadoSolicitudes(anno,anno);
+
+  var meses = [ 'enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
 
   $.ajax({
     url: 'lista/MuestraAnhos', 
@@ -218,20 +227,27 @@ window.onload= function() {
     }//error
   });//ajax ListarReglasTrabajador
 
-  // $.ajax({
-  //   url: 'lista/ListarReglasTrabajador', 
-  //   method: "GET",
-  //   crossDomain: true,
-  //   dataType: 'json',
-  //   success: function(respuesta){ 
-  //     console.log(respuesta);
-  //     var body = document.getElementById('bodyRegla');
-  //     body.innerHTML = respuesta['response'];
-  //   },//success
-  //   error(e){
-  //     console.log(e.message);
-  //   }//error
-  // });//ajax ListarReglasTrabajador
+  $.ajax({
+        url: 'api/ObtenerPagoHaberes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": anno },
+        success: function(result){
+          //console.log('response',result['response'][meses[mes]])
+            pagoHaberes = result['response'][meses[mes]];
+            auxDia = pagoHaberes.split(' ');
+            pagoHaberes = '"'+anno+'/'+(mes+1)+'/'+auxDia[1]+'"';
+            diaPagoHaberes = new Date(pagoHaberes);
+            var fechaActual = new Date();
+            if(diaPagoHaberes < fechaActual){
+              botonSolicitud.disabled = true;
+            }else{
+              botonSolicitud.disabled = false;
+            }
+          console.log('pagoHaberes',diaPagoHaberes < fechaActual);
+        }
+    });//pago de haberes
 
 }
 

@@ -42,7 +42,8 @@ class APIController extends Controller
             Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
             Session::put('dscHost', $responseData->response->dsc_host_configuracion);
             Session::put('numHost', $responseData->response->num_host_configuracion);
-            Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
+            Session::put('flgAcuerdoFirm', $responseData->response->flg_acuerdo_firmado);
+           // Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
 
             // Ejemplo de retorno de la respuesta
             return response()->json(['status' => $statusCode, 'data' => $responseData],);
