@@ -100,19 +100,19 @@ dniInput.addEventListener('input', function() {
     // Por ejemplo, puedes agregar una clase CSS para resaltar el campo de entrada en rojo
     
     document.getElementById('aceptaFirma').setAttribute('disabled', true);
-    dniInput.classList.remove('is-valid');
-    dniInput.classList.add('is-invalid');
-    dniInputHelp.classList.remove('valid-feedback');
-    dniInputHelp.classList.add('invalid-feedback');
+    // dniInput.classList.remove('is-valid');
+    // dniInput.classList.add('is-invalid');
+    // dniInputHelp.classList.remove('valid-feedback');
+    // dniInputHelp.classList.add('invalid-feedback');
     dniInputHelp.removeAttribute('hidden');
   } else {
     // El valor es válido, puedes realizar alguna acción adicional si es necesario
     // Por ejemplo, puedes eliminar la clase CSS para resaltar el campo de entrada en rojo
     document.getElementById('aceptaFirma').removeAttribute('disabled');
-    dniInput.classList.remove('is-invalid');
-    dniInput.classList.add('is-valid');
-    dniInputHelp.classList.remove('invalid-feedback');
-    dniInputHelp.classList.add('valid-feedback');
+    // dniInput.classList.remove('is-invalid');
+    // dniInput.classList.add('is-valid');
+    // dniInputHelp.classList.remove('invalid-feedback');
+    // dniInputHelp.classList.add('valid-feedback');
     dniInputHelp.setAttribute('hidden','true');
   }
 });
