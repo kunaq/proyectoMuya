@@ -91,7 +91,7 @@
                       </div>
                       <div class=" col-2 col-md-1">
                         <div class="form-group">
-                            <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
+                            <input class="form-check-input checkVerde" type="checkbox" value="" id="delegado" >
                         </div>
                       </div>
                     </div>
@@ -101,16 +101,10 @@
                           <p>Trabajador quien aprobará sus vacaciones temporalmente</p>
                         </div>
                         <br>
-                        <div class=" col-12 col-md-3">
+                        <div class=" col-12 col-md-4">
                             <div class="form-group">
-                                <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                    <option value="0" selected disabled>Escriba el nombre del trabajador</option>
-                                    <option value="11001">Alfredo Ponce</option>
-                                    <option value="11002">Juan Chavez</option>
-                                    <option value="11003">Mercedes Huaman</option>
-                                    <option value="11004">Rodrigo Montero</option>
-                                    <option value="11005">Adriana Jaramillo</option>
-                                    <option value="11006">María Huaman</option>
+                                <select name="Colaborador" id="Colaborador" class="form-control selectForm js-example-basic-single" onchange="ObtenerColaborador()">
+                                    
                                 </select>
                             </div>
                         </div>
@@ -119,7 +113,7 @@
                     <br><br>
                     <div class="row">
                       <div class="col-12 col-md-4 offset-md-4" style="text-align: -webkit-center;">
-                        <button class="btn btn-success" id="" type="submit" style="background-color: #155450;">Aceptar</button>
+                        <button class="btn btn-success" id="" type="submit" style="background-color: #155450;" onclick="ActualizarDelegado()">Aceptar</button>
                       </div>
                     </div>
                 </div>
@@ -138,9 +132,108 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     <script>
-    $(document).ready(function(){
+    window.onload= function() {
         $('.js-example-basic-single').select2({
             theme: "classic"
         });
+
+        $.ajax({
+
+        url: 'lista/MuestraColaboradores', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                console.log(word);
+                $("#Colaborador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
     });
+
+    $.ajax({
+            url: 'api/ObtenerColaborador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(result){
+               // document.getElementById("delegado").innerHTML=result["response"]["flg_delegar_permiso"];
+                if(result["response"]["flg_delegar_permiso"]=='SI'){document.getElementById("delegado").checked = true;}else{document.getElementById("delegado").checked = false;}
+                
+            }
+        });
+
+    }
+
+    function ObtenerColaborador() {
+      $.ajax({
+            url: 'api/ObtenerColaborador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(result){
+              if(result["response"]["flg_delegar_permiso"]=='SI'){document.getElementById("delegado").checked = true;}else{document.getElementById("delegado").checked = false;}
+                
+            }
+        });
+    }
+    function ActualizarDelegado() {
+               var flg_delegado='NO';
+               var cod_trabajador='';
+              
+               if(document.getElementById("delegado").checked==true){ flg_delegado='SI';}
+               cod_trabajador=document.getElementById("Colaborador").value;
+
+                data = {
+                    'cod_trabajador': cod_trabajador,
+                    'flg_delegar_permiso': flg_delegado
+                }
+           
+      Swal.fire({
+      title: '¿Esta seguro de modificar los permisos de este trabajador?',
+      text: 'Confirmación',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#35B44A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(cod_trabajador);
+        $.ajax({
+                        url: 'api/ActualizarDelegacion', 
+                        method: "PUT",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'data': data},
+                        success: function(respuesta){
+                            console.log(respuesta);
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'Se guardo el permiso con éxito',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log('data rechazado',data);
+                            }
+                            })
+                        },//success
+                        error(e){
+                            console.log(e.message);
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Ha ocurrido un error intentelo nuevamente.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                                })
+                        }//error
+                    });//ajax   
+      }
+    })
+
+    }
     </script>

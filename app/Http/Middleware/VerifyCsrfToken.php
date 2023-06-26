@@ -43,7 +43,10 @@ class VerifyCsrfToken extends Middleware
         'lista/ObtenerSolicitudVacaciones',
         'lista/ListarVacacionesProgramadas',
         'lista/ListarSolicitudColaboradorxAprobar',
-
+        '/lista/MuestraColaboradores',
+        '/api/ObtenerColaborador',
+        '/api/ActualizarDelegacion',
+        
         'api/InsertarSolicitudVacaciones',
         '/subir-archivo',
     ];
