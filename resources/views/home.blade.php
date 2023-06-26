@@ -162,7 +162,7 @@
                   }
                   else
                   {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Firmar</button>";
                   }
             }
             else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
