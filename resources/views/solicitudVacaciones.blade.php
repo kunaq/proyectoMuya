@@ -56,7 +56,7 @@
 
             <div class="row">
                 <div class="col-md-2 offset-md-2" style="margin-bottom: 1rem;">
-                    <button class="btn btn-success btnDorado btnConvenio" style="width: -webkit-fill-available;" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" >Solicitar <br> vacaciones</button>
+                    <button class="btn btn-success btnDorado btnConvenio" style="width: -webkit-fill-available;" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" id="btnSolicitarVac">Solicitar <br> vacaciones</button>
                 </div>
                 <div class="col-md-2 offset-md-1" style="margin-bottom: 1rem;">
                     <button class="btn btn-success btnDorado btnConvenio" data-bs-toggle="modal" id="btnFirmarConvenio" data-bs-target="#ModalFirmar">Firmar convenio de adelanto de vacaciones</button>

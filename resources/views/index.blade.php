@@ -38,7 +38,7 @@
                         </div>
                         <div class="row form-group mb-4">
                             <div class="col-md-6">
-                                <a href="#" style="text-decoration: underline;">Olvidé mi contraseña</a>
+                                <a href="#" style="text-decoration: underline;" data-bs-toggle="modal" data-bs-target="#ModalOlvideC">Olvidé mi contraseña</a>
                             </div>
                             <div class="col-md-6">
                                 <div id="message2">
@@ -55,8 +55,28 @@
             </div>
         </div>
     </div>
+    <!-- -------------------Modal Olvide contraseña------------------------------- -->
+
+    <div class="modal fade" id="ModalOlvideC" tabindex="-1" aria-labelledby="ModalOlvideCLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalOlvideCLabel">Olvidé mi contraseña</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo, ingresar al correo mencionado para continuar con el proceso.
+                </div>
+                <div class="modal-footer">
+                    <a href="#"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar Correo</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </main>
 
+ 
 </x-layouts.index>
   
 {{-- js llamada externa --}}

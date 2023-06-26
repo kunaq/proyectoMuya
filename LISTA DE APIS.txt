@@ -142,9 +142,9 @@ CONFIGURACION
 
     PUT  https://webapiportalplanillamuya.azurewebsites.net/api/Configuracion/ActualizarClave
         {
-        "dsc_ruc_empresa": "20555348887",
-        "dsc_documento": "40059627",
-        "dsc_clave": "clave123"
+            "dsc_ruc_empresa": "20555348887",
+            "dsc_documento": "40059627",
+            "dsc_clave": "clave123"
         }
 
 VENTANAS Y PERFILES
@@ -160,3 +160,7 @@ PARAMETRO
 TRABAJADOR CORREO
     
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerCorreo/20555348887/40059627
+
+OBTENER COINCIDENCIA DE VACACIONES
+    
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacaciones/20555348887/GV001/2023-06-21/2023-06-27

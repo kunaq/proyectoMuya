@@ -41,7 +41,7 @@ $("#loginBtn").click(function(){
     // Hacer la solicitud AJAX utilizando baseUrl y apiKey
     var user = document.getElementById("dni").value;
     var passw = document.getElementById("password").value;
-    //var oculto = md5(passw);
+    passw = passw.toUpperCase();
 
     //--------------Login--------------
     $.ajax({

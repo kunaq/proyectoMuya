@@ -337,7 +337,9 @@ function obtenerFechaISO(fecha) {
   return year + "-" + month + "-" + day;
 }
 
-function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchFin,fchRinc,cantDias,asunto,actividad) {
+//-----------------envia correo e ingresa mensajes para listado------------------------------------
+
+function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -349,6 +351,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchFin,fchRinc,cant
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
+          var correoCorp = respuesta['respuesta']['dsc_mail_empresa_trabajador'];
 
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
@@ -358,14 +361,13 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchFin,fchRinc,cant
           var mesFormateado = mes < 10 ? '0' + mes : mes;
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
-          var solicitante = dscSolicitante;
 
           $.ajax({
               url: 'api/enviarCorreo', 
               method: "post",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
+              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad},
               success: function(respuesta){
                   console.log(respuesta);
               },//success

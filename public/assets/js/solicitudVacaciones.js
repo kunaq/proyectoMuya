@@ -1,4 +1,3 @@
-
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
@@ -67,6 +66,26 @@ inputFchFin.addEventListener("change", function() {
     
 });
 
+function bloquearUltimosXDias(date) {
+    var currentDate = new Date();
+    var lastXDaysOfMonth = x;
+    
+    // Obtener el último día del mes de la fecha actual
+    var lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+    
+    // Verificar si la fecha está dentro de los últimos x días del mes
+    if (date.getDate() > lastDayOfMonth - lastXDaysOfMonth) {
+      return true; // Deshabilitar la fecha
+    }
+    
+    return false; // Habilitar la fecha
+  }
+  
+  // Inicializar el Flatpickr con la función de deshabilitar fechas personalizada
+  flatpickr("#datepicker", {
+    disable: bloquearUltimosXDias
+});
+
 
 function alertaSolicitud(){
     Swal.fire({
@@ -92,46 +111,17 @@ function alertaSolicitud(){
     })
 }
 
-var boton = document.getElementById("aceptaFirma");
+var btnBuscarLista = document.getElementById('buscarLista');
+btnBuscarLista.addEventListener("click", function() {
+    var inicio = document.getElementById('annoIni').value;
+    var fin = document.getElementById('annoFin').value;
+    console.log('annoI',inicio)
+    muestraListadoSolicitudes(inicio,fin);
+});
 
-boton.addEventListener("click",function(){
-
-    //--------------Verificar Conectividad Bigdavi--------------
-    // $.ajax({
-    //     url: baseUrl,
-    //     method: "GET",
-    //     crossDomain: true,
-    //     dataType: 'json',
-    //     success: function(respuesta){
-    //         console.log(respuesta);
-    //     }//success
-    // });//ajax
-
-    //--------------Solicitar Token Bigdavi--------------
-    // $.ajax({
-    //     url: 'api/crearPdf', 
-    //     method: "POST",
-    //     crossDomain: true,
-    //     success: function(respuesta){
-    //         console.log(respuesta);
-    //     },//success
-    //     error(e){
-    //         console.log(e.message);
-    //     }//error
-            
-    // });//ajax
-
-    // $.ajax({
-    //     url: 'api/solicitud', 
-    //     method: "POST",
-    //     crossDomain: true,
-    //     success: function(respuesta){
-    //         console.log('token',respuesta);
-    //     },//success
-    //     error(e){
-    //         console.log(e.message);
-    //     }//error
-            
-    // });//ajax
-
+var btnRestSol = document.getElementById('restModalVac');
+btnRestSol.addEventListener("click",function(){
+    document.getElementById('cantDiasSol').value = '';
+    document.getElementById('resutSolVac2').innerHTML = '';
+    document.getElementById('resutSolVac').innerHTML = '';
 });
