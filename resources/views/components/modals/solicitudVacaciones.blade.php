@@ -209,7 +209,7 @@ window.onload= function() {
     dataType: 'json',
     success: function(respuesta){ 
       console.log(respuesta);
-      var body = document.getElementById('bodyRegla');
+      var body = document.getElementById('bodyRegla'); console.log('ver', respuesta['response']);
       var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
             body.innerHTML = aux;
     },//success
@@ -460,7 +460,7 @@ btnSolicitar.addEventListener("click", function() {
       var fchReincRech = document.getElementById('fchReincRech').value;
       var cantDiasRech = document.getElementById('cantDiasRech').value;
       data = {
-          'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',,
+          'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
           'num_linea': numLinea,
           'cod_trabajador_accion': 'string'
         }
