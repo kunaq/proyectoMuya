@@ -7,14 +7,7 @@
               <h1 class="modal-title card-title fs-5" id="ModalReglasLabel">Reglas de Solicitud de vacaciones</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet urna vitae tellus pulvinar venenatis sit amet ut enim. Etiam ultrices ac dolor sed tincidunt. Aliquam tincidunt molestie lectus at mattis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec luctus sodales magna ac mollis. Maecenas maximus mauris quis magna dictum eleifend. Integer eleifend ante velit, id ullamcorper purus tincidunt bibendum. Ut purus dui, sollicitudin vitae turpis non, commodo facilisis urna. Praesent consectetur cursus nunc, eu finibus ligula tempus a. In vestibulum sem urna, ut tincidunt purus convallis sed. Etiam sollicitudin risus sapien, nec bibendum nulla molestie non. Nullam pulvinar massa magna, at sollicitudin sem vestibulum et. <br><br>
-  
-              Proin tincidunt est vel dui sagittis efficitur. Nulla purus augue, scelerisque in tincidunt bibendum, mattis et velit. Vivamus vitae bibendum justo. Nullam finibus rutrum quam dapibus tempus. Integer iaculis, ipsum eget rhoncus cursus, nibh felis mattis tortor, eu imperdiet risus mauris sit amet purus. Suspendisse potenti. Donec convallis ex ac est gravida, non elementum velit faucibus. Ut fermentum finibus nibh, at hendrerit mauris interdum eu. In condimentum laoreet sagittis. Aliquam egestas maximus felis. Quisque hendrerit mauris in libero euismod facilisis et ut odio. Proin nec lacus vel ante dignissim faucibus non nec dolor. <br><br>
-  
-              Praesent sed augue sed elit bibendum congue id quis lorem. Vivamus porttitor purus vel erat finibus blandit. Vestibulum metus mauris, consequat non tincidunt eu, faucibus nec lacus. Curabitur sodales risus sed lorem egestas sagittis. Proin eu leo lacus. Etiam bibendum odio quis dignissim vehicula. Quisque arcu ex, suscipit vitae nisl vitae, convallis tristique odio. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus vitae lacus nec ante vulputate finibus ut at turpis. Curabitur maximus magna quam, quis pretium lectus porta ut.
-              <br><br>
-              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas a pretium mi, ut porttitor ex. In mattis purus in velit volutpat, eu elementum magna porta. Ut scelerisque lacus at aliquet feugiat. Aenean gravida accumsan massa, ut sollicitudin justo convallis eget. Sed eget pharetra purus. Fusce vulputate dapibus ex nec egestas. Nam eros augue, condimentum at felis et, tincidunt porttitor nisl. Nam ut sollicitudin purus, in blandit justo. Sed vel est et diam dapibus porttitor non eget massa. Praesent rhoncus efficitur orci. Donec eu felis nec sapien suscipit cursus. Donec nec sem a sapien ullamcorper bibendum at eu lectus.
+            <div class="modal-body"  id="bodyRegla">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-success btnDorado" data-bs-dismiss="modal">Aceptar</button>
@@ -45,51 +38,55 @@
     <!-- -------------------Modal Solicitar------------------------------- -->
 
     <div class="modal fade" id="ModalSolicitud" tabindex="-1" aria-labelledby="ModalSolicitudLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalSolicitudLabel">Solicitud de vacaciones</h1>
-            <button type="button" id="btnDissmissModSol" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-            <h5 style="font-size: 17px; padding-bottom: 1rem;">Seleccione la fecha para sus vacaciones</h5>
-              <div class="row">
-                <div class="col-md-2" style="margin-bottom: 1rem;">
-                    <div class="form-group">
-                        <span>Inicio:</span>
-                    </div>
-                </div>
-                <div class="col-md-3" style="margin-bottom: 1rem;">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="datepickerIniSolVac" name="datepickerIniSolVac">
-                    </div>
-                </div>
-                <div class="col-md-2" style="margin-bottom: 1rem;">
-                    <div class="form-group">
-                        <span>Fin:</span>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="datepickerFinSolVac" name="datepickerFinSolVac">
-                    </div>
-                </div>
+      <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+            <form action="#" id="FormSolicitudVac">
+              <div class="modal-header">
+                  <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalSolicitudLabel">Solicitud de vacaciones</h1>
+                  <button type="reset" id="btnDissmissModSol" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="row">
-                <div class="col-md-8">
-                  <span id=resutSolVac></span><span id=resutSolVac2></span>
-                  <input type="hidden" id="cantDiasSol">
-                </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <h5 style="font-size: 17px; padding-bottom: 1rem;">Seleccione la fecha para sus vacaciones</h5>
+                    <div class="row">
+                      <div class="col-md-2" style="margin-bottom: 1rem;">
+                          <div class="form-group">
+                              <span>Inicio:</span>
+                          </div>
+                      </div>
+                      <div class="col-md-3" style="margin-bottom: 1rem;">
+                          <div class="form-group">
+                              <input type="text" class="form-control" id="datepickerIniSolVac" name="datepickerIniSolVac">
+                          </div>
+                      </div>
+                      <div class="col-md-2" style="margin-bottom: 1rem;">
+                          <div class="form-group">
+                              <span>Fin:</span>
+                          </div>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              <input type="text" class="form-control" id="datepickerFinSolVac" name="datepickerFinSolVac">
+                          </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8">
+                        <span id=resutSolVac></span><span id=resutSolVac2></span>
+                        <input type="hidden" id="cantDiasSol" value = 0>
+                        <input type="hidden" id="reprogramacion" value = 'NO'>
+                        <input type="hidden" id="numLinea">
+                      </div>
+                    </div>
+                  </div>
               </div>
-            </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" id="solicitaVacaciones" class="btn btn-success btnDorado">Aceptar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-        </div>
-        </div>
-    </div>
+              <div class="modal-footer">
+                  <button type="button" id="solicitaVacaciones" class="btn btn-success btnDorado">Aceptar</button>
+                  <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+              </div>
+            </form>
+          </div>
+      </div>
     </div>
   
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -146,6 +143,7 @@
 <script type="text/javascript">
 
 window.onload= function() {
+  var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -167,8 +165,16 @@ window.onload= function() {
           } else {
             botonConvenio.disabled = false;
           }
+          var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
+          var botonSolicitud = document.getElementById("btnSolicitarVac");
+          if (diferenciaMeses < 3) {
+            botonSolicitud.disabled = true;
+          } else {
+            botonSolicitud.disabled = false;
+          }
+          numUltDias = result['response']['num_ultimo_dias'];
       }
-  });
+  });//ajax obtener trabajador
 
   
   var fcha = new Date();
@@ -176,21 +182,51 @@ window.onload= function() {
   muestraListadoSolicitudes(anno,anno);
 
   $.ajax({
-        url: 'lista/MuestraAnhos', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        success: function(respuesta){ 
-                respuesta['response'].forEach(function(word){
-                //console.log(word);
-                $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-                $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-            });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
-    });//ajax muestraAnno
+    url: 'lista/MuestraAnhos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){ 
+      respuesta['response'].forEach(function(word){
+        //console.log(word);
+        $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+        $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+      });
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });//ajax muestraAnno
+
+  $.ajax({
+    url: 'lista/ListarReglasTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){ 
+      console.log(respuesta);
+      var body = document.getElementById('bodyRegla');
+      body.innerHTML = respuesta['response'];
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });//ajax ListarReglasTrabajador
+
+  $.ajax({
+    url: 'lista/ListarReglasTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){ 
+      console.log(respuesta);
+      var body = document.getElementById('bodyRegla');
+      body.innerHTML = respuesta['response'];
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });//ajax ListarReglasTrabajador
 
 }
 
@@ -214,6 +250,13 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             var disBtnFir = '';
             var disBtnDwn = '';
             var disBtnEdit = '';
+
+            if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
+              disBtnFir = 'disabled';
+            }else{
+              disBtnFir = '';
+            }
+
             if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
               flgFirmado = 'Sin firmar';
             }else{
@@ -236,6 +279,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
               disBtnEdit = 'disabled';
             }
             var cantDias = element['cant_dia'];
+            var numLinea = element['num_linea'];
             var fchReinc = document.getElementById("datepickerFinSolVac").value;
             var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
             var finFchIni = "'"+fchIni+"'";
@@ -248,10 +292,11 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                 element['dsc_estado'],
                 flgFirmado,
                 flgPagado,
-                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top"                 data-bs-custom-class="custom-tooltip" '+disBtnFir+' data-bs-title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
-                '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title = "Descargar" '+disBtnDwn+'><span class="bi bi-download"></span></button>'+
-                '<button class = "btn btn-secondary" data-bs-toggle = "tooltip" data-bs-placement="top" data-bs-custom-class = "custom-tooltip" data-bs-title = "Modificar" '+disBtnEdit+'><span class = "bi bi-pencil-square"></span></button>' 
+                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
+                '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
+                '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+')"><span class = "bi bi-pencil-square"></span></button>' 
             ];
+
             filasArray.push(filaData);
 
             var filaDataMovil = [
@@ -336,16 +381,14 @@ fIni.addEventListener('change', function() {
     }
 });
 
-var btnBuscarLista = document.getElementById('buscarLista');
-btnBuscarLista.addEventListener("click", function() {
-  var inicio = document.getElementById('annoIni').value;
-  var fin = document.getElementById('annoFin').value;
-  console.log('annoI',inicio)
-    muestraListadoSolicitudes(inicio,fin);
-});
-
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
+
+  var form = document.getElementById("FormSolicitudVac");
+  form.addEventListener("submit", function(event) {
+    // Detener el envío del formulario
+      event.preventDefault();
+  });
 
     var fchInicio = document.getElementById('datepickerIniSolVac').value;
     var fechaParts = fchInicio.split('-');
@@ -458,48 +501,15 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
           var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
-          var asunto = 'Envio de solicitud de vacaciones';
+          var asunto = 'Ingreso de solicitud de vacaciones';
 
-          // $.ajax({
-          //     url: 'api/enviarCorreo', 
-          //     method: "post",
-          //     crossDomain: true,
-          //     dataType: 'json',
-          //     data:{'destinatario':dscTra,'correoDestino':correoTra,'fchNotif':fechaFormateada,'fchLimite':'','asunto':asunto,'solicitante':solicitante,'actividad':actividad},
-          //     success: function(respuesta){
-          //         console.log(respuesta);
-          //     },//success
-          //     error(e){
-          //         console.log(e.message);
-          //     }//error
-          // });//ajax
-            console.log(fchFin-7);
-          data = {
-            'cod_trabajador': codTra,
-            'cod_mensaje': '4001',
-            'fch_notificacion': fchBD,
-            'fch_limite': ''
-          }
-
-          $.ajax({
-              url: 'api/InsertarMensajeTrabajador', 
-              method: "put",
-              crossDomain: true,
-              dataType: 'json',
-              data:{'data':data},
-              success: function(respuesta){
-                  console.log(respuesta);
-              },//success
-              error(e){
-                  console.log(e.message);
-              }//error
-          });//ajax
+          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad,'guarda  ');
 
       },//success
       error(e){
           console.log(e.message);
       }//error
-    });//ajax  
+  });//ajax  
 }
 
 function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {

@@ -96,8 +96,11 @@
                 </div>
             </div>
         </section>
+        <div id="sectionContainer"></div>
+        
 
-        <section class="section dashboard" id="resultado" hidden="true">
+
+        {{-- <section class="section dashboard" id="resultado">
 
             <div class="row">
                 <div class="col-md-10 offset-md-1 ">
@@ -161,7 +164,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> --}}
         
     </main><!-- End #main -->
     
@@ -208,42 +211,175 @@ $(document).ready(function(){
     });
 });
 
-document.getElementById("buscarDoc").addEventListener("click", function(e){
-    obj = document.getElementById("resultado");
-    obj.removeAttribute('hidden', 'true');
-    obj.addAttribute('hidden', 'false');
-});
 
 var fIni = document.getElementById('annoIni');
 fIni.addEventListener('change', function() {
     var startDate = document.getElementById("annoIni").value;
     var endDateSelect = document.getElementById("annoFin");
     var endDateOptions = endDateSelect.options;
-
+    
     // Se habilita el campo de fecha fin..
     endDateSelect.removeAttribute("disabled");
-
+    
     // Mostrar todas las opciones de fecha de fin
     for (var i = 0; i < endDateOptions.length; i++) {
       endDateOptions[i].style.display = "";
     }
-
+    
     // Verificar si se ha seleccionado una fecha de inicio
     if (startDate) {
-      // Filtrar las opciones de fecha de fin
+        // Filtrar las opciones de fecha de fin
       for (var i = 0; i < endDateOptions.length; i++) {
-        var endDate = endDateOptions[i].value;
-
-        if (endDate < startDate) {
-          // Ocultar las opciones menores a la fecha de inicio
-          endDateOptions[i].style.display = "none";
+          var endDate = endDateOptions[i].value;
+          
+          if (endDate < startDate) {
+              // Ocultar las opciones menores a la fecha de inicio
+              endDateOptions[i].style.display = "none";
+            }
         }
-      }
+        
+        // Restablecer el valor seleccionado de la fecha de fin si es inválido
+        if (endDateSelect.value < startDate) {
+            endDateSelect.value = startDate;
+        }
+    }
+    
+    
+    
+});
 
-      // Restablecer el valor seleccionado de la fecha de fin si es inválido
-      if (endDateSelect.value < startDate) {
-        endDateSelect.value = startDate;
-      }
+document.getElementById("buscarDoc").addEventListener("click", function(e) {
+    var startDate = document.getElementById("annoIni").value;
+    var endDateSelect = document.getElementById("annoFin");
+    // var endDateOptions = endDateSelect.options;
+//   var obj = document.getElementById("resultado");
+//   obj.removeAttribute('hidden');
+//   obj.setAttribute('hidden', 'false');
+  
+  // Resto del código de búsqueda aquí...
+
+  // Generar bloques por cada año entre el inicial y final seleccionados
+  var sectionContainer = document.getElementById("sectionContainer");
+        sectionContainer.innerHTML = ""; // Limpiar los bloques anteriores
+
+        var selectedYears = []; // Variable para almacenar los años seleccionados
+
+        for (var year = startDate; year <= parseInt(endDateSelect.value); year++) {
+            selectedYears.push(year);
+
+            var sectionId = "resultado_" + year;
+            var sectionElement = document.createElement("section");
+            sectionElement.setAttribute("class", "section dashboard");
+            sectionElement.setAttribute("id", sectionId);
+            sectionElement.setAttribute("hidden", "true");
+
+            var sectionContent = `
+                <section class="section dashboard" id="resultado_${year}">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <div class="card">
+                                <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="text-align: center;">No hay resultados para el periodo seleccionado</h5>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `;
+
+            //----contenido variable----
+            // var sectionContent = `
+            //     <section class="section dashboard" id="resultado_${year}">
+            //         <div class="row">
+            //             <div class="col-md-10 offset-md-1">
+            //                 <div class="card">
+            //                     <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
+            //                     <div class="card-body">
+            //                         <div class="row">
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" class="btn btn-block login-btn mb-4" target="_blank">
+            //                                     <i class="bx bx-calendar"></i> Enero
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Febrero
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Marzo
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Abril
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Mayo
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Junio
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Julio
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Agosto
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Septiembre
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Octubre
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Noviembre
+            //                                 </a>
+            //                             </div>
+            //                             <div class="col-6 col-md-2">
+            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
+            //                                     <i class="bx bx-calendar"></i> Diciembre
+            //                                 </a>
+            //                             </div>
+            //                         </div>
+            //                     </div>
+            //                 </div>
+            //             </div>
+            //         </div>
+            //     </section>
+            // `;
+
+
+            sectionElement.innerHTML = sectionContent;
+            sectionContainer.appendChild(sectionElement);
+        }
+    
+
+    // Mostrar los bloques correspondientes a los años seleccionados
+    for (var i = 0; i < selectedYears.length; i++) {
+        var sectionId = "resultado_" + selectedYears[i];
+        var sectionElement = document.getElementById(sectionId);
+
+        if (sectionElement) {
+            sectionElement.removeAttribute("hidden");
+        }
     }
 });
 

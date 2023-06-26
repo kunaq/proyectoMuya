@@ -345,7 +345,7 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <form action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data">
+            <form class="was-validated" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <div class="card-body">
@@ -354,6 +354,11 @@
                             <div class="col-md-5" style="text-align: -webkit-center">
                                 <input  class="btn btn-success btnDorado" style="padding-right: 0em" type="file" name="archivo">
                             </div>  
+                            {{-- ----este ejemplo de file con validacion class --}}
+                            {{-- <div class="mb-3">
+                                <input type="file" class="form-control" aria-label="file example" required>
+                                <div class="invalid-feedback">Example invalid form file feedback</div>
+                              </div> --}}
                             <div class="col-1 col-md-1" style="text-align: -webkit-center; margin: 0em -1em 0em 1em;">
                                 <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
                             </div>
@@ -488,7 +493,7 @@ window.onload= function() {
         }
     });
 
-//------------------------Listado Aprobacion de solicitud----------------------------
+    //------------------------Listado Aprobacion de solicitud----------------------------
     $.ajax({
         url: 'lista/ListarSolicitudColaboradorxAprobar', 
         method: "GET",
@@ -561,6 +566,21 @@ window.onload= function() {
             // //console.log(filasArray);
         }
     });
+
+    $.ajax({
+        url: 'lista/ListarReglasJefe', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            console.log(respuesta);
+            var body = document.getElementById('bodyRegla');
+            body.innerHTML = respuesta['response'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ListarReglasJefe
 }
 
 //-----------------------Procesar solicitudes de vacaciones---------------------
