@@ -339,7 +339,7 @@ function obtenerFechaISO(fecha) {
 
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
-function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad) {
+function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad,accion) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -367,7 +367,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
               method: "post",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad},
+              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'accion':accion},
               success: function(respuesta){
                   console.log(respuesta);
               },//success

@@ -20,6 +20,16 @@ inputFchInicio.addEventListener("change", function() {
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
     maximaDate.setDate(maximaDate.getDate() + numPend);
+    var cantDias = parseInt(document.getElementById('cantDiasSol').value);
+    var minimaDate = new Date();
+    minimaDate.setDate(parseInt(fechaParts[0]));
+    minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
+    minimaDate.setFullYear(parseInt(fechaParts[2]));
+    if (cantDias != 0) { 
+        minimo = minimaDate.setDate(minimaDate.getDate() + cantDias);
+    }else{
+        minimo = fchInicio;
+    }
 
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
@@ -69,22 +79,19 @@ inputFchFin.addEventListener("change", function() {
 function bloquearUltimosXDias(date) {
     var currentDate = new Date();
     var lastXDaysOfMonth = x;
-    
     // Obtener el último día del mes de la fecha actual
     var lastDayOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-    
     // Verificar si la fecha está dentro de los últimos x días del mes
     if (date.getDate() > lastDayOfMonth - lastXDaysOfMonth) {
       return true; // Deshabilitar la fecha
     }
-    
     return false; // Habilitar la fecha
-  }
+}
   
   // Inicializar el Flatpickr con la función de deshabilitar fechas personalizada
   flatpickr("#datepicker", {
     disable: bloquearUltimosXDias
-});
+  });
 
 
 function alertaSolicitud(){
@@ -119,9 +126,20 @@ btnBuscarLista.addEventListener("click", function() {
     muestraListadoSolicitudes(inicio,fin);
 });
 
-var btnRestSol = document.getElementById('restModalVac');
-btnRestSol.addEventListener("click",function(){
+
+const myModalEl = document.getElementById('ModalSolicitud')
+myModalEl.addEventListener('hidden.bs.modal', event => {
     document.getElementById('cantDiasSol').value = '';
     document.getElementById('resutSolVac2').innerHTML = '';
     document.getElementById('resutSolVac').innerHTML = '';
-});
+})
+
+function descargaDoc() {
+    console.log('descargar');
+}
+
+function reprograma(cantDias,numLinea) {
+    document.getElementById('cantDiasSol').value = cantDias;
+    document.getElementById('numLinea').value = numLinea;
+    document.getElementById('reprogramacion').value = 'SI';    
+}
