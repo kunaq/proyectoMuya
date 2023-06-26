@@ -144,13 +144,13 @@
           
           filaData='';
           filaDataMovil='';
-          var fchLimite = formatDate(fchLim[0]);
-          if (fchLimite === '01/01/1900') {
-            fchLimite = '-';
-          }
           respuesta['response'].forEach(function(element){ 
             var fchReg = element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }
             
             var filaAccion='';
 
