@@ -462,7 +462,7 @@ btnSolicitar.addEventListener("click", function() {
       data = {
           'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
           'num_linea': numLinea,
-          'cod_trabajador_accion': 'string'
+          'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
         }
       $.ajax({
           url: 'api/RechazarSolicitudVacaciones', 
