@@ -209,9 +209,9 @@ window.onload= function() {
     dataType: 'json',
     success: function(respuesta){ 
       console.log(respuesta);
-      var body = document.getElementById('bodyRegla'); console.log('ver', respuesta['response']);
+      var body = document.getElementById('bodyRegla'); //console.log('ver', respuesta['response']);
       var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
-            body.innerHTML = aux;
+      body.innerHTML = aux;
     },//success
     error(e){
       console.log(e.message);
