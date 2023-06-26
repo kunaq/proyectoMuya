@@ -208,41 +208,41 @@
 
 {{-- Indicadores de gestion --}}
 <section class="section dashboard">
-<div class="row">
-    <div class="col-md-10 offset-md-1">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title" style="font-size: 28px;">Indicadores de gestión</h5>
-            <div class="row">
-                <div class="col-md-4" style="margin-bottom: 1rem;">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title tarjeta-vaca-foco"><b>35.8</b></h1>
-                            <h5 style="font-size: 17px; text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" style="font-size: 28px;">Indicadores de gestión</h5>
+                    <div class="row">
+                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1 class="card-title tarjeta-vaca-foco"><b>35.8</b></h1>
+                                    <h5 style="font-size: 17px; text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1 class="card-title tarjeta-vaca-foco"><b>23.6</b></h1>
+                                    <h5 style="font-size: 17px;text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>a la fecha de hoy</b></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h1 class="card-title tarjeta-vaca-foco"><b>6</b></h1>
+                                    <h5 style="font-size: 17px;text-align: center;">Número de reprogramaciones realizadas en el año del equipo</h5>
+                                </div>
+                            </div>
+                        </div>                      
                     </div>
                 </div>
-                <div class="col-md-4" style="margin-bottom: 1rem;">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title tarjeta-vaca-foco"><b>23.6</b></h1>
-                            <h5 style="font-size: 17px;text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>a la fecha de hoy</b></h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4" style="margin-bottom: 1rem;">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="card-title tarjeta-vaca-foco"><b>6</b></h1>
-                            <h5 style="font-size: 17px;text-align: center;">Número de reprogramaciones realizadas en el año del equipo</h5>
-                        </div>
-                    </div>
-                </div>                      
             </div>
-        </div>
-    </div>
+        </div>  
     </div>  
-</div>  
 </section>
 
 {{-- Reporte de vacaciones --}}
@@ -345,35 +345,19 @@
 <section class="section dashboard">
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <form class="was-validated" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data">
-                @csrf
+            {{-- <form class="was-validated" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data"> --}}
+                {{-- @csrf --}}
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 28px;">Cargar vacaciones</h5>
-                        <div class="row">
-                            <div class="col-md-5" style="text-align: -webkit-center">
-                                <input  class="btn btn-success btnDorado" style="padding-right: 0em" type="file" name="archivo">
-                            </div>  
-                            {{-- ----este ejemplo de file con validacion class --}}
-                            {{-- <div class="mb-3">
-                                <input type="file" class="form-control" aria-label="file example" required>
-                                <div class="invalid-feedback">Example invalid form file feedback</div>
-                              </div> --}}
-                            <div class="col-1 col-md-1" style="text-align: -webkit-center; margin: 0em -1em 0em 1em;">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
-                            </div>
-                            <div class="col-11 col-md-4">
-                                <div class="form-group">
-                                    <h5>Aprobar automáticamente las vacaciones que inician el siguiente mes</h5>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <button class="btn btn-success btnDorado" type="submit" id="buscarDoc">Cargar</button>
+                        <div class="row" style="text-align: center">
+                            <div class="col-12">
+                                <button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalCargaMasiva" id="buscarDoc">Carga Masiva</button>
                             </div>                    
                         </div>
                     </div>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>  
     </div>    
 </section>
@@ -582,6 +566,24 @@ window.onload= function() {
             console.log(e.message);
         }//error
     });//ajax ListarReglasJefe
+
+    $.ajax({
+        url: 'lista/MuestraAnhos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                //console.log(word);
+                $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                // $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax muestraAnno
 }
 
 //-----------------------Procesar solicitudes de vacaciones---------------------
