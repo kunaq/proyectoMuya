@@ -52,12 +52,13 @@ $("#loginBtn").click(function(){
         crossDomain: true,
         success: function(respuesta){
             console.log('flg_bloq',respuesta.data.response.flg_bloqueado);
+            var bloqueo = respuesta.data.response.flg_bloqueado;
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
                 document.getElementById('message3').style.display = "none";
             }else if(respuesta.data.response.flg_bloqueado == 'SI'){
                 document.getElementById('message3').style.display = "block";
-            }else if(respuesta.data.mensaje == 'OK' && respuesta.data.response.flg_bloqueado == 'NO'){
+            }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == NULL)){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 if (passw == 'KUNAQ2024' || passw == 'GMUYA2024') {
