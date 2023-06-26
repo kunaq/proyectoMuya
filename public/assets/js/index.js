@@ -99,7 +99,7 @@ dniInput.addEventListener('input', function() {
     // Mostrar un mensaje de error o realizar alguna acción adicional
     // Por ejemplo, puedes agregar una clase CSS para resaltar el campo de entrada en rojo
     
-    document.getElementById('aceptaFirma').setAttribute('disabled', true);
+    document.getElementById('enviaCorreo').setAttribute('disabled', true);
     // dniInput.classList.remove('is-valid');
     // dniInput.classList.add('is-invalid');
     // dniInputHelp.classList.remove('valid-feedback');
@@ -108,7 +108,7 @@ dniInput.addEventListener('input', function() {
   } else {
     // El valor es válido, puedes realizar alguna acción adicional si es necesario
     // Por ejemplo, puedes eliminar la clase CSS para resaltar el campo de entrada en rojo
-    document.getElementById('aceptaFirma').removeAttribute('disabled');
+    document.getElementById('enviaCorreo').removeAttribute('disabled');
     // dniInput.classList.remove('is-invalid');
     // dniInput.classList.add('is-valid');
     // dniInputHelp.classList.remove('invalid-feedback');
@@ -117,12 +117,71 @@ dniInput.addEventListener('input', function() {
   }
 });
 
-var btnEnvia = document.getElementById('aceptaFirma');
-btnBuscarLista.addEventListener("click", function() {
-    var inicio = document.getElementById('annoIni').value;
-    var fin = document.getElementById('annoFin').value;
-    console.log('annoI',inicio)
-    muestraListadoSolicitudes(inicio,fin);
+var btnEnvia = document.getElementById('enviaCorreo');
+btnEnvia.addEventListener("click", function() {
+    var user = document.getElementById("dniOlvideC").value;
+    var form = document.getElementById("formOlvideC");
+    form.addEventListener("submit", function(event) {
+        // Detener el envío del formulario
+        event.preventDefault();
+    });
+
+    $.ajax({
+        url: 'lista/ObtenerCorreo', 
+        method: "GET",
+        dataType: 'json',
+        data:{'dscDni':user},
+        crossDomain: true,
+        success: function(respuesta){
+            console.log('respuesta',respuesta['response']['dsc_mail_personal']);
+            var correo = respuesta['response']['dsc_mail_personal'];
+            if (respuesta['response']['cod_trabajador'] != null) {
+            
+                if (correo != '') {
+                    $.ajax({
+                        url: 'api/enviarCorreo', 
+                        method: "post",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'destinatario':respuesta['response']['dsc_trabajador'],'correoDestino':correo,'correoCorp':'','fchNotif':'','fchLimite':'','asunto':'Recuperación de contraseña','solicitante':'','actividad':user,'accion':'olvido'},
+                        success: function(respuesta){
+                            console.log(respuesta);
+                            location.reload();
+                        },//success
+                        error(e){
+                            console.log(e.message);
+                        }//error
+                    });//ajax
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'No tiene configurado un correo electrónico. Por favor contacte con su area de recursos humanos.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    })
+                }//else correo
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Su DNI no esta registrado como trabajador.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                })
+            }//else no existe trabajador
+           
+        },//success
+        error(e){
+            console.log(e);
+        }//error
+    });       
 });
 
 // // Obtén el formulario

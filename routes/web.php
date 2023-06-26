@@ -108,6 +108,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/ListarReglasTrabajador', [ListaController::class, 'ListarReglasTrabajador'])->name('lista.ListarReglasTrabajador');
     Route::get('api/ObtenerCoincidenciaVacaciones', [APIController::class, 'ObtenerCoincidenciaVacaciones'])->name('lista.ObtenerCoincidenciaVacaciones');
     Route::get('lista/ListarParametro', [ListaController::class, 'ListarParametro'])->name('lista.ListarParametro');
+    Route::get('lista/ObtenerCorreo', [ListaController::class, 'ObtenerCorreo'])->name('lista.ObtenerCorreo');
     
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');

@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\FuncionesController;
 
 
 class APIController extends Controller
@@ -370,21 +371,32 @@ class APIController extends Controller
         $fechaNotificacion = $request['fchNotif'];
         $asunto = $request['asunto'];
         $solicitante =  $request['solicitante'];
-        $dni =  $request['dsc_documento'];
+
+        // Extraer los datos de configuración 
+        $correo = $request->session()->get('correoEnvio');
+        $clave = $request->session()->get('claveEnvio');
+        $host = $request->session()->get('dscHost');
+        $puerto = $request->session()->get('numHost');
+        $esSMTP = $request->session()->get('dscSmtp');
 
         if($request['accion'] == 'olvido'){
+            $host = 'mail.grupomuya.com.pe';
+            $puerto = 587;
 
             $mensaje =  $mensaje = "Estimado(a) $destinatario,<br><br>
             
             Ingrese al sistema con su DNI y la siguiente contraseña de recuperación:<br><br>
             
-            Contraseña: GMUYA$dni <br>
+            Contraseña: GMUYA".$actividad."<br><br>
             
             Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
             
             Atte.<br><br>
             
             [Razón social] - Grupo Muya";
+
+            $controll = new FuncionesController();
+            $actualiza =$controll->actualizaContrasenna($request);
 
         }else{
             
@@ -404,20 +416,13 @@ class APIController extends Controller
             [Razón social] - Grupo Muya";
         }
 
-        // Extraer los datos de configuración 
-        $correo = $request->session()->get('correoEnvio');
-        $clave = $request->session()->get('claveEnvio');
-        $host = $request->session()->get('dscHost');
-        $puerto = $request->session()->get('numHost');
-        $esSMTP = $request->session()->get('dscSmtp');
-
         //return response()->json(compact('correo','clave','host','puerto','esSMTP'));
         // Configurar los datos del correo saliente
         config([
             'mail.mailers.smtp.host' => $host,
             'mail.mailers.smtp.port' => $puerto,
             'mail.mailers.smtp.username' => 'comprobantedepago@grupomuya.com.pe',
-            'mail.mailers.smtp.password' => '',
+            'mail.mailers.smtp.password' => 'q%UIoBRQp*%2',
             'mail.mailers.smtp.encryption' => 'TLS',
             'mail.mailers.smtp.auth_mode' => 'PLAIN', 
             'mail.from.address' => 'comprobantedepago@grupomuya.com.pe',

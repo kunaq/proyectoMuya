@@ -419,4 +419,28 @@ class ListaController extends Controller
         }
     }
 
+    public function ObtenerCorreo(Request $request)
+    {   
+        $client = new Client();
+        $dni =  $request['dscDni'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerCorreo/20555348887/'.$dni);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

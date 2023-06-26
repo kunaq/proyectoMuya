@@ -74,7 +74,7 @@
                         <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalOlvideCLabel">Olvidé mi contraseña</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="formOlvideC" action="{{route('home')}}" method="get">
+                    <form id="formOlvideC" action="#" method="get">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="dniOlvideC" class="form-label">Por favor introduzca su DNI</label>
@@ -82,7 +82,7 @@
                                 <div id="helpId" class="form-text" @style('max-width:50%; margin-left: 25%;') hidden>DNI formato inválido</div>
                             </div>
                         </div>
-                        <div class="modal-footer"><button type="submit" id="aceptaFirma" class="btn btn-secondary"
+                        <div class="modal-footer"><button type="submit" id="enviaCorreo" class="btn btn-secondary"
                                     data-bs-dismiss="modal" disabled="true"> Enviar Correo</button>
                         </div>
                     </form>
@@ -99,8 +99,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
 <script src="{{asset('assets/js/index.js')}}"></script>

@@ -24,10 +24,20 @@ class FuncionesController extends Controller
     public function actualizaContrasenna(Request $request)
     {
         $client = new Client();
+        if (session('docTrabajador')) {
+            $codigo = session('docTrabajador');
+        }else{
+            $codigo = $request['cod_trabajador'];
+        }
+        if($request['dsc_clave'] != ''){
+            $clave = $request['dsc_clave'];
+        }else{
+            $clave='GMUYA'.$request['actividad'];
+        }
         $data = [
             'dsc_ruc_empresa'=> '20555348887',
-            'dsc_documento'=> session('docTrabajador'),
-            'dsc_clave'=> $request['dsc_clave']
+            'dsc_documento'=> $codigo,
+            'dsc_clave'=> $clave
         ];
             
         $data = json_encode($data);
