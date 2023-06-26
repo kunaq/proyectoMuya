@@ -58,7 +58,7 @@ $("#loginBtn").click(function(){
                 document.getElementById('message3').style.display = "none";
             }else if(respuesta.data.response.flg_bloqueado == 'SI'){
                 document.getElementById('message3').style.display = "block";
-            }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == NULL)){
+            }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null)){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 if (passw == 'KUNAQ2024' || passw == 'GMUYA2024') {
