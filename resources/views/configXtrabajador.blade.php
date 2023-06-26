@@ -70,14 +70,7 @@
                         <div class="row">
                             <div class="col-md-8 offset-md-3">
                                 <div class="form-group">
-                                    <select name="tipoDoc1" id="tipoDoc1" class="form-control selectForm js-example-diacritics">
-                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
-                                        <option value="11001">Alfredo Ponce</option>
-                                        <option value="11002">Juan Chavez</option>
-                                        <option value="11003">Mercedes Huaman</option>
-                                        <option value="11004">Rodrigo Montero</option>
-                                        <option value="11005">Adriana Jaramillo</option>
-                                        <option value="11006">María Huaman</option>
+                                    <select name="Trabajador" id="Trabajador" class="form-control selectForm js-example-diacritics"  onchange="ObtenerTrabajador()">
                                     </select>
                                 </div>
                             </div>
@@ -98,12 +91,12 @@
                             </div>
                             <div class=" col-5 col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="" id="" value="CODIGO" style="text-align: center" class="form-control" disabled>
+                                    <input type="text" name="cod_grupo" id="cod_grupo" value="" style="text-align: center" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class=" col-7 col-md-4">
                                 <div class="form-group">
-                                    <input type="text" name="" id="" value="GRUPO" style="text-align: center" class="form-control" disabled>
+                                    <input type="text" name="dsc_grupo" id="dsc_grupo" value="" style="text-align: center" class="form-control" disabled>
                                 </div>
                             </div>
                         </div>
@@ -116,12 +109,12 @@
                             </div>
                             <div class=" col-5 col-md-3">
                                 <div class="form-group">
-                                    <input type="text" name="" id="" value="CODIGO" style="text-align: center" class="form-control" disabled>
+                                    <input type="text" name="cod_comisionista" id="cod_comisionista" value="" style="text-align: center" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class=" col-7 col-md-4">
                                 <div class="form-group">
-                                    <input type="text" name="" id="" value="GRUPO" style="text-align: center" class="form-control" disabled>
+                                    <input type="text" name="dsc_comisionista" id="dsc_comisionista" value="" style="text-align: center" class="form-control" disabled>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +132,7 @@
                             </div>
                             <div class=" col-2 col-md-1">
                                 <div class="form-group">
-                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
+                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flg_requiere_aprobacion">
                                 </div>
                             </div>
                         </div>
@@ -151,14 +144,8 @@
                             </div>
                             <div class=" col-12 col-md-5">
                                 <div class="form-group">
-                                    <select name="tipoDoc2" id="tipoDoc2" class="form-control selectForm js-example-diacritics">
-                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
-                                        <option value="11001">Alfredo Ponce</option>
-                                        <option value="11002">Juan Chavez</option>
-                                        <option value="11003">Mercedes Huaman</option>
-                                        <option value="11004">Rodrigo Montero</option>
-                                        <option value="11005">Adriana Jaramillo</option>
-                                        <option value="11006">María Huaman</option>
+                                    <select name="Responsable" id="Responsable" class="form-control selectForm js-example-diacritics">
+                                        
                                     </select>
                                 </div>
                             </div>
@@ -171,7 +158,7 @@
                             </div>
                             <div class=" col-3 col-md-2">
                                 <div class="form-group">
-                                    <input id="diasMes" class="form-control " type="number" min="0" max="30" value="">
+                                    <input id="num_ultimo_dias" class="form-control " type="number" min="0" max="30" value="">
                                 </div>
                             </div>
                             <div class="col-6 col-md-2">
@@ -205,13 +192,7 @@
                             <div class=" col-12 col-md-5" style="margin-bottom: 1rem">
                                 <div class="form-group">
                                     <select name="tipoDoc3" id="tipoDoc3" class="form-control selectForm js-example-diacritics">
-                                        <option value="" selected disabled>Escriba el nombre del trabajador</option>
-                                        <option value="11001">Alfredo Ponce</option>
-                                        <option value="11002">Juan Chavez</option>
-                                        <option value="11003">Mercedes Huaman</option>
-                                        <option value="11004">Rodrigo Montero</option>
-                                        <option value="11005">Adriana Jaramillo</option>
-                                        <option value="11006">María Huaman</option>
+                                       
                                     </select>
                                 </div>
                             </div>
@@ -220,7 +201,7 @@
                         <div class="row">
                             <div class="col-12 col-md-2 offset-md-10" style="text-align: -webkit-center">
                                 <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" id="">Guardar</button></h5>
+                                    <h5><button class="btn btn-success btnDorado" id="" onclick="Guardar()">Guardar</button></h5>
                                 </div>
                             </div>
                         </div>
@@ -245,43 +226,8 @@
                                                 <th scope="col" class="card-title">Aprobación de vacaciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Milagros Huaman A.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rodrigo Montero J.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adriana Jaramillo G.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carlos González H.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>María Huaman C.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ricardo Montero D.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Azucena Jaramillo G.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cecilia González J.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mario Huaman L.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rachel Montero M.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ándres Jaramillo H.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>C. González</td>
-                                            </tr>
+                                        <tbody id="ListaColaboradores">
+                                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -295,42 +241,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Milagros Huaman A.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rodrigo Montero J.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adriana Jaramillo G.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carlos González H.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>María Huaman C.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ricardo Montero D.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Azucena Jaramillo G.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Cecilia González J.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mario Huaman L.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rachel Montero M.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ándres Jaramillo H.</td>
-                                            </tr>
-                                            <tr>
-                                                <td>C. González</td>
-                                            </tr>
+                                           
                                         </tbody>
                                     </table>
                                 </div>
@@ -474,8 +385,10 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     <script src="{{asset('assets/js/configXtrabajador.js')}}"></script>
     <script>
-    $(document).ready(function(){
+    
 
+    window.onload= function() {
+        
         $('select').select2({
             language: "es",
             theme: "classic",
@@ -484,16 +397,272 @@
             allowClear: true,
             // dir: "rtl",
         });
-        //-----valida dias maximos 30----
-        var input = document.getElementById("diasMes");
-        input.addEventListener("input", function() {
-            var value = parseInt(input.value);
-            if (value > 30) {
-            input.value = 30;
-            }
-        });
-        //-------------------------------
+        
+       var flg_existe_config='';
+        $.ajax({
+
+        url: 'lista/MuestraTrabajadores', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                console.log(word);
+                $("#Trabajador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
     });
 
+    $.ajax({
+
+        url: 'lista/MuestraResponsables', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+                respuesta['response'].forEach(function(word){
+                console.log(word);
+                $("#Responsable").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+   });
+
+   ObtenerTrabajador();
+
+    }
+
+    var cod_trabajador='';
+    function ObtenerTrabajador() {
+     cod_trabajador=document.getElementById("Trabajador").value;
+      console.log(cod_trabajador);
+      $.ajax({
+            url: 'api/ObtenerTrabajador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data :{'cod_trabajador': cod_trabajador},
+            success: function(result){
+                console.log(result);
+              if(result["response"]["flg_requiere_aprobacion"]=='SI'){document.getElementById("flg_requiere_aprobacion").checked = true;}else{document.getElementById("flg_requiere_aprobacion").checked = false;}
+              document.getElementById("num_ultimo_dias").value =result["response"]["num_ultimo_dias"];
+              document.getElementById("cod_grupo").value =result["response"]["cod_grupo"];
+              document.getElementById("dsc_grupo").value =result["response"]["dsc_grupo"];
+              document.getElementById("cod_comisionista").value =result["response"]["cod_comisionista"];
+              document.getElementById("dsc_comisionista").value =result["response"]["dsc_comisionista"];
+              var responsa=result["response"]["cod_supervisor"];
+              document.getElementById("Responsable").value =responsa;
+              flg_existe_config=result["response"]["flg_existe_config"];
+            }
+        });
+
+        $.ajax({
+            url: 'lista/ListarColaborador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data :{'cod_trabajador': cod_trabajador},
+            success: function(respuesta){
+                console.log(respuesta);
+
+                filaData='';
+                respuesta['response'].forEach(function(element){ 
+                    
+                    filaData += '<tr>'+
+                    '<td>'+element['dsc_trabajador']+'</td>'+
+                    '</tr>';
+
+
+           // filasArray.push(filaData);
+          });
+          //console.log(filasArray);
+          $('#ListaColaboradores').html(filaData);
+
+            }
+        });
+
+
+    }
+
+    function Guardar()
+    {
+        console.log(cod_trabajador);
+        if(document.getElementById("flg_requiere_aprobacion").checked==true){ if (flg_existe_config=='NO'){InsertarColaborador();} else{ActualizarColaborador();}}
+        else{InsertarResponsable();}
+        
+    }
+    function InsertarColaborador() {
+               
+        var cod_responsable=document.getElementById("Responsable").value;
+        //var cod_trabajador=cod_trabajador;
+        var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+                data = {
+                    'cod_responsable': cod_responsable,
+                    'cod_trabajador': cod_trabajador,
+                    'num_ultimo_dias': num_ultimo_dias
+                }
+                console.log(cod_trabajador);
+      Swal.fire({
+      title: '¿Esta seguro de agregar un nuevo colaborador?',
+      text: 'Confirmación',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#35B44A',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(cod_trabajador);
+        $.ajax({
+                        url: 'api/InsertarColaborador', 
+                        method: "PUT",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'data': data},
+                        success: function(respuesta){
+                            console.log(respuesta);
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'Se agrego el colaborador con éxito',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                            }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log('data rechazado',data);
+                            }
+                            })
+                        },//success
+                        error(e){
+                            console.log(e.message);
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Ha ocurrido un error intentelo nuevamente.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                                })
+                        }//error
+                    });//ajax   
+      }
+    })
+
+    }
+
+
+    function ActualizarColaborador() {
+               
+               var cod_responsable=document.getElementById("Responsable").value;
+               var cod_trabajador=document.getElementById("Trabajador").value;
+               var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+                           data = {
+                               'cod_responsable': cod_responsable,
+                               'cod_trabajador': cod_trabajador,
+                               'num_ultimo_dias': num_ultimo_dias
+                           }
+                      
+                 Swal.fire({
+                 title: '¿Esta seguro de agregar un nuevo colaborador?',
+                 text: 'Confirmación',
+                 icon: 'question',
+                 showCancelButton: true,
+                 confirmButtonColor: '#35B44A',
+                 cancelButtonColor: '#d33',
+                 confirmButtonText: 'Aceptar'
+               }).then((result) => {
+                 if (result.isConfirmed) {
+                   console.log(cod_trabajador);
+                   $.ajax({
+                                   url: 'api/ActualizarColaborador', 
+                                   method: "PUT",
+                                   crossDomain: true,
+                                   dataType: 'json',
+                                   data:{'data': data},
+                                   success: function(respuesta){
+                                       console.log(respuesta);
+                                       Swal.fire({
+                                           icon: 'success',
+                                           text: 'Se agrego el colaborador con éxito',
+                                           confirmButtonText: 'Continuar',
+                                           confirmButtonColor: '#a18347',
+                                       }).then((result) => {
+                                       if (result.isConfirmed) {
+                                           console.log('data rechazado',data);
+                                       }
+                                       })
+                                   },//success
+                                   error(e){
+                                       console.log(e.message);
+                                       Swal.fire({
+                                           icon: 'warning',
+                                           text: 'Ha ocurrido un error intentelo nuevamente.',
+                                           confirmButtonText: 'Continuar',
+                                           confirmButtonColor: '#a18347',
+                                           })
+                                   }//error
+                               });//ajax   
+                 }
+               })
+           
+               }
+
+
+
+         function InsertarResponsable() {
+               
+              
+                       data = {
+                            'dsc_grupo_vacaciones': 'ww',
+                           'cod_responsable': cod_trabajador
+                           
+                       }
+                       console.log(cod_trabajador);
+             Swal.fire({
+             title: '¿Esta seguro de agregar un nuevo responsable?',
+             text: 'Confirmación',
+             icon: 'question',
+             showCancelButton: true,
+             confirmButtonColor: '#35B44A',
+             cancelButtonColor: '#d33',
+             confirmButtonText: 'Aceptar'
+           }).then((result) => {
+             if (result.isConfirmed) {
+               console.log(cod_trabajador);
+               $.ajax({
+                               url: 'api/InsertarResponsable', 
+                               method: "PUT",
+                               crossDomain: true,
+                               dataType: 'json',
+                               data:{'data': data},
+                               success: function(respuesta){
+                                   console.log(respuesta);
+                                   Swal.fire({
+                                       icon: 'success',
+                                       text: 'Se agrego el responsable con éxito',
+                                       confirmButtonText: 'Continuar',
+                                       confirmButtonColor: '#a18347',
+                                   }).then((result) => {
+                                   if (result.isConfirmed) {
+                                       console.log('data rechazado',data);
+                                   }
+                                   })
+                               },//success
+                               error(e){
+                                   console.log(e.message);
+                                   Swal.fire({
+                                       icon: 'warning',
+                                       text: 'Ha ocurrido un error intentelo nuevamente.',
+                                       confirmButtonText: 'Continuar',
+                                       confirmButtonColor: '#a18347',
+                                       })
+                               }//error
+                           });//ajax   
+             }
+           })
+       
+           }
     
     </script>

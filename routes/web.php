@@ -97,7 +97,12 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/MuestraColaboradores', [ListaController::class, 'MuestraColaboradores'])->name('lista.MuestraColaboradores');
     Route::get('api/ObtenerColaborador', [APIController::class, 'ObtenerColaborador'])->name('api.ObtenerColaborador');
     Route::put('api/ActualizarDelegacion', [APIController::class, 'ActualizarDelegacion'])->name('lista.ActualizarDelegacion');
-    
+    Route::get('lista/MuestraTrabajadores', [ListaController::class, 'MuestraTrabajadores'])->name('lista.MuestraTrabajadores');
+    Route::get('lista/MuestraResponsables', [ListaController::class, 'MuestraResponsables'])->name('lista.MuestraResponsables');
+    Route::get('lista/ListarColaborador', [ListaController::class, 'ListarColaborador'])->name('lista.ListarColaborador');
+    Route::put('api/InsertarColaborador', [APIController::class, 'InsertarColaborador'])->name('lista.InsertarColaborador');
+    Route::put('api/ActualizarColaborador', [APIController::class, 'ActualizarColaborador'])->name('lista.ActualizarColaborador');
+    Route::put('api/InsertarResponsable', [APIController::class, 'InsertarResponsable'])->name('api.InsertarResponsable');
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');
 

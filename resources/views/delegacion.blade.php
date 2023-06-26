@@ -208,7 +208,7 @@
                         method: "PUT",
                         crossDomain: true,
                         dataType: 'json',
-                        data:{'data': data},
+                        data:{'data':data},
                         success: function(respuesta){
                             console.log(respuesta);
                             Swal.fire({
