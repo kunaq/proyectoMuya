@@ -465,14 +465,14 @@ btnSolicitar.addEventListener("click", function() {
           'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
         }
       $.ajax({
-          url: 'api/RechazarSolicitudVacaciones', 
-          method: "PUT",
-          crossDomain: true,
-          dataType: 'json',
-          data:{'data':data},
-          success: function(respuesta){
+        url: 'api/ReprogramarSolicitudVacaciones', 
+                        method: "PUT",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'solVac':data},
+                        success: function(respuesta){
               console.log(respuesta);
-              enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,cantDiacantDiasRechs);
+              //enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,cantDiacantDiasRechs);
               $.ajax({
                   url: 'api/InsertarSolicitudVacaciones', 
                   method: "PUT",
