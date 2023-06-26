@@ -144,7 +144,7 @@
           
           filaData='';
           filaDataMovil='';
-          var = fchLimite = formatDate(fchLim[0]);
+          var fchLimite = formatDate(fchLim[0]);
           if (fchLimite === '01/01/1900') {
             fchLimite = '-';
           }
