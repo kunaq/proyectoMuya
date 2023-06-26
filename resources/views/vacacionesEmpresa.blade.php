@@ -582,6 +582,42 @@
                 // //console.log(filasArray);
             }
         });
+    //-----Se muestra las reglas de trabajador y jefe---
+        $.ajax({
+            url: 'lista/ListarReglasTrabajador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){ 
+            // console.log(respuesta);
+            var body = document.getElementById('nav-colaborador');
+            var body2 = document.getElementById('exampleFormControlTextarea1');
+            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            body.innerHTML = aux;
+            body2.innerHTML = aux;
+            },//success
+            error(e){
+            console.log(e.message);
+            }//error
+        });//ajax ListarReglasTrabajador
+
+        $.ajax({
+            url: 'lista/ListarReglasJefe', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            success: function(respuesta){ 
+            // console.log(respuesta);
+            var body = document.getElementById('navSupervisor');
+            var body2 = document.getElementById('exampleFormControlTextarea2');
+            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            body.innerHTML = aux;
+            body2.innerHTML = aux;
+            },//success
+            error(e){
+            console.log(e.message);
+            }//error
+        });//ajax ListarReglasJefe
     }
     
     //-----------------------Procesar solicitudes de vacaciones---------------------
@@ -868,5 +904,5 @@
         }
         location.reload();
     });
-    
+
     </script>

@@ -206,27 +206,28 @@ window.onload= function() {
     success: function(respuesta){ 
       console.log(respuesta);
       var body = document.getElementById('bodyRegla');
-      body.innerHTML = respuesta['response'];
+      var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            body.innerHTML = aux;
     },//success
     error(e){
       console.log(e.message);
     }//error
   });//ajax ListarReglasTrabajador
 
-  $.ajax({
-    url: 'lista/ListarReglasTrabajador', 
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    success: function(respuesta){ 
-      console.log(respuesta);
-      var body = document.getElementById('bodyRegla');
-      body.innerHTML = respuesta['response'];
-    },//success
-    error(e){
-      console.log(e.message);
-    }//error
-  });//ajax ListarReglasTrabajador
+  // $.ajax({
+  //   url: 'lista/ListarReglasTrabajador', 
+  //   method: "GET",
+  //   crossDomain: true,
+  //   dataType: 'json',
+  //   success: function(respuesta){ 
+  //     console.log(respuesta);
+  //     var body = document.getElementById('bodyRegla');
+  //     body.innerHTML = respuesta['response'];
+  //   },//success
+  //   error(e){
+  //     console.log(e.message);
+  //   }//error
+  // });//ajax ListarReglasTrabajador
 
 }
 
