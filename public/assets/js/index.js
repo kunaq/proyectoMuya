@@ -60,7 +60,7 @@ $("#loginBtn").click(function(){
             }else if(respuesta.data.mensaje == 'OK' && respuesta.data.response.flg_bloqueado == 'NO'){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
-                if (passw == 'KUNAQ2024') {
+                if (passw == 'KUNAQ2024' || passw == 'GMUYA2024') {
                     window.location.href = "primerCambio";
                 }else{
                     window.location.href = "home";
