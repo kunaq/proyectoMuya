@@ -435,7 +435,6 @@ class APIController extends Controller
 
     }
 
-
     public function ObtenerColaborador(Request $request)
     {   
         $client = new Client();
@@ -557,6 +556,28 @@ class APIController extends Controller
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ReprogramarSolicitudVacaciones(Request $request)
+    {  
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = json_encode($request['solVac']);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ReprogramarSolicitudVacaciones/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
             });
             $promise->wait();

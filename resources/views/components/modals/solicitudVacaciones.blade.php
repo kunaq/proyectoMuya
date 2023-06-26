@@ -522,7 +522,7 @@ btnSolicitar.addEventListener("click", function() {
                     'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
                   }
                 $.ajax({
-                    url: 'api/RechazarSolicitudVacaciones', 
+                    url: 'api/ReprogramarSolicitudVacaciones', 
                     method: "PUT",
                     crossDomain: true,
                     dataType: 'json',
