@@ -83,6 +83,7 @@
                         <input type="hidden" id="ctdProgPeriodo">
                         <input type="hidden" id="parametroX">
                         <input type="hidden" id="parametroY">
+                        <input type="hidden" id="pagoPlanilla">
                       </div>
                     </div>
                   </div>
@@ -176,12 +177,12 @@ window.onload= function() {
           }
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
           if (diferenciaMeses < 3) {
-           // botonSolicitud.disabled = true;
+           botonSolicitud.disabled = true;
           } else {
             botonSolicitud.disabled = false;
           }
           if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
-           // botonSolicitud.disabled = true;
+            botonSolicitud.disabled = true;
             botonConvenio.disabled = false;
           }else {
             botonSolicitud.disabled = false;
@@ -246,9 +247,11 @@ window.onload= function() {
           diaPagoHaberes = new Date(pagoHaberes);
           var fechaActual = new Date();
           if(diaPagoHaberes < fechaActual){
-            // botonSolicitud.disabled = true;
+            document.getElementById('pagoPlanilla').value = 'SI';
+           // botonSolicitud.disabled = true;
           }else{
-            botonSolicitud.disabled = false;
+            document.getElementById('pagoPlanilla').value = 'NO';
+            //botonSolicitud.disabled = false;
           }
         //console.log('pagoHaberes',diaPagoHaberes < fechaActual);
       }
@@ -459,134 +462,150 @@ btnSolicitar.addEventListener("click", function() {
 
     var reprog = document.getElementById('reprogramacion').value;
     var parametroX = parseInt(document.getElementById('parametroX').value);
-    $.ajax({
-        url: 'api/ObtenerCoincidenciaVacaciones', 
-        method: "get",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'codGrupo':'@php echo(session('codGrupoVac')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
-        success: function(respuesta){
-            //console.log(respuesta['response']['ctd_coincidencia']);
-            if(respuesta['response']['ctd_coincidencia'] > parametroX){
+    var pagoHaber = document.getElementById('pagoPlanilla').value;
+    var fechaActual = new Date();
+    var mes = fechaActual.getMonth() + 1;
+
+    if (pagoHaber == 'SI' && month == mes) {
+      Swal.fire({
+          icon: 'warning',
+          text: 'No puede seleccionar el mes donde ya se realizo el pago de planilla. Elija otras fechas.',
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#a18347',
+      }).then((result) => {
+          if (result.isConfirmed) {
+            //location.reload();
+          }
+        })
+    }else{
+      $.ajax({
+          url: 'api/ObtenerCoincidenciaVacaciones', 
+          method: "get",
+          crossDomain: true,
+          dataType: 'json',
+          data:{'codGrupo':'@php echo(session('codGrupoVac')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
+          success: function(respuesta){
+              //console.log(respuesta['response']['ctd_coincidencia']);
+              if(respuesta['response']['ctd_coincidencia'] > parametroX){
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Las fechas seleccionadas no estan permitidas ya que estas coinciden con fechas de otros trabajadores. Elija otras fechas.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    //location.reload();
+                  }
+                })
+              }else{
+                if(reprog == 'NO'){
+                  $.ajax({
+                      url: 'api/InsertarSolicitudVacaciones', 
+                      method: "PUT",
+                      crossDomain: true,
+                      dataType: 'json',
+                      data:{'solVac':solVac},
+                      success: function(respuesta){
+                          console.log(respuesta);
+                          enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+                          Swal.fire({
+                              icon: 'success',
+                              text: 'Se ha registrado su solicitud con éxito',
+                              confirmButtonText: 'Continuar',
+                              confirmButtonColor: '#a18347',
+                          }).then((result) => {
+                            if (result.isConfirmed) {
+                             // location.reload();
+                            }
+                          })
+                      },//success
+                      error(e){
+                          console.log(e.message);
+                          Swal.fire({
+                              icon: 'warning',
+                              text: 'Ha ocurrido un error intentelo nuevamente.',
+                              confirmButtonText: 'Continuar',
+                              confirmButtonColor: '#a18347',
+                              })
+                      }//error
+                  });//ajax
+                }else{
+                  var numLinea = document.getElementById('numLinea').value;
+                  var fchInicioRech = document.getElementById('fchInicioRech').value;
+                  var fchFinRech = document.getElementById('fchFinRech').value;
+                  var fchReincRech = document.getElementById('fchReincRech').value;
+                  var cantDiasRech = document.getElementById('cantDiasRech').value;
+                  data = {
+                      'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
+                      'num_linea': numLinea,
+                      'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
+                    }
+                  $.ajax({
+                      url: 'api/ReprogramarSolicitudVacaciones', 
+                      method: "PUT",
+                      crossDomain: true,
+                      dataType: 'json',
+                      data:{'solVac':data},
+                      success: function(respuesta){
+                          console.log(respuesta);
+                          enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech);
+                          $.ajax({
+                              url: 'api/InsertarSolicitudVacaciones', 
+                              method: "PUT",
+                              crossDomain: true,
+                              dataType: 'json',
+                              data:{'solVac':solVac},
+                              success: function(respuesta){
+                                  console.log(respuesta);
+                                  enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+                                  Swal.fire({
+                                      icon: 'success',
+                                      text: 'Se ha registrado su solicitud con éxito',
+                                      confirmButtonText: 'Continuar',
+                                      confirmButtonColor: '#a18347',
+                                  }).then((result) => {
+                                    if (result.isConfirmed) {
+                                     // location.reload();
+                                    }
+                                  })
+                              },//success
+                              error(e){
+                                  console.log(e.message);
+                                  Swal.fire({
+                                      icon: 'warning',
+                                      text: 'Ha ocurrido un error intentelo nuevamente.',
+                                      confirmButtonText: 'Continuar',
+                                      confirmButtonColor: '#a18347',
+                                      })
+                              }//error
+                          });//ajax
+
+                      },//success
+                      error(e){
+                          console.log(e.message);
+                          Swal.fire({
+                              icon: 'warning',
+                              text: 'Ha ocurrido un error intentelo nuevamente.',
+                              confirmButtonText: 'Continuar',
+                              confirmButtonColor: '#a18347',
+                          })
+                      }//error
+                  });//ajax
+
+                }
+              }            
+          },//success
+          error(e){
+              console.log(e.message);
               Swal.fire({
                   icon: 'warning',
-                  text: 'Las fechas seleccionadas no estan permitidas ya que estas coinciden con fechas de otros trabajadores. Elija otras fechas.',
+                  text: 'Ha ocurrido un error intentelo nuevamente.',
                   confirmButtonText: 'Continuar',
                   confirmButtonColor: '#a18347',
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  //location.reload();
-                }
-              })
-            }else{
-              if(reprog == 'NO'){
-                $.ajax({
-                    url: 'api/InsertarSolicitudVacaciones', 
-                    method: "PUT",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'solVac':solVac},
-                    success: function(respuesta){
-                        console.log(respuesta);
-                        enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Se ha registrado su solicitud con éxito',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        }).then((result) => {
-                          if (result.isConfirmed) {
-                            //location.reload();
-                          }
-                        })
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                            })
-                    }//error
-                });//ajax
-              }else{
-                var numLinea = document.getElementById('numLinea').value;
-                var fchInicioRech = document.getElementById('fchInicioRech').value;
-                var fchFinRech = document.getElementById('fchFinRech').value;
-                var fchReincRech = document.getElementById('fchReincRech').value;
-                var cantDiasRech = document.getElementById('cantDiasRech').value;
-                data = {
-                    'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
-                    'num_linea': numLinea,
-                    'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
-                  }
-                $.ajax({
-                    url: 'api/ReprogramarSolicitudVacaciones', 
-                    method: "PUT",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'solVac':data},
-                    success: function(respuesta){
-                        console.log(respuesta);
-                        enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech);
-                        $.ajax({
-                            url: 'api/InsertarSolicitudVacaciones', 
-                            method: "PUT",
-                            crossDomain: true,
-                            dataType: 'json',
-                            data:{'solVac':solVac},
-                            success: function(respuesta){
-                                console.log(respuesta);
-                                enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
-                                Swal.fire({
-                                    icon: 'success',
-                                    text: 'Se ha registrado su solicitud con éxito',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                }).then((result) => {
-                                  if (result.isConfirmed) {
-                                    //location.reload();
-                                  }
-                                })
-                            },//success
-                            error(e){
-                                console.log(e.message);
-                                Swal.fire({
-                                    icon: 'warning',
-                                    text: 'Ha ocurrido un error intentelo nuevamente.',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                    })
-                            }//error
-                        });//ajax
-
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        })
-                    }//error
-                });//ajax
-
-              }
-            }            
-        },//success
-        error(e){
-            console.log(e.message);
-            Swal.fire({
-                icon: 'warning',
-                text: 'Ha ocurrido un error intentelo nuevamente.',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#a18347',
-                })
-        }//error
-    });//ajax 
-
+                  })
+          }//error
+      });//ajax 
+    }
 });//onclick solicitar vacaciones
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');

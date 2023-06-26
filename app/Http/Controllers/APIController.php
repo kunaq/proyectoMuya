@@ -370,6 +370,7 @@ class APIController extends Controller
         $fechaNotificacion = $request['fchNotif'];
         $asunto = $request['asunto'];
         $solicitante =  $request['solicitante'];
+        $dni =  $request['dsc_documento'];
 
         if($request['accion'] == 'olvido'){
 
@@ -377,7 +378,7 @@ class APIController extends Controller
             
             Ingrese al sistema con su DNI y la siguiente contraseña de recuperación:<br><br>
             
-            Contraseña: GMUYA2024 <br>
+            Contraseña: GMUYA$dni <br>
             
             Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
             

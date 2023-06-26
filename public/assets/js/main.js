@@ -351,7 +351,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
-          var correoCorp = respuesta['respuesta']['dsc_mail_empresa_trabajador'];
+          var correoCorp = respuesta['response']['dsc_mail_empresa'];
 
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
