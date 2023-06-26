@@ -588,36 +588,35 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
 }
 
 function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
+  $.ajax({
+      url: 'api/ObtenerTrabajador', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'cod_trabajador':codTra},
+      success: function(respuesta){
+          console.log(respuesta);
+          var dscTra = respuesta['response']['dsc_trabajador'];
+          var correoTra = respuesta['response']['dsc_mail_personal'];
+          var fechaActual = new Date();
+          var dia = fechaActual.getDate();
+          var mes = fechaActual.getMonth() + 1;
+          var anio = fechaActual.getFullYear();
+          var diaFormateado = dia < 10 ? '0' + dia : dia;
+          var mesFormateado = mes < 10 ? '0' + mes : mes;
+          var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+          var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+          var actividad = 'La solicitud de vacaciones ha sido rechazada por reprogramación de vacaciones. (Inicio: '+fchIni+', fin: '+fchFin+')';
+          var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+          var asunto = 'Rechazo de solicitud de vacaciones';
 
-$.ajax({
-    url: 'api/ObtenerTrabajador', 
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'cod_trabajador':codTra},
-    success: function(respuesta){
-        console.log(respuesta);
-        var dscTra = respuesta['response']['dsc_trabajador'];
-        var correoTra = respuesta['response']['dsc_mail_personal'];
-        var fechaActual = new Date();
-        var dia = fechaActual.getDate();
-        var mes = fechaActual.getMonth() + 1;
-        var anio = fechaActual.getFullYear();
-        var diaFormateado = dia < 10 ? '0' + dia : dia;
-        var mesFormateado = mes < 10 ? '0' + mes : mes;
-        var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
-        var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
-        var actividad = 'La solicitud de vacaciones ha sido rechazada por reprogramación de vacaciones. (Inicio: '+fchIni+', fin: '+fchFin+')';
-        var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
-        var asunto = 'Rechazo de solicitud de vacaciones';
+          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
 
-        enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
-
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-});//ajax  
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+  });//ajax  
 }
 
 function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
