@@ -49,6 +49,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('/api/enviarDocumentos', [CreaPDFController::class, 'enviarDocumentos'])->name('api.enviarDocumentos');
     Route::put('/api/AprobarSolicitudVacaciones', [APIController::class, 'AprobarSolicitudVacaciones'])->name('api.AprobarSolicitudVacaciones');
     Route::put('/api/RechazarSolicitudVacaciones', [APIController::class, 'RechazarSolicitudVacaciones'])->name('api.RechazarSolicitudVacaciones');
+    Route::put('/api/ReprogramarSolicitudVacaciones', [APIController::class, 'ReprogramarSolicitudVacaciones'])->name('api.ReprogramarSolicitudVacaciones');
     Route::put('/api/ActualizarVacacionesProgramadas', [APIController::class, 'ActualizarVacacionesProgramadas'])->name('api.ActualizarVacacionesProgramadas');
     Route::put('/api/InsertarMensajeTrabajador', [APIController::class, 'InsertarMensajeTrabajador'])->name('api.InsertarMensajeTrabajador');
 
@@ -105,6 +106,8 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::put('api/InsertarResponsable', [APIController::class, 'InsertarResponsable'])->name('api.InsertarResponsable');
     Route::get('lista/ListarReglasJefe', [ListaController::class, 'ListarReglasJefe'])->name('lista.ListarReglasJefe');
     Route::get('lista/ListarReglasTrabajador', [ListaController::class, 'ListarReglasTrabajador'])->name('lista.ListarReglasTrabajador');
+    Route::get('api/ObtenerCoincidenciaVacaciones', [APIController::class, 'ObtenerCoincidenciaVacaciones'])->name('lista.ObtenerCoincidenciaVacaciones');
+    Route::get('lista/ListarParametro', [ListaController::class, 'ListarParametro'])->name('lista.ListarParametro');
     
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');

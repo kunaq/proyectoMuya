@@ -42,7 +42,10 @@ class APIController extends Controller
             Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
             Session::put('dscHost', $responseData->response->dsc_host_configuracion);
             Session::put('numHost', $responseData->response->num_host_configuracion);
-            Session::put('dscSmtp', $responseData->response->dsc_smtp_configuracion);
+            Session::put('flgAcuerdoFirm', $responseData->response->flg_acuerdo_firmado);
+            Session::put('ctdProgVac', $responseData->response->num_ctd);
+            Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
+            Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
 
             // Ejemplo de retorno de la respuesta
             return response()->json(['status' => $statusCode, 'data' => $responseData],);
@@ -432,7 +435,6 @@ class APIController extends Controller
 
     }
 
-
     public function ObtenerColaborador(Request $request)
     {   
         $client = new Client();
@@ -533,6 +535,49 @@ class APIController extends Controller
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ObtenerCoincidenciaVacaciones(Request $request)
+    {   
+        $client = new Client();
+        $codGrupo = $request['codGrupo'];
+        $fchIni = $request['fchIni'];
+        $fchFin = $request['fchFin'];
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacaciones/20555348887/'.$codGrupo.'/'.$fchIni.'/'.$fchFin);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ReprogramarSolicitudVacaciones(Request $request)
+    {  
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = json_encode($request['solVac']);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ReprogramarSolicitudVacaciones/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode();
+                $reason = $response->getReasonPhrase();
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
             });
             $promise->wait();

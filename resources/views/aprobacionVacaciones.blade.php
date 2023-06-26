@@ -521,8 +521,8 @@ window.onload= function() {
                     element['dsc_estado'],
                     alertaRegla,
                     alertaReprog,
-                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">',
-                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">'
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+','+fchIni+','+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+','+fchIni+','+fchFin+'">'
                 ];
                 filasArray.push(filaData);
             });
@@ -605,6 +605,8 @@ btnProcesar.addEventListener("click", function() {
             accion = aux[0];
             codTrabajador = aux[1];
             numLinea = aux[2];
+            fchIni = aux[3];
+            fchFin = aux[4];
             data = {
                 'cod_trabajador': codTrabajador,
                 'num_linea': numLinea,
@@ -619,6 +621,7 @@ btnProcesar.addEventListener("click", function() {
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
+                        enviaRechazoVac(codTrabajador,fchIni,fchFin)
                         console.log(respuesta);
                         Swal.fire({
                             icon: 'success',
@@ -626,9 +629,9 @@ btnProcesar.addEventListener("click", function() {
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
                         }).then((result) => {
-                        if (result.isConfirmed) {
-                            console.log('data rechazado',data);
-                        }
+                            if (result.isConfirmed) {
+                                console.log('data rechazado',data);
+                            }
                         })
                     },//success
                     error(e){
@@ -650,6 +653,7 @@ btnProcesar.addEventListener("click", function() {
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
+                        enviaAprobacionVac(codTrabajador,fchIni,fchFin)
                         console.log(respuesta);
                         Swal.fire({
                             icon: 'success',
@@ -657,9 +661,9 @@ btnProcesar.addEventListener("click", function() {
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
                         }).then((result) => {
-                        if (result.isConfirmed) {
-                            console.log('data aprobado',data);
-                        }
+                            if (result.isConfirmed) {
+                                console.log('data aprobado',data);
+                            }
                         })
                     },//success
                     error(e){
@@ -677,6 +681,72 @@ btnProcesar.addEventListener("click", function() {
     }
     location.reload();
 });
+//------------------------funciones para enviar mensajes------------------------------
+
+function enviaAprobacionVac(codTra,fchIni,fchFin) {
+
+$.ajax({
+    url: 'api/ObtenerTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'cod_trabajador':codTra},
+    success: function(respuesta){
+        console.log(respuesta);
+        var dscTra = respuesta['response']['dsc_trabajador'];
+        var correoTra = respuesta['response']['dsc_mail_personal'];
+        var fechaActual = new Date();
+        var dia = fechaActual.getDate();
+        var mes = fechaActual.getMonth() + 1;
+        var anio = fechaActual.getFullYear();
+        var diaFormateado = dia < 10 ? '0' + dia : dia;
+        var mesFormateado = mes < 10 ? '0' + mes : mes;
+        var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+        var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+        var actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+        var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+        var asunto = 'Ingreso de solicitud de vacaciones';
+
+        enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad,'guarda  ');
+
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+});//ajax  
+}
+
+function enviaRechazoVac(codTra,fchIni,fchFin) {
+$.ajax({
+    url: 'api/ObtenerTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'cod_trabajador':codTra},
+    success: function(respuesta){
+        console.log(respuesta);
+        var dscTra = respuesta['response']['dsc_trabajador'];
+        var correoTra = respuesta['response']['dsc_mail_personal'];
+        var fechaActual = new Date();
+        var dia = fechaActual.getDate();
+        var mes = fechaActual.getMonth() + 1;
+        var anio = fechaActual.getFullYear();
+        var diaFormateado = dia < 10 ? '0' + dia : dia;
+        var mesFormateado = mes < 10 ? '0' + mes : mes;
+        var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+        var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+        var actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+        var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+        var asunto = 'Rechazo de solicitud de vacaciones';
+
+        enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
+
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+});//ajax  
+}
 
 //-----------------------Guarda configuraciones-----------------------------------
 var btnConfig = document.getElementById('actualizaConfig');

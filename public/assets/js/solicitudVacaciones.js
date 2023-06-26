@@ -11,7 +11,10 @@ inputFchInicio.addEventListener("change", function() {
     document.getElementById('resutSolVac').innerHTML = '';
     document.getElementById('resutSolVac2').innerHTML = '';
     numPend = parseInt(document.getElementById("numVacPend").value);
-    console.log('numPend',numPend);
+    //console.log('numPend',numPend);
+
+    
+    var parametroY = parseInt(document.getElementById('parametroY').value);
 
     var fchInicio = inputFchInicio.value;
     var maximaDate = new Date();
@@ -19,14 +22,16 @@ inputFchInicio.addEventListener("change", function() {
     maximaDate.setDate(parseInt(fechaParts[0]));
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
-    maximaDate.setDate(maximaDate.getDate() + numPend);
-    var cantDias = parseInt(document.getElementById('cantDiasSol').value);
-    var minimaDate = new Date();
-    minimaDate.setDate(parseInt(fechaParts[0]));
-    minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
-    minimaDate.setFullYear(parseInt(fechaParts[2]));
-    if (cantDias != 0) { 
-        minimo = minimaDate.setDate(minimaDate.getDate() + cantDias);
+    maximaDate.setDate(maximaDate.getDate() + numPend + parametroY);
+    
+    var ctdProgVac = parseInt(document.getElementById('ctdProgPeriodo').value);
+    console.log('ctdProgVac',ctdProgVac);
+    if (ctdProgVac < 2) {
+        var minimaDate = new Date();
+        minimaDate.setDate(parseInt(fechaParts[0]));
+        minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
+        minimaDate.setFullYear(parseInt(fechaParts[2]));
+        minimo = minimaDate.setDate(minimaDate.getDate() + 7);
     }else{
         minimo = fchInicio;
     }
@@ -34,7 +39,7 @@ inputFchInicio.addEventListener("change", function() {
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
         dateFormat: "d-m-Y",
-        minDate: fchInicio,
+        minDate: minimo,
         disable: ["28-07-2023", "29-07-2023","08-10-2023"],
         maxDate: maximaDate
     });

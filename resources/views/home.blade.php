@@ -147,6 +147,10 @@
           respuesta['response'].forEach(function(element){ 
             var fchReg = element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }
             
             var filaAccion='';
 
@@ -158,7 +162,7 @@
                   }
                   else
                   {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Firmar</button>";
                   }
             }
             else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
@@ -177,7 +181,7 @@
 
             filaData += '<tr>'+
               '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+formatDate(fchLim[0])+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+
@@ -186,7 +190,7 @@
             filaDataMovil += '<tr>'+
               '<td>'+element['dsc_mensaje']+'<br>'+
               '<b>F. notific:</b>'+formatDate(fchReg[0])+'<br>'+
-              '<b>F. límite:</b>'+formatDate(fchLim[0])+'</br>'+
+              '<b>F. límite:</b>'+fchLimite+'</br>'+
               '<b>Solicitante:</b>'+element['dsc_trabajador_solicitante']+'</br>'+
                +filaAccion+'</td>'+
             '</tr>';
