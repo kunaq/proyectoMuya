@@ -81,3 +81,59 @@ $("#loginBtn").click(function(){
     //     window.location.href = "home";
     // }
 });
+
+// Obtener el elemento del campo de entrada
+var dniInput = document.getElementById('dniOlvideC');
+var dniInputHelp = document.getElementById('helpId');
+
+// Agregar un evento de escucha para el evento "input"
+dniInput.addEventListener('input', function() {
+  // Obtener el valor ingresado en el campo de entrada
+  var dniValue = dniInput.value;
+  
+  // Expresión regular para validar el documento de identidad
+  var dniRegex = /^[0-9]{8,9}$/;
+
+  // Verificar si el valor cumple con la expresión regular
+  if (!dniRegex.test(dniValue)) {
+    // Mostrar un mensaje de error o realizar alguna acción adicional
+    // Por ejemplo, puedes agregar una clase CSS para resaltar el campo de entrada en rojo
+    
+    document.getElementById('aceptaFirma').setAttribute('disabled', true);
+    dniInput.classList.remove('is-valid');
+    dniInput.classList.add('is-invalid');
+    dniInputHelp.classList.remove('valid-feedback');
+    dniInputHelp.classList.add('invalid-feedback');
+    dniInputHelp.removeAttribute('hidden');
+  } else {
+    // El valor es válido, puedes realizar alguna acción adicional si es necesario
+    // Por ejemplo, puedes eliminar la clase CSS para resaltar el campo de entrada en rojo
+    document.getElementById('aceptaFirma').removeAttribute('disabled');
+    dniInput.classList.remove('is-invalid');
+    dniInput.classList.add('is-valid');
+    dniInputHelp.classList.remove('invalid-feedback');
+    dniInputHelp.classList.add('valid-feedback');
+    dniInputHelp.setAttribute('hidden','true');
+  }
+});
+
+// // Obtén el formulario
+// var form = document.getElementById('formOlvideC');
+
+// // Agrega un evento de escucha para el evento "submit" del formulario
+// form.addEventListener('submit', function(event) {
+//   // Obtén el valor del campo de entrada del DNI
+//   var dniValue = document.getElementById('dniOlvideC').value;
+  
+//   // Expresión regular para validar el DNI (solo números de 8 o 9 dígitos)
+//   var dniRegex = /^[0-9]{8,9}$/;
+
+//   // Verifica si el DNI cumple con la expresión regular
+//   if (!dniRegex.test(dniValue)) {
+//     // El DNI no es válido, cancela el envío del formulario
+//     event.preventDefault();
+
+//     // Realiza alguna acción adicional si es necesario, como mostrar un mensaje de error
+//     // alert('Por favor, introduce un DNI válido.');
+//   }
+// });
