@@ -74,7 +74,6 @@ $("#loginBtn").click(function(){
             
     });//ajax
     
-
     // if(passw.value == '00000'){
     //     document.getElementById('message2').style.display = "block";
     // }else{
@@ -116,6 +115,14 @@ dniInput.addEventListener('input', function() {
     // dniInputHelp.classList.add('valid-feedback');
     dniInputHelp.setAttribute('hidden','true');
   }
+});
+
+var btnEnvia = document.getElementById('aceptaFirma');
+btnBuscarLista.addEventListener("click", function() {
+    var inicio = document.getElementById('annoIni').value;
+    var fin = document.getElementById('annoFin').value;
+    console.log('annoI',inicio)
+    muestraListadoSolicitudes(inicio,fin);
 });
 
 // // Obtén el formulario
