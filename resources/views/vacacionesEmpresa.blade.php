@@ -412,7 +412,7 @@
             </div>  
         </div>    
     </section>
-
+    {{-- -----------REGLAS DE SOLICITUD DE VACACIONES-------------- --}}
     <section class="section dashboard">
         <div class="row">
             <div class="col-md-10 offset-md-1">
@@ -420,7 +420,7 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 28px;">Reglas de solicitud de vacaciones</h5>
                         <div class="row">
-                            <div class="col-md-2 offset-md-3" style="text-align: -webkit-center">
+                            <div class="col-md-2 offset-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">
                                     <h5><button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalReglas" style="width: -webkit-fill-available;">Ver reglas</button></h5>
                                 </div>
@@ -428,6 +428,11 @@
                             <div class="col-md-2 offset-md-1" style="text-align: -webkit-center">
                                 <div class="form-group">
                                     <h5><button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalModifReglas" style="width: -webkit-fill-available;">Modificar reglas</button></h5>
+                                </div>
+                            </div> 
+                            <div class="col-md-2 offset-md-1" style="text-align: -webkit-center">
+                                <div class="form-group">
+                                    <h5><button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalParametros" style="width: -webkit-fill-available;">Modificar parámetros</button></h5>
                                 </div>
                             </div>                      
                         </div>
@@ -904,5 +909,8 @@
         }
         location.reload();
     });
+
+    // var input3 = document.getElementById("parametroX");
+    //     console.log(input3);
 
     </script>
