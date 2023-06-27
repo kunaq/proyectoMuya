@@ -666,5 +666,15 @@
            })
        
            }
+
+    //-----valida dias maximos 30----
+        var input = document.getElementById("num_ultimo_dias");
+        input.addEventListener("input", function() {
+            var value = parseInt(input.value);
+            if (value > 30) {
+            input.value = 30;
+            }
+        });
+        //-------------------------------
     
     </script>
