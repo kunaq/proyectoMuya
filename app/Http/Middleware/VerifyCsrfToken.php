@@ -25,6 +25,7 @@ class VerifyCsrfToken extends Middleware
         '/api/ReprogramarSolicitudVacaciones',
         '/api/ActualizarVacacionesProgramadas',
         '/api/InsertarMensajeTrabajador',
+        '/api/ActualizarReglaTrabajador',
         '/api/enviarCorreo',
         '/actualizaContrasenna',
 
@@ -59,6 +60,8 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarParametro',
         'lista/ObtenerCorreo',
         'api/ListarVentana',
+        'lista/ListarSolicitudVacacionesxResponsable',
+        'lista/ListarFeriado',
         
         'api/InsertarSolicitudVacaciones',
         '/subir-archivo',

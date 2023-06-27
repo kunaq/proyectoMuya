@@ -621,8 +621,8 @@
             success: function(respuesta){ 
             // console.log(respuesta);
             var body = document.getElementById('nav-colaborador');
-            var body2 = document.getElementById('exampleFormControlTextarea1');
-            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            var body2 = document.getElementById('txtReglasColab');
+            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
             body.innerHTML = aux;
             body2.innerHTML = aux;
             },//success
@@ -639,8 +639,8 @@
             success: function(respuesta){ 
             // console.log(respuesta);
             var body = document.getElementById('navSupervisor');
-            var body2 = document.getElementById('exampleFormControlTextarea2');
-            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            var body2 = document.getElementById('txtReglasJefe');
+            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
             body.innerHTML = aux;
             body2.innerHTML = aux;
             },//success
@@ -810,6 +810,70 @@ btnConfig.addEventListener("click", function() {
             confirmButtonColor: '#a18347',
         });
     });
+});
+
+//-----------------------------Guarda reglas----------------------------------------
+
+var btnModificaReglas = document.getElementById('btnModificaReglas');
+btnModificaReglas.addEventListener("click", function() {
+    
+    var promesas = [];
+    var reglasJefe = document.getElementById('txtReglasJefe').value;
+    var reglasColab = document.getElementById('txtReglasColab').value;
+    var reglas = [reglasJefe,reglasColab];
+
+    for (var i = 0; i < 2; i++) {
+
+        var flgJefe = i == 0 ? 'SI' : 'NO';
+        var flgColab = i == 1 ? 'SI' : 'NO';
+        var codRegla = i == 0 ? 'RG001' : 'RG002';
+
+        var regla = reglas[i]
+
+        var data = {
+            'cod_regla': codRegla,
+            'dsc_regla': regla,
+            'flg_activo': 'SI',
+            'flg_trabajador': flgColab,
+            'flg_jefe': flgJefe
+        };
+
+        var promesa = $.ajax({
+        url: 'api/ActualizarReglaTrabajador',
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+            'data': data
+        }
+        });
+
+        promesas.push(promesa);
+    }
+
+    Promise.all(promesas)
+    .then(function() {
+        Swal.fire({
+            icon: 'success',
+            text: 'Se han actualizado las reglas con éxito',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                //location.reload();
+            }
+        });
+    })
+    .catch(function(error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error. Inténtelo nuevamente.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        });
+    });
+
 });
 
 

@@ -133,6 +133,21 @@ REGLAS
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglasJefe/20555348887
 
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ListarReglasTrabajador/20555348887
+
+    INSERTAR
+
+        PUT https://webapiportalplanillamuya.azurewebsites.net/api/Regla/ActualizarReglaTrabajador/20555348887
+
+    ACTUALIZAR
+        PUT https://webapiportalplanillamuya.azurewebsites.net/api/Regla/InsertarReglaTrabajador/20555348887
+
+            {
+                "cod_regla": "string",
+                "dsc_regla": "string",
+                "flg_activo": "string",
+                "flg_trabajador": "string",
+                "flg_jefe": "string"
+            }
  
 VACACIONES
 
@@ -157,6 +172,7 @@ PARAMETRO
         
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ObtenerParametro/20555348887/P0001
 
+
 TRABAJADOR CORREO
     
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ObtenerCorreo/20555348887/40059627
@@ -164,3 +180,11 @@ TRABAJADOR CORREO
 OBTENER COINCIDENCIA DE VACACIONES
     
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacaciones/20555348887/GV001/2023-06-21/2023-06-27
+
+FERIADO
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Feriado/ListarFeriado/20555348887/2023
+
+SOLCITUD VACACIONES X JEFE
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacacionesxResponsable/20555348887/TRA00603/2023-07-01/2023-07-30

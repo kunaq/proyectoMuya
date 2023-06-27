@@ -45,17 +45,17 @@
         <div class="modal-body">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade" id="navModifcolaborador" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby= "navModifcolaborador-tab">   
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="15">         
+                    <textarea class="form-control" id="txtReglasColab" rows="15">         
                    </textarea>
                 </div>
 
                 <div class="tab-pane fade show active" id="navModfSupervisor" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby="navModfSupervisor-tab">
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="15"></textarea>
+                    <textarea class="form-control" id="txtReglasJefe" rows="15"></textarea>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" id="modificaReglas" class="btn btn-success btnDorado" >Guardar</button>
+            <button type="button" id="btnModificaReglas" class="btn btn-success btnDorado" >Guardar</button>
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         </div>
       </div>

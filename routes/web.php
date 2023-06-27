@@ -52,7 +52,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::put('/api/ReprogramarSolicitudVacaciones', [APIController::class, 'ReprogramarSolicitudVacaciones'])->name('api.ReprogramarSolicitudVacaciones');
     Route::put('/api/ActualizarVacacionesProgramadas', [APIController::class, 'ActualizarVacacionesProgramadas'])->name('api.ActualizarVacacionesProgramadas');
     Route::put('/api/InsertarMensajeTrabajador', [APIController::class, 'InsertarMensajeTrabajador'])->name('api.InsertarMensajeTrabajador');
-
+    Route::put('/api/ActualizarReglaTrabajador', [APIController::class, 'ActualizarReglaTrabajador'])->name('api.ActualizarReglaTrabajador');
 
     //-----------------------Vistas PDF-----------------------------//
     Route::view('/docAdelantoVaca','docAdelantoVaca')->name('docAdelantoVaca');
@@ -110,6 +110,8 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/ListarParametro', [ListaController::class, 'ListarParametro'])->name('lista.ListarParametro');
     Route::get('lista/ObtenerCorreo', [ListaController::class, 'ObtenerCorreo'])->name('lista.ObtenerCorreo');
     Route::get('api/ListarVentana', [APIController::class, 'ListarVentana'])->name('api.ListarVentana');
+    Route::get('lista/ListarSolicitudVacacionesxResponsable', [ListaController::class, 'ListarSolicitudVacacionesxResponsable'])->name('lista.ListarSolicitudVacacionesxResponsable');
+    Route::get('lista/ListarFeriado', [ListaController::class, 'ListarFeriado'])->name('lista.ListarFeriado');
 
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');
