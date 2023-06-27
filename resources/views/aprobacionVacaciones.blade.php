@@ -521,8 +521,8 @@ window.onload= function() {
                     element['dsc_estado'],
                     alertaRegla,
                     alertaReprog,
-                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+','+fchIni+','+fchFin+'">',
-                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+','+fchIni+','+fchFin+'">'
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
                 ];
                 filasArray.push(filaData);
             });
@@ -631,6 +631,7 @@ btnProcesar.addEventListener("click", function() {
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 console.log('data rechazado',data);
+                                    location.reload();
                             }
                         })
                     },//success
@@ -663,6 +664,7 @@ btnProcesar.addEventListener("click", function() {
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 console.log('data aprobado',data);
+                                    location.reload();
                             }
                         })
                     },//success
@@ -679,7 +681,6 @@ btnProcesar.addEventListener("click", function() {
             }
         }
     }
-    location.reload();
 });
 //------------------------funciones para enviar mensajes------------------------------
 
@@ -705,9 +706,9 @@ $.ajax({
         var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
         var actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchIni+', fin: '+fchFin+')';
         var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
-        var asunto = 'Ingreso de solicitud de vacaciones';
+        var asunto = 'Aprobación de solicitud de vacaciones';
 
-        enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad,'guarda  ');
+        enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad,'guarda  ');
 
     },//success
     error(e){
