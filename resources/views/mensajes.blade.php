@@ -167,7 +167,11 @@
           respuesta['response'].forEach(function(element){ 
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
-            
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }
+
             var filaAccion='';
             if(element['dsc_tipo_mensaje'] == 'TAREAS')
             {
@@ -196,7 +200,7 @@
 
             filaData += '<tr>'+
               '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+formatDate(fchLim[0])+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+
@@ -228,12 +232,14 @@
           respuesta['response'].forEach(function(element){ 
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
-            
-           
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }          
 
             filaData += '<tr>'+
               '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+formatDate(fchLim[0])+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
             '</tr>';
@@ -267,10 +273,14 @@
           respuesta['response'].forEach(function(element){ 
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }
             
             filaData += '<tr>'+
               '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+formatDate(fchLim[0])+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
             '</tr>';
@@ -355,7 +365,11 @@ function RefrescarListado(){
           respuesta['response'].forEach(function(element){ 
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
-            
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }
+
             var filaAccion='';
             if(element['dsc_tipo_mensaje'] == 'TAREAS')
             {
@@ -384,7 +398,7 @@ function RefrescarListado(){
 
             filaData += '<tr>'+
               '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+formatDate(fchLim[0])+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
               '<td>'+filaAccion+'</td>'+
@@ -416,12 +430,14 @@ function RefrescarListado(){
           respuesta['response'].forEach(function(element){ 
             var fchReg =  element['fch_notificacion'].split("T");
             var fchLim=  element['fch_limite'].split("T");
-            
-           
+            var fchLimite = formatDate(fchLim[0]);
+            if (fchLimite === '01/01/1900') {
+                fchLimite = '-';
+            }           
 
             filaData += '<tr>'+
               '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLim[0]+'</td>'+
+              '<td>'+fchLimite+'</td>'+
               '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
               '<td>'+element['dsc_mensaje']+'</td>'+
             '</tr>';

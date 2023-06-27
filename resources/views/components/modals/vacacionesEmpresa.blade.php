@@ -95,50 +95,10 @@
 
         });
     });
-    function apruebaSolicitud(){
-        Swal.fire({
-            icon: 'warning',
-            html: 'Va a APROBAR esta solicitud.</br>¿Desea continuar?',
-            showCancelButton: true,
-            confirmButtonText: 'Continuar',
-            confirmButtonColor: '#155450',
-            cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Se ha registrado su solicitud con éxito',
-                    confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#155450',
-                    })
-            } else if (result.isDenied) {
-                /**/
-            }
-        })
-    }
-    function rechazaSolicitud(){
-        Swal.fire({
-            icon: 'warning',
-            html: 'Va a RECHAZAR esta solicitud.</br>¿Desea continuar?',
-            showCancelButton: true,
-            confirmButtonText: 'Continuar',
-            confirmButtonColor: '#155450',
-            cancelButtonText: 'Cancelar',
-            }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Ha sido rechazada la solicitud.',
-                    confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#155450',
-                    })
-            } else if (result.isDenied) {
-                /**/
-            }
-        })
-    }
+    
+    
+
+
     $( function() {
         $( "#datepicker1" ).datepicker();
         $( "#datepicker2" ).datepicker();

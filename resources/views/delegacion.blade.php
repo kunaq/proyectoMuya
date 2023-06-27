@@ -133,6 +133,32 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     <script>
     window.onload= function() {
+      if ('@php echo(session('ventana5_2')) @endphp' != 'SI') {
+        let timerInterval
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de acceso',
+            text: 'Usted no tiene acceso a esta opción.',
+            timer: 1500,
+            timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
+                }
+            }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                window.location.href = "adios";
+            }
+        })  
+    }
+
         $('.js-example-basic-single').select2({
             theme: "classic"
         });

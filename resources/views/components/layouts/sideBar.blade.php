@@ -42,16 +42,20 @@
               <span>Solicitud</span>
             </a>
           </li>
+          @if (session('ventana4_2')==='SI')
           <li>
             <a href="{{route('aprobacionVacaciones')}}">
               <span>Aprobación</span>
             </a>
           </li>
+          @endif
+          @if (session('ventana4_3')==='SI')
           <li>
             <a href="{{route('vacacionesEmpresa')}}">
               <span>Empresa</span>
             </a>
           </li>
+          @endif
         </ul>
       </li>
 
@@ -65,16 +69,22 @@
               <span>Cambiar contraseña</span>
             </a>
           </li>
-          <li>
-            <a href="{{route('delegacion')}}">
-              <span>Delegación</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{route('configXtrabajador')}}">
-              <span>Por trabajador</span>
-            </a>
-          </li>
+          @if (session('ventana5_2')==='SI')
+          
+            <li>
+              <a href="{{route('delegacion')}}">
+                <span>Delegación</span>
+              </a>
+            </li>
+            
+          @endif
+          @if (session('ventana5_3')==='SI')
+            <li>
+              <a href="{{route('configXtrabajador')}}">
+                <span>Por trabajador</span>
+              </a>
+            </li>
+          @endif
         </ul>
       </li>
 
