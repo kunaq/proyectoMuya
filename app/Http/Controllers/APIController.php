@@ -609,8 +609,18 @@ class APIController extends Controller
 
             foreach ($responseData->response as $key) {
                 $codigo = $key->cod_ventana; 
+                
                 if($codigo == '4.2'){
-                    Session::put('ventana4_2','SI');
+                    Session()->put('ventana4_2','SI');
+                }
+                if($codigo == '4.3'){
+                    Session()->put('ventana4_3','SI');
+                }
+                if($codigo == '5.2'){
+                    Session()->put('ventana5_2','SI');
+                }
+                if($codigo == '5.3'){
+                    Session()->put('ventana5_3','SI');
                 }
                 
             }

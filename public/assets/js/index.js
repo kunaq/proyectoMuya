@@ -65,17 +65,21 @@ $("#loginBtn").click(function(){
                     url: 'api/ListarVentana', 
                     method: "GET",
                     dataType: 'json',
-                    data:{'codTra':user},
+                    data:{'codTra':respuesta.data.response.cod_usuario},
                     crossDomain: true,
-                    success: function(respuesta){
-                        console.log(respuesta);
-                    }
+                    success: function(respu){
+                        //console.log(passw);
+                       
+                    },//success
+                    error(e){
+                        console.log(e);
+                        if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
+                            window.location.href = "primerCambio";
+                        }else{
+                            window.location.href = "home";
+                        }
+                    }//error
                 });
-                if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
-                   window.location.href = "primerCambio";
-                }else{
-                   window.location.href = "home";
-                }
             }
         },//success
         error(e){
