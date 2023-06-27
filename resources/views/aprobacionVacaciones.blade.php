@@ -776,198 +776,72 @@ $.ajax({
 }
 
 //-----------------------Guarda configuraciones-----------------------------------
+
 var btnConfig = document.getElementById('actualizaConfig');
 btnConfig.addEventListener("click", function() {
-
-    var tabla = document.getElementById("listaColab");
-    var filas = tabla.getElementsByTagName("tr");
+  
+    var filas = document.querySelectorAll("#listaColab tbody tr");
+    var promesas = [];
 
     for (var i = 0; i < filas.length; i++) {
         var fila = filas[i];
-        var checkboxes = fila.querySelectorAll('input[type="checkbox"]');
-        var valoresSeleccionados = [];
-        var valoresNoSeleccionados = [];
-    
-        for (var j = 0; j < checkboxes.length; j++) {
-            var checkbox = checkboxes[j];
-            flgJefe = '';
-            flgEntre = '';
-            codTrabajador ='';
-            grupoVac ='';
-            numLinea ='';
-            if (checkbox.checked) {
-                valoresSeleccionados.push(checkbox.value);
-                if (checkboxes.length == 2) {
-                    var valoresSeleccionados = [];          
-                    for (var j = 0; j < checkboxes.length; j++) {
-                        var checkbox = checkboxes[j];
-                        valoresSeleccionados.push(checkbox.value);
-                        //console.log("Valores", valoresSeleccionados);
-                        var aux = valoresSeleccionados[j].split('-');
-                        flgCruce = aux[4];
-                        flgCruceOcult = aux[1]
-                        
-                        if(flgCruce == 'JEFE'){
-                            flgJefe = 'SI';
-                        }else if(flgCruce == 'ENTRE'){
-                            flgEntre = 'SI';
-                        }
+        var checkboxDorado = fila.querySelector(".checkDorado");
+        var checkboxVerde = fila.querySelector(".checkVerde");
+        var valorDorado = checkboxDorado.value;
+        var valorVerde = checkboxVerde.value;
+        var flgJefe = checkboxDorado.checked ? 'SI' : 'NO';
+        var flgEntre = checkboxVerde.checked ? 'SI' : 'NO';
 
-                        codTrabajador = aux[1];
-                        grupoVac = aux[2];
-                        numLinea = aux[3];
-                        
-                    }
-                    data = {
-                        'cod_grupo_vacaciones': grupoVac,
-                        'cod_trabajador': codTrabajador,
-                        'num_linea': numLinea,
-                        'flg_no_cruzar_jefe': flgJefe,
-                        'flg_no_cruzar': flgEntre
-                    }
-                    $.ajax({
-                        url: 'api/ActualizarVacacionesProgramadas', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'data':data},
-                        success: function(respuesta){
-                            //console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se han actualizado las reglas con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data 2Flg',data);
-                            }
-                            })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax
-                }else if(checkboxes.length == 1){
-                    var valoresSeleccionados = [];          
-                    for (var j = 0; j < checkboxes.length; j++) {
-                        var checkbox = checkboxes[j];
-                        valoresSeleccionados.push(checkbox.value);
+        var aux = valorDorado.split('-');
+        var grupoVac = aux[2];
+        var codTrabajador = aux[1];
+        var numLinea = aux[3];
 
-                        var aux = valoresSeleccionados[0].split('-');
-                        flgCruce = aux[0];
-                        
-                        if(flgCruce == 'JEFE'){
-                            flgJefe = 'SI';
-                        }else if(flgCruce == 'ENTRE'){
-                            flgEntre = 'SI';
-                        }
+        var data = {
+            'cod_grupo_vacaciones': grupoVac,
+            'cod_trabajador': codTrabajador,
+            'num_linea': numLinea,
+            'flg_no_cruzar_jefe': flgJefe,
+            'flg_no_cruzar': flgEntre
+        };
 
-                        codTrabajador = aux[1];
-                        grupoVac = aux[2];
-                        numLinea = aux[3];
-                        
-                    }
-                    data = {
-                        'cod_grupo_vacaciones': grupoVac,
-                        'cod_trabajador': codTrabajador,
-                        'num_linea': numLinea,
-                        'flg_no_cruzar_jefe': flgJefe,
-                        'flg_no_cruzar': flgEntre
-                    }
-                    $.ajax({
-                        url: 'api/ActualizarVacacionesProgramadas', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'data':data},
-                        success: function(respuesta){
-                            //console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se han actualizado las reglas con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data 1flg',data);
-                            }
-                            })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax
-                }
-            }else{
-                valoresNoSeleccionados.push(checkbox.value);
-                console.log('sin Check',valoresNoSeleccionados);
-                if(checkboxes.length == 0){
-                var valoresNoSeleccionados = [];          
-                    for (var j = 0; j < checkboxes.length; j++) {
-                        var checkbox = checkboxes[j];
-                        valoresNoSeleccionados.push(checkbox.value);
-                        var aux = valoresNoSeleccionados[0].split('-');
-                        codTrabajador = aux[1];
-                        grupoVac = aux[2];
-                        numLinea = aux[3];               
-                    }
-                    data = {
-                        'cod_grupo_vacaciones': grupoVac,
-                        'cod_trabajador': codTrabajador,
-                        'num_linea': numLinea,
-                        'flg_no_cruzar_jefe': 'NO',
-                        'flg_no_cruzar': 'NO'
-                    }
-                    $.ajax({
-                        url: 'api/ActualizarVacacionesProgramadas', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'data':data},
-                        success: function(respuesta){
-                            //console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se han actualizado las reglas con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data sinFlg',data);
-                            }
-                            })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax
-                }
-            }
-        
+        var promesa = $.ajax({
+        url: 'api/ActualizarVacacionesProgramadas',
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+            'data': data
         }
-        
+        });
+
+        promesas.push(promesa);
     }
-    location.reload();
+
+    Promise.all(promesas)
+    .then(function() {
+        Swal.fire({
+            icon: 'success',
+            text: 'Se ha actualizado con éxito',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    })
+    .catch(function(error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error. Inténtelo nuevamente.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        });
+    });
 });
+
 
 </script>
 

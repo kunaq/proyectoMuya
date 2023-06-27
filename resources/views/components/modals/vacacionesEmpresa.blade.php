@@ -85,18 +85,28 @@
                     <div class="tab-pane fade show active" id="navSupervisor" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby="navSupervisor-tab"></div>
                 </div> --}}
                 <div class="row">
-                    <div class="mb-3 col-12 col-md-6">
-                      <label for="parametroX" class="form-label">Parámetros X:</label>
+                    <div class="col-12 col-md-2">
+                      <label for="parametroX" class="form-label">Parámetro X:</label>
+                    </div>
+                    <div class="col-12 col-md-3">
                       <input type="number"
                         class="form-control" name="parametroX" id="parametroX" aria-describedby="helpId" min="0" max="99">
-                      <small id="helpId" class="form-text text-muted"> ayuda parámetroX</small>
                     </div>
-                    <div class="mb-3 col-12 col-md-6">
-                        <label for="parametroY" class="form-label">Parámetros Y:</label>
+                    <div class="col-12 col-md-2 offset-md-1">
+                        <label for="parametroY" class="form-label">Parámetro Y:</label>
+                    </div>
+                    <div class="col-12 col-md-3">
                         <input type="number"
                           class="form-control" name="parametroY" id="parametroY" aria-describedby="helpId" min="0" max="99">
-                        <small id="helpId" class="form-text text-muted"> ayuda parámetroY</small>
                       </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <small id="helpId" class="form-text text-muted">Cantidad máxima de trabajadores de un mismo grupo que pueden coincidir en sus vacaciones en un mismo día. </small>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <small id="helpId" class="form-text text-muted">Cantidad total de días que pueden exeder las vacaciones solicitadas</small>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -158,7 +168,7 @@
         });
     });
     
-    
+
 
 
     $( function() {

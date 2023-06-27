@@ -2,7 +2,7 @@ flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
     minDate: "today",
-    disable: ["28-07-2023", "29-07-2023","08-10-2023"],
+    disable: ["28-07-2023", "29-07-2023","08-10-2023","01-11-2023","25-12-2023"],
 });
 
 var inputFchInicio = document.getElementById('datepickerIniSolVac');
@@ -40,7 +40,7 @@ inputFchInicio.addEventListener("change", function() {
         locale:"es",
         dateFormat: "d-m-Y",
         minDate: minimo,
-        disable: ["28-07-2023", "29-07-2023","08-10-2023"],
+        disable: ["28-07-2023", "29-07-2023","08-10-2023","01-11-2023","25-12-2023"],
         maxDate: maximaDate
     });
 

@@ -25,7 +25,7 @@
 
     <section class="section dashboard">
         <div class="row">
-            <div class="col-md-10 offset-md-1 d-md-block">
+            <div class="col-md-12  d-md-block">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -37,43 +37,42 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
-                                <div class="row">
-                                    <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;height: 23rem;">
-                                        <table class="table table-striped " id="listaColabEmp" style="text-align: center; height: 300px;">
-                                            <thead style="text-align: center;">
-                                                <tr>
-                                                    <th scope="col" width="20%">Colaborador</th>
-                                                    <th scope="col" width="10%">Vacaciones generadas</th>
-                                                    <th scope="col" width="10%">Vacaciones programadas</th>
-                                                    <th scope="col" width="10%">Saldo</th>
-                                                    <th scope="col" width="10%">Alerta</th>
-                                                    <th scope="col" width="10%">Firma</th>
-                                                    <th scope="col" width="15%">No cruzar con jefe</th>
-                                                    <th scope="col" width="15%">No cruzar entre si</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {{-- <tr>
-                                                    <td>Milagros Huaman A.</td>
-                                                    <td>13/02/2023</td>
-                                                    <td>20/02/2023</td>
-                                                    <td>3</td>
-                                                    <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
-                                                    <td>No</td>
-                                                    <td>
-                                                        <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
-                                                    </td>
-                                                </tr> --}}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <div class="col-md-12 table-responsive" style="padding-right: 2rem;height: 23rem;">
+                                <table class="table table-striped " id="listaColabEmp" style="text-align: center; height: 300px;">
+                                    <thead style="text-align: center;">
+                                        <tr>
+                                            <th scope="col" width="15%">Colaborador</th>
+                                            <th scope="col" width="15%">Jefe</th>
+                                            <th scope="col" width="10%">Sede</th>
+                                            <th scope="col" width="8%">Vacaciones generadas</th>
+                                            <th scope="col" width="8%">Vacaciones programadas</th>
+                                            <th scope="col" width="5%">Saldo</th>
+                                            <th scope="col" width="5%">Alerta</th>
+                                            <th scope="col" width="5%">Firma</th>
+                                            <th scope="col" width="12%">No cruzar con jefe</th>
+                                            <th scope="col" width="17%">No cruzar entre si</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{-- <tr>
+                                            <td>Milagros Huaman A.</td>
+                                            <td>13/02/2023</td>
+                                            <td>20/02/2023</td>
+                                            <td>3</td>
+                                            <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span></td>
+                                            <td>No</td>
+                                            <td>
+                                                <input class="form-check-input checkDorado" type="checkbox" value="" id="flexCheckDefault">
+                                            </td>
+                                            <td>
+                                                <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
+                                            </td>
+                                        </tr> --}}
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>  
+                        </div>
+
                     </div>
                 </div>
             </div>        
@@ -83,7 +82,7 @@
 
     <section class="section dashboard">
         <div class="row">
-            <div class="col-md-10 offset-md-1 d-md-block">
+            <div class="col-md-12 d-md-block">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -95,47 +94,43 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
-                                <div class="row">
-                                    <div class="col-md-12 table-responsive" style="padding-left: 0rem;padding-right: 1rem;height: 23rem;">
-                                        <table class="table table-striped " id="tablaSolAprobarEmp" style="text-align: center; height: 300px;">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col" width="15%">Colaborador</th>
-                                                    <th scope="col" width="10%">Inicio</th>
-                                                    <th scope="col" width="10%">Fin</th>
-                                                    <th scope="col" width="5%">Días</th>
-                                                    <th scope="col" width="10%">Reincorpora</th>
-                                                    <th scope="col" width="10%">Estado</th>
-                                                    <th scope="col" width="10%">Alerta reglas</th>
-                                                    <th scope="col" width="10%">Alerta reprog.</th>
-                                                    <th scope="col" width="5%">Aceptar</th>
-                                                    <th scope="col" width="5%">Rechazar</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Milagros Huaman A.</td>
-                                                    <td>13/02/2023</td>
-                                                    <td>20/02/2023</td>
-                                                    <td>3</td>
-                                                    <td>28/02/2023</td>
-                                                    <td>Rechazado</td>
-                                                    <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <button class="btn btn-success btnDorado" onclick="apruebaSolicitud();"><span class="bi bi-check-circle"></span></button>
-                                                    </td>
-                                                    <td>
-                                                        <button class="btn btn-danger" onclick="rechazaSolicitud();"><span class="bi bi-x-circle"></span></button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                            <div class="col-md-12 table-responsive" style="padding-left: 1rem;padding-right: 1rem;height: 23rem;">
+                                <table class="table table-striped " id="tablaSolAprobarEmp" style="text-align: center; height: 300px;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" width="15%">Colaborador</th>
+                                            <th scope="col" width="10%">Inicio</th>
+                                            <th scope="col" width="10%">Fin</th>
+                                            <th scope="col" width="5%">Días</th>
+                                            <th scope="col" width="10%">Reincorpora</th>
+                                            <th scope="col" width="10%">Estado</th>
+                                            <th scope="col" width="10%">Alerta reglas</th>
+                                            <th scope="col" width="10%">Alerta reprog.</th>
+                                            <th scope="col" width="5%">Aceptar</th>
+                                            <th scope="col" width="5%">Rechazar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {{-- <tr>
+                                            <td>Milagros Huaman A.</td>
+                                            <td>13/02/2023</td>
+                                            <td>20/02/2023</td>
+                                            <td>3</td>
+                                            <td>28/02/2023</td>
+                                            <td>Rechazado</td>
+                                            <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
+                                            <td></td>
+                                            <td>
+                                                <button class="btn btn-success btnDorado" onclick="apruebaSolicitud();"><span class="bi bi-check-circle"></span></button>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-danger" onclick="rechazaSolicitud();"><span class="bi bi-x-circle"></span></button>
+                                            </td>
+                                        </tr> --}}
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </div>        
@@ -432,7 +427,7 @@
                             </div> 
                             <div class="col-md-2 offset-md-1" style="text-align: -webkit-center">
                                 <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalParametros" style="width: -webkit-fill-available;">Modificar parámetros</button></h5>
+                                    <h5><button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalParametros" style="width: -webkit-fill-available;">Parámetros</button></h5>
                                 </div>
                             </div>                      
                         </div>
@@ -496,8 +491,8 @@
     
                     var cantDias = element['cant_dia'];
                     var codTrabajador = "'"+element['cod_trabajador']+"'";
-                    flgJefe = '';
-                    flgEntre = '';
+                    var flgJefe = '';
+                    var flgEntre = '';
                     if(element['flg_no_cruzar_jefe'] == 'SI'){
                         flgJefe = 'checked';
                     }
@@ -507,6 +502,8 @@
     
                     var filaData = [
                         element['dsc_trabajador'],
+                        element['dsc_responsable'],
+                        element['dsc_sede'],
                         element['num_vacaciones_generadas'],
                         element['num_vacaciones_programadas'],
                         element['num_saldo'],
@@ -525,6 +522,8 @@
                     data: filasArray1,
                     columns: [
                         { title: 'Colaborador' },
+                        { title: 'Responsable' },
+                        { title: 'Sede' },
                         { title: 'Vacaciones generadas' },
                         { title: 'Vacaciones programadas' },
                         { title: 'Saldo' },
@@ -584,8 +583,8 @@
                         element['dsc_estado'],
                         alertaRegla,
                         alertaReprog,
-                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">',
-                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'">'
+                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
                     ];
                     filasArray.push(filaData);
                 });
@@ -652,291 +651,166 @@
     }
     
     //-----------------------Procesar solicitudes de vacaciones---------------------
-    var btnProcesar = document.getElementById('btnProcSolVacEmp');
-    btnProcesar.addEventListener("click", function() {
-    
-        var tabla = document.getElementById("tablaSolAprobarEmp");
-        var filas = tabla.getElementsByTagName("tr");
-    
-        for (var i = 0; i < filas.length; i++) {
-            var fila = filas[i];
-            var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
-            
-            for (var j = 0; j < inputsRadio.length; j++) {
-                var inputRadio = inputsRadio[j];
-                var valor = inputRadio.value;
-                //console.log("Valor seleccionado en la fila " + (i + 1) + ", radio " + (j + 1) + ": " + valor);
-                var aux = valor.split('-');
-                accion = aux[0];
-                codTrabajador = aux[1];
-                numLinea = aux[2];
-                data = {
-                    'cod_trabajador': codTrabajador,
-                    'num_linea': numLinea,
-                    'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
-                }
-                if(accion == 'RECHAZAR'){
-                   // console.log('data rechazado',data);
-                    $.ajax({
-                        url: 'api/RechazarSolicitudVacaciones', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'solVac':data},
-                        success: function(respuesta){
-                            console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se han procesado las solicitudes con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
+var btnProcesar = document.getElementById('btnProcSolVacEmp');
+btnProcesar.addEventListener("click", function() {
+    var tabla = document.getElementById("tablaSolAprobarEmp");
+    var filas = tabla.getElementsByTagName("tr");
+
+    for (var i = 0; i < filas.length; i++) {
+        var fila = filas[i];
+        var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
+        
+        for (var j = 0; j < inputsRadio.length; j++) {
+            var inputRadio = inputsRadio[j];
+            var valor = inputRadio.value;
+            //console.log("Valor seleccionado en la fila " + (i + 1) + ", radio " + (j + 1) + ": " + valor);
+            var aux = valor.split('-');
+            accion = aux[0];
+            codTrabajador = aux[1];
+            numLinea = aux[2];
+            fchIni = aux[3];
+            fchFin = aux[4];
+            data = {
+                'cod_trabajador': codTrabajador,
+                'num_linea': numLinea,
+                'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
+            }
+            if(accion == 'RECHAZAR'){
+               // console.log('data rechazado',data);
+                $.ajax({
+                    url: 'api/RechazarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':data},
+                    success: function(respuesta){
+                        enviaRechazoVac(codTrabajador,fchIni,fchFin)
+                        console.log(respuesta);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se han procesado las solicitudes con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
                             if (result.isConfirmed) {
                                 console.log('data rechazado',data);
+                                    location.reload();
                             }
+                        })
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
                             })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax
-                }else if(accion == 'APROBAR'){
-                   // console.log('data aprobado',data);
-                    $.ajax({
-                        url: 'api/AprobarSolicitudVacaciones', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'solVac':data},
-                        success: function(respuesta){
-                            console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se han procesado las solicitudes con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
+                    }//error
+                });//ajax
+            }else if(accion == 'APROBAR'){
+               // console.log('data aprobado',data);
+                $.ajax({
+                    url: 'api/AprobarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':data},
+                    success: function(respuesta){
+                        enviaAprobacionVac(codTrabajador,fchIni,fchFin)
+                        console.log(respuesta);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se han procesado las solicitudes con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
                             if (result.isConfirmed) {
                                 console.log('data aprobado',data);
+                                    location.reload();
                             }
+                        })
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
                             })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax
-                }
+                    }//error
+                });//ajax
             }
         }
-        location.reload();
-    });
+    }
+
+});
     
     //-----------------------Guarda configuraciones-----------------------------------
-    var btnConfig = document.getElementById('actualizaConfig');
-    btnConfig.addEventListener("click", function() {
-    
-        var tabla = document.getElementById("listaColabEmp");
-        var filas = tabla.getElementsByTagName("tr");
-    
-        for (var i = 0; i < filas.length; i++) {
-            var fila = filas[i];
-            var checkboxes = fila.querySelectorAll('input[type="checkbox"]');
-            var valoresSeleccionados = [];
-            var valoresNoSeleccionados = [];
-        
-            for (var j = 0; j < checkboxes.length; j++) {
-                var checkbox = checkboxes[j];
-                flgJefe = '';
-                flgEntre = '';
-                codTrabajador ='';
-                grupoVac ='';
-                numLinea ='';
-                if (checkbox.checked) {
-                    valoresSeleccionados.push(checkbox.value);
-                    if (checkboxes.length == 2) {
-                        var valoresSeleccionados = [];          
-                        for (var j = 0; j < checkboxes.length; j++) {
-                            var checkbox = checkboxes[j];
-                            valoresSeleccionados.push(checkbox.value);
-                            //console.log("Valores", valoresSeleccionados);
-                            var aux = valoresSeleccionados[j].split('-');
-                            flgCruce = aux[0];
-                            
-                            if(flgCruce == 'JEFE'){
-                                flgJefe = 'SI';
-                            }else if(flgCruce == 'ENTRE'){
-                                flgEntre = 'SI';
-                            }
-    
-                            codTrabajador = aux[1];
-                            grupoVac = aux[2];
-                            numLinea = aux[3];
-                            
-                        }
-                        data = {
-                            'cod_grupo_vacaciones': grupoVac,
-                            'cod_trabajador': codTrabajador,
-                            'num_linea': numLinea,
-                            'flg_no_cruzar_jefe': flgJefe,
-                            'flg_no_cruzar': flgEntre
-                        }
-                        $.ajax({
-                            url: 'api/ActualizarVacacionesProgramadas', 
-                            method: "PUT",
-                            crossDomain: true,
-                            dataType: 'json',
-                            data:{'data':data},
-                            success: function(respuesta){
-                                //console.log(respuesta);
-                                Swal.fire({
-                                    icon: 'success',
-                                    text: 'Se han actualizado las reglas con éxito',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                }).then((result) => {
-                                if (result.isConfirmed) {
-                                    console.log('data 2Flg',data);
-                                }
-                                })
-                            },//success
-                            error(e){
-                                console.log(e.message);
-                                Swal.fire({
-                                    icon: 'warning',
-                                    text: 'Ha ocurrido un error intentelo nuevamente.',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                    })
-                            }//error
-                        });//ajax
-                    }else if(checkboxes.length == 1){
-                        var valoresSeleccionados = [];          
-                        for (var j = 0; j < checkboxes.length; j++) {
-                            var checkbox = checkboxes[j];
-                            valoresSeleccionados.push(checkbox.value);
-    
-                            var aux = valoresSeleccionados[0].split('-');
-                            flgCruce = aux[0];
-                            
-                            if(flgCruce == 'JEFE'){
-                                flgJefe = 'SI';
-                            }else if(flgCruce == 'ENTRE'){
-                                flgEntre = 'SI';
-                            }
-    
-                            codTrabajador = aux[1];
-                            grupoVac = aux[2];
-                            numLinea = aux[3];
-                            
-                        }
-                        data = {
-                            'cod_grupo_vacaciones': grupoVac,
-                            'cod_trabajador': codTrabajador,
-                            'num_linea': numLinea,
-                            'flg_no_cruzar_jefe': flgJefe,
-                            'flg_no_cruzar': flgEntre
-                        }
-                        $.ajax({
-                            url: 'api/ActualizarVacacionesProgramadas', 
-                            method: "PUT",
-                            crossDomain: true,
-                            dataType: 'json',
-                            data:{'data':data},
-                            success: function(respuesta){
-                                //console.log(respuesta);
-                                Swal.fire({
-                                    icon: 'success',
-                                    text: 'Se han actualizado las reglas con éxito',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                }).then((result) => {
-                                if (result.isConfirmed) {
-                                    console.log('data 1flg',data);
-                                }
-                                })
-                            },//success
-                            error(e){
-                                console.log(e.message);
-                                Swal.fire({
-                                    icon: 'warning',
-                                    text: 'Ha ocurrido un error intentelo nuevamente.',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                    })
-                            }//error
-                        });//ajax
-                    }
-                }else{
-                    valoresNoSeleccionados.push(checkbox.value);
-                    console.log('sin Check',valoresNoSeleccionados);
-                    if(checkboxes.length == 0){
-                    var valoresNoSeleccionados = [];          
-                        for (var j = 0; j < checkboxes.length; j++) {
-                            var checkbox = checkboxes[j];
-                            valoresNoSeleccionados.push(checkbox.value);
-                            var aux = valoresNoSeleccionados[0].split('-');
-                            codTrabajador = aux[1];
-                            grupoVac = aux[2];
-                            numLinea = aux[3];               
-                        }
-                        data = {
-                            'cod_grupo_vacaciones': grupoVac,
-                            'cod_trabajador': codTrabajador,
-                            'num_linea': numLinea,
-                            'flg_no_cruzar_jefe': '',
-                            'flg_no_cruzar': ''
-                        }
-                        $.ajax({
-                            url: 'api/ActualizarVacacionesProgramadas', 
-                            method: "PUT",
-                            crossDomain: true,
-                            dataType: 'json',
-                            data:{'data':data},
-                            success: function(respuesta){
-                                //console.log(respuesta);
-                                Swal.fire({
-                                    icon: 'success',
-                                    text: 'Se han actualizado las reglas con éxito',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                }).then((result) => {
-                                if (result.isConfirmed) {
-                                    console.log('data sinFlg',data);
-                                }
-                                })
-                            },//success
-                            error(e){
-                                console.log(e.message);
-                                Swal.fire({
-                                    icon: 'warning',
-                                    text: 'Ha ocurrido un error intentelo nuevamente.',
-                                    confirmButtonText: 'Continuar',
-                                    confirmButtonColor: '#a18347',
-                                    })
-                            }//error
-                        });//ajax
-                    }
-                }
-            
-            }
-            
+var btnConfig = document.getElementById('actualizaConfigEmp');
+btnConfig.addEventListener("click", function() {
+    var filas = document.querySelectorAll("#listaColabEmp tbody tr");
+    var promesas = [];
+
+    for (var i = 0; i < filas.length; i++) {
+        var fila = filas[i];
+        var checkboxDorado = fila.querySelector(".checkDorado");
+        var checkboxVerde = fila.querySelector(".checkVerde");
+        var valorDorado = checkboxDorado.value;
+        var valorVerde = checkboxVerde.value;
+        var flgJefe = checkboxDorado.checked ? 'SI' : 'NO';
+        var flgEntre = checkboxVerde.checked ? 'SI' : 'NO';
+
+        var aux = valorDorado.split('-');
+        var grupoVac = aux[2];
+        var codTrabajador = aux[1];
+        var numLinea = aux[3];
+
+        var data = {
+            'cod_grupo_vacaciones': grupoVac,
+            'cod_trabajador': codTrabajador,
+            'num_linea': numLinea,
+            'flg_no_cruzar_jefe': flgJefe,
+            'flg_no_cruzar': flgEntre
+        };
+
+        var promesa = $.ajax({
+        url: 'api/ActualizarVacacionesProgramadas',
+        method: "PUT",
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+            'data': data
         }
-        location.reload();
+        });
+
+        promesas.push(promesa);
+    }
+
+    Promise.all(promesas)
+    .then(function() {
+        Swal.fire({
+            icon: 'success',
+            text: 'Se ha actualizado con éxito',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                location.reload();
+            }
+        });
+    })
+    .catch(function(error) {
+        console.log(error);
+        Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error. Inténtelo nuevamente.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        });
     });
+});
 
-    // var input3 = document.getElementById("parametroX");
-    //     console.log(input3);
 
-    </script>
+</script>
