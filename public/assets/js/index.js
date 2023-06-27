@@ -61,10 +61,20 @@ $("#loginBtn").click(function(){
             }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null)){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
+                $.ajax({
+                    url: 'api/ListarVentana', 
+                    method: "GET",
+                    dataType: 'json',
+                    data:{'codTra':user},
+                    crossDomain: true,
+                    success: function(respuesta){
+                        console.log(respuesta);
+                    }
+                });
                 if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
-                    window.location.href = "primerCambio";
+                   window.location.href = "primerCambio";
                 }else{
-                    window.location.href = "home";
+                   window.location.href = "home";
                 }
             }
         },//success

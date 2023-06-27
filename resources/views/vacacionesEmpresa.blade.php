@@ -747,7 +747,7 @@ btnProcesar.addEventListener("click", function() {
 
 });
     
-    //-----------------------Guarda configuraciones-----------------------------------
+//-----------------------Guarda configuraciones-----------------------------------
 var btnConfig = document.getElementById('actualizaConfigEmp');
 btnConfig.addEventListener("click", function() {
     var filas = document.querySelectorAll("#listaColabEmp tbody tr");

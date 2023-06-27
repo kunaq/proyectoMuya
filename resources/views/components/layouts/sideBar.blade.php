@@ -22,7 +22,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('mensajes')}}">
-          <span>Mensajes</span>
+          <span>Mensajes</span>@php var_dump(session()->all()) @endphp
         </a>
       </li>
 

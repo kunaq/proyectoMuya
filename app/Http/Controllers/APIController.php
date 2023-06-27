@@ -47,10 +47,7 @@ class APIController extends Controller
             Session::put('ctdProgVac', $responseData->response->num_ctd);
             Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
             Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
-            Session::put('ventana4_2', 'SI');
-            Session::put('ventana4_3', 'SI');
-            Session::put('ventana5_2', 'SI');
-            Session::put('ventana5_3', 'SI');
+
 
             // Ejemplo de retorno de la respuesta
             return response()->json(['status' => $statusCode, 'data' => $responseData],);
@@ -592,6 +589,37 @@ class APIController extends Controller
             });
             $promise->wait();
         } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarVentana(Request $request)
+    {  
+        $client = new Client();
+        $cod_trabajador = session('codTrabajador');
+        try {
+            $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ListarVentana/20555348887/'.$cod_trabajador, [
+                'http_errors' => false, // Permite manejar errores HTTP personalizados
+            ]);
+
+            $statusCode = $response->getStatusCode();
+            $responseData = json_decode($response->getBody()->getContents());
+
+            //Definimos las variables de sesión
+
+            foreach ($responseData->response as $key) {
+                $codigo = $key->cod_ventana; 
+                if($codigo == '4.2'){
+                    Session::put('ventana4_2','SI');
+                }
+                
+            }
+
+
+            // Ejemplo de retorno de la respuesta
+           // return response()->json(['status' => $statusCode, 'data' => $responseData],);
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
