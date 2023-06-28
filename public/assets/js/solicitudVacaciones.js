@@ -126,6 +126,8 @@ inputFchFin.addEventListener("change", function() {
     // Formatear la nueva fecha en el formato 'Día de la semana día de mes de año'
     const nuevoFechaFormateada = `${nuevoDiaSemana}, ${nuevoDia} de ${nuevoMes} del ${nuevoAno}.`;
 
+    document.getElementById('fchRetornoBD').value = `${nuevoAno}-${nuevoMes}-${nuevoDia}`;
+
     console.log('Nuevo día de retorno:', nuevoFechaFormateada);
 
     document.getElementById('resutSolVac3').innerHTML = 'Fecha de retorno: ' + nuevoFechaFormateada;

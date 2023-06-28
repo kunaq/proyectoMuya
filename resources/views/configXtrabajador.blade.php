@@ -352,7 +352,7 @@
             <div class="col-md-10 offset-md-1">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title" style="font-size: 26px;">Carga masiva de vacaciones</h5>
+                        <h5 class="card-title" style="font-size: 26px;">Carga masiva de configuraciones</h5>
                         <div class="row">
                             <div class="col-12 col-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">

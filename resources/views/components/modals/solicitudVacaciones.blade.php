@@ -84,6 +84,7 @@
                         <input type="hidden" id="parametroX">
                         <input type="hidden" id="parametroY">
                         <input type="hidden" id="pagoPlanilla">
+                        <input type="hidden" id="fchRetornoBD">
                       </div>
                     </div>
                   </div>
@@ -431,6 +432,8 @@ fIni.addEventListener('change', function() {
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
 
+  var diasGenerados = document.getElementById('num_vacaciones_pendiente').innerHTML;
+  diasGenerados = parseInt(diasGenerados);
   var form = document.getElementById("FormSolicitudVac");
   form.addEventListener("submit", function(event) {
     // Detener el envío del formulario
@@ -452,17 +455,30 @@ btnSolicitar.addEventListener("click", function() {
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
     var cantDias = document.getElementById('cantDiasSol').value;
+    cantDias = parseInt(cantDias);
+    diferenciaExceso = cantDias - diasGenerados;
+
+    var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : 0;
+    console.log('diferenciaExceso',diferenciaExceso);
+
+    var reprog = document.getElementById('reprogramacion').value;
+    var numLinea = document.getElementById('numLinea').value;
+    var fchRetorno = document.getElementById('fchRetornoBD');
+
+    var numLineaAnt = (reprog == 'SI') ? numLineaAnt : '';
 
     var solVac = {
         'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
         'fch_inicio': fchInicio,
         'fch_fin': fchFin,
-        'fch_retorno': '2023-06-20',
+        'fch_retorno': fchRetorno,
         'cant_dia': cantDias,
-        'flg_alerta_regla': 'NO'
+        'flg_alerta_regla': 'NO',
+        'ctd_dias_exceso': diasExces,
+        'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
+        'num_linea_origen': 0
       }
-
-    var reprog = document.getElementById('reprogramacion').value;
+    
     var parametroX = parseInt(document.getElementById('parametroX').value);
     var pagoHaber = document.getElementById('pagoPlanilla').value;
     var fechaActual = new Date();
