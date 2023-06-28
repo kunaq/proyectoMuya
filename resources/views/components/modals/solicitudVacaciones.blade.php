@@ -215,7 +215,7 @@ window.onload= function() {
       console.log(e.message);
     }//error
   });//ajax muestraAnno
-//----------------------- Muestra reglas-------------------------------
+  //----------------------- Muestra reglas-------------------------------
   $.ajax({
     url: 'lista/ListarReglasTrabajador', 
     method: "GET",

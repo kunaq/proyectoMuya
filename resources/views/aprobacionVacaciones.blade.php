@@ -217,7 +217,7 @@
                         <div class="col-md-4" style="margin-bottom: 1rem;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h1 class="card-title tarjeta-vaca-foco"><b>35.8</b></h1>
+                                    <h1 class="card-title tarjeta-vaca-foco"><b><span id="indPromVac">50</span></b></h1>
                                     <h5 style="font-size: 17px; text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                         <div class="col-md-4" style="margin-bottom: 1rem;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h1 class="card-title tarjeta-vaca-foco"><b>23.6</b></h1>
+                                    <h1 class="card-title tarjeta-vaca-foco"><b><span id="indPromVacPend">5</span></b></h1>
                                     <h5 style="font-size: 17px;text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>a la fecha de hoy</b></h5>
                                 </div>
                             </div>
@@ -233,7 +233,7 @@
                         <div class="col-md-4" style="margin-bottom: 1rem;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h1 class="card-title tarjeta-vaca-foco"><b>6</b></h1>
+                                    <h1 class="card-title tarjeta-vaca-foco"><b><span id="indRepVac"></span></b></h1>
                                     <h5 style="font-size: 17px;text-align: center;">Número de reprogramaciones realizadas en el año del equipo</h5>
                                 </div>
                             </div>
@@ -577,13 +577,14 @@ window.onload= function() {
         }
     });
 
+    //---------------------------reglas------------------------------
     $.ajax({
         url: 'lista/ListarReglasJefe', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-            console.log(respuesta);
+            //console.log(respuesta);
             var body = document.getElementById('bodyRegla');
             var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
             body.innerHTML = aux;
@@ -593,6 +594,7 @@ window.onload= function() {
         }//error
     });//ajax ListarReglasJefe
 
+    //---------------------------Años------------------------------
     $.ajax({
         url: 'lista/MuestraAnhos', 
         method: "GET",
@@ -610,6 +612,41 @@ window.onload= function() {
             console.log(e.message);
         }//error
     });//ajax muestraAnno
+
+    //---------------------------indicadores------------------------------
+
+    $.ajax({
+        url: 'lista/ObtenerPromedioDiasPendiente', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp'},
+        success: function(respuesta){ 
+            console.log(respuesta['response']['ctd_dia_pendiente']);
+            var indicador = document.getElementById('indPromVacPend');
+            indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerPromedioDiasPendiente hasta hoy
+
+    $.ajax({
+        url: 'lista/ObtenerReprogramaciones', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp'},
+        success: function(respuesta){ 
+            console.log(respuesta['response']['ctd_reprogramaciones']);
+            var indicador = document.getElementById('indRepVac');
+            indicador.innerHTML = respuesta['response']['ctd_reprogramaciones'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerReprogramaciones
+
 }
 
 //-----------------------Procesar solicitudes de vacaciones---------------------

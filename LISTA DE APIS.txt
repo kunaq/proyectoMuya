@@ -188,3 +188,22 @@ FERIADO
 SOLCITUD VACACIONES X JEFE
 
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacacionesxResponsable/20555348887/TRA00603/2023-07-01/2023-07-30
+
+INDICADORES
+    
+    PROMEDIO DE DIAS PENDIENTE HASTA HOY
+        
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/TRA00603
+
+    REPROGRAMACIONES
+        
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/TRA00603
+
+LISTADO DE BOLETAS DE PAGO
+    
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarBoletaPago/20555348887/TRA00603/2022/2023
+
+LISTADO DE CONSTANCIA CTS
+    
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConstanciaCTS/20555348887/TRA00603/2022/2023
+
