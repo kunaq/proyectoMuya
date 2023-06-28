@@ -75,6 +75,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
 
     //Route::get('/logout', [FuncionesController::class, 'logout'])->name('logout');
     Route::put('/actualizaContrasenna', [FuncionesController::class, 'actualizaContrasenna'])->name('actualizaContrasenna');
+    Route::get('/ListarSolicitudVacacionesxResponsable', [FuncionesController::class, 'ListarSolicitudVacacionesxResponsable'])->name('ListarSolicitudVacacionesxResponsable');
 
      //-----------------------Mostrar Datos-----------------------------//
     Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');

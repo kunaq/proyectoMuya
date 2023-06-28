@@ -1,5 +1,3 @@
-// import moment from 'moment';
-
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
@@ -152,7 +150,6 @@ function bloquearUltimosXDias(date) {
     disable: bloquearUltimosXDias
   });
 
-
 var btnBuscarLista = document.getElementById('buscarLista');
 btnBuscarLista.addEventListener("click", function() {
     var inicio = document.getElementById('annoIni').value;
@@ -161,7 +158,8 @@ btnBuscarLista.addEventListener("click", function() {
     muestraListadoSolicitudes(inicio,fin);
 });
 
-const myModalEl = document.getElementById('ModalSolicitud');
+
+const myModalEl = document.getElementById('ModalSolicitud')
 myModalEl.addEventListener('hidden.bs.modal', event => {
     document.getElementById('FormSolicitudVac').reset();
     document.getElementById('cantDiasSol').value = '';
