@@ -363,11 +363,11 @@
                             </div>
                             <div class="col-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" id="buscarDoc">Descargar</button></h5>
+                                    <h5><button class="btn btn-success btnDorado" id="btnDesSolEmp">Descargar</button></h5>
                                 </div>
                             </div>                      
                             <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
+                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="chckEquipSol">
                             </div>
                             <div class="col-11 col-md-3" style="text-align: -webkit-center">
                                 <div class="form-group">
@@ -889,6 +889,119 @@ btnModificaReglas.addEventListener("click", function() {
             confirmButtonColor: '#a18347',
         });
     });
+
+});
+
+//-----------------------Procesar descargar reporte solicitudes de vacaciones---------------------
+var btnProcesar = document.getElementById('btnDesSolEmp');
+btnProcesar.addEventListener("click", function() {
+    var fchInicio = document.getElementById('datepicker3').value;
+    var fechaParts = fchInicio.split('-');
+    var day = fechaParts[0];
+    var month = fechaParts[1];
+    var year = fechaParts[2]; 
+    fchInicio = year + "-" + month + "-" + day;
+
+    var fchFin = document.getElementById('datepicker4').value;
+    var fechaPartsF = fchFin.split('-');
+    var dayF = fechaPartsF[0];
+    var monthF = fechaPartsF[1];
+    var yearF = fechaPartsF[2]; 
+    fchFin = yearF + "-" + monthF + "-" + dayF;
+
+    var chckDsc = document.getElementById('chckEquipSol');
+    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
+
+    var codTra = '@php echo(session('codTrabajador')) @endphp';
+
+    $.ajax({
+        url: 'ListarSolicitudVacacionesxResponsable', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':'TRA00603','fchIni':fchInicio,'fchFin':fchFin},
+        success: function(respuesta){
+            console.log(respuesta['response']);
+            var data = []; 
+            respuesta['response'].forEach(element => {
+
+                var fchIni = element['fch_inicio'].split('T');
+                fchIni = formatDate(fchIni[0]);
+                var fchFin = element['fch_fin'].split('T');
+                fchFin = formatDate(fchFin[0]);
+                var fchReinc = element['fch_retorno'].split('T');
+                fchReinc = formatDate(fchReinc[0]);
+                var fchReg = element['fch_registro_solicitud'].split('T');
+                fchReg = formatDate(fchReg[0]);
+                var fchRechz = element['fch_rechazado'].split('T');
+                fchRechz = formatDate(fchRechz[0]);
+
+                var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
+                var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
+                var fchAprob = element['fch_aprobado'].split('T');
+                fchAprob = formatDate(fchAprob[0]);
+                var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+
+                filaData = [
+                    'COD SOLICITUD',
+                    element['cod_trabajador'],
+                    element['dsc_trabajador'],
+                    'AREA',
+                    element['dsc_sede'],
+                    'CARGO',
+                    fchIni,
+                    fchFin,
+                    element['cant_dias'],
+                    fchReinc,
+                    element['dsc_estado'],
+                    firmado,
+                    pagado,
+                    'DIAS EXCEDIDOS',
+                    'CODIGO SOLICITUD ANTERIOR',
+                    fchReg,
+                    'COD-TRA REGISTRO',
+                    fechaAproba,
+                    element['cod_trabajador_aprobado'],
+                    fchRechz,
+                    element['cod_trabajador_rechazado']
+                    
+                ]
+                data.push(filaData);
+            });
+            
+            // Crear un libro de trabajo (workbook)
+            var workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo (worksheet)
+            var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Agregar la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+            // Convertir el libro de trabajo a un archivo binario
+            var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+            // Crear un blob a partir del archivo binario
+            var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Crear una URL para el blob
+            var url = URL.createObjectURL(blob);
+
+            // Crear un enlace de descarga
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = 'solicitudVacaciones.xlsx';
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error    
+    });
+
 
 });
 

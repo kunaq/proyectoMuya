@@ -899,6 +899,8 @@ btnProcesar.addEventListener("click", function() {
     var chckDsc = document.getElementById('CheckDescSolVac');
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
+    var codTra = '@php echo(session('codTrabajador')) @endphp';
+
     $.ajax({
         url: 'ListarSolicitudVacacionesxResponsable', 
         method: "GET",
@@ -976,7 +978,7 @@ btnProcesar.addEventListener("click", function() {
             // Crear un enlace de descarga
             var link = document.createElement('a');
             link.href = url;
-            link.download = 'solicitudVacaciones.xlsx';
+            link.download = 'solicitudVacaciones'+codTra+'.xlsx';
 
             // Simular un clic en el enlace para iniciar la descarga
             link.click();
