@@ -931,7 +931,7 @@ btnProcesar.addEventListener("click", function() {
                 var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
 
                 filaData = [
-                    'COD SOLICITUD',
+                    element['cod_trabajador']+'-'+element['num_linea'],
                     element['cod_trabajador'],
                     element['dsc_trabajador'],
                     'AREA',

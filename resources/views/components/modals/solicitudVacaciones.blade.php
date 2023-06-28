@@ -182,7 +182,7 @@ window.onload= function() {
             botonSolicitud.disabled = false;
           }
           if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
-            // botonSolicitud.disabled = true;
+            botonSolicitud.disabled = true;
             botonConvenio.disabled = false;
           }else {
             botonSolicitud.disabled = false;
