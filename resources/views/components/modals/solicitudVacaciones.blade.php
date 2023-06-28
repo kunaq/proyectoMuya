@@ -72,7 +72,7 @@
                     </div>
                     <div class="row">
                       <div class="col-md-8">
-                        <span id=resutSolVac></span><span id=resutSolVac2></span>
+                        <span id=resutSolVac></span><span id=resutSolVac2></span><p id=resutSolVac3></p>
                         <input type="hidden" id="cantDiasSol" value = 0>
                         <input type="hidden" id="reprogramacion" value = 'NO'>
                         <input type="hidden" id="numLinea">
@@ -182,7 +182,7 @@ window.onload= function() {
             botonSolicitud.disabled = false;
           }
           if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
-            botonSolicitud.disabled = true;
+            // botonSolicitud.disabled = true;
             botonConvenio.disabled = false;
           }else {
             botonSolicitud.disabled = false;
@@ -393,6 +393,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
   });//ajax
 }//funcion
 
+//----------validacion fecha registro de vacaciones---
 var fIni = document.getElementById('annoIni');
 fIni.addEventListener('change', function() {
   var startDate = document.getElementById("annoIni").value;
@@ -425,6 +426,7 @@ fIni.addEventListener('change', function() {
       }
     }
 });
+//------------------------------solicitaVacaciones boton aceptar----------------------------------------
 
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
