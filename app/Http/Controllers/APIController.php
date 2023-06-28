@@ -398,6 +398,7 @@ class APIController extends Controller
 
             $controll = new FuncionesController();
             $actualiza =$controll->actualizaContrasenna($request);
+            
 
         }else{
             

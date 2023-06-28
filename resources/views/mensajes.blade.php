@@ -173,29 +173,26 @@
             }
 
             var filaAccion='';
-            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            if(element['cod_mensaje'] == '1001' || element['cod_mensaje'] == '1004')
             {
-                  if(element['cod_estado'] == 'FIN')
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
-                  }
-                  else
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
-                  }
-            }
-            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
-            }
-            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
+              if(element['cod_estado'] == 'FIN'){
+
+                filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+
+              }else{
+
+                filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+              }
+            }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
+
+              filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
+
+            }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
+
+              filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
                 
-            }
-            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
-            {
-                filaAccion="";
+            }else{
+              filaAccion="";
             }
 
             filaData += '<tr>'+
@@ -371,29 +368,26 @@ function RefrescarListado(){
             }
 
             var filaAccion='';
-            if(element['dsc_tipo_mensaje'] == 'TAREAS')
+            if(element['cod_mensaje'] == '1001' || element['cod_mensaje'] == '1004')
             {
-                  if(element['cod_estado'] == 'FIN')
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
-                  }
-                  else
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
-                  }
-            }
-            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome verdeMuya'>Ir</button>";
-            }
-            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
-            {
-                filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
+              if(element['cod_estado'] == 'FIN'){
+
+                filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+
+              }else{
+
+                filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
+              }
+            }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
+
+              filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
+
+            }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
+
+              filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
                 
-            }
-            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
-            {
-                filaAccion="";
+            }else{
+              filaAccion="";
             }
 
             filaData += '<tr>'+

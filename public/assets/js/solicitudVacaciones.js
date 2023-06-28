@@ -1,3 +1,4 @@
+
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
@@ -99,30 +100,6 @@ function bloquearUltimosXDias(date) {
   });
 
 
-function alertaSolicitud(){
-    Swal.fire({
-        icon: 'warning',
-        html: 'No cumple con los requisitos necesarios para solicitar vacaciones.</br>¿Desea continuar?',
-        showCancelButton: true,
-        confirmButtonText: 'Continuar',
-        confirmButtonColor: '#155450',
-        cancelButtonText: 'Cancelar',
-        }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-            var fechaIni = '';
-            Swal.fire({
-                icon: 'success',
-                text: 'Se ha registrado su solicitud con éxito',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#155450',
-                })
-        } else if (result.isDenied) {
-            /**/
-        }
-    })
-}
-
 var btnBuscarLista = document.getElementById('buscarLista');
 btnBuscarLista.addEventListener("click", function() {
     var inicio = document.getElementById('annoIni').value;
@@ -130,7 +107,6 @@ btnBuscarLista.addEventListener("click", function() {
     console.log('annoI',inicio)
     muestraListadoSolicitudes(inicio,fin);
 });
-
 
 const myModalEl = document.getElementById('ModalSolicitud')
 myModalEl.addEventListener('hidden.bs.modal', event => {

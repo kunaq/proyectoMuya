@@ -174,7 +174,7 @@ btnEnvia.addEventListener("click", function() {
                         confirmButtonColor: '#a18347',
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            location.reload();
+                           location.reload();
                         }
                     })
                 }//else correo
@@ -186,7 +186,7 @@ btnEnvia.addEventListener("click", function() {
                     confirmButtonColor: '#a18347',
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.reload();
+                       location.reload();
                     }
                 })
             }//else no existe trabajador

@@ -27,7 +27,7 @@ class FuncionesController extends Controller
         if (session('docTrabajador')) {
             $codigo = session('docTrabajador');
         }else{
-            $codigo = $request['cod_trabajador'];
+            $codigo = $request['actividad'];
         }
         if($request['dsc_clave'] != ''){
             $clave = $request['dsc_clave'];
@@ -41,6 +41,7 @@ class FuncionesController extends Controller
         ];
             
         $data = json_encode($data);
+
         $header = [
             'Content-Type' => 'application/json'
         ];

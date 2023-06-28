@@ -68,7 +68,7 @@
     <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalReglasLabel">Parametros</h1>
+          <h1 class="modal-title tarjeta-vaca-foco fs-5" id="ModalReglasLabel">Parámetros</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         {{-- <nav>

@@ -444,7 +444,7 @@
 </x-layouts.app>
 <script src="{{asset('assets/js/vacacionesEmpresa.js')}}"></script>
 <script type="text/javascript">
-    window.onload= function() {
+window.onload= function() {
         if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
             let timerInterval
             Swal.fire({
@@ -612,22 +612,22 @@
                 // //console.log(filasArray);
             }
         });
-    //-----Se muestra las reglas de trabajador y jefe---
+    //-----Se muestra las reglas de trabajador y jefe--------------------------
         $.ajax({
             url: 'lista/ListarReglasTrabajador', 
             method: "GET",
             crossDomain: true,
             dataType: 'json',
             success: function(respuesta){ 
-            // console.log(respuesta);
-            var body = document.getElementById('nav-colaborador');
-            var body2 = document.getElementById('txtReglasColab');
-            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
-            body.innerHTML = aux;
-            body2.innerHTML = aux;
+                // console.log(respuesta);
+                var body = document.getElementById('nav-colaborador');
+                var body2 = document.getElementById('txtReglasColab');
+                var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+                body.innerHTML = aux;
+                body2.innerHTML = aux;
             },//success
             error(e){
-            console.log(e.message);
+                console.log(e.message);
             }//error
         });//ajax ListarReglasTrabajador
 
@@ -637,18 +637,34 @@
             crossDomain: true,
             dataType: 'json',
             success: function(respuesta){ 
-            // console.log(respuesta);
-            var body = document.getElementById('navSupervisor');
-            var body2 = document.getElementById('txtReglasJefe');
-            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
-            body.innerHTML = aux;
-            body2.innerHTML = aux;
+                // console.log(respuesta);
+                var body = document.getElementById('navSupervisor');
+                var body2 = document.getElementById('txtReglasJefe');
+                var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+                body.innerHTML = aux;
+                body2.innerHTML = aux;
             },//success
             error(e){
-            console.log(e.message);
+                console.log(e.message);
             }//error
         });//ajax ListarReglasJefe
-    }
+
+    //--------------------------parametros--------------------------
+        var fcha = new Date();
+        var anno = fcha.getFullYear();
+        $.ajax({
+            url: 'lista/ListarParametro', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{ "cod_anno": anno },
+            success: function(result){
+                console.log('response',result['response'][0]['cantidad'])
+                document.getElementById("parametroX").value = result['response'][0]['cantidad'];
+                document.getElementById("parametroY").value = result['response'][1]['cantidad'];
+            }
+        });
+}
     
     //-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVacEmp');
