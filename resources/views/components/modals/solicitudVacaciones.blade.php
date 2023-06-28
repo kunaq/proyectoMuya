@@ -171,24 +171,27 @@ window.onload= function() {
           var auxFech = new Date(fch_ingreso);
           var diferenciaMilisegundos = fechaActual - auxFech;
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
+          console.log('diferenciaAnios',diferenciaAnios);
           if (diferenciaAnios < 1) {
+            botonSolicitud.disabled = false;
             botonConvenio.disabled = true;
           } else {
-            botonConvenio.disabled = false;
+            if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
+              botonSolicitud.disabled = true;
+              botonConvenio.disabled = false;
+            }else {
+              botonSolicitud.disabled = false;
+              botonConvenio.disabled = true;
+            }
           }
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
+          console.log('diferenciaMeses',diferenciaMeses);
           if (diferenciaMeses < 3) {
            botonSolicitud.disabled = true;
           } else {
             botonSolicitud.disabled = false;
           }
-          if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
-            botonSolicitud.disabled = true;
-            botonConvenio.disabled = false;
-          }else {
-            botonSolicitud.disabled = false;
-            botonConvenio.disabled = true;
-          }
+          
           numUltDias = result['response']['num_ultimo_dias'];
       }
   });//ajax obtener trabajador
