@@ -5,11 +5,11 @@
     @csrf
     
     
-    <div class="modal fade" id="ModalCargaMasivaConfig" tabindex="-1" aria-labelledby="ModalReglasLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalCargaMasivaConfig" tabindex="-1" aria-labelledby="ModalCargaMasivaConfig" aria-hidden="true">
       <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title card-title fs-5" id="ModalReglasLabel">Carga Masiva de configuraciones</h1>
+            <h1 class="modal-title card-title fs-5" id="ModalCargaMasivaConfigLabel">Carga Masiva de configuraciones</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="">
@@ -21,8 +21,8 @@
               
               <div class="mb-3 col-12 col-md-6">
                 <div class="form-group">
-                  <label for="annoIni" class="form-label">Año:</label>
-                  <select class="form-select" name="annoIni" id="annoIni">
+                  <label for="annoIniConfig" class="form-label">Año:</label>
+                  <select class="form-select" name="annoIniConfig" id="annoIniConfig">
                   </select>
                 </div>
               </div>

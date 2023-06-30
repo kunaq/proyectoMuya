@@ -907,7 +907,7 @@ btnProcesar.addEventListener("click", function() {
         crossDomain: true,
         dataType: 'json',
         //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
-        data:{'codTra':'TRA00603','fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
             console.log(respuesta['response']);
             var data = []; 
