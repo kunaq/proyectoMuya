@@ -170,26 +170,27 @@ window.onload= function() {
           var fechaActual = new Date();
           var auxFech = new Date(fch_ingreso);
           var diferenciaMilisegundos = fechaActual - auxFech;
+
+          var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
+          console.log('diferenciaMeses',diferenciaMeses);
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
           console.log('diferenciaAnios',diferenciaAnios);
+        
           if (diferenciaAnios < 1) {
-            botonSolicitud.disabled = false;
             botonConvenio.disabled = true;
-          } else {
-            if ( '@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
+            if (diferenciaMeses < 3) {
+              botonSolicitud.disabled = true;  
+            } else {
+              botonSolicitud.disabled = false;
+            }
+          }else{
+            if ('@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
               botonSolicitud.disabled = true;
               botonConvenio.disabled = false;
-            }else {
+            } else {
               botonSolicitud.disabled = false;
               botonConvenio.disabled = true;
             }
-          }
-          var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
-          console.log('diferenciaMeses',diferenciaMeses);
-          if (diferenciaMeses < 3) {
-           botonSolicitud.disabled = true;
-          } else {
-            botonSolicitud.disabled = false;
           }
           
           numUltDias = result['response']['num_ultimo_dias'];
