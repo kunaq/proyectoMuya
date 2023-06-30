@@ -33,7 +33,7 @@ inputFchInicio.addEventListener("change", function() {
         minimaDate.setDate(parseInt(fechaParts[0]));
         minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
         minimaDate.setFullYear(parseInt(fechaParts[2]));
-        minimo = minimaDate.setDate(minimaDate.getDate() + 7);
+        minimo = minimaDate.setDate(minimaDate.getDate() + 6);
     }else{
         minimo = fchInicio;
     }
