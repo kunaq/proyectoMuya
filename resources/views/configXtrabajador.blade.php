@@ -356,17 +356,9 @@
                         <div class="row">
                             <div class="col-12 col-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" id="buscarDoc" >Cargar</button></h5>
+                                    <h5><button class="btn btn-success btnDorado" id="btnModalCarga" data-bs-toggle="modal" data-bs-target="#ModalCargaMasivaConfig">Cargar</button></h5>
                                 </div>
                             </div>                      
-                            <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
-                            </div>
-                            <div class="col-11 col-md-8">
-                                <div class="form-group">
-                                    <h5>Aprobar automáticamente las vacaciones que inician el siguiente mes</h5>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -450,7 +442,7 @@
         dataType: 'json',
         success: function(respuesta){ 
                 respuesta['response'].forEach(function(word){
-                console.log(word);
+                //console.log(word);
                 $("#Responsable").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
             });
         },//success
@@ -474,7 +466,7 @@
             dataType: 'json',
             data :{'cod_trabajador': cod_trabajador},
             success: function(result){
-                console.log(result);
+               // console.log(result);
               if(result["response"]["flg_requiere_aprobacion"]=='SI'){document.getElementById("flg_requiere_aprobacion").checked = true;}else{document.getElementById("flg_requiere_aprobacion").checked = false;}
               document.getElementById("num_ultimo_dias").value =result["response"]["num_ultimo_dias"];
               document.getElementById("cod_grupo").value =result["response"]["cod_grupo"];
@@ -524,61 +516,61 @@
         else{InsertarResponsable();}
         
     }
-    function InsertarColaborador() {
+function InsertarColaborador() {
                
-        var cod_responsable=document.getElementById("Responsable").value;
-        //var cod_trabajador=cod_trabajador;
-        var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
-                data = {
-                    'cod_responsable': cod_responsable,
-                    'cod_trabajador': cod_trabajador,
-                    'num_ultimo_dias': num_ultimo_dias
-                }
-                console.log(cod_trabajador);
-      Swal.fire({
-      title: '¿Esta seguro de agregar un nuevo colaborador?',
-      text: 'Confirmación',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#35B44A',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
+    var cod_responsable=document.getElementById("Responsable").value;
+    //var cod_trabajador=cod_trabajador;
+    var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+        data = {
+            'cod_responsable': cod_responsable,
+            'cod_trabajador': cod_trabajador,
+            'num_ultimo_dias': num_ultimo_dias
+        }
+    //console.log(cod_trabajador);
+    Swal.fire({
+    title: '¿Esta seguro de agregar un nuevo colaborador?',
+    text: 'Confirmación',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#a18347',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Aceptar'
     }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(cod_trabajador);
-        $.ajax({
-                        url: 'api/InsertarColaborador', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'data': data},
-                        success: function(respuesta){
-                            console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se agrego el colaborador con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data rechazado',data);
-                            }
-                            })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax   
-      }
+    if (result.isConfirmed) {
+        //console.log(cod_trabajador);
+            $.ajax({
+                url: 'api/InsertarColaborador', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'data': data},
+                success: function(respuesta){
+                    console.log(respuesta);
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se agrego el colaborador con éxito',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log('data rechazado',data);
+                    }
+                    })
+                },//success
+                error(e){
+                    console.log(e.message);
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'Ha ocurrido un error intentelo nuevamente.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    })
+                }//error
+            });//ajax   
+        }
     })
 
-    }
+}
 
 
     function ActualizarColaborador() {
@@ -597,8 +589,8 @@
                  text: 'Confirmación',
                  icon: 'question',
                  showCancelButton: true,
-                 confirmButtonColor: '#35B44A',
-                 cancelButtonColor: '#d33',
+                 confirmButtonColor: '#a18347',
+                 cancelButtonColor: '#6c757d',
                  confirmButtonText: 'Aceptar'
                }).then((result) => {
                  if (result.isConfirmed) {
@@ -653,8 +645,8 @@
              text: 'Confirmación',
              icon: 'question',
              showCancelButton: true,
-             confirmButtonColor: '#35B44A',
-             cancelButtonColor: '#d33',
+             confirmButtonColor: '#a18347',
+             cancelButtonColor: '#6c757d',
              confirmButtonText: 'Aceptar'
            }).then((result) => {
              if (result.isConfirmed) {

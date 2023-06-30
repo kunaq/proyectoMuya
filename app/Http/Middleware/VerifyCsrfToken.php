@@ -68,5 +68,6 @@ class VerifyCsrfToken extends Middleware
         
         'api/InsertarSolicitudVacaciones',
         '/subir-archivo',
+        '/subir-archivo-config',
     ];
 }

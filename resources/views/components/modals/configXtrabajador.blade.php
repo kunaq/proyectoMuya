@@ -1,41 +1,21 @@
-  <!-- -------------------Modal Reglas------------------------------- -->
-
-  <div class="modal fade" id="ModalReglas" tabindex="-1" aria-labelledby="ModalReglasLabel" aria-hidden="true">
-    <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title card-title fs-5" id="ModalReglasLabel">Reglas de Solicitud de vacaciones</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="bodyRegla">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success btnDorado" data-bs-dismiss="modal">Aceptar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- -------------------Modal Carga Masiva Excel------------------------------- -->
 
   
-  <form class="" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data">
+  <form class="" action="{{ route('subirArchivoConfiguraciones') }}" method="POST" enctype="multipart/form-data">
     @csrf
     
     
-    <div class="modal fade" id="ModalCargaMasiva" tabindex="-1" aria-labelledby="ModalReglasLabel" aria-hidden="true">
+    <div class="modal fade" id="ModalCargaMasivaConfig" tabindex="-1" aria-labelledby="ModalReglasLabel" aria-hidden="true">
       <div class="modal-dialog  modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title card-title fs-5" id="ModalReglasLabel">Carga Masiva de vacaciones</h1>
+            <h1 class="modal-title card-title fs-5" id="ModalReglasLabel">Carga Masiva de configuraciones</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" id="">
             {{-- <div class="col-md-5" style="text-align: -webkit-center">
                 <input  class="btn btn-success btnDorado" type="file" name="archivo">
-            </div> --}}
-
-            
+            </div> --}}  
             
             <div class="row" style="display: flex; align-items: baseline;">
               
@@ -91,16 +71,3 @@
     </div>
 
   </form>
-
-<script>
-  var obj = document.getElementById('archivo');
-
-  obj.addEventListener('input', function(){
-    if (obj.value == '') {
-      document.getElementById('buscarDoc2').setAttribute('disabled','true');
-    }else{
-      document.getElementById('buscarDoc2').removeAttribute('disabled');
-    }
-  });
-  
-</script>

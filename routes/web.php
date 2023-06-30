@@ -122,6 +122,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
 
     //------------------------Subir archivo Excel--------------------------
     Route::post('/subir-archivo', [ArchivoController::class, 'SubirArchivo'])->name('subirArchivo');
+    Route::post('/subir-archivo-config', [ArchivoController::class, 'subirArchivoConfiguraciones'])->name('subirArchivoConfiguraciones');
 
 // Route::get('/', function () {
 //     return view('welcome');
