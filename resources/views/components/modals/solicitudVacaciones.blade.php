@@ -172,9 +172,9 @@ window.onload= function() {
           var diferenciaMilisegundos = fechaActual - auxFech;
 
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
-          console.log('diferenciaMeses',diferenciaMeses);
+          //console.log('diferenciaMeses',diferenciaMeses);
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
-          console.log('diferenciaAnios',diferenciaAnios);
+          //console.log('diferenciaAnios',diferenciaAnios);
         
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;
@@ -192,7 +192,7 @@ window.onload= function() {
               botonConvenio.disabled = true;
             }
           }
-          
+
           numUltDias = result['response']['num_ultimo_dias'];
       }
   });//ajax obtener trabajador
@@ -227,7 +227,7 @@ window.onload= function() {
     crossDomain: true,
     dataType: 'json',
     success: function(respuesta){ 
-      console.log(respuesta);
+      //console.log(respuesta);
       var body = document.getElementById('bodyRegla'); //console.log('ver', respuesta['response']);
       var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
       body.innerHTML = aux;
@@ -271,7 +271,7 @@ window.onload= function() {
       dataType: 'json',
       data:{ "cod_anno": anno },
       success: function(result){
-        console.log('response',result['response'][0]['cantidad'])
+        //console.log('response',result['response'][0]['cantidad'])
         document.getElementById("parametroX").value = result['response'][0]['cantidad'];
         document.getElementById("parametroY").value = result['response'][1]['cantidad'];
       }
@@ -463,11 +463,11 @@ btnSolicitar.addEventListener("click", function() {
     diferenciaExceso = cantDias - diasGenerados;
 
     var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : 0;
-    console.log('diferenciaExceso',diferenciaExceso);
+    //console.log('diferenciaExceso',diferenciaExceso);
 
     var reprog = document.getElementById('reprogramacion').value;
     var numLinea = document.getElementById('numLinea').value;
-    var fchRetorno = document.getElementById('fchRetornoBD');
+    var fchRetorno = document.getElementById('fchRetornoBD').value;
 
     var numLineaAnt = (reprog == 'SI') ? numLineaAnt : '';
 
@@ -507,7 +507,7 @@ btnSolicitar.addEventListener("click", function() {
           dataType: 'json',
           data:{'codGrupo':'@php echo(session('codGrupoVac')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
           success: function(respuesta){
-              //console.log(respuesta['response']['ctd_coincidencia']);
+             // console.log('coincidencia',respuesta['response']['ctd_coincidencia']);
               if(respuesta['response']['ctd_coincidencia'] > parametroX){
                 Swal.fire({
                     icon: 'warning',
@@ -519,8 +519,11 @@ btnSolicitar.addEventListener("click", function() {
                     //location.reload();
                   }
                 })
-              }else{
+              }
+              else{
+               // console.log('else parametro x');
                 if(reprog == 'NO'){
+                  console.log(solVac);
                   $.ajax({
                       url: 'api/InsertarSolicitudVacaciones', 
                       method: "PUT",
@@ -529,7 +532,7 @@ btnSolicitar.addEventListener("click", function() {
                       data:{'solVac':solVac},
                       success: function(respuesta){
                           console.log(respuesta);
-                          enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+                         // enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
                           Swal.fire({
                               icon: 'success',
                               text: 'Se ha registrado su solicitud con éxito',
@@ -544,14 +547,15 @@ btnSolicitar.addEventListener("click", function() {
                       error(e){
                           console.log(e.message);
                           Swal.fire({
-                              icon: 'warning',
-                              text: 'Ha ocurrido un error intentelo nuevamente.',
-                              confirmButtonText: 'Continuar',
-                              confirmButtonColor: '#a18347',
-                              })
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                          })
                       }//error
                   });//ajax
-                }else{
+                }
+                else{
                   var numLinea = document.getElementById('numLinea').value;
                   var fchInicioRech = document.getElementById('fchInicioRech').value;
                   var fchFinRech = document.getElementById('fchFinRech').value;

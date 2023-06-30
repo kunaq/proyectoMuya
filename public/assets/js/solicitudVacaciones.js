@@ -106,7 +106,7 @@ inputFchFin.addEventListener("change", function() {
     // Formatear la fecha en el formato 'Día de la semana día de mes de año'
     const fechaFormateada = `${diaSemana}, ${dia} de ${mesesAno[mes]} del ${ano}.`;
 
-    console.log('fchfin', fechaFormateada);
+    //console.log('fchfin', fechaFormateada);
 
     // Agregar 1 día a la fecha de retorno
     fchFin.setDate(fchFin.getDate() + 1);
@@ -126,9 +126,12 @@ inputFchFin.addEventListener("change", function() {
     // Formatear la nueva fecha en el formato 'Día de la semana día de mes de año'
     const nuevoFechaFormateada = `${nuevoDiaSemana}, ${nuevoDia} de ${nuevoMes} del ${nuevoAno}.`;
 
-    document.getElementById('fchRetornoBD').value = `${nuevoAno}-${nuevoMes}-${nuevoDia}`;
+    const diaForm = (nuevoDia < 10) ? '0'+nuevoDia : nuevoDia; 
+    const mesForm = ((fchFin.getMonth()+1) < 10) ? '0'+(fchFin.getMonth()+1) : (fchFin.getMonth()+1);
 
-    console.log('Nuevo día de retorno:', nuevoFechaFormateada);
+    document.getElementById('fchRetornoBD').value = `${nuevoAno}-${mesForm}-${diaForm}`;
+
+    //console.log('Nuevo día de retorno:', nuevoFechaFormateada);
 
     document.getElementById('resutSolVac3').innerHTML = 'Fecha de retorno: ' + nuevoFechaFormateada;
 
@@ -156,7 +159,7 @@ var btnBuscarLista = document.getElementById('buscarLista');
 btnBuscarLista.addEventListener("click", function() {
     var inicio = document.getElementById('annoIni').value;
     var fin = document.getElementById('annoFin').value;
-    console.log('annoI',inicio)
+    //console.log('annoI',inicio)
     muestraListadoSolicitudes(inicio,fin);
 });
 
