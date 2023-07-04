@@ -195,7 +195,6 @@ INDICADORES
         
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/TRA00603
 
-    REPROGRAMACIONES
         
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/TRA00603
 
@@ -207,3 +206,6 @@ LISTADO DE CONSTANCIA CTS
     
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConstanciaCTS/20555348887/TRA00603/2022/2023
 
+LISTA DE VACACIONES
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarReporteVacacionesxTrabajador/20555348887/%/2023-01-01/2023-01-31

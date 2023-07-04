@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7;
+use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Exception\RequestException;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
@@ -118,13 +122,22 @@ class ArchivoController extends Controller
         $filas = $hoja->toArray();
         foreach ($filas as $key => $fila) {
 
+            if (in_array('', $fila, true)) {
+                return response()->json(['error' => 'Hay elementos vacíos en el archivo.'], 400);
+            }
+
             // Validar que la fila tenga la misma cantidad de elementos
             if (count($fila) !== 7) {
                 return response()->json(['error' => 'La fila tiene una cantidad incorrecta de elementos.'], 400);
             }
+            // for ($i=0; $i < 7; $i++) { 
+            //     if($fila[$i] == ''){
+            //         $fila[$i] = "''";
+            //     }
+            // }
 
             $datos[] = $fila;
-            $sql .= 'INSERT INTO gplde_grupo_vacaciones_temporal  (cod_trabajador,cod_responsable,flg_no_cruzar,flg_no_cruzar_jefe,flg_delegar_permiso,flg_requiere_aprobacion,num_ultimo_dias,cod_trabajador_registro ) VALUES('.$fila[0].','.$fila[1].','.$fila[2].','.$fila[3].','.$fila[4].','.$fila[5].','.$fila[6].','.session('codTrabajador').')';
+            $sql .= "INSERT INTO gplde_grupo_vacaciones_temporal (cod_trabajador,cod_responsable,flg_no_cruzar,flg_no_cruzar_jefe,flg_delegar_permiso,flg_requiere_aprobacion,num_ultimo_dias,cod_trabajador_registro ) VALUES('".$fila[0]."','".$fila[1]."','".$fila[2]."','".$fila[3]."','".$fila[4]."','".$fila[5]."','".$fila[6]."','".session('codTrabajador')."')";
         }
 
         // Generar el contenido JSON
@@ -132,6 +145,30 @@ class ArchivoController extends Controller
         response()->json($contenidoJson);
 
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
+
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = [
+            'dsc_cadena'=> $sql,
+            'cod_trabajador' => session('codTrabajador')
+        ];
+        //return $data;
+        $contenidoJson = json_encode($data);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarConfiguracionMasivo/20555348887',$headers,$contenidoJson);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
 
         // Devolver una respuesta adecuada
         return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);

@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-md-8 offset-md-3">
                                 <div class="form-group">
-                                    <select name="Trabajador" id="Trabajador" class="form-control selectForm js-example-diacritics"  onchange="ObtenerTrabajador()">
+                                    <select name="codTrabajador" id="codTrabajador" class="form-control selectForm js-example-diacritics"  onchange="ObtenerTrabajador(this.value)">
                                     </select>
                                 </div>
                             </div>
@@ -282,11 +282,11 @@
                             </div>
                             <div class="col-12 col-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" id="buscarDoc">Descargar</button></h5>
+                                    <h5><button class="btn btn-success btnDorado" id="btnDescVacaciones">Descargar</button></h5>
                                 </div>
                             </div>                      
                             <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
+                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault3">
                             </div>
                             <div class="col-11 col-md-3" style="text-align: -webkit-center">
                                 <div class="form-group">
@@ -452,7 +452,7 @@ window.onload= function() {
         }//error
     });
 
-   ObtenerTrabajador();
+   ObtenerTrabajador('@php echo(session('codTrabajador')) @endphp');
 
     //---------------------------Años------------------------------
     $.ajax({
@@ -475,16 +475,27 @@ window.onload= function() {
 
 }
 
-var cod_trabajador='@php echo(session('codTrabajador')) @endphp';
-function ObtenerTrabajador() {
-    //cod_trabajador=document.getElementById("Trabajador").value;
-    console.log(cod_trabajador);
+var obj = document.getElementById('archivo');
+
+obj.addEventListener('input', function(){
+    if (obj.value == '') {
+        document.getElementById('buscarDoc3').setAttribute('disabled','true');
+    }else{
+        document.getElementById('buscarDoc3').removeAttribute('disabled');
+    }
+});
+
+//ar cod_trabajador='@php echo(session('codTrabajador')) @endphp';
+
+function ObtenerTrabajador(codTra) {
+    //cod_trabajador=document.getElementById("codTrabajador").value;
+    //console.log(cod_trabajador);
     $.ajax({
         url: 'api/ObtenerTrabajador', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data :{'cod_trabajador': cod_trabajador},
+        data :{'cod_trabajador': codTra},
         success: function(result){
             // console.log(result);
             if(result["response"]["flg_requiere_aprobacion"]=='SI'){document.getElementById("flg_requiere_aprobacion").checked = true;}else{document.getElementById("flg_requiere_aprobacion").checked = false;}
@@ -506,7 +517,7 @@ function ObtenerTrabajador() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data :{'cod_trabajador': cod_trabajador},
+        data :{'cod_trabajador': codTra},
         success: function(respuesta){
             //console.log(respuesta);
 
@@ -592,86 +603,30 @@ function InsertarColaborador() {
 
 }
 
-
-    function ActualizarColaborador() {
-               
-        var cod_responsable=document.getElementById("Responsable").value;
-        var cod_trabajador=document.getElementById("Trabajador").value;
-        var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
-        data = {
-            'cod_responsable': cod_responsable,
-            'cod_trabajador': cod_trabajador,
-            'num_ultimo_dias': num_ultimo_dias
-        }
-                      
-        Swal.fire({
-        title: '¿Esta seguro de agregar un nuevo colaborador?',
-        text: 'Confirmación',
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#a18347',
-        cancelButtonColor: '#6c757d',
-        confirmButtonText: 'Aceptar'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                console.log(cod_trabajador);
-                $.ajax({
-                    url: 'api/ActualizarColaborador', 
-                    method: "PUT",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'data': data},
-                    success: function(respuesta){
-                        console.log(respuesta);
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Se agrego el colaborador con éxito',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        }).then((result) => {
-                        if (result.isConfirmed) {
-                            console.log('data rechazado',data);
-                        }
-                        })
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                            })
-                    }//error
-                });//ajax   
-            }
-        })
-           
-    }
-
-
-
-    function InsertarResponsable() {
-                
-        data = {
-            'dsc_grupo_vacaciones': 'ww',
-            'cod_responsable': cod_trabajador
+function ActualizarColaborador() {
             
-        }
-        console.log(cod_trabajador);
-            Swal.fire({
-            title: '¿Esta seguro de agregar un nuevo responsable?',
-            text: 'Confirmación',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonColor: '#a18347',
-            cancelButtonColor: '#6c757d',
-            confirmButtonText: 'Aceptar'
-        }).then((result) => {
-            if (result.isConfirmed) {
+    var cod_responsable=document.getElementById("Responsable").value;
+    var cod_trabajador=document.getElementById("Trabajador").value;
+    var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+    data = {
+        'cod_responsable': cod_responsable,
+        'cod_trabajador': cod_trabajador,
+        'num_ultimo_dias': num_ultimo_dias
+    }
+                    
+    Swal.fire({
+    title: '¿Esta seguro de agregar un nuevo colaborador?',
+    text: 'Confirmación',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#a18347',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
             console.log(cod_trabajador);
             $.ajax({
-                url: 'api/InsertarResponsable', 
+                url: 'api/ActualizarColaborador', 
                 method: "PUT",
                 crossDomain: true,
                 dataType: 'json',
@@ -680,7 +635,7 @@ function InsertarColaborador() {
                     console.log(respuesta);
                     Swal.fire({
                         icon: 'success',
-                        text: 'Se agrego el responsable con éxito',
+                        text: 'Se agrego el colaborador con éxito',
                         confirmButtonText: 'Continuar',
                         confirmButtonColor: '#a18347',
                     }).then((result) => {
@@ -699,10 +654,62 @@ function InsertarColaborador() {
                         })
                 }//error
             });//ajax   
-            }
-        })
-    
+        }
+    })
+        
+}
+
+function InsertarResponsable() {
+            
+    data = {
+        'dsc_grupo_vacaciones': 'ww',
+        'cod_responsable': cod_trabajador 
     }
+    console.log(cod_trabajador);
+    Swal.fire({
+        title: '¿Esta seguro de agregar un nuevo responsable?',
+        text: 'Confirmación',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#a18347',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Aceptar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log(cod_trabajador);
+            $.ajax({
+                url: 'api/InsertarResponsable', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'data': data},
+                success: function(respuesta){
+                    console.log(respuesta);
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se agrego el responsable con éxito',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log('data rechazado',data);
+                        }
+                    })
+                },//success
+                error(e){
+                    console.log(e.message);
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'Ha ocurrido un error intentelo nuevamente.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    })
+                }//error
+            });//ajax   
+        }
+    })
+
+}
 
 //-----valida dias maximos 30----
     var input = document.getElementById("num_ultimo_dias");
@@ -712,7 +719,6 @@ function InsertarColaborador() {
         input.value = 30;
         }
     });
-//-------------------------------
 
 //-----------------------Procesar descargar reporte solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnDescargConfig');
@@ -734,7 +740,8 @@ btnProcesar.addEventListener("click", function() {
     var chckDsc = document.getElementById('flexCheckDefault2');
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
-    var codTra = '@php echo(session('codTrabajador')) @endphp';
+    //var codTra = '@php echo(session('codTrabajador')) @endphp';
+    var codTra = (document.getElementById('codTrabajador').value != '') ? document.getElementById('codTrabajador').value : '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
         url: 'ListarSolicitudVacacionesxResponsable', 
@@ -764,17 +771,18 @@ btnProcesar.addEventListener("click", function() {
                 var fchAprob = element['fch_aprobado'].split('T');
                 fchAprob = formatDate(fchAprob[0]);
                 var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+                var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
 
                 filaData = [
                     element['cod_trabajador']+'-'+element['num_linea'],
                     element['cod_trabajador'],
                     element['dsc_trabajador'],
-                    'AREA',
+                    element['dsc_area'],
                     element['dsc_sede'],
-                    'CARGO',
+                    element['dsc_cargo'],
                     fchIni,
                     fchFin,
-                    element['cant_dias'],
+                    element['cant_dia'],
                     fchReinc,
                     element['dsc_estado'],
                     element['dsc_subestado_aprobacion'],
@@ -782,15 +790,14 @@ btnProcesar.addEventListener("click", function() {
                     element['dsc_subestado_solicitud'],
                     firmado,
                     pagado,
-                    'DIAS EXCEDIDOS',
-                    'CODIGO SOLICITUD ANTERIOR',
+                    element['ctd_dias_exceso'],
+                    solicitudAnt,
                     fchReg,
-                    'COD-TRA REGISTRO',
+                    element['cod_trabajador_registro'],
                     fechaAproba,
                     element['cod_trabajador_aprobado'],
                     fchRechz,
-                    element['cod_trabajador_rechazado']
-                    
+                    element['cod_trabajador_rechazado']  
                 ]
                 data.push(filaData);
             });
@@ -800,6 +807,10 @@ btnProcesar.addEventListener("click", function() {
 
             // Crear una hoja de cálculo (worksheet)
             var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Agregar cabecera
+            var header = ['SOLICITUD','TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA DE INGRESO.','VAC. GENERADA','VAC. PROGRAMADA','SALDO','ESTADO ACUERDO ADEL. VAC.','GRUPO','COMISIONISTA','REQUIERE APROBACIÓN VAC.','CÓDIGO TRABAJADOR QUIEN APRUEBA VAC.','REQUIERE SUPERVISIÓN DE ASISTENCIA','REGLA'];
+            XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
 
             // Agregar la hoja de cálculo al libro de trabajo
             XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
@@ -827,7 +838,170 @@ btnProcesar.addEventListener("click", function() {
         }//error    
     });
 
+});
+
+//-----------------------Procesar descargar reporte de vacaciones---------------------
+var btnProcesar = document.getElementById('btnDescVacaciones');
+btnProcesar.addEventListener("click", function() {
+    var fchInicio = document.getElementById('datepicker1').value;
+    var fechaParts = fchInicio.split('-');
+    var day = fechaParts[0];
+    var month = fechaParts[1];
+    var year = fechaParts[2]; 
+    fchInicio = year + "-" + month + "-" + day;
+
+    var fchFin = document.getElementById('datepicker2').value;
+    var fechaPartsF = fchFin.split('-');
+    var dayF = fechaPartsF[0];
+    var monthF = fechaPartsF[1];
+    var yearF = fechaPartsF[2]; 
+    fchFin = yearF + "-" + monthF + "-" + dayF;
+
+    var chckDsc = document.getElementById('flexCheckDefault2');
+    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
+
+    //var codTra = '@php echo(session('codTrabajador')) @endphp';
+    var codTra = (document.getElementById('codTrabajador').value != '') ? document.getElementById('codTrabajador').value : '@php echo(session('codTrabajador')) @endphp';
+
+    $.ajax({
+        url: 'ListarReporteVacacionesxTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        success: function(respuesta){
+            console.log(respuesta['response']);
+            var data = []; 
+            respuesta['response'].forEach(element => {
+
+                var fchIni = element['fch_inicio'].split('T');
+                fchIni = formatDate(fchIni[0]);
+                var fchFin = element['fch_fin'].split('T');
+                fchFin = formatDate(fchFin[0]);
+                var fchReinc = element['fch_retorno'].split('T');
+                fchReinc = formatDate(fchReinc[0]);
+                var fchReg = element['fch_registro_solicitud'].split('T');
+                fchReg = formatDate(fchReg[0]);
+                var fchRechz = element['fch_rechazado'].split('T');
+                fchRechz = formatDate(fchRechz[0]);
+
+                var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
+                var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
+                var fchAprob = element['fch_aprobado'].split('T');
+                fchAprob = formatDate(fchAprob[0]);
+                var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+                var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
+
+                filaData = [
+                    element['cod_trabajador']+'-'+element['num_linea'],
+                    element['cod_trabajador'],
+                    element['dsc_trabajador'],
+                    element['dsc_area'],
+                    element['dsc_sede'],
+                    element['dsc_cargo'],
+                    fchIni,
+                    fchFin,
+                    element['cant_dia'],
+                    fchReinc,
+                    element['dsc_estado'],
+                    element['dsc_subestado_aprobacion'],
+                    element['dsc_subestado_rechazo'],
+                    element['dsc_subestado_solicitud'],
+                    firmado,
+                    pagado,
+                    element['ctd_dias_exceso'],
+                    solicitudAnt,
+                    fchReg,
+                    element['cod_trabajador_registro'],
+                    fechaAproba,
+                    element['cod_trabajador_aprobado'],
+                    fchRechz,
+                    element['cod_trabajador_rechazado']  
+                ]
+                data.push(filaData);
+            });
+            
+            // Crear un libro de trabajo (workbook)
+            var workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo (worksheet)
+            var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+            // Agregar cabecera
+            var header = ['TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA INICIO VAC.','FECHA FIN VAC.','DÍAS VAC.','DÍA DE INCORPORACIÓN','ESTADO ACTUAL SOL.','SUBESTADO APROBACIÓN','SUBESTADO RECHAZO','SUBESTADO SOLICITUD','ESTADO FIRMA SOL.',' ESTADO DE PAGO','CANT. DÍAS EXCEDIDOS','REPROGRAMACIÓN','FECHA REGISTRO SOL.','CÓDIGO TRABAJADOR REGISTRÓ','FECHA APROBACIÓN SOL.','CÓDIGO TRABAJADOR DEL APROBADOR','FECHA RECHAZO SOL.','CÓDIGO TRABAJADOR DE RECHAZO'];
+            XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+
+            // Agregar la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+            // Convertir el libro de trabajo a un archivo binario
+            var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+            // Crear un blob a partir del archivo binario
+            var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Crear una URL para el blob
+            var url = URL.createObjectURL(blob);
+
+            // Crear un enlace de descarga
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = 'solicitudVacaciones'+codTra+'.xlsx';
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error    
+    });
 
 });
-    
+
+//----------------------------------carga masiva--------------------------
+
+// var btnProcesar = document.getElementById('buscarDoc3');
+// btnProcesar.addEventListener("click", function() {
+
+//     var form = document.getElementById("formCargaMasivaConfig");
+//     form.addEventListener("submit", function(event) {
+//         // Detener el envío del formulario
+//         event.preventDefault();
+//     });
+
+
+//     $.ajax({
+//         url: '/subir-archivo-config', 
+//         method: "POST",
+//         crossDomain: true,
+//         dataType: 'json',
+//         data:{'data': data},
+//         success: function(respuesta){
+//             console.log(respuesta);
+//             Swal.fire({
+//                 icon: 'success',
+//                 text: 'Se agrego el responsable con éxito',
+//                 confirmButtonText: 'Continuar',
+//                 confirmButtonColor: '#a18347',
+//             }).then((result) => {
+//             if (result.isConfirmed) {
+//                 console.log('data rechazado',data);
+//             }
+//             })
+//         },//success
+//         error(e){
+//             console.log(e.message);
+//             Swal.fire({
+//                 icon: 'warning',
+//                 text: 'Ha ocurrido un error intentelo nuevamente.',
+//                 confirmButtonText: 'Continuar',
+//                 confirmButtonColor: '#a18347',
+//                 })
+//         }//error
+//     });//ajax 
+
+// });
+  
 </script>

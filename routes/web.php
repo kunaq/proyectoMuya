@@ -112,6 +112,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('api/ListarVentana', [APIController::class, 'ListarVentana'])->name('api.ListarVentana');
     Route::get('lista/ListarSolicitudVacacionesxResponsable', [ListaController::class, 'ListarSolicitudVacacionesxResponsable'])->name('lista.ListarSolicitudVacacionesxResponsable');
     Route::get('lista/ListarFeriado', [ListaController::class, 'ListarFeriado'])->name('lista.ListarFeriado');
+    Route::get('lista/ListarReporteVacacionesxTrabajador', [ListaController::class, 'ListarReporteVacacionesxTrabajador'])->name('lista.ListarReporteVacacionesxTrabajador');
 
     //--------------------indicadores---------------------------------
     Route::get('lista/ObtenerPromedioDiasPendiente', [ListaController::class, 'ObtenerPromedioDiasPendiente'])->name('lista.ObtenerPromedioDiasPendiente');

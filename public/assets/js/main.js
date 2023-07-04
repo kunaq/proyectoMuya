@@ -352,6 +352,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
           var correoCorp = respuesta['response']['dsc_mail_empresa'];
+          var correoSup = respuesta['response']['dsc_mail_empresa_supervisor'];
 
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
@@ -367,7 +368,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
               method: "post",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'accion':accion},
+              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'correoSup':correoSup,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'accion':accion},
               success: function(respuesta){
                   console.log(respuesta);
               },//success

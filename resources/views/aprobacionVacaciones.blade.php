@@ -910,7 +910,7 @@ btnProcesar.addEventListener("click", function() {
         data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
             console.log(respuesta['response']);
-            var data = []; 
+            var header = ['SOLICITUD','TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA INICIO VAC.','FECHA FIN VAC.','DÍAS VAC.','DÍA DE INCORPORACIÓN','ESTADO ACTUAL SOL.','SUBESTADO APROBACIÓN','SUBESTADO RECHAZO','SUBESTADO SOLICITUD','ESTADO FIRMA SOL.',' ESTADO DE PAGO','CANT. DÍAS EXCEDIDOS','REPROGRAMACIÓN','FECHA REGISTRO SOL.','CÓDIGO TRABAJADOR REGISTRÓ','FECHA APROBACIÓN SOL.','CÓDIGO TRABAJADOR DEL APROBADOR','FECHA RECHAZO SOL.','CÓDIGO TRABAJADOR DE RECHAZO'];
             respuesta['response'].forEach(element => {
 
                 var fchIni = element['fch_inicio'].split('T');
@@ -929,17 +929,18 @@ btnProcesar.addEventListener("click", function() {
                 var fchAprob = element['fch_aprobado'].split('T');
                 fchAprob = formatDate(fchAprob[0]);
                 var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+                var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
 
                 filaData = [
                     element['cod_trabajador']+'-'+element['num_linea'],
                     element['cod_trabajador'],
                     element['dsc_trabajador'],
-                    'AREA',
+                    element['dsc_area'],
                     element['dsc_sede'],
-                    'CARGO',
+                    element['dsc_cargo'],
                     fchIni,
                     fchFin,
-                    element['cant_dias'],
+                    element['cant_dia'],
                     fchReinc,
                     element['dsc_estado'],
                     element['dsc_subestado_aprobacion'],
@@ -947,10 +948,10 @@ btnProcesar.addEventListener("click", function() {
                     element['dsc_subestado_solicitud'],
                     firmado,
                     pagado,
-                    'DIAS EXCEDIDOS',
-                    'CODIGO SOLICITUD ANTERIOR',
+                    element['ctd_dias_exceso'],
+                    solicitudAnt,
                     fchReg,
-                    'COD-TRA REGISTRO',
+                    element['cod_trabajador_registro'],
                     fechaAproba,
                     element['cod_trabajador_aprobado'],
                     fchRechz,

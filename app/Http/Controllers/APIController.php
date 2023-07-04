@@ -367,6 +367,8 @@ class APIController extends Controller
 
         $destinatario = $request['destinatario'];
         $correoDestino = $request['correoDestino'];
+        $correoCorp = $request['correoCorp'];
+        $correoSupervisor = $request['correoSup'];
         $actividad = $request['actividad'];
         $fechaLimite = $request['fchLimite'];
         $fechaNotificacion = $request['fchNotif'];
@@ -432,9 +434,15 @@ class APIController extends Controller
         ]);
     
         // Enviar el correo
-        Mail::html($mensaje, function ($message) use ($correoDestino, $asunto) {
+        Mail::html($mensaje, function ($message) use ($correoDestino,$correoSupervisor,$correoCorp, $asunto) {
             $message->to($correoDestino);
             $message->subject($asunto);
+            if ($correoSupervisor != '' || $correoSupervisor != null) {
+                $message->cc($correoSupervisor);
+            }
+            if ($correoCorp != '' || $correoCorp != null) {
+                $message->cc($correoCorp);
+            }
             $message->cc('echanganaqui@kunaq.pe');
             $message->cc('larias@kunaq.pe');
             $message->cc('mgonzalez@kunaq.pe');
