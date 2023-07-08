@@ -540,7 +540,7 @@ btnSolicitar.addEventListener("click", function() {
                               confirmButtonColor: '#a18347',
                           }).then((result) => {
                             if (result.isConfirmed) {
-                             // location.reload();
+                              location.reload();
                             }
                           })
                       },//success
@@ -591,7 +591,7 @@ btnSolicitar.addEventListener("click", function() {
                                       confirmButtonColor: '#a18347',
                                   }).then((result) => {
                                     if (result.isConfirmed) {
-                                     // location.reload();
+                                      location.reload();
                                     }
                                   })
                               },//success

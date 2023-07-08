@@ -105,8 +105,9 @@ class CreaPDFController extends Controller
         $fchInicio = $request['fchIni'];
         $fchFin = $request['fchFin'];
         $fchRinc = $request['fchReinc'];
-        $cod_anno = $request['cantDias'];
-        $cod_anno = $request['accion'];
+        $cantDias = $request['cantDias'];
+        $accion = $request['accion'];
+        $idTransaccion = $request['idTransaccion'];
 
         try {
 
