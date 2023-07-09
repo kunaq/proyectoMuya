@@ -532,7 +532,7 @@ btnSolicitar.addEventListener("click", function() {
                       data:{'solVac':solVac},
                       success: function(respuesta){
                           console.log(respuesta);
-                         // enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+                          enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
                           Swal.fire({
                               icon: 'success',
                               text: 'Se ha registrado su solicitud con éxito',
