@@ -132,7 +132,7 @@ class CreaPDFController extends Controller
                     'idtransaccion'=>'200',
                     'ruc'=>'20555348887',
                     'usuario'=>'SW',
-                    'codigoformato'=>'11001',
+                    'codigoformato'=>'11005',
                     'codigotrabajador'=>$codTrabajador,
                     'nacionalidad'=>'PE',
                     'tipodocumento'=>'DNI',

@@ -209,3 +209,31 @@ LISTADO DE CONSTANCIA CTS
 LISTA DE VACACIONES
 
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarReporteVacacionesxTrabajador/20555348887/%/2023-01-01/2023-01-31
+
+OBTENER TRANSACCION
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerTransaccion/20555348887 
+
+MODIFICAR NRO TRANSACCION
+
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ActualizarTransaccion/20555348887
+        {
+            "cod_trabajador": "string",
+            "num_linea": 0,
+            "num_transaccion": 0
+        }
+
+INSERTAR SEGUIMIENTO
+    PUT https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/InsertarSeguimientoEnvio/20555348887
+
+        {
+            "as_trabajador": "string",
+            "ai_trx": 0,
+            "as_formato": "string",
+            "ai_anno": 0,
+            "as_mes": "string",
+            "as_estado": "string",
+            "as_usuario": "string",
+            "as_dsc_envio": "string",
+            "as_id_doc": "string"
+        }
