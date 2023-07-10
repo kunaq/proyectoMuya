@@ -52,6 +52,9 @@ class CreaPDFController extends Controller
         // Convertir a Base64
         $pdfBase64 = base64_encode($pdfContent);
 
+        // Eliminar el archivo PDF
+        Storage::disk('downloads')->delete($nombreArchivo);
+
         return response()->json(['base64' => $pdfBase64, 'nombre' => $nombreArchivo]);
 
     }
@@ -93,6 +96,9 @@ class CreaPDFController extends Controller
 
         // Convertir a Base64
         $pdfBase64 = base64_encode($pdfContent);
+
+        // Eliminar el archivo PDF
+        Storage::disk('downloads')->delete($nombreArchivo);
 
         return $pdfBase64;
 

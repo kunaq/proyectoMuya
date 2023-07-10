@@ -191,7 +191,7 @@ window.onload= function() {
 
           }else{
 
-            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('SolicitudVacaciones')}}"'+";'>Ir a firmar</button>";
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Ir a firmar</button>";
           }
         }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
 
@@ -377,7 +377,7 @@ function RefrescarListado(){
 
           }else{
 
-            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('SolicitudVacaciones')}}"'+";'>Ir a firmar</button>";
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Ir a firmar</button>";
           }
         }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
 

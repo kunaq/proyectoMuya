@@ -154,28 +154,31 @@
             
             var filaAccion='';
 
-            if(element['dsc_tipo_mensaje'] == 'TAREAS')
-            {
-                  if(element['cod_estado'] == 'FIN')
-                  {
+            if(element['cod_mensaje'] == '1001'){
+            
+                if(element['cod_estado'] == 'FIN'){
+
                     filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
-                  }
-                  else
-                  {
-                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Firmar</button>";
-                  }
-            }
-            else if(element['dsc_tipo_mensaje'] == 'SEGUIMIENTO')
-            {
+
+                }else{
+
+                    filaAccion='<button class="btn btn-success btnTabHome btnDorado" onclick="firmaConvenio('+codTrabajador+')">Firmar</button>';
+                }
+            }else if(element['cod_mensaje'] == '1004'){
+            
+                if(element['cod_estado'] == 'FIN'){
+
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+
+                }else{
+
+                    filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('solicitudVacaciones')}}"'+";'>Ir a firmar</button>";
+                }
+            }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
+
                 filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
-            }
-            else if(element['dsc_tipo_mensaje'] == 'ALERTAS')
-            {
-                filaAccion="";
-                
-            }
-            else if(element['dsc_tipo_mensaje'] == 'AVISOS')
-            {
+
+            }else{
                 filaAccion="";
             }
 

@@ -85,9 +85,7 @@
                                 </div>
                                 <div class="col-md-2" style="text-align: -webkit-center">
                                     <div class="form-group">
-                                        <h5><button class="btn btn-success btnDorado"
-                                                id="buscarDoc">Buscar&nbsp;&nbsp;<span
-                                                    class="bi bi-search"></span></button></h5>
+                                        <h5><button class="btn btn-success btnDorado" id="buscarDoc">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
                                     </div>
                                 </div>
                             </div>
@@ -180,13 +178,13 @@
 
 window.onload= function() {  
 
-  $.ajax({
+    $.ajax({
         url: 'lista/MuestraAnhos', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-                respuesta['response'].forEach(function(word){
+            respuesta['response'].forEach(function(word){
                 //console.log(word);
                 $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
                 $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
@@ -251,15 +249,40 @@ fIni.addEventListener('change', function() {
 document.getElementById("buscarDoc").addEventListener("click", function(e) {
     var startDate = document.getElementById("annoIni").value;
     var endDateSelect = document.getElementById("annoFin");
-    // var endDateOptions = endDateSelect.options;
-//   var obj = document.getElementById("resultado");
-//   obj.removeAttribute('hidden');
-//   obj.setAttribute('hidden', 'false');
-  
+    var finDate = endDateSelect.value;
+    var tipoDoc = document.getElementById("tipoDoc").value;
+    var codTra = '@php echo(session('codTrabajador')) @endphp';
+
   // Resto del código de búsqueda aquí...
 
-  // Generar bloques por cada año entre el inicial y final seleccionados
-  var sectionContainer = document.getElementById("sectionContainer");
+    if(tipoDoc == '11001'){
+        dscUrl = 'lista/ListarBoletaPago';
+    }else if(tipoDoc == '11002'){
+        dscUrl = 'lista/ListarConstanciaCTS';
+    }
+
+    $.ajax({
+    url: dscUrl,
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data: {'codTra': codTra, 'annoIni': startDate, 'annoFin': finDate},
+    success: function(respuesta){
+        var resultados = {}; // Objeto para almacenar los resultados por año
+
+        // Recorrer los resultados y almacenarlos en el objeto 'resultados'
+        respuesta.response.forEach(function(resultado) {
+            var anno = resultado.cod_anno;
+            if (!resultados[anno]) {
+                resultados[anno] = [];
+            }
+            resultados[anno].push(resultado);
+        });
+
+        console.log(resultados);
+        
+        // Generar bloques por cada año entre el inicial y final seleccionados
+        var sectionContainer = document.getElementById("sectionContainer");
         sectionContainer.innerHTML = ""; // Limpiar los bloques anteriores
 
         var selectedYears = []; // Variable para almacenar los años seleccionados
@@ -273,114 +296,65 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
             sectionElement.setAttribute("id", sectionId);
             sectionElement.setAttribute("hidden", "true");
 
-            var sectionContent = `
-                <section class="section dashboard" id="resultado_${year}">
-                    <div class="row">
-                        <div class="col-md-10 offset-md-1">
-                            <div class="card">
-                                <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
-                                <div class="card-body">
-                                    <h5 class="card-title" style="text-align: center;">No hay resultados para el periodo seleccionado</h5>
-                                    
+            var sectionContent = "";
+                if (resultados[year]) {
+                    // Mostrar resultados para el año actual
+                    sectionContent = `
+                        <section class="section dashboard" id="resultado_${year}">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="card">
+                                        <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
+                                        <div class="card-body">
+                                            <div class="row">`;
+                    resultados[year].forEach(function(resultado) {
+                        sectionContent += `<li>${resultado.dsc_periodo}</li>`;
+                    });
+                    sectionContent += `
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </section>
-            `;
+                        </section>
+                    `;
+                } else {
+                    // Mostrar mensaje de "No hay resultados para el periodo seleccionado"
+                    sectionContent = `
+                        <section class="section dashboard" id="resultado_${year}">
+                            <div class="row">
+                                <div class="col-md-10 offset-md-1">
+                                    <div class="card">
+                                        <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
+                                        <div class="card-body">
+                                            <h5 class="card-title" style="text-align: center;">No hay resultados para el periodo seleccionado</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                }
 
-            //----contenido variable----
-            // var sectionContent = `
-            //     <section class="section dashboard" id="resultado_${year}">
-            //         <div class="row">
-            //             <div class="col-md-10 offset-md-1">
-            //                 <div class="card">
-            //                     <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
-            //                     <div class="card-body">
-            //                         <div class="row">
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" class="btn btn-block login-btn mb-4" target="_blank">
-            //                                     <i class="bx bx-calendar"></i> Enero
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Febrero
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Marzo
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Abril
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Mayo
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Junio
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Julio
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Agosto
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Septiembre
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Octubre
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Noviembre
-            //                                 </a>
-            //                             </div>
-            //                             <div class="col-6 col-md-2">
-            //                                 <a href="assets/file/boleta.pdf" target="_blank" class="btn btn-block login-btn mb-4">
-            //                                     <i class="bx bx-calendar"></i> Diciembre
-            //                                 </a>
-            //                             </div>
-            //                         </div>
-            //                     </div>
-            //                 </div>
-            //             </div>
-            //         </div>
-            //     </section>
-            // `;
+                sectionElement.innerHTML = sectionContent;
+                sectionContainer.appendChild(sectionElement);
+            }
 
+            // Mostrar los bloques correspondientes a los años seleccionados
+            for (var i = 0; i < selectedYears.length; i++) {
+                var sectionId = "resultado_" + selectedYears[i];
+                var sectionElement = document.getElementById(sectionId);
 
-            sectionElement.innerHTML = sectionContent;
-            sectionContainer.appendChild(sectionElement);
+                if (sectionElement) {
+                    sectionElement.removeAttribute("hidden");
+                }
+            }
+        },
+        error: function(e) {
+            console.error(e);
         }
-    
+    });
 
-    // Mostrar los bloques correspondientes a los años seleccionados
-    for (var i = 0; i < selectedYears.length; i++) {
-        var sectionId = "resultado_" + selectedYears[i];
-        var sectionElement = document.getElementById(sectionId);
-
-        if (sectionElement) {
-            sectionElement.removeAttribute("hidden");
-        }
-    }
 });
 
 </script>
