@@ -10,6 +10,8 @@
 --------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
+  --fc-event-bg-color: #155450;
+  --fc-event-border-color: #155450;
 }
 
 body {
@@ -1385,12 +1387,12 @@ Estilos Home
 }
 @media (max-width: 2090px) {
   .btnConvenio{
-    font-size: 15.5px ;
+    font-size: 0.9rem ;
   }
 }
 @media (max-width: 767px) {
   .btnConvenio{
-    font-size: 1em ;
+    font-size: 1.1em ;
   }
 }
 

@@ -114,15 +114,15 @@
     <!-- Template Main JS File -->
 
 
-    <script type='importmap'>
+    {{-- <script type='importmap'>
       {
         "imports": {
           "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.6",
           "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/multimonth@6.1.6"
         }
       }
-    </script>
-    <script type='module'>
+    </script> --}}
+    {{-- <script type='module'>
       import { Calendar } from '@fullcalendar/core'
       import dayGridPlugin from '@fullcalendar/daygrid'
   
@@ -147,7 +147,7 @@
   
         calendar.render();
       });
-    </script>
+    </script> --}}
 
 <script type="text/javascript">
 
