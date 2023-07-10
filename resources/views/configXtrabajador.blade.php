@@ -354,7 +354,7 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 26px;">Carga masiva de configuraciones</h5>
                         <div class="row">
-                            <div class="col-12 col-md-2" style="text-align: -webkit-center">
+                            <div class="col-12" style="text-align: -webkit-center">
                                 <div class="form-group">
                                     <h5><button class="btn btn-success btnDorado" id="btnModalCarga" data-bs-toggle="modal" data-bs-target="#ModalCargaMasivaConfig">Cargar</button></h5>
                                 </div>
@@ -1004,4 +1004,48 @@ btnProcesar.addEventListener("click", function() {
 
 // });
   
+  // Escucha el evento de envío del formulario
+  document.getElementById('formCargaMasivaConfig').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+    // Obtiene los datos del formulario
+    var formData = new FormData(this);
+
+    // Realiza la petición AJAX
+    fetch('{{ route('subirArchivoConfiguraciones') }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            // Si hay un error, muestra la alerta de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.error,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            });
+        } else {
+            // Si no hay error, muestra la alerta de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: data.mensaje,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            }).then((result) => {
+                // Redirige a la página deseada después de cerrar la alerta de éxito
+                if (result.isConfirmed) {
+                    window.location.href = '{{ route('configXtrabajador') }}';
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
 </script>

@@ -24,7 +24,8 @@ class ArchivoController extends Controller
 
         // Verificar si la validación falla
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+            // return response()->json(['error' => $validator->errors()], 400);
+            return response()->json(['error' => 'El archivo que esta cargando es de un tipo diferente'], 400);
         }
 
         // Obtener el archivo subido
@@ -92,7 +93,10 @@ class ArchivoController extends Controller
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
 
         // Devolver una respuesta adecuada
-        return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
+        // Éxito
+        return response()->json(['mensaje' => 'Archivo procesado correctamente']);
+
+        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
     }
 
     public function subirArchivoConfiguraciones(Request $request)
@@ -104,7 +108,7 @@ class ArchivoController extends Controller
 
         // Verificar si la validación falla
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 400);
+            return response()->json(['error' => 'El archivo que esta cargando es de un tipo diferente'], 400);
         }
 
         // Obtener el archivo subido
@@ -160,7 +164,7 @@ class ArchivoController extends Controller
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarConfiguracionMasivo/20555348887',$headers,$contenidoJson);
             $promise = $client->sendAsync($request)->then(function ($response) {
-                echo  $response->getBody();
+                // echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
@@ -171,6 +175,7 @@ class ArchivoController extends Controller
         }
 
         // Devolver una respuesta adecuada
-        return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
+        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
+        return response()->json(['mensaje' => 'Archivo procesado correctamente']);
     }
 }
