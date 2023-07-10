@@ -51,8 +51,13 @@ class ArchivoController extends Controller
             Carbon::setLocale('en');
 
             // Obtener la fecha inicio y fecha fin
-            $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
-            $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+            try {
+                //code...
+                $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
+                $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+            } catch (\Throwable $th) {
+                return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
+            }
 
             // Restaurar la configuración regional original
             Carbon::setLocale(config('app.locale'));
