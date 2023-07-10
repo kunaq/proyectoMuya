@@ -100,17 +100,40 @@ class APIController extends Controller
               
             $request = new \GuzzleHttp\Psr7\Request('POST','https://test45.davicloud.com/API/v1/api_rest.php/genera_documento', $headers, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
-                $body =  $response->getBody();
+                
+                $bodyContents = $response->getBody()->getContents();
+                $cleanedBodyContents = preg_replace('/^\xEF\xBB\xBF/', '', $bodyContents); // Eliminar el carácter de BOM
+                $body = json_decode($cleanedBodyContents);
+
+                if (json_last_error() !== JSON_ERROR_NONE) {
+                    // Error al decodificar el JSON
+                    return response()->json([
+                        'error' => 'Error al decodificar el JSON de la respuesta',
+                        'bodyContents' => $bodyContents,
+                        'jsonLastError' => json_last_error_msg()
+                    ], 500);
+                }
+
+
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
 
-                //return response()->json(['status' => $code, 'mensaje' => $body]);
 
-                return $response->getBody()->getContents();
+                return response()->json([
+                    'body' => $body,
+                    'code' => $code,
+                    'reason' => $reason,
+                    'compruebaError' => isset($body->error) ? $body->error : null,
+                    'mensaje' => isset($body->message) ? $body->message : null,
+                    'iddocumento' => isset($body->iddocumento) ? $body->iddocumento : null,
+                    'timestamp' => isset($body->timestamp) ? $body->timestamp : null
+                ]);
+
+                // return $response->getBody()->getContents();
 
             });
             
-            $promise->wait();
+            return $promise->wait();
            
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle

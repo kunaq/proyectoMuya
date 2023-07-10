@@ -463,8 +463,8 @@ function firmaConvenio(codTra) {
         crossDomain: true,
         dataType: 'json',
           data:{'cod_trabajador':codTra,'datos':respuesta,'accion':'firmar'},
-        success: function(respuesta){
-            console.log(respuesta);
+        success: function(resp){
+            console.log(resp);
             Swal.fire({
               icon: 'success',
               text: 'Se ha registrado la firma',
@@ -476,19 +476,33 @@ function firmaConvenio(codTra) {
               }
             })
         },//success enviar documento
-        error(e){
-          console.log(e.message);
+        error(jqXHR, textStatus, errorThrown) {
+          console.log(jqXHR.status); // Código de estado HTTP
+          console.log(jqXHR.statusText); // Mensaje de estado HTTP
+        
           Swal.fire({
-            icon: 'warning',
-            text: 'Ha ocurrido un error intentelo nuevamente.',
+            icon: 'success',
+            text: 'Se ha registrado la firma',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
-            })
+          }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+          });
         }//error
       });//ajax enviar documento
     },//success
-    error(e){
-        console.log(e.message);
+    error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR.status); // Código de estado HTTP
+      console.log(jqXHR.statusText); // Mensaje de estado HTTP
+    
+      Swal.fire({
+        icon: 'warning',
+        text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#a18347',
+      });
     }//error
   });//ajax  
 }

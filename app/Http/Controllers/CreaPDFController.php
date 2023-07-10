@@ -217,22 +217,43 @@ class CreaPDFController extends Controller
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
-            //$arreglado = json_encode($respuesta);
-
+            // $body = $respuesta->getData()->body;
+            var_dump($respuesta->getData());
+            if (property_exists($respuesta->getData(), 'iddocumento')) {
+                $iddocumento = $respuesta->getData()->iddocumento;
+            } else {
+                echo "La propiedad 'iddocumento' no está definida en la respuesta JSON.";
+            }
+            if (property_exists($respuesta->getData(), 'mensaje')) {
+                $mensaje = $respuesta->getData()->mensaje;
+            } else {
+                echo "La propiedad 'mensaje' no está definida en la respuesta JSON.";
+            }
+            if (property_exists($respuesta->getData(), 'compruebaError')) {
+                $compruebaError = $respuesta->getData()->compruebaError;
+            } else {
+                echo "La propiedad 'error' no está definida en la respuesta JSON.";
+            }
+            // $arreglado = json_encode($respuesta);
+            // var_dump($body);
+            if ($compruebaError==false) {
+                $estadoEnv = 'ENV';
+            }else{
+                $estadoEnv = 'ERR';
+            }
             $tranx = array(
                 'as_trabajador'=> $cod_trabajador,
                 'ai_trx'=> $idTransaccion,
                 'as_formato'=> $formato,
                 'ai_anno'=> $anio,
                 'as_mes'=> $mes,
-                'as_estado'=> 'ENV',
+                'as_estado'=> $estadoEnv,
                 'as_usuario'=> $numDocTrabajador,
-                'as_dsc_envio'=> '',
-                //'as_id_doc'=> $respuesta['iddocumento']
+                'as_dsc_envio'=> $mensaje,
+                'as_id_doc'=> $iddocumento
             );
             CreaPDFController::InsertarSeguimientoEnvio($tranx); 
-           
-            var_dump($respuesta);
+            return 'OK';
 
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
