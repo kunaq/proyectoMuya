@@ -259,6 +259,8 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
         dscUrl = 'lista/ListarBoletaPago';
     }else if(tipoDoc == '11002'){
         dscUrl = 'lista/ListarConstanciaCTS';
+    }else{
+        dscUrl = 'lista/ListaVacia';
     }
 
     $.ajax({
@@ -308,7 +310,12 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                                         <div class="card-body">
                                             <div class="row">`;
                     resultados[year].forEach(function(resultado) {
-                        sectionContent += `<li>${resultado.dsc_periodo}</li>`;
+                        var deshabilita = (resultado.flg_firmado == 'SI') ? 'false' : 'disabled';
+                        sectionContent += `<div class="col-6 col-md-2">
+                                                <a href="assets/file/boleta.pdf" disabled="${deshabilita}" class="btn btn-block login-btn" target="_blank">
+                                                    <i class="bx bx-calendar"></i> ${resultado.dsc_periodo.split(' ')[0]}
+                                                </a>
+                                            </div>`;
                     });
                     sectionContent += `
                                             </div>
@@ -356,5 +363,24 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
     });
 
 });
+
+function buscarDocumento(mes,anno,codDoc){
+
+}
+
+function base64ToPDF(base64String) {
+    var byteCharacters = atob(base64String);
+    var byteNumbers = new Array(byteCharacters.length);
+    for (var i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    var byteArray = new Uint8Array(byteNumbers);
+    var blob = new Blob([byteArray], { type: 'application/pdf' });
+    
+    // Crear una nueva ventana o pestaña del navegador y cargar el PDF
+    var newWindow = window.open();
+    var objectUrl = URL.createObjectURL(blob);
+    newWindow.location.href = objectUrl;
+}
 
 </script>
