@@ -472,7 +472,7 @@ function firmaConvenio(codTra) {
               confirmButtonColor: '#a18347',
             }).then((result) => {
               if (result.isConfirmed) {
-                //location.reload();
+                location.reload();
               }
             })
         },//success enviar documento
