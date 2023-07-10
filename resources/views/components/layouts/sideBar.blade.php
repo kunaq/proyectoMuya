@@ -95,5 +95,8 @@
       </li> --}}
 
     </ul>
+    <div id="salirSideBar">
+      <a href="{{route('logout')}}" data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="Salir"><i class="bi bi-escape fs-1"></i></a>
+    </div>
 
   </aside><!-- End Sidebar-->

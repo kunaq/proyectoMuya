@@ -1553,3 +1553,24 @@ Estilos Vacaciones
   color: #a18347;
   font-family: "Poppins", sans-serif;
 }
+
+#salirSideBar{
+  display: flex;
+  position: absolute;
+  left: 8rem;
+  bottom: 2rem;
+}
+/* .custom-tooltip {
+  position: absolute;
+    z-index: 9999;
+    color: black;
+    width: 150px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    padding: 10px;
+    text-align: center;
+    opacity: 100 !important;
+    --bs-tooltip-bg: #00000000 !important;
+    --bs-tooltip-color: #000 !important;
+    background: #ffffff !important;
+} */
