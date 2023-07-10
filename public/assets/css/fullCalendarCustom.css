@@ -6,8 +6,8 @@
   } */
   
   #calendar {
-    /* max-width: 50rem; */
-    max-height: 100rem;
+    max-width: 70vh;
+    max-height: 70vh;
     margin: 40px auto;
   }
   @media (max-width: 768px) {
