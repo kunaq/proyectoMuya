@@ -7,7 +7,7 @@
             <div class="card login-card">
                 <div class="row no-gutters">
                     <div class="col-md-6">
-                        <img src="assets/img/GM-BLANCO.png" style="background-color: #a18347;" alt="login"
+                        <img src="assets/img/GM-BLANCO3.png" style="background-color: #a18347;" alt="login"
                             class="login-card-img">
                     </div>
                     <div class="col-md-6">
