@@ -909,85 +909,94 @@ btnProcesar.addEventListener("click", function() {
         //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
         data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
-            console.log(respuesta['response']);
-            data = [];
-            var header = ['SOLICITUD','TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA INICIO VAC.','FECHA FIN VAC.','DÍAS VAC.','DÍA DE INCORPORACIÓN','ESTADO ACTUAL SOL.','SUBESTADO APROBACIÓN','SUBESTADO RECHAZO','SUBESTADO SOLICITUD','ESTADO FIRMA SOL.',' ESTADO DE PAGO','CANT. DÍAS EXCEDIDOS','REPROGRAMACIÓN','FECHA REGISTRO SOL.','CÓDIGO TRABAJADOR REGISTRÓ','FECHA APROBACIÓN SOL.','CÓDIGO TRABAJADOR DEL APROBADOR','FECHA RECHAZO SOL.','CÓDIGO TRABAJADOR DE RECHAZO'];
-            respuesta['response'].forEach(element => {
+            console.log(respuesta['response'].length);
+            if (respuesta['response'].length > 0) {
+                data = [];
+                var header = ['SOLICITUD','TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA INICIO VAC.','FECHA FIN VAC.','DÍAS VAC.','DÍA DE INCORPORACIÓN','ESTADO ACTUAL SOL.','SUBESTADO APROBACIÓN','SUBESTADO RECHAZO','SUBESTADO SOLICITUD','ESTADO FIRMA SOL.',' ESTADO DE PAGO','CANT. DÍAS EXCEDIDOS','REPROGRAMACIÓN','FECHA REGISTRO SOL.','CÓDIGO TRABAJADOR REGISTRÓ','FECHA APROBACIÓN SOL.','CÓDIGO TRABAJADOR DEL APROBADOR','FECHA RECHAZO SOL.','CÓDIGO TRABAJADOR DE RECHAZO'];
+                respuesta['response'].forEach(element => {
 
-                var fchIni = element['fch_inicio'].split('T');
-                fchIni = formatDate(fchIni[0]);
-                var fchFin = element['fch_fin'].split('T');
-                fchFin = formatDate(fchFin[0]);
-                var fchReinc = element['fch_retorno'].split('T');
-                fchReinc = formatDate(fchReinc[0]);
-                var fchReg = element['fch_registro_solicitud'].split('T');
-                fchReg = formatDate(fchReg[0]);
-                var fchRechz = element['fch_rechazado'].split('T');
-                fchRechz = formatDate(fchRechz[0]);
+                    var fchIni = element['fch_inicio'].split('T');
+                    fchIni = formatDate(fchIni[0]);
+                    var fchFin = element['fch_fin'].split('T');
+                    fchFin = formatDate(fchFin[0]);
+                    var fchReinc = element['fch_retorno'].split('T');
+                    fchReinc = formatDate(fchReinc[0]);
+                    var fchReg = element['fch_registro_solicitud'].split('T');
+                    fchReg = formatDate(fchReg[0]);
+                    var fchRechz = element['fch_rechazado'].split('T');
+                    fchRechz = formatDate(fchRechz[0]);
 
-                var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
-                var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
-                var fchAprob = element['fch_aprobado'].split('T');
-                fchAprob = formatDate(fchAprob[0]);
-                var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
-                var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
+                    var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
+                    var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
+                    var fchAprob = element['fch_aprobado'].split('T');
+                    fchAprob = formatDate(fchAprob[0]);
+                    var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+                    var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
 
-                filaData = [
-                    element['cod_trabajador']+'-'+element['num_linea'],
-                    element['cod_trabajador'],
-                    element['dsc_trabajador'],
-                    element['dsc_area'],
-                    element['dsc_sede'],
-                    element['dsc_cargo'],
-                    fchIni,
-                    fchFin,
-                    element['cant_dia'],
-                    fchReinc,
-                    element['dsc_estado'],
-                    element['dsc_subestado_aprobacion'],
-                    element['dsc_subestado_rechazo'],
-                    element['dsc_subestado_solicitud'],
-                    firmado,
-                    pagado,
-                    element['ctd_dias_exceso'],
-                    solicitudAnt,
-                    fchReg,
-                    element['cod_trabajador_registro'],
-                    fechaAproba,
-                    element['cod_trabajador_aprobado'],
-                    fchRechz,
-                    element['cod_trabajador_rechazado']
-                    
-                ]
-                data.push(filaData);
-            });
-            
-            // Crear un libro de trabajo (workbook)
-            var workbook = XLSX.utils.book_new();
+                    filaData = [
+                        element['cod_trabajador']+'-'+element['num_linea'],
+                        element['cod_trabajador'],
+                        element['dsc_trabajador'],
+                        element['dsc_area'],
+                        element['dsc_sede'],
+                        element['dsc_cargo'],
+                        fchIni,
+                        fchFin,
+                        element['cant_dia'],
+                        fchReinc,
+                        element['dsc_estado'],
+                        element['dsc_subestado_aprobacion'],
+                        element['dsc_subestado_rechazo'],
+                        element['dsc_subestado_solicitud'],
+                        firmado,
+                        pagado,
+                        element['ctd_dias_exceso'],
+                        solicitudAnt,
+                        fchReg,
+                        element['cod_trabajador_registro'],
+                        fechaAproba,
+                        element['cod_trabajador_aprobado'],
+                        fchRechz,
+                        element['cod_trabajador_rechazado']
+                        
+                    ]
+                    data.push(filaData);
+                });
+                
+                // Crear un libro de trabajo (workbook)
+                var workbook = XLSX.utils.book_new();
+                var worksheet = XLSX.utils.json_to_sheet(data);
 
-            // Crear una hoja de cálculo (worksheet)
-            var worksheet = XLSX.utils.aoa_to_sheet(data);
+                // Crear una hoja de cálculo (worksheet)
+                XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
 
-            // Agregar la hoja de cálculo al libro de trabajo
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+                // Agregar la hoja de cálculo al libro de trabajo
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-            // Convertir el libro de trabajo a un archivo binario
-            var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                // Convertir el libro de trabajo a un archivo binario
+                var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-            // Crear un blob a partir del archivo binario
-            var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                // Crear un blob a partir del archivo binario
+                var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            // Crear una URL para el blob
-            var url = URL.createObjectURL(blob);
+                // Crear una URL para el blob
+                var url = URL.createObjectURL(blob);
 
-            // Crear un enlace de descarga
-            var link = document.createElement('a');
-            link.href = url;
-            link.download = 'solicitudVacaciones'+codTra+'.xlsx';
+                // Crear un enlace de descarga
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'solicitudVacaciones'+codTra+'.xlsx';
 
-            // Simular un clic en el enlace para iniciar la descarga
-            link.click();
-
+                // Simular un clic en el enlace para iniciar la descarga
+                link.click();
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'No existen registros a retornar para el período seleccionado.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                });
+            }
         },//success
         error(e){
             console.log(e.message);
@@ -1027,60 +1036,70 @@ btnProcesar.addEventListener("click", function() {
         data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
            //console.log(respuesta['response']);
-            var header = ['CODIGO TRABAJADOR','TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
-            var filasArray = [];
+            if (respuesta['response'].length > 0) {
+                var header = ['CODIGO TRABAJADOR','TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
+                var filasArray = [];
 
-            respuesta['response'].forEach(element => {
-                var fch_ingreso = element['fch_ingreso'].split('T');
-                fch_ingreso = formatDate(fch_ingreso[0]);
-                var fch_ingreso2 = (fch_ingreso == '01/01/1900') ? '' : fch_ingreso;
+                respuesta['response'].forEach(element => {
+                    var fch_ingreso = element['fch_ingreso'].split('T');
+                    fch_ingreso = formatDate(fch_ingreso[0]);
+                    var fch_ingreso2 = (fch_ingreso == '01/01/1900') ? '' : fch_ingreso;
 
-                filaData = [
-                    element['cod_trabajador'],
-                    element['dsc_trabajador'],
-                    element['dsc_localidad'],
-                    element['dsc_cargo'],
-                    element['dsc_area'],
-                    fch_ingreso2,
-                    element['ctd_vacaciones_generadas'],
-                    element['ctd_vacaciones_programadas'],
-                    element['ctd_saldo'],
-                    element['dsc_estado_adelanto_vacaciones'],
-                    element['dsc_grupo'],
-                    element['dsc_comisionista'],
-                    element['flg_requiere_aprobacion'],
-                    element['dsc_trabajador_aprobacion'],
-                    element['flg_requiere_supervision'],
-                    element['dsc_trabajador_supervision'],
-                    element['dsc_regla']
-                ]
-                filasArray.push(filaData);
-            });
-            // Crear un libro de trabajo (workbook)
-            var workbook = XLSX.utils.book_new();
+                    filaData = [
+                        element['cod_trabajador'],
+                        element['dsc_trabajador'],
+                        element['dsc_localidad'],
+                        element['dsc_cargo'],
+                        element['dsc_area'],
+                        fch_ingreso2,
+                        element['ctd_vacaciones_generadas'],
+                        element['ctd_vacaciones_programadas'],
+                        element['ctd_saldo'],
+                        element['dsc_estado_adelanto_vacaciones'],
+                        element['dsc_grupo'],
+                        element['dsc_comisionista'],
+                        element['flg_requiere_aprobacion'],
+                        element['dsc_trabajador_aprobacion'],
+                        element['flg_requiere_supervision'],
+                        element['dsc_trabajador_supervision'],
+                        element['dsc_regla']
+                    ]
+                    filasArray.push(filaData);
+                });
+                // Crear un libro de trabajo (workbook)
+                var workbook = XLSX.utils.book_new();
+                var worksheet = XLSX.utils.json_to_sheet(filasArray);
 
-            // Crear una hoja de cálculo (worksheet)
-            var worksheet = XLSX.utils.aoa_to_sheet(filasArray);
+                // Crear una hoja de cálculo (worksheet)
+                XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
 
-            // Agregar la hoja de cálculo al libro de trabajo
-            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+                // Agregar la hoja de cálculo al libro de trabajo
+                XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-            // Convertir el libro de trabajo a un archivo binario
-            var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+                // Convertir el libro de trabajo a un archivo binario
+                var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-            // Crear un blob a partir del archivo binario
-            var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+                // Crear un blob a partir del archivo binario
+                var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-            // Crear una URL para el blob
-            var url = URL.createObjectURL(blob);
+                // Crear una URL para el blob
+                var url = URL.createObjectURL(blob);
 
-            // Crear un enlace de descarga
-            var link = document.createElement('a');
-            link.href = url;
-            link.download = 'reporteVacaciones'+codTra+'.xlsx';
+                // Crear un enlace de descarga
+                var link = document.createElement('a');
+                link.href = url;
+                link.download = 'reporteVacaciones'+codTra+'.xlsx';
 
-            // Simular un clic en el enlace para iniciar la descarga
-            link.click();
+                // Simular un clic en el enlace para iniciar la descarga
+                link.click();
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'No existen registros a retornar para el período seleccionado.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                });
+            }
 
         },//success
         error(e){
