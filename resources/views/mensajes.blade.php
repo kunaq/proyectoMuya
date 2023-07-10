@@ -151,301 +151,294 @@
 
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
-  var cod_trabajador='';
-    window.onload= function() {
+var cod_trabajador='';
+window.onload= function() {
         
-        $.ajax({
-        url: 'lista/ListarMensajePendientes', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-          console.log('response',respuesta)
-          
-          filaData='';
-          respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
-            var fchLim=  element['fch_limite'].split("T");
-            var fchLimite = formatDate(fchLim[0]);
-            if (fchLimite === '01/01/1900') {
-                fchLimite = '-';
-            }
-
-            var filaAccion='';
-            if(element['cod_mensaje'] == '1001' || element['cod_mensaje'] == '1004')
-            {
-              if(element['cod_estado'] == 'FIN'){
-
-                filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
-
-              }else{
-
-                filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
-              }
-            }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
-
-              filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
-
-            }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
-
-              filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
-                
-            }else{
-              filaAccion="";
-            }
-
-            filaData += '<tr>'+
-              '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+fchLimite+'</td>'+
-              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
-              '<td>'+element['dsc_mensaje']+'</td>'+
-              '<td>'+filaAccion+'</td>'+
-            '</tr>';
-
-
-           // filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#MensajePendientes').html(filaData);
-          $('#MensajePendientes2').html(filaData);
-        }//success
-       
-       
-    });//end ajax
-
-
-
-    $.ajax({
-        url: 'lista/ListarMensajeFinalizados', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-
-          
-          filaData='';
-          respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
-            var fchLim=  element['fch_limite'].split("T");
-            var fchLimite = formatDate(fchLim[0]);
-            if (fchLimite === '01/01/1900') {
-                fchLimite = '-';
-            }          
-
-            filaData += '<tr>'+
-              '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+fchLimite+'</td>'+
-              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
-              '<td>'+element['dsc_mensaje']+'</td>'+
-            '</tr>';
-
-
-           // filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#MensajeFinalizados').html(filaData);
-          $('#MensajeFinalizados2').html(filaData);
-        }//success
-       
-       
-    });//end ajax
-
-
-
-
-
-
-    $.ajax({
-        url: 'lista/ListarMensajeAvisos', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-
-          
-          filaData='';
-          respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
-            var fchLim=  element['fch_limite'].split("T");
-            var fchLimite = formatDate(fchLim[0]);
-            if (fchLimite === '01/01/1900') {
-                fchLimite = '-';
-            }
-            
-            filaData += '<tr>'+
-              '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+fchLimite+'</td>'+
-              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
-              '<td>'+element['dsc_mensaje']+'</td>'+
-            '</tr>';
-
-
-           // filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#MensajeAvisos').html(filaData);
-          $('#MensajeAvisos2').html(filaData);
-        }//success
-       
-       
-    });//end ajax
-
-
-
-  }
-
-
-  function OcultarMensaje(num_item) {
-    var mensaje={
-          'num_item': num_item
+  $.ajax({
+    url: 'lista/ListarMensajePendientes', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{},
+    success: function(respuesta){
+      console.log('response',respuesta)
+      
+      filaData='';
+      respuesta['response'].forEach(function(element){ 
+        var fchReg =  element['fch_notificacion'].split("T");
+        var fchLim=  element['fch_limite'].split("T");
+        var fchLimite = formatDate(fchLim[0]);
+        var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
+        if (fchLimite === '01/01/1900') {
+          fchLimite = '-';
         }
 
-    Swal.fire({
-      title: '¿Esta seguro que quiere OCULTAR este mensaje?',
-      text: 'Confirmación',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonColor: '#35B44A',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        $.ajax({
-          type : 'PUT',
-          url:'api/FinalizarMensaje',
-          dataType: 'json',
-          data:{'mensaje':mensaje},
-          success: function(respuesta){
-            //console.log(respuesta);  
+        var filaAccion='';
+        if(element['cod_mensaje'] == '1001')
+        {
+          if(element['cod_estado'] == 'FIN'){
+
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+
+          }else{
+
+            filaAccion='<button class="btn btn-success btnTabHome btnDorado" onclick="firmaConvenio('+codTrabajador+')">Firmar</button>';
+          }
+        }else if(element['cod_mensaje'] == '1004'){
+          if(element['cod_estado'] == 'FIN'){
+
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+
+          }else{
+
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('SolicitudVacaciones')}}"'+";'>Ir a firmar</button>";
+          }
+        }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
+
+          filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
+
+        }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
+
+          filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
+            
+        }else{
+          filaAccion="";
+        }
+
+        filaData += '<tr>'+
+          '<td>'+formatDate(fchReg[0])+'</td>'+
+          '<td>'+fchLimite+'</td>'+
+          '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+          '<td>'+element['dsc_mensaje']+'</td>'+
+          '<td>'+filaAccion+'</td>'+
+        '</tr>';
+
+        // filasArray.push(filaData);
+      });
+      //console.log(filasArray);
+      $('#MensajePendientes').html(filaData);
+      $('#MensajePendientes2').html(filaData);
+    }//success
+      
+      
+  });//end ajax
+
+  $.ajax({
+    url: 'lista/ListarMensajeFinalizados', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{},
+    success: function(respuesta){
+
+      filaData='';
+      respuesta['response'].forEach(function(element){ 
+        var fchReg =  element['fch_notificacion'].split("T");
+        var fchLim=  element['fch_limite'].split("T");
+        var fchLimite = formatDate(fchLim[0]);
+        if (fchLimite === '01/01/1900') {
+          fchLimite = '-';
+        }          
+
+        filaData += '<tr>'+
+          '<td>'+formatDate(fchReg[0])+'</td>'+
+          '<td>'+fchLimite+'</td>'+
+          '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+          '<td>'+element['dsc_mensaje']+'</td>'+
+        '</tr>';
+
+        // filasArray.push(filaData);
+      });
+      //console.log(filasArray);
+      $('#MensajeFinalizados').html(filaData);
+      $('#MensajeFinalizados2').html(filaData);
+    }//success    
+  });//end ajax
+
+  $.ajax({
+    url: 'lista/ListarMensajeAvisos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{},
+    success: function(respuesta){
+
+      filaData='';
+      respuesta['response'].forEach(function(element){ 
+        var fchReg =  element['fch_notificacion'].split("T");
+        var fchLim=  element['fch_limite'].split("T");
+        var fchLimite = formatDate(fchLim[0]);
+        if (fchLimite === '01/01/1900') {
+          fchLimite = '-';
+        }
+        
+        filaData += '<tr>'+
+          '<td>'+formatDate(fchReg[0])+'</td>'+
+          '<td>'+fchLimite+'</td>'+
+          '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+          '<td>'+element['dsc_mensaje']+'</td>'+
+        '</tr>';
+
+        // filasArray.push(filaData);
+      });
+      //console.log(filasArray);
+      $('#MensajeAvisos').html(filaData);
+      $('#MensajeAvisos2').html(filaData);
+    }//success
+       
+  });//end ajax
+
+}//onload
+
+
+function OcultarMensaje(num_item) {
+  var mensaje={
+    'num_item': num_item
+  }
+
+  Swal.fire({
+    title: '¿Esta seguro que quiere OCULTAR este mensaje?',
+    text: 'Confirmación',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonColor: '#a18347',
+    cancelButtonColor: '#6c757d',
+    confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type : 'PUT',
+        url:'api/FinalizarMensaje',
+        dataType: 'json',
+        data:{'mensaje':mensaje},
+        success: function(respuesta){
+          //console.log(respuesta);  
+          Swal.fire({
+            title:'Exito!',
+            text:'Se ha activado el mensaje.',
+            icon:'success',
+            confirmButtonColor: '#a18347',
+          }) 
+        },//success
+        error(e){
+            //console.log(e.message);
             Swal.fire({
               title:'Exito!',
               text:'Se ha activado el mensaje.',
               icon:'success',
-              confirmButtonColor: '#35B44A',
-            }) 
-          },//success
-          error(e){
-              //console.log(e.message);
-              Swal.fire({
-              title:'Exito!',
-              text:'Se ha activado el mensaje.',
-              icon:'success',
-              confirmButtonColor: '#35B44A',
-            }) 
-            RefrescarListado();
-          }//error
-          
+              confirmButtonColor: '#a18347',
+          }) 
+          RefrescarListado();
+        }//error
+        
 
-        });
+      });
 
-       
-      }
-    })//then
-   //if
+      
+    }//if
+  })//then 
 }//funcion
     
 
 function RefrescarListado(){
   $.ajax({
-        url: 'lista/ListarMensajePendientes', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-          console.log('response',respuesta)
-          
-          filaData='';
-          respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
-            var fchLim=  element['fch_limite'].split("T");
-            var fchLimite = formatDate(fchLim[0]);
-            if (fchLimite === '01/01/1900') {
-                fchLimite = '-';
-            }
+    url: 'lista/ListarMensajePendientes', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{},
+    success: function(respuesta){
+      console.log('response',respuesta)
+      
+      filaData='';
+      respuesta['response'].forEach(function(element){ 
+        var fchReg =  element['fch_notificacion'].split("T");
+        var fchLim=  element['fch_limite'].split("T");
+        var fchLimite = formatDate(fchLim[0]);
+        if (fchLimite === '01/01/1900') {
+          fchLimite = '-';
+        }
 
-            var filaAccion='';
-            if(element['cod_mensaje'] == '1001' || element['cod_mensaje'] == '1004')
-            {
-              if(element['cod_estado'] == 'FIN'){
+        var filaAccion='';
+        if(element['cod_mensaje'] == '1001')
+        {
+          if(element['cod_estado'] == 'FIN'){
 
-                filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
 
-              }else{
+          }else{
 
-                filaAccion="<button class='btn btn-success btnTabHome btnDorado'>Firmar</button>";
-              }
-            }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
+            filaAccion='<button class="btn btn-success btnTabHome btnDorado" onclick="firmaConvenio('+codTrabajador+')">Firmar</button>';
+          }
+        }else if(element['cod_mensaje'] == '1004'){
+          if(element['cod_estado'] == 'FIN'){
 
-              filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' disabled >Firmado</button>";
 
-            }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
+          }else{
 
-              filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
-                
-            }else{
-              filaAccion="";
-            }
+            filaAccion="<button class='btn btn-success btnTabHome btnDorado' onclick='location.href="+'"{{route('SolicitudVacaciones')}}"'+";'>Ir a firmar</button>";
+          }
+        }else if(element['cod_mensaje'] == '1002' || element['cod_mensaje'] == '1003'){
 
-            filaData += '<tr>'+
-              '<td>'+formatDate(fchReg[0])+'</td>'+
-              '<td>'+fchLimite+'</td>'+
-              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
-              '<td>'+element['dsc_mensaje']+'</td>'+
-              '<td>'+filaAccion+'</td>'+
-            '</tr>';
+          filaAccion="<button class='btn btn-success btnTabHome verdeMuya' onclick='location.href="+'"{{route('aprobacionVacaciones')}}"'+";'>Ir</button>";
+
+        }else if(element['cod_mensaje'] == '2003' || element['cod_mensaje'] == '3003'){
+
+          filaAccion="<button class='btn btn-success btnTabHome' onclick='OcultarMensaje("+element["num_item"]+");' id='OcultarMensaje' >Ocultar</button>";
+            
+        }else{
+          filaAccion="";
+        }
+
+        filaData += '<tr>'+
+          '<td>'+formatDate(fchReg[0])+'</td>'+
+          '<td>'+fchLimite+'</td>'+
+          '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+          '<td>'+element['dsc_mensaje']+'</td>'+
+          '<td>'+filaAccion+'</td>'+
+        '</tr>';
+
+        // filasArray.push(filaData);
+      });
+      //console.log(filasArray);
+      $('#MensajePendientes').html(filaData);
+      $('#MensajePendientes2').html(filaData);
+    }//success      
+  });//end ajax ListarMensajePendientes
+
+  $.ajax({
+    url: 'lista/ListarMensajeFinalizados', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{},
+    success: function(respuesta){
+
+      filaData='';
+      respuesta['response'].forEach(function(element){ 
+        var fchReg =  element['fch_notificacion'].split("T");
+        var fchLim=  element['fch_limite'].split("T");
+        var fchLimite = formatDate(fchLim[0]);
+        if (fchLimite === '01/01/1900') {
+            fchLimite = '-';
+        }           
+
+        filaData += '<tr>'+
+          '<td>'+fchReg[0]+'</td>'+
+          '<td>'+fchLimite+'</td>'+
+          '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
+          '<td>'+element['dsc_mensaje']+'</td>'+
+        '</tr>';
 
 
-           // filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#MensajePendientes').html(filaData);
-          $('#MensajePendientes2').html(filaData);
-        }//success
-       
-       
-    });//end ajax
-
-
-
-    $.ajax({
-        url: 'lista/ListarMensajeFinalizados', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{},
-        success: function(respuesta){
-
-          
-          filaData='';
-          respuesta['response'].forEach(function(element){ 
-            var fchReg =  element['fch_notificacion'].split("T");
-            var fchLim=  element['fch_limite'].split("T");
-            var fchLimite = formatDate(fchLim[0]);
-            if (fchLimite === '01/01/1900') {
-                fchLimite = '-';
-            }           
-
-            filaData += '<tr>'+
-              '<td>'+fchReg[0]+'</td>'+
-              '<td>'+fchLimite+'</td>'+
-              '<td>'+element['dsc_trabajador_solicitante']+'</td>'+
-              '<td>'+element['dsc_mensaje']+'</td>'+
-            '</tr>';
-
-
-           // filasArray.push(filaData);
-          });
-          //console.log(filasArray);
-          $('#MensajeFinalizados').html(filaData);
-          $('#MensajeFinalizados2').html(filaData);
-        }//success
-       
-       
-    });//end ajax
-  } 
+        // filasArray.push(filaData);
+      });
+      //console.log(filasArray);
+      $('#MensajeFinalizados').html(filaData);
+      $('#MensajeFinalizados2').html(filaData);
+    }//success   
+  });//end ajax ListarMensajeFinalizados
+} //end function RefrescarListado
 
 </script>

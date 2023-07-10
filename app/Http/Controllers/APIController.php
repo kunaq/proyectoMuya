@@ -109,14 +109,6 @@ class APIController extends Controller
             });
             
             $promise->wait();
-            
-
-            // $statusCode = $request->getStatusCode();
-            // $responseData = $request->getBody()->getContents();
-
-            // Aquí puedes procesar la respuesta de la API según tus requisitos
-
-            // Ejemplo de retorno de la respuesta
            
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
@@ -664,4 +656,25 @@ class APIController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public static function idTansaccion()
+    {   
+        $client = new Client();
+
+        try {
+            $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerTransaccion/20555348887');
+            $statusCode = $response->getStatusCode();
+            $responseData = $response->getBody()->getContents();
+
+            // Aquí puedes procesar la respuesta de la API según tus requisitos
+            $token = explode('":',$responseData);
+            
+            // Ejemplo de retorno de la respuesta
+            return str_replace('}}', '',$token[3]);
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+    
 }

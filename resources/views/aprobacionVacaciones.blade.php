@@ -586,7 +586,7 @@ window.onload= function() {
         success: function(respuesta){ 
             //console.log(respuesta);
             var body = document.getElementById('bodyRegla');
-            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+            var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
             body.innerHTML = aux;
         },//success
         error(e){
@@ -994,6 +994,99 @@ btnProcesar.addEventListener("click", function() {
         }//error    
     });
 
+
+});
+
+//-----------------------Procesar descargar reporte vacaciones---------------------
+
+var btnProcesar = document.getElementById('buscarDoc');
+btnProcesar.addEventListener("click", function() {
+    var fchInicio = document.getElementById('datepicker1').value;
+    var fechaParts = fchInicio.split('-');
+    var day = fechaParts[0];
+    var month = fechaParts[1];
+    var year = fechaParts[2];
+    fchInicio = year + "-" + month + "-" + day;
+    //console.log(fchInicio);
+    var fchFin = document.getElementById('datepicker2').value;
+    var fechaPartsF = fchFin.split('-');
+    var dayF = fechaPartsF[0];
+    var monthF = fechaPartsF[1];
+    var yearF = fechaPartsF[2];
+    fchFin = yearF + "-" + monthF + "-" + dayF;
+    //console.log(fchFin);
+    var chckDsc = document.getElementById('flexCheckDefault2');
+    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
+    var codTra = '@php echo(session('codTrabajador')) @endphp';
+
+    $.ajax({
+        url: 'lista/ListarReporteVacacionesxTrabajador',
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        success: function(respuesta){
+           //console.log(respuesta['response']);
+            var header = ['CODIGO TRABAJADOR','TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
+            var filasArray = [];
+
+            respuesta['response'].forEach(element => {
+                var fch_ingreso = element['fch_ingreso'].split('T');
+                fch_ingreso = formatDate(fch_ingreso[0]);
+                var fch_ingreso2 = (fch_ingreso == '01/01/1900') ? '' : fch_ingreso;
+
+                filaData = [
+                    element['cod_trabajador'],
+                    element['dsc_trabajador'],
+                    element['dsc_localidad'],
+                    element['dsc_cargo'],
+                    element['dsc_area'],
+                    fch_ingreso2,
+                    element['ctd_vacaciones_generadas'],
+                    element['ctd_vacaciones_programadas'],
+                    element['ctd_saldo'],
+                    element['dsc_estado_adelanto_vacaciones'],
+                    element['dsc_grupo'],
+                    element['dsc_comisionista'],
+                    element['flg_requiere_aprobacion'],
+                    element['dsc_trabajador_aprobacion'],
+                    element['flg_requiere_supervision'],
+                    element['dsc_trabajador_supervision'],
+                    element['dsc_regla']
+                ]
+                filasArray.push(filaData);
+            });
+            // Crear un libro de trabajo (workbook)
+            var workbook = XLSX.utils.book_new();
+
+            // Crear una hoja de cálculo (worksheet)
+            var worksheet = XLSX.utils.aoa_to_sheet(filasArray);
+
+            // Agregar la hoja de cálculo al libro de trabajo
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+            // Convertir el libro de trabajo a un archivo binario
+            var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+            // Crear un blob a partir del archivo binario
+            var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Crear una URL para el blob
+            var url = URL.createObjectURL(blob);
+
+            // Crear un enlace de descarga
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = 'reporteVacaciones'+codTra+'.xlsx';
+
+            // Simular un clic en el enlace para iniciar la descarga
+            link.click();
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error    
+    });
 
 });
 

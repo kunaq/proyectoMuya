@@ -190,6 +190,7 @@ function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
 
 // ---------apartado del calendario--------------
 document.addEventListener('DOMContentLoaded', function() {
+  console.log('calendario',fechIniCalendario);
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'es-PE', // Cambia la configuración local a español de Perú
@@ -233,4 +234,4 @@ document.addEventListener('DOMContentLoaded', function() {
     calendarEl.style.height = '100%';
     calendar.render();
   });
-  console.log('revision calendario',);
+  //console.log('revision calendario',);

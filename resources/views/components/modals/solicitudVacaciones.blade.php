@@ -26,7 +26,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo ({{session('correoPTrabajador')}}), ingresar al correo mencionado para continuar con el proceso.
+            Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo <span id="correoPerMuestra"></span>, ingresar al correo mencionado para continuar con el proceso.
         </div>
         <div class="modal-footer">
             <a href="#"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
@@ -113,44 +113,8 @@
   
     <!-- Template Main JS File -->
 
-
-    {{-- <script type='importmap'>
-      {
-        "imports": {
-          "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.6",
-          "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/multimonth@6.1.6"
-        }
-      }
-    </script> --}}
-    {{-- <script type='module'>
-      import { Calendar } from '@fullcalendar/core'
-      import dayGridPlugin from '@fullcalendar/daygrid'
-  
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-  
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          timeZone: 'UTC',
-          initialView: 'dayGridMonth',
-          events: [
-            {
-              start: '2023-05-10T10:00:00',
-              end: '2023-05-18T16:00:00',
-              display: 'background'
-            }
-          ],
-          editable: true,
-          selectable: true,
-          height: "100%",
-          contentHeight: 300
-        });
-  
-        calendar.render();
-      });
-    </script> --}}
-
 <script type="text/javascript">
-
+var fechIniCalendario = null;
 window.onload= function() {
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
@@ -164,8 +128,11 @@ window.onload= function() {
       dataType: 'json',
       data:{'cod_trabajador':codTrabajador},
       success: function(result){
+          document.getElementById('correoPerMuestra').innerHTML=result["response"]["dsc_mail_personal"];
           document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
+          fechIniCalendario = result["response"]["fch_proxima_vacaciones"];
+         
           fch_ingreso = result["response"]["fch_ingreso_planilla"];
           var fechaActual = new Date();
           var auxFech = new Date(fch_ingreso);
@@ -229,7 +196,7 @@ window.onload= function() {
     success: function(respuesta){ 
       //console.log(respuesta);
       var body = document.getElementById('bodyRegla'); //console.log('ver', respuesta['response']);
-      var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'];
+      var aux = (respuesta['response']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
       body.innerHTML = aux;
     },//success
     error(e){
@@ -342,7 +309,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                 element['dsc_estado'],
                 flgFirmado,
                 flgPagado,
-                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+')"><span class="bi bi-vector-pen"></span></button>'+
+                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')"><span class="bi bi-vector-pen"></span></button>'+
                 '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
                 '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
             ];
@@ -359,7 +326,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                     '<b>Firma:</b> '+flgFirmado+' <br>'+
                     '<b>Pago:</b> '+flgPagado+' <br><br>'+
                     '<div style="text-align-last: center;">'+
-                        '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+')">Firma</button>'+
+                        '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')">Firma</button>'+
                         '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
                         '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')">Edita</button>'+
                     '</div>'+  
@@ -637,34 +604,7 @@ btnSolicitar.addEventListener("click", function() {
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
-  $.ajax({
-    url: 'api/enviarDocumentos', 
-    method: "get",
-    crossDomain: true,
-    dataType: 'json',
-    success: function(respuesta){
-        console.log(respuesta);
-        Swal.fire({
-          icon: 'success',
-          text: 'Se ha registrado la firma',
-          confirmButtonText: 'Continuar',
-          confirmButtonColor: '#a18347',
-        }).then((result) => {
-          if (result.isConfirmed) {
-            //location.reload();
-          }
-        })
-    },//success enviar documento
-    error(e){
-      console.log(e.message);
-      Swal.fire({
-        icon: 'warning',
-        text: 'Ha ocurrido un error intentelo nuevamente.',
-        confirmButtonText: 'Continuar',
-        confirmButtonColor: '#a18347',
-        })
-    }//error
-  });//ajax enviar documento
+  firmaConvenio('@php echo(session('codTrabajador')) @endphp');       
 });//evento click
 
 function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
@@ -730,40 +670,6 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
           console.log(e.message);
       }//error
   });//ajax  
-}
-
-function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias) {
-
-  $.ajax({
-      url: 'api/enviarDocumentos', 
-      method: "get",
-      crossDomain: true,
-      dataType: 'json',
-      data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'accion':'solicitudVaca'},
-      success: function(respuesta){
-          console.log(respuesta);
-          Swal.fire({
-              icon: 'success',
-              text: 'Se ha registrado la firma',
-              confirmButtonText: 'Continuar',
-              confirmButtonColor: '#a18347',
-          }).then((result) => {
-            if (result.isConfirmed) {
-              location.reload();
-            }
-          })
-      },//success
-      error(e){
-          console.log(e.message);
-          Swal.fire({
-              icon: 'warning',
-              text: 'Ha ocurrido un error intentelo nuevamente.',
-              confirmButtonText: 'Continuar',
-              confirmButtonColor: '#a18347',
-              })
-      }//error
-  });//ajax
-
 }
 </script>
 

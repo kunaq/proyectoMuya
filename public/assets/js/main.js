@@ -403,3 +403,92 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
       }//error
     });//ajax  
 }
+
+//----------------------------firma solicitud de vacaciones--------------------------
+
+function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea) {
+  $.ajax({
+    url: 'api/ObtenerTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'cod_trabajador':codTra},
+    success: function(respuesta){
+      $.ajax({
+          url: 'api/enviarDocumentos', 
+          method: "get",
+          crossDomain: true,
+          dataType: 'json',
+          data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'num_linea':numLinea,'datos':respuesta,'accion':'solicitudVaca'},
+          success: function(respuesta){
+              console.log(respuesta);
+              Swal.fire({
+                  icon: 'success',
+                  text: 'Se ha registrado la firma',
+                  confirmButtonText: 'Continuar',
+                  confirmButtonColor: '#a18347',
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  location.reload();
+                }
+              })
+          },//success
+          error(e){
+              console.log(e.message);
+              Swal.fire({
+                  icon: 'warning',
+                  text: 'Ha ocurrido un error intentelo nuevamente.',
+                  confirmButtonText: 'Continuar',
+                  confirmButtonColor: '#a18347',
+                  })
+          }//error
+      });//ajax
+    },//success
+  });//ajax obtenerTrab
+}
+
+//--------------------------firma convenio adelanto----------------------------
+
+function firmaConvenio(codTra) {
+  $.ajax({
+    url: 'api/ObtenerTrabajador', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'cod_trabajador':codTra},
+    success: function(respuesta){
+      $.ajax({
+        url: 'api/enviarDocumentos', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+          data:{'cod_trabajador':codTra,'datos':respuesta,'accion':'firmar'},
+        success: function(respuesta){
+            console.log(respuesta);
+            Swal.fire({
+              icon: 'success',
+              text: 'Se ha registrado la firma',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                //location.reload();
+              }
+            })
+        },//success enviar documento
+        error(e){
+          console.log(e.message);
+          Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error intentelo nuevamente.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+            })
+        }//error
+      });//ajax enviar documento
+    },//success
+    error(e){
+        console.log(e.message);
+    }//error
+  });//ajax  
+}

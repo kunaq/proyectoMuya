@@ -73,7 +73,18 @@ $("#loginBtn").click(function(){
                     },//success
                     error(e){
                         console.log(e);
-                        if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
+                        if(respuesta.data.response.flg_expirado == 'SI'){
+                            Swal.fire({
+                                icon: 'warning',
+                                text: 'Su contraseña ha expirado, modifiquela en la siguiente ventana.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    window.location.href = "primerCambio";
+                                }
+                            })
+                        }else if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
                             window.location.href = "primerCambio";
                         }else{
                             window.location.href = "home";

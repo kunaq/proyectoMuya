@@ -100,22 +100,36 @@ class CreaPDFController extends Controller
 
     public function enviarDocumentos(Request $request){
 
+
         $client = new Client();
-        $codTrabajador = $request['codigoTabajador'];
+        $token = APIController::solicitud();
+        $cod_trabajador = $request['cod_trabajador'];
         $fchIni = $request['fchIni'];
         $fchFin = $request['fchFin'];
         $fchRein = $request['fchReinc'];
         $cantDias = $request['cantDias'];
         $accion = $request['accion'];
-        $idTransaccion = $request['idTransaccion'];
+        $idTransaccion = APIController::idTansaccion();
         $numDocTrabajador = session('docTrabajador');
+        $tipoDocTrabajador = $request['datos']['response']['dsc_tipo_documento'];
+        $nombresTrabajador = $request['datos']['response']['dsc_nombres'];
+        $apellPTrabajador = $request['datos']['response']['dsc_apellido_paterno'];
+        $apellMTrabajador = $request['datos']['response']['dsc_apellido_materno'];
+        $correoTrabajador = $request['datos']['response']['dsc_mail_personal'];
+        $celularTrabajador =($request['datos']['response']['dsc_telefono_personal'] != '') ? str_replace(' ', '',$request['datos']['response']['dsc_telefono_personal'])  : '' ;
+        $sedeTrabajador = $request['datos']['response']['cod_localidad'];
+        $paisTrabajador = ($request['datos']['response']['cod_pais'] == '') ? 'PE' : ['datos']['response']['cod_pais'];
+        $fechActual = Carbon::now();
+        $fechaCompleta = $fechActual->format('Y-m-d H:i');
+        $anio =$fechActual->format('Y');
+        $mes = $fechActual->format('m');
+        $formato='';
 
         try {
             if ($accion =='firmar') {
-                # code...
             
                 $docBase64 = explode('"',CreaPDFController::generarPDF());
-                $token = APIController::solicitud();
+                $formato = '11005';
                 $firmante1 = array( 
                     'documento'=>'20555348887',
                     'tipofirma'=>'FC',
@@ -129,66 +143,88 @@ class CreaPDFController extends Controller
                 );
 
                 $data = array( 
-                    'idtransaccion'=>'200',
+                    'idtransaccion'=>$idTransaccion,
                     'ruc'=>'20555348887',
                     'usuario'=>'SW',
-                    'codigoformato'=>'11005',
-                    'codigotrabajador'=>$codTrabajador,
-                    'nacionalidad'=>'PE',
-                    'tipodocumento'=>'DNI',
-                    'numerodocumento'=>'42928629',
-                    'nombres'=>'JUAN CARLOS',
-                    'apellidopaterno'=>'DAVILA',
-                    'apellidomaterno'=>'FUENTES',
+                    'codigoformato'=>$formato,
+                    'codigotrabajador'=>$cod_trabajador,
+                    'nacionalidad'=>$paisTrabajador,
+                    'tipodocumento'=>$tipoDocTrabajador,
+                    'numerodocumento'=>$numDocTrabajador,
+                    'nombres'=>$nombresTrabajador,
+                    'apellidopaterno'=>$apellPTrabajador,
+                    'apellidomaterno'=>$apellMTrabajador,
                     'correo'=>'mgonzalez@gmail.com',
-                    'celular'=>'941172727',
-                    'sede'=>'00001',
-                    'periodo_m'=>'06',
-                    'periodo_a'=>'2023',
-                    'fechahoranotificacion'=>'2023-06-04 13:15',
-                    'firmantes'=> array('firmante1' => $firmante1),
+                    'celular'=>$celularTrabajador,
+                    'sede'=>$sedeTrabajador,
+                    'periodo_m'=>$mes,
+                    'periodo_a'=>$anio,
+                    'fechahoranotificacion'=>$fechaCompleta,
+                    'firmantes'=> array('firmante1' => $firmante1,'firmante2' => $firmante2),
                     'FILEname'=> $docBase64[7],
                     'FILEcontent'=> $docBase64[3]
                 );
-            }else if($accion == 'solicitid'){
+
+                $tranx = array(
+                    'as_trabajador'=> $cod_trabajador,
+                    'ai_trx'=> $idTransaccion,
+                    'as_formato'=> $formato,
+                    'ai_anno'=> $anio,
+                    'as_mes'=> $mes,
+                    'as_estado'=> 'string',
+                    'as_usuario'=> 'string',
+                    'as_dsc_envio'=> 'string',
+                    'as_id_doc'=> 'string'
+                );
+                CreaPDFController::InsertarSeguimientoEnvio($tranx);                
+
+            }else if($accion == 'solicitudVaca'){
 
                 $docBase64 = explode('"',CreaPDFController::generarPDFSolicitud($cantDias,$fchIni,$fchFin,$fchRein));
-                $token = APIController::solicitud();
+                $formato = '11006';
                 $firmante1 = array( 
                     'documento'=>$numDocTrabajador,
-                    'tipofirma'=>'FC',
-                    'perfil'=>'GH'
+                    'tipofirma'=>'FE',
+                    'perfil'=>'CO'
                 );
 
                 $data = array( 
-                    'idtransaccion'=>'200',
+                    'idtransaccion'=>$idTransaccion,
                     'ruc'=>'20555348887',
                     'usuario'=>'SW',
-                    'codigoformato'=>'11001',
-                    'codigotrabajador'=>$codTrabajador,
-                    'nacionalidad'=>'PE',
-                    'tipodocumento'=>'DNI',
-                    'numerodocumento'=>'42928629',
-                    'nombres'=>'JUAN CARLOS',
-                    'apellidopaterno'=>'DAVILA',
-                    'apellidomaterno'=>'FUENTES',
+                    'codigoformato'=>$formato,
+                    'codigotrabajador'=>$cod_trabajador,
+                    'nacionalidad'=>$paisTrabajador,
+                    'tipodocumento'=>$tipoDocTrabajador,
+                    'numerodocumento'=>$numDocTrabajador,
+                    'nombres'=>$nombresTrabajador,
+                    'apellidopaterno'=>$apellPTrabajador,
+                    'apellidomaterno'=>$apellMTrabajador,
                     'correo'=>'mgonzalez@gmail.com',
-                    'celular'=>'941172727',
-                    'sede'=>'00001',
-                    'periodo_m'=>'06',
-                    'periodo_a'=>'2023',
-                    'fechahoranotificacion'=>'2023-06-04 13:15',
+                    'celular'=>$celularTrabajador,
+                    'sede'=>$sedeTrabajador,
+                    'periodo_m'=>$mes,
+                    'periodo_a'=>$anio,
+                    'fechahoranotificacion'=>$fechaCompleta,
                     'firmantes'=> array('firmante1' => $firmante1),
                     'FILEname'=> $docBase64[7],
                     'FILEcontent'=> $docBase64[3]
                 );
+
+                $trx = array (
+                    'cod_trabajador'=> $cod_trabajador,
+                    'num_linea'=> $cantDias = $request['num_linea'],
+                    'num_transaccion'=> $idTransaccion
+                );
+                CreaPDFController::ActualizarTransaccion($trx); 
             }
 
+            //return $data;
             $dataJson = json_encode($data);
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
-
+           
             return $respuesta;
 
         } catch (\Exception $e) {
@@ -197,4 +233,50 @@ class CreaPDFController extends Controller
         }
 
     }
+
+    public function InsertarSeguimientoEnvio($data)
+    {   
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/InsertarSeguimientoEnvio/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ActualizarTransaccion($data)
+    {   
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ActualizarTransaccion/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
 }
