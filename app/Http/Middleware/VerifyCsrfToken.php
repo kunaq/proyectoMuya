@@ -18,6 +18,7 @@ class VerifyCsrfToken extends Middleware
         '/api/crearPdf',
         '/docAdelantoVaca',
         '/docSolicitudVaca',
+        '/ObtenerBase64',
         '/api/enviarDocumentos',
         '/api/generarDocumento',
         '/api/AprobarSolicitudVacaciones',

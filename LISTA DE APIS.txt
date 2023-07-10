@@ -237,3 +237,7 @@ INSERTAR SEGUIMIENTO
             "as_dsc_envio": "string",
             "as_id_doc": "string"
         }
+
+OBTENER BASE 64
+
+    GET  https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerBase64/20555348887/TRA01204/11001/2023/1

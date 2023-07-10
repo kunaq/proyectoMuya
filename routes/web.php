@@ -57,6 +57,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     //-----------------------Vistas PDF-----------------------------//
     Route::view('/docAdelantoVaca','docAdelantoVaca')->name('docAdelantoVaca');
     Route::view('/docSolicitudVaca','docSolicitudVaca')->name('docSolicitudVaca');
+    Route::get('/ObtenerBase64', [CreaPDFController::class, 'ObtenerBase64'])->name('api.ObtenerBase64');
     //-----------------------Envio Correo-----------------------------//
     Route::post('/api/enviarCorreo',[APIController::class, 'enviarCorreo'])->name('enviarCorreo');
     //Route::post('/api/enviarCorreo',function(){return 'llego controller';});

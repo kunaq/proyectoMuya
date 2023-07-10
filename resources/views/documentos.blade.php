@@ -308,9 +308,10 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                                         <div class="card-body" style="padding-top:1em;">
                                             <div class="row">`;
                     resultados[year].forEach(function(resultado) {
-                        var deshabilita = (resultado.flg_firmado == 'SI') ? 'false' : 'disabled';
+                        var mes = resultado.dsc_periodo.split(' ')[0];
+                        var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
                         sectionContent += `<div class="col-6 col-md-2">
-                                                <button class="btn btn-success btnDorado login-btn" disabled="${deshabilita}" >${resultado.dsc_periodo.split(' ')[0]}</button>
+                                                <button class="btn btn-success btnDorado login-btn" onclick="buscarDocumento('${mes}','${year}')" ${deshabilita} >${mes}</button>
                                             </div>`;
                     });
                     sectionContent += `
@@ -360,23 +361,33 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
 
 });
 
-function buscarDocumento(mes,anno,codDoc){
+function buscarDocumento(mes,anno){
+    codTra = '@php echo(session('codTrabajador')) @endphp';
+    codDoc = document.getElementById("tipoDoc").value;
+    numMes = nombreMesANumero(mes);
+
+    $.ajax({
+      url: 'ObtenerBase64',
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':numMes},
+      success: function(result){
+        console.log(result)
+        if (result['response']['dsc_base_64'] != null) {
+            base64ToPDF(result['response']['dsc_base_64']);
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                text: 'No existe documento a retornar.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            })
+        }
+      }
+  });//ObtenerBase64
 
 }
 
-function base64ToPDF(base64String) {
-    var byteCharacters = atob(base64String);
-    var byteNumbers = new Array(byteCharacters.length);
-    for (var i = 0; i < byteCharacters.length; i++) {
-        byteNumbers[i] = byteCharacters.charCodeAt(i);
-    }
-    var byteArray = new Uint8Array(byteNumbers);
-    var blob = new Blob([byteArray], { type: 'application/pdf' });
-    
-    // Crear una nueva ventana o pestaña del navegador y cargar el PDF
-    var newWindow = window.open();
-    var objectUrl = URL.createObjectURL(blob);
-    newWindow.location.href = objectUrl;
-}
 
 </script>

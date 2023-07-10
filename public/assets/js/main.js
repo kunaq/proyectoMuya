@@ -506,3 +506,44 @@ function firmaConvenio(codTra) {
     }//error
   });//ajax  
 }
+
+
+//------------------------------Muestra PDF--------------------------
+
+
+function base64ToPDF(base64String) {
+  var byteCharacters = atob(base64String);
+  var byteNumbers = new Array(byteCharacters.length);
+  for (var i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+  var byteArray = new Uint8Array(byteNumbers);
+  var blob = new Blob([byteArray], { type: 'application/pdf' });
+  
+  // Crear una nueva ventana o pestaña del navegador y cargar el PDF
+  var newWindow = window.open();
+  var objectUrl = URL.createObjectURL(blob);
+  newWindow.location.href = objectUrl;
+}
+
+function nombreMesANumero(nombreMes) {
+var meses = {
+  enero: 1,
+  febrero: 2,
+  marzo: 3,
+  abril: 4,
+  mayo: 5,
+  junio: 6,
+  julio: 7,
+  agosto: 8,
+  septiembre: 9,
+  octubre: 10,
+  noviembre: 11,
+  diciembre: 12
+};
+
+// Convertir el nombre del mes a minúsculas para evitar problemas de mayúsculas
+var mes = nombreMes.toLowerCase();
+
+return meses[mes] || null;
+}
