@@ -187,3 +187,50 @@ function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
     document.getElementById('cantDiasRech').value = cantDias;
 
 }
+
+// ---------apartado del calendario--------------
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      locale: 'es-PE', // Cambia la configuración local a español de Perú
+      initialView: 'dayGridMonth',
+      scrollTime: false, // Desactiva el desplazamiento de la hora
+      headerToolbar: {
+        start: '',
+        center: 'title',
+        end: 'prev,next'
+      },
+      buttonText: {
+        today: 'Hoy' // Cambia el texto del botón "Today" a "Hoy"
+      },
+
+      eventDidMount: function(info) {
+        var tooltip = new Tooltip(info.el, {
+          title: info.event.extendedProps.description,
+          placement: 'top',
+          trigger: 'hover',
+          container: 'body'
+        });
+      },
+  
+      events: [
+        // {
+        //   title: 'Visita Camposanto',
+        //   description: 'Prospecto: Juan Torres\n Movilidad: C3D-010/Miguel Cerna ',
+        //   start: '2023-07-01T11:00:00'
+        // },
+        {
+          title: 'Proximas vacaciones',
+          description: 'Fecha completa de vacaciones',
+          start: '2023-07-01',
+          end: '2023-07-05'
+        }
+        // ...otros eventos
+      ]
+
+    });
+    // Ajusta el tamaño del contenedor del calendario para que sea lo suficientemente grande
+    calendarEl.style.height = '100%';
+    calendar.render();
+  });
+  console.log('revision calendario',);

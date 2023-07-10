@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/css/fullCalendarCustom.css">
 <x-layouts.app title="solicitudVacaciones" meta-description="Home meta description">
 
   <main id="main" class="main">
@@ -41,13 +42,13 @@
 
     <section class="section dashboard">
         <div class="row">
-            <div class="col-md-10 offset-md-1 d-none d-md-block" style="height: 34rem;">
+            <div class="col-md-10 offset-md-1">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 18px; color: #155450;">Calendario de vacaciones solicitadas</h5>
                         <div class="row">
-                            <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;height: 28rem;">
-                                <div id='calendar' style="height: 28rem;;"></div>
+                            <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
+                                <div id='calendar' style="height: 28rem;"></div>
                             </div>
                         </div>  
                     </div>
@@ -170,4 +171,8 @@
 <x-modals.solicitudVacaciones/>
 
 </x-layouts.app>
+{{-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script> --}}
+<script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script>
+{{-- <script src="https://static.cloudflareinsights.com/beacon.min.js"></script> --}}
 <script src="{{asset('assets/js/solicitudVacaciones.js')}}"></script>
