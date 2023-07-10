@@ -340,7 +340,7 @@
         </div>  
     </div>    
 </section>
-
+{{session('alert')}}
 {{-- Cargar vacaciones --}}
 <section class="section dashboard">
     <div class="row">
@@ -390,27 +390,6 @@
 
 <!-- Template Main JS File -->
 <script src="{{asset('assets/js/aprobacionVacaciones.js')}}"></script>
-<script type='importmap'>
-{
-    "imports": {
-    "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.6",
-    "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/multimonth@6.1.6"
-    }
-}
-</script>
-<script type="module">
-import { Calendar } from '@fullcalendar/core'
-import multiMonthPlugin from '@fullcalendar/multimonth'
-document.addEventListener('DOMContentLoaded', function() {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [multiMonthPlugin],
-        initialView: 'multiMonthYear'
-    });
-    calendar.render();
-    });
-</script>
-
 <script type="text/javascript">
 window.onload= function() {
     if ('@php echo(session('ventana4_2')) @endphp' != 'SI') {
@@ -1109,7 +1088,48 @@ btnProcesar.addEventListener("click", function() {
 
 });
 
+// Escucha el evento de envío del formulario
+document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+    // Obtiene los datos del formulario
+    var formData = new FormData(this);
+
+    // Realiza la petición AJAX
+    fetch('{{ route('subirArchivo') }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            // Si hay un error, muestra la alerta de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.error,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            });
+        } else {
+            // Si no hay error, muestra la alerta de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: data.mensaje,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            }).then((result) => {
+                // Redirige a la página deseada después de cerrar la alerta de éxito
+                if (result.isConfirmed) {
+                    window.location.href = '{{ route('aprobacionVacaciones') }}';
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
 
 </script>
-
-
