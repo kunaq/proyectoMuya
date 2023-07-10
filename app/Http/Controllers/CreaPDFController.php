@@ -151,7 +151,7 @@ class CreaPDFController extends Controller
                 $data = array( 
                     'idtransaccion'=>$idTransaccion,
                     'ruc'=>'20555348887',
-                    'usuario'=>'SW',
+                    'usuario'=>$numDocTrabajador,
                     'codigoformato'=>$formato,
                     'codigotrabajador'=>$cod_trabajador,
                     'nacionalidad'=>$paisTrabajador,
@@ -160,7 +160,7 @@ class CreaPDFController extends Controller
                     'nombres'=>$nombresTrabajador,
                     'apellidopaterno'=>$apellPTrabajador,
                     'apellidomaterno'=>$apellMTrabajador,
-                    'correo'=>'mgonzalez@gmail.com',
+                    'correo'=>'mirellyagv@gmail.com',
                     'celular'=>$celularTrabajador,
                     'sede'=>$sedeTrabajador,
                     'periodo_m'=>$mes,
@@ -169,20 +169,7 @@ class CreaPDFController extends Controller
                     'firmantes'=> array('firmante1' => $firmante1,'firmante2' => $firmante2),
                     'FILEname'=> $docBase64[7],
                     'FILEcontent'=> $docBase64[3]
-                );
-
-                $tranx = array(
-                    'as_trabajador'=> $cod_trabajador,
-                    'ai_trx'=> $idTransaccion,
-                    'as_formato'=> $formato,
-                    'ai_anno'=> $anio,
-                    'as_mes'=> $mes,
-                    'as_estado'=> 'string',
-                    'as_usuario'=> 'string',
-                    'as_dsc_envio'=> 'string',
-                    'as_id_doc'=> 'string'
-                );
-                CreaPDFController::InsertarSeguimientoEnvio($tranx);                
+                );               
 
             }else if($accion == 'solicitudVaca'){
 
@@ -197,7 +184,7 @@ class CreaPDFController extends Controller
                 $data = array( 
                     'idtransaccion'=>$idTransaccion,
                     'ruc'=>'20555348887',
-                    'usuario'=>'SW',
+                    'usuario'=>$numDocTrabajador,
                     'codigoformato'=>$formato,
                     'codigotrabajador'=>$cod_trabajador,
                     'nacionalidad'=>$paisTrabajador,
@@ -206,7 +193,7 @@ class CreaPDFController extends Controller
                     'nombres'=>$nombresTrabajador,
                     'apellidopaterno'=>$apellPTrabajador,
                     'apellidomaterno'=>$apellMTrabajador,
-                    'correo'=>'mgonzalez@gmail.com',
+                    'correo'=>'mirellyagv@gmail.com',
                     'celular'=>$celularTrabajador,
                     'sede'=>$sedeTrabajador,
                     'periodo_m'=>$mes,
@@ -230,8 +217,22 @@ class CreaPDFController extends Controller
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
+            //$arreglado = json_encode($respuesta);
+
+            $tranx = array(
+                'as_trabajador'=> $cod_trabajador,
+                'ai_trx'=> $idTransaccion,
+                'as_formato'=> $formato,
+                'ai_anno'=> $anio,
+                'as_mes'=> $mes,
+                'as_estado'=> 'ENV',
+                'as_usuario'=> $numDocTrabajador,
+                'as_dsc_envio'=> '',
+                //'as_id_doc'=> $respuesta['iddocumento']
+            );
+            CreaPDFController::InsertarSeguimientoEnvio($tranx); 
            
-            return $respuesta;
+            var_dump($respuesta);
 
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle

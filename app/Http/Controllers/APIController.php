@@ -100,11 +100,13 @@ class APIController extends Controller
               
             $request = new \GuzzleHttp\Psr7\Request('POST','https://test45.davicloud.com/API/v1/api_rest.php/genera_documento', $headers, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
-                echo  $response->getBody();
+                $body =  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
 
-                return response()->json(['status' => $code, 'mensaje' => $reason]);
+                //return response()->json(['status' => $code, 'mensaje' => $body]);
+
+                return $response->getBody()->getContents();
 
             });
             
