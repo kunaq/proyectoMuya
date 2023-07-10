@@ -306,5 +306,28 @@ class CreaPDFController extends Controller
         }
     }
 
+    public function ObtenerBase64(Request $request)
+    {   
+        $client = new Client();
+        try {
+            $cod_trabajador = $request['cod_trabajador'];
+            $codDoc = $request['codDoc'];
+            $anno = $request['anno'];
+            $mes = $request['mes'];
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerBase64/20555348887/'.$cod_trabajador.'/'.$codDoc.'/'.$anno.'/'.$mes);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 
 }
