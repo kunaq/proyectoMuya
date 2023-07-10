@@ -60,8 +60,6 @@
                                 <div class="col-md-4" style="margin-bottom: 1rem;">
                                     <div class="form-group">
                                         <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                            <option value="">Seleccione un tipo de documento...
-                                            </option>
                                             <option value="11001">Boleta de pago</option>
                                             <option value="11002">Constancia de CTS</option>
                                             <option value="11003">Participación de utilidades</option>
@@ -307,14 +305,12 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                                 <div class="col-md-10 offset-md-1">
                                     <div class="card">
                                         <h5 class="card-header" style="font-size: 2em; color: #a18347;">${year}</h5>
-                                        <div class="card-body">
+                                        <div class="card-body" style="padding-top:1em;">
                                             <div class="row">`;
                     resultados[year].forEach(function(resultado) {
                         var deshabilita = (resultado.flg_firmado == 'SI') ? 'false' : 'disabled';
                         sectionContent += `<div class="col-6 col-md-2">
-                                                <a href="assets/file/boleta.pdf" disabled="${deshabilita}" class="btn btn-block login-btn" target="_blank">
-                                                    <i class="bx bx-calendar"></i> ${resultado.dsc_periodo.split(' ')[0]}
-                                                </a>
+                                                <button class="btn btn-success btnDorado login-btn" disabled="${deshabilita}" >${resultado.dsc_periodo.split(' ')[0]}</button>
                                             </div>`;
                     });
                     sectionContent += `
