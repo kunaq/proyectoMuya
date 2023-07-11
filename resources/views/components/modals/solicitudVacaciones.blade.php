@@ -74,6 +74,7 @@
                       <div class="col-md-8">
                         <span id=resutSolVac></span><span id=resutSolVac2></span><p id=resutSolVac3></p>
                         <input type="hidden" id="cantDiasSol" value = 0>
+                        <input type="hidden" id="numVacPendReprog" value = "0">
                         <input type="hidden" id="reprogramacion" value = 'NO'>
                         <input type="hidden" id="numLinea">
                         <input type="hidden" id="fchInicioRech">

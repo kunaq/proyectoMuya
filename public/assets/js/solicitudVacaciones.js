@@ -13,6 +13,7 @@ inputFchInicio.addEventListener("change", function() {
     document.getElementById('resutSolVac2').innerHTML = '';
     document.getElementById('resutSolVac3').innerHTML = '';
     numPend = parseInt(document.getElementById("numVacPend").value);
+    numdiasReprog = parseInt(document.getElementById("numVacPendReprog").value);
     //console.log('numPend',numPend);
 
     
@@ -24,7 +25,7 @@ inputFchInicio.addEventListener("change", function() {
     maximaDate.setDate(parseInt(fechaParts[0]));
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
-    maximaDate.setDate(maximaDate.getDate() + numPend + parametroY);
+    maximaDate.setDate(maximaDate.getDate() + numPend + parametroY + numdiasReprog);
     
     var ctdProgVac = parseInt(document.getElementById('ctdProgPeriodo').value);
     // console.log('ctdProgVac',ctdProgVac);
@@ -167,7 +168,9 @@ btnBuscarLista.addEventListener("click", function() {
 const myModalEl = document.getElementById('ModalSolicitud')
 myModalEl.addEventListener('hidden.bs.modal', event => {
     document.getElementById('FormSolicitudVac').reset();
-    document.getElementById('cantDiasSol').value = '';
+    document.getElementById('cantDiasSol').value = 0;
+    document.getElementById('numVacPendReprog').value = 0;
+    document.getElementById('reprogramacion').value = 'NO';
     document.getElementById('resutSolVac').innerHTML = '';
     document.getElementById('resutSolVac2').innerHTML = '';
     document.getElementById('resutSolVac3').innerHTML = '';
@@ -179,28 +182,17 @@ function descargaDoc() {
 
 function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
     document.getElementById('cantDiasSol').value = cantDias;
+    document.getElementById('numVacPendReprog').value = cantDias;
     document.getElementById('numLinea').value = numLinea;
     document.getElementById('reprogramacion').value = 'SI';
     document.getElementById('fchInicioRech').value = fhcIni;
     document.getElementById('fchFinRech').value = fchFin;
     document.getElementById('fchReincRech').value = fchReini;    
     document.getElementById('cantDiasRech').value = cantDias;
-
 }
 
 // ---------apartado del calendario--------------
 function muestraCalendario(fechIniCalendario,fchFinCalendario) {
-  fechIniCalendario='2023-07-01';
-  fchFinCalendario='2023-07-05';
-  var evento = '';
-  if (fechIniCalendario != null) {
-    evento = `{
-            title: 'Proximas vacaciones',
-            description: 'Fecha completa de vacaciones',
-            start: '${fechIniCalendario}',
-            end: '${fchFinCalendario}'
-          }`
-  }
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'es-PE', // Cambia la configuración local a español de Perú
@@ -231,10 +223,10 @@ function muestraCalendario(fechIniCalendario,fchFinCalendario) {
         //   start: '2023-07-01T11:00:00'
         // },
         {
-          title: 'Proximas vacaciones',
+          title: 'Vacaciones aprobadas',
           description: 'Fecha completa de vacaciones',
-          start: '2023-07-01',
-          end: '2023-07-05'
+          start: fechIniCalendario,
+          end: fchFinCalendario
         }
         // ...otros eventos
       ]
