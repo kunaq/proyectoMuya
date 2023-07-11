@@ -631,7 +631,7 @@ window.onload= function() {
 //-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVac');
 btnProcesar.addEventListener("click", function() {
-
+    btnProcesar.setAttribute('disabled','disabled');
     var tabla = document.getElementById("tablaSolAprobar");
     var filas = tabla.getElementsByTagName("tr");
 
@@ -684,7 +684,8 @@ btnProcesar.addEventListener("click", function() {
                             text: 'Ha ocurrido un error intentelo nuevamente.',
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
-                            })
+                        })
+                        btnProcesar.removeAttribute('disabled');
                     }//error
                 });//ajax
             }else if(accion == 'APROBAR'){
@@ -717,7 +718,8 @@ btnProcesar.addEventListener("click", function() {
                             text: 'Ha ocurrido un error intentelo nuevamente.',
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
-                            })
+                        })
+                        btnProcesar.removeAttribute('disabled');
                     }//error
                 });//ajax
             }
@@ -728,35 +730,35 @@ btnProcesar.addEventListener("click", function() {
 
 function enviaAprobacionVac(codTra,fchIni,fchFin) {
 
-$.ajax({
-    url: 'api/ObtenerTrabajador', 
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'cod_trabajador':codTra},
-    success: function(respuesta){
-        console.log(respuesta);
-        var dscTra = respuesta['response']['dsc_trabajador'];
-        var correoTra = respuesta['response']['dsc_mail_personal'];
-        var fechaActual = new Date();
-        var dia = fechaActual.getDate();
-        var mes = fechaActual.getMonth() + 1;
-        var anio = fechaActual.getFullYear();
-        var diaFormateado = dia < 10 ? '0' + dia : dia;
-        var mesFormateado = mes < 10 ? '0' + mes : mes;
-        var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
-        var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
-        var actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchIni+', fin: '+fchFin+')';
-        var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
-        var asunto = 'Aprobación de solicitud de vacaciones';
+    $.ajax({
+        url: 'api/ObtenerTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_trabajador':codTra},
+        success: function(respuesta){
+            console.log(respuesta);
+            var dscTra = respuesta['response']['dsc_trabajador'];
+            var correoTra = respuesta['response']['dsc_mail_personal'];
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            var diaFormateado = dia < 10 ? '0' + dia : dia;
+            var mesFormateado = mes < 10 ? '0' + mes : mes;
+            var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+            var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+            var actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+            var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+            var asunto = 'Aprobación de solicitud de vacaciones';
 
-        enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad,'guarda  ');
+            enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad,'guarda  ');
 
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-});//ajax  
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax  
 }
 
 function enviaRechazoVac(codTra,fchIni,fchFin) {
@@ -795,7 +797,7 @@ $.ajax({
 
 var btnConfig = document.getElementById('actualizaConfig');
 btnConfig.addEventListener("click", function() {
-  
+    btnConfig.setAttribute('disabled','disabled');
     var filas = document.querySelectorAll("#listaColab tbody tr");
     var promesas = [];
 
@@ -855,12 +857,14 @@ btnConfig.addEventListener("click", function() {
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
         });
+        btnConfig.removeAttribute('disabled');
     });
 });
 
 //-----------------------Procesar descargar reporte solicitudes de vacaciones---------------------
-var btnProcesar = document.getElementById('btnDescargSolVac');
-btnProcesar.addEventListener("click", function() {
+var btnProcesarD = document.getElementById('btnDescargSolVac');
+btnProcesarD.addEventListener("click", function() {
+    btnProcesarD.setAttribute('disabled','disabled');
     var fchInicio = document.getElementById('datepickerIniDes').value;
     var fechaParts = fchInicio.split('-');
     var day = fechaParts[0];
@@ -968,6 +972,8 @@ btnProcesar.addEventListener("click", function() {
 
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();
+
+                btnProcesarD.removeAttribute('disabled');
             }else{
                 Swal.fire({
                     icon: 'warning',
@@ -975,6 +981,7 @@ btnProcesar.addEventListener("click", function() {
                     confirmButtonText: 'Continuar',
                     confirmButtonColor: '#a18347',
                 });
+                btnProcesarD.removeAttribute('disabled');
             }
         },//success
         error(e){
@@ -987,8 +994,9 @@ btnProcesar.addEventListener("click", function() {
 
 //-----------------------Procesar descargar reporte vacaciones---------------------
 
-var btnProcesar = document.getElementById('buscarDoc');
-btnProcesar.addEventListener("click", function() {
+var btnProcesarD = document.getElementById('buscarDoc');
+btnProcesarD.addEventListener("click", function() {
+    btnProcesarD.setAttribute('disabled','disabled');
     var fchInicio = document.getElementById('datepicker1').value;
     var fechaParts = fchInicio.split('-');
     var day = fechaParts[0];
@@ -1071,6 +1079,7 @@ btnProcesar.addEventListener("click", function() {
 
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();
+                btnProcesarD.removeAttribute('disabled');
             }else{
                 Swal.fire({
                     icon: 'warning',
@@ -1078,6 +1087,7 @@ btnProcesar.addEventListener("click", function() {
                     confirmButtonText: 'Continuar',
                     confirmButtonColor: '#a18347',
                 });
+                btnProcesarD.removeAttribute('disabled');
             }
 
         },//success

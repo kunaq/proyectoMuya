@@ -669,6 +669,7 @@ window.onload= function() {
     //-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVacEmp');
 btnProcesar.addEventListener("click", function() {
+    btnProcesar.setAttribute('disabled','disabled');
     var tabla = document.getElementById("tablaSolAprobarEmp");
     var filas = tabla.getElementsByTagName("tr");
 
@@ -721,7 +722,8 @@ btnProcesar.addEventListener("click", function() {
                             text: 'Ha ocurrido un error intentelo nuevamente.',
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
-                            })
+                        })
+                        btnProcesar.removeAttribute('disabled');
                     }//error
                 });//ajax
             }else if(accion == 'APROBAR'){
@@ -754,7 +756,8 @@ btnProcesar.addEventListener("click", function() {
                             text: 'Ha ocurrido un error intentelo nuevamente.',
                             confirmButtonText: 'Continuar',
                             confirmButtonColor: '#a18347',
-                            })
+                        })
+                        btnProcesar.removeAttribute('disabled');
                     }//error
                 });//ajax
             }
@@ -766,6 +769,8 @@ btnProcesar.addEventListener("click", function() {
 //-----------------------Guarda configuraciones-----------------------------------
 var btnConfig = document.getElementById('actualizaConfigEmp');
 btnConfig.addEventListener("click", function() {
+
+    btnConfig.setAttribute('disabled','disabled');
     var filas = document.querySelectorAll("#listaColabEmp tbody tr");
     var promesas = [];
 
@@ -825,6 +830,7 @@ btnConfig.addEventListener("click", function() {
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
         });
+        btnConfig.removeAttribute('disabled');
     });
 });
 
@@ -832,7 +838,7 @@ btnConfig.addEventListener("click", function() {
 
 var btnModificaReglas = document.getElementById('btnModificaReglas');
 btnModificaReglas.addEventListener("click", function() {
-    
+    btnModificaReglas.setAttribute('disabled','disabled');
     var promesas = [];
     var reglasJefe = document.getElementById('txtReglasJefe').value;
     var reglasColab = document.getElementById('txtReglasColab').value;
@@ -876,7 +882,7 @@ btnModificaReglas.addEventListener("click", function() {
             confirmButtonColor: '#a18347',
         }).then(function(result) {
             if (result.isConfirmed) {
-                //location.reload();
+                location.reload();
             }
         });
     })
@@ -888,6 +894,7 @@ btnModificaReglas.addEventListener("click", function() {
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
         });
+        btnModificaReglas.removeAttribute('disabled');
     });
 
 });
@@ -1023,6 +1030,7 @@ btnProcesar.addEventListener("click", function() {
 
 var btnProcesar = document.getElementById('btnDescRepVacEmp');
 btnProcesar.addEventListener("click", function() {
+    btnProcesar.setAttribute('disabled','disabled');
     var fchInicio = document.getElementById('datepicker1').value;
     var fechaParts = fchInicio.split('-');
     var day = fechaParts[0];
@@ -1105,6 +1113,7 @@ btnProcesar.addEventListener("click", function() {
 
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();
+                btnProcesar.removeAttribute('disabled');
             }else{
                 Swal.fire({
                     icon: 'warning',
@@ -1112,6 +1121,7 @@ btnProcesar.addEventListener("click", function() {
                     confirmButtonText: 'Continuar',
                     confirmButtonColor: '#a18347',
                 });
+                btnProcesar.removeAttribute('disabled');
             }
 
         },//success
