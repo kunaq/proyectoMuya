@@ -467,7 +467,7 @@ function firmaConvenio(codTra) {
             console.log(resp);
             Swal.fire({
               icon: 'success',
-              text: 'Se ha registrado la firma',
+              text: 'Se realizó el envio satisfactoriamente.',
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#a18347',
             }).then((result) => {
@@ -482,7 +482,7 @@ function firmaConvenio(codTra) {
         
           Swal.fire({
             icon: 'success',
-            text: 'Se ha registrado la firma',
+            text: 'Se realizó el envio satisfactoriamente.',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
           }).then((result) => {
