@@ -612,7 +612,8 @@ btnSolicitar.addEventListener("click", function() {
         },//success
         error(e){
           console.log(e.message);
-          msjError = (@php echo(session('codGrupoVac')) @endphp == '') ? 'No esta configurado su grupo de vacaciones,' : '';
+          var grupo = "'"+'@php echo(session('codGrupoVac')) @endphp'+"'";
+          msjError = (grupo == '') ? 'No esta configurado su grupo de vacaciones,' : '';
           Swal.fire({
             icon: 'warning',
             text: 'Ha ocurrido un error,'+msjError+' intentelo nuevamente.',
