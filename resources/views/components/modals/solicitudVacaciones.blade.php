@@ -29,7 +29,7 @@
             Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo <span id="correoPerMuestra"></span>, ingresar al correo mencionado para continuar con el proceso.
         </div>
         <div class="modal-footer">
-            <a href="#"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
+            <a href="#"><button type="button" id="aceptaFirma" class="btn btn-success btnDorado" data-bs-dismiss="modal"> Enviar</button></a>
         </div>
         </div>
     </div>
@@ -115,6 +115,7 @@
 
 <script type="text/javascript">
 var fechIniCalendario = null;
+var fchFinCalendario = null;
 window.onload= function() {
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
@@ -131,7 +132,8 @@ window.onload= function() {
           document.getElementById('correoPerMuestra').innerHTML=result["response"]["dsc_mail_personal"];
           document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
-          fechIniCalendario = result["response"]["fch_proxima_vacaciones"];
+          fechIniCalendario = (result["response"]["fch_proxima_vacaciones"] != '1900-01-01T00:00:00') ? result["response"]["fch_proxima_vacaciones"].split("T") : null;
+          fchFinCalendario = (result["response"]["fch_fin"] != '1900-01-01T00:00:00') ? result["response"]["fch_fin"].split("T") : null;
          
           fch_ingreso = result["response"]["fch_ingreso_planilla"];
           var fechaActual = new Date();
@@ -161,6 +163,7 @@ window.onload= function() {
           }
 
           numUltDias = result['response']['num_ultimo_dias'];
+          muestraCalendario(fechIniCalendario,fchFinCalendario);
       }
   });//ajax obtener trabajador
 
@@ -402,7 +405,7 @@ fIni.addEventListener('change', function() {
 
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
-
+  btnSolicitar.setAttribute('disabled','disabled');
   var diasGenerados = document.getElementById('num_vacaciones_pendiente').innerHTML;
   diasGenerados = parseInt(diasGenerados);
   var form = document.getElementById("FormSolicitudVac");

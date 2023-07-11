@@ -189,8 +189,18 @@ function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
 }
 
 // ---------apartado del calendario--------------
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('calendario',fechIniCalendario);
+function muestraCalendario(fechIniCalendario,fchFinCalendario) {
+  fechIniCalendario='2023-07-01';
+  fchFinCalendario='2023-07-05';
+  var evento = '';
+  if (fechIniCalendario != null) {
+    evento = `{
+            title: 'Proximas vacaciones',
+            description: 'Fecha completa de vacaciones',
+            start: '${fechIniCalendario}',
+            end: '${fchFinCalendario}'
+          }`
+  }
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
       locale: 'es-PE', // Cambia la configuración local a español de Perú
@@ -233,5 +243,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajusta el tamaño del contenedor del calendario para que sea lo suficientemente grande
     calendarEl.style.height = '100%';
     calendar.render();
-  });
+  }
   //console.log('revision calendario',);
