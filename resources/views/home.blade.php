@@ -22,10 +22,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title tarjeta-foco"><b><span id="dsc_ultima_boleta"></span></b></h1>
-                                <h5><button class="btn btn-success btnDorado" onclick="buscarDocumento();">Descargar Boleta</button></h5>
+                                <h5><button class="btn btn-success btnDorado">Descargar Boleta</button></h5>
                             </div>
                         </div>
                     </div> 
+                    <input type="hidden" id="mesBoleta" name="mesBoleta">
+                    <input type="hidden" id="annoBoleta" name="annoBoleta">
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -100,40 +102,51 @@
 
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
-window.onload= function() {
-    var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
-    $.ajax({
-        url: 'api/ObtenerTrabajador', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'cod_trabajador':codTrabajador},
-        success: function(result){
-            document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
-            document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
-            var aux =result["response"]["dsc_proxima_vacaciones"];
-            
-            if (aux == 'NO REGISTRADO') {
-            var parentElement = document.getElementById("dsc_proxima_vacaciones");
-            parentElement.style.padding ='0.5em';
-            var h1Element = document.createElement("h1");
-            h1Element.className = "card-title tarjeta-foco";
-            h1Element.style.padding = '0em';
-            h1Element.innerHTML = "<b>No hay </br> Vacaciones registradas</b>";
-            parentElement.appendChild(h1Element);
-        }
-        else{
-                var h5Element = document.createElement("h5");
-                h5Element.style.marginBottom = "0";
-                h5Element.id = "proxVac";
-                h5Element.textContent = "Tus próximas vacaciones inician";
-                parentElement.appendChild(h5Element);
+    window.onload= function() {
+        var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
+        $.ajax({
+            url: 'api/ObtenerTrabajador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'cod_trabajador':codTrabajador},
+            success: function(result){
+                document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
+                document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
+                var aux = result["response"]["dsc_proxima_vacaciones"];
+                
+                if (aux == 'NO REGISTRADO') {
+                    var parentElement = document.getElementById("dsc_proxima_vacaciones");
+                    parentElement.style.padding ='0.5em';
+                    var h1Element = document.createElement("h1");
+                    h1Element.className = "card-title tarjeta-foco";
+                    h1Element.style.padding = '0em';
+                    h1Element.innerHTML = "<b>No hay </br> Vacaciones registradas</b>";
+                    parentElement.appendChild(h1Element);
+                }else{
+                    var parentElement = document.getElementById("dsc_proxima_vacaciones");
+                    parentElement.style.padding ='1em';
+                    var h5Element = document.createElement("h5");
+                    h5Element.id = "proxVac";
+                    h5Element.textContent = "Tus próximas vacaciones inician ";
+                    parentElement.appendChild(h5Element);
+                    var h1Element = document.createElement("h1");
+                    h1Element.className = "card-title tarjeta-foco";
+                    h1Element.style.padding = '0em';
+                    h1Element.innerHTML ="<b>"+aux+"</b>";
+                    parentElement.appendChild(h1Element);
+                }
+                
+                var aux2 = result["response"]["dsc_ultima_boleta"].split(' ');
+                mes = nombreMesANumero(aux2[0])
+                document.getElementById("mesBoleta").value = mes;
+                document.getElementById("annoBoleta").value = aux2[1];
+
             }
-        }
-    });
+        });
 
 
-    $.ajax({
+        $.ajax({
         url: 'lista/ListarUltimosMensajes', 
         method: "GET",
         crossDomain: true,
@@ -207,15 +220,15 @@ window.onload= function() {
        
     });//end ajax
 
+
 }
 
-function buscarDocumento(){
+var btnSolicitar = document.getElementById('btnDscgBoleta');
+btnSolicitar.addEventListener("click", function() {
     codTra = '@php echo(session('codTrabajador')) @endphp';
     codDoc = '11001';
-    var fechaActual = new Date();
-    var mes = fechaActual.getMonth() + 1;
-    var anno = fechaActual.getFullYear();
-
+    var mes = document.getElementById("mesBoleta").value;
+    var anno = document.getElementById("annoBoleta").value;
     $.ajax({
       url: 'ObtenerBase64',
       method: "GET",
@@ -237,8 +250,7 @@ function buscarDocumento(){
       }
   });//ObtenerBase64
 
-}
-
+});
     
 
 </script>
