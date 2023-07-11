@@ -549,7 +549,7 @@ class ListaController extends Controller
         $fchFin =  $request['fchFin'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Trabajador/ListarReporteVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarReporteVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
