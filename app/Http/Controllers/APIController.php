@@ -581,15 +581,15 @@ class APIController extends Controller
         }
     }
 
-    public function ObtenerCoincidenciaVacaciones(Request $request)
+    public function ObtenerCoincidenciaVacacionesxTrabajador(Request $request)
     {   
         $client = new Client();
-        $codGrupo = $request['codGrupo'];
+        $codTra = $request['codTra'];
         $fchIni = $request['fchIni'];
         $fchFin = $request['fchFin'];
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacaciones/20555348887/'.$codGrupo.'/'.$fchIni.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -601,6 +601,7 @@ class APIController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
     public function ReprogramarSolicitudVacaciones(Request $request)
     {  

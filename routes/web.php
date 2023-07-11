@@ -107,7 +107,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::put('api/InsertarResponsable', [APIController::class, 'InsertarResponsable'])->name('api.InsertarResponsable');
     Route::get('lista/ListarReglasJefe', [ListaController::class, 'ListarReglasJefe'])->name('lista.ListarReglasJefe');
     Route::get('lista/ListarReglasTrabajador', [ListaController::class, 'ListarReglasTrabajador'])->name('lista.ListarReglasTrabajador');
-    Route::get('api/ObtenerCoincidenciaVacaciones', [APIController::class, 'ObtenerCoincidenciaVacaciones'])->name('lista.ObtenerCoincidenciaVacaciones');
+    Route::get('api/ObtenerCoincidenciaVacacionesxTrabajador', [APIController::class, 'ObtenerCoincidenciaVacacionesxTrabajador'])->name('lista.ObtenerCoincidenciaVacacionesxTrabajador');
     Route::get('lista/ListarParametro', [ListaController::class, 'ListarParametro'])->name('lista.ListarParametro');
     Route::get('lista/ObtenerCorreo', [ListaController::class, 'ObtenerCorreo'])->name('lista.ObtenerCorreo');
     Route::get('api/ListarVentana', [APIController::class, 'ListarVentana'])->name('api.ListarVentana');
