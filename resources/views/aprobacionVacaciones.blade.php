@@ -1016,7 +1016,7 @@ btnProcesar.addEventListener("click", function() {
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
-                var header = ['CODIGO TRABAJADOR','TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
+                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
                 var filasArray = [];
 
                 respuesta['response'].forEach(element => {
