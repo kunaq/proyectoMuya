@@ -1,25 +1,26 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <x-layouts.index>
+<link rel="stylesheet" href="assets/css/login.css">
 
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-        <div class="container" style="max-width: 1028px;">
+    <main class="mainIndex">
+        <div class="container">
             <div class="card login-card">
-                <div class="row no-gutters">
+                <div class="row">
                     <div class="col-md-6">
-                        <img src="assets/img/GM-BLANCO3.png" alt="login"
+                        <img src="assets/img/GM-BLANCO.png" alt="login"
                             class="login-card-img">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
                             <div class="brand-wrapper">
                                 <div class="row">
-                                    <img src="assets/img/LOGO_GRUPO_MUYA.png" alt="logo"
-                                        class="logo d-sm-block d-md-none">
+                                    <img class="logo" src="assets/img/LOGO_GRUPO_MUYA.png" alt="logo">
                                 </div>
+                                <h2 class="inicioSession">Inicio de Sesión</h2>
                             </div>
-                            <div class="row" style="height: 3rem;">
-                                <div class="form-group col-md-1 offset-md-8" style="text-align: end;">
+                            <div class="row banderas">
+                                <div class="form-group">
                                     <select id="id_select2_example" style="width: 100px;"
                                         data-minimum-results-for-search="Infinity">
                                         <option data-img_src="assets/img/Peru_bandera.png"></option>
@@ -33,7 +34,7 @@
                                 <input type="text" name="dni" id="dni" class="form-control" autocomplete="false"
                                     placeholder="Número del DNI">
                             </div>
-                            <div class="form-group mb-4">
+                            <div class="form-group">
                                 <label for="password" class="sr-only">Clave</label>
                                 <div class="input-group" id="show_hide_password">
                                     <input type="password" name="password" id="password" autocomplete="false"
@@ -44,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row form-group mb-4">
+                            <div class="row form-group">
                                 <div class="col-md-6">
                                     <a href="#" style="text-decoration: underline;" data-bs-toggle="modal"
                                         data-bs-target="#ModalOlvideC">Olvidé mi contraseña</a>
@@ -59,7 +60,7 @@
                                 <span style="color: red;">El usuario se encuentra bloqueado temporalmente por
                                     exceso de intentos fallidos.</span>
                             </div>
-                            <a href="#" class="btn btn-block login-btn mb-4" id="loginBtn">Ingresar</a>
+                            <a href="#" class="btn btn-block login-btn" id="loginBtn">Ingresar</a>
                         </div>
                     </div>
                 </div>
