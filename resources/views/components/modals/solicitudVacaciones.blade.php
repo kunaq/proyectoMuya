@@ -455,7 +455,7 @@ btnSolicitar.addEventListener("click", function() {
         'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
         'num_linea_origen': 0
       }
-    
+      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
     var parametroX = parseInt(document.getElementById('parametroX').value);
     var pagoHaber = document.getElementById('pagoPlanilla').value;
     var fechaActual = new Date();
@@ -658,12 +658,15 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
 
           enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad);
           
+          var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
           fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
-          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
           
-          if (fchLimite < fchIni) {
-            fchLimite = fchBD;
+          if (fechaActualMas8Dias < fchInicio) {
+            fchLimite = fchLimiteForm;
+          }else{
+            fchLimite = fechaFormateada;
           }
 
           enviaCorreoMensaje(codSupervisor,solicitante,'1002',fchLimite,actividadSup,actividadSup);
@@ -701,12 +704,15 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
 
           enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
 
+          var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
           fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
-          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
           
-          if (fchLimite < fchIni) {
-            fchLimite = fchBD;
+          if (fechaActualMas8Dias < fchInicio) {
+            fchLimite = fchLimiteForm;
+          }else{
+            fchLimite = fechaFormateada;
           }
 
           enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);

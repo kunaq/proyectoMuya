@@ -367,7 +367,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
               method: "post",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'codigoMensaje':codMensaje},
+              data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'fchLimite':fchLimite,'codigoMensaje':codMensaje},
               success: function(respuesta){
                   console.log(respuesta);
               },//success
@@ -375,11 +375,21 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
                   console.log(e.message);
               }//error
           });//ajax
+          if (fchLimite != '' || fchLimite != null) {
+            var fecha = fchLimite.split('/');
+            var day = fecha[0];
+            var month = fecha[1];
+            var year = fecha[2];
+            var fchaLimiteFor =  year + "-" + month + "-" + day;
+          }else{
+            fchaLimiteFor = '';
+          }
+
           data = {
             'cod_trabajador': codTra,
             'cod_mensaje': codMensaje,
             'fch_notificacion': fchBD,
-            'fch_limite': fchLimite
+            'fch_limite': fchaLimiteFor
           }
 
           $.ajax({
