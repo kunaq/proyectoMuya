@@ -508,7 +508,6 @@ btnSolicitar.addEventListener("click", function() {
           }
           else{
             // console.log('else parametro x');
-            alert('graba');
             if(reprog == 'NO'){
               console.log(solVac);
               $.ajax({
