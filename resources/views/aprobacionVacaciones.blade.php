@@ -514,6 +514,12 @@ window.onload= function() {
                 alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
                 }
 
+                if (element['dsc_estado'] == 'APROBADO' || element['dsc_estado'] == 'RECHAZADO') {
+                    disabled = 'disabled'
+                }else{
+                    disabled = '';
+                }
+
                 var cantDias = element['cant_dia'];
                 var codTrabajador = "'"+element['cod_trabajador']+"'";
 
@@ -526,8 +532,8 @@ window.onload= function() {
                     element['dsc_estado'],
                     alertaRegla,
                     alertaReprog,
-                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
+                    '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" '+disabled+' name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
                 ];
                 filasArray.push(filaData);
             });
