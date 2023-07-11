@@ -473,13 +473,13 @@ btnSolicitar.addEventListener("click", function() {
         })
     }else{
       $.ajax({
-        url: 'api/ObtenerCoincidenciaVacaciones', 
+        url: 'api/ObtenerCoincidenciaVacacionesxTrabajador', 
         method: "get",
         crossDomain: true,
         dataType: 'json',
-        data:{'codGrupo':'@php echo(session('codGrupoVac')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
         success: function(respuesta){
-          // console.log('coincidencia',respuesta['response']['ctd_coincidencia']);
+          console.log('coincidencia',respuesta);
           if(respuesta['response']['ctd_coincidencia'] > parametroX){
             Swal.fire({
                 icon: 'warning',
@@ -488,12 +488,26 @@ btnSolicitar.addEventListener("click", function() {
                 confirmButtonColor: '#a18347',
             }).then((result) => {
               if (result.isConfirmed) {
+                btnSolicitar.removeAttribute('disabled');
+                //location.reload();
+              }
+            })
+          }else if(respuesta['response']['flg_coincide_trabajador'] == 'SI'){
+            Swal.fire({
+                icon: 'warning',
+                text: 'Ya tiene una solicitud en la fecha seleccionada. Elija otras fechas.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                btnSolicitar.removeAttribute('disabled');
                 //location.reload();
               }
             })
           }
           else{
             // console.log('else parametro x');
+            alert('graba');
             if(reprog == 'NO'){
               console.log(solVac);
               $.ajax({
@@ -524,6 +538,7 @@ btnSolicitar.addEventListener("click", function() {
                         confirmButtonText: 'Continuar',
                         confirmButtonColor: '#a18347',
                       })
+                      btnSolicitar.removeAttribute('disabled');
                   }//error
               });//ajax
             }
@@ -554,27 +569,28 @@ btnSolicitar.addEventListener("click", function() {
                           dataType: 'json',
                           data:{'solVac':solVac},
                           success: function(respuesta){
-                              console.log(respuesta);
-                              enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
-                              Swal.fire({
-                                  icon: 'success',
-                                  text: 'Se ha registrado su solicitud con éxito',
-                                  confirmButtonText: 'Continuar',
-                                  confirmButtonColor: '#a18347',
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  location.reload();
-                                }
-                              })
+                            console.log(respuesta);
+                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+                            Swal.fire({
+                              icon: 'success',
+                              text: 'Se ha registrado su solicitud con éxito',
+                              confirmButtonText: 'Continuar',
+                              confirmButtonColor: '#a18347',
+                            }).then((result) => {
+                              if (result.isConfirmed) {
+                                location.reload();
+                              }
+                            })
                           },//success
                           error(e){
-                              console.log(e.message);
-                              Swal.fire({
-                                  icon: 'warning',
-                                  text: 'Ha ocurrido un error intentelo nuevamente.',
-                                  confirmButtonText: 'Continuar',
-                                  confirmButtonColor: '#a18347',
-                                  })
+                            console.log(e.message);
+                            Swal.fire({
+                              icon: 'warning',
+                              text: 'Ha ocurrido un error intentelo nuevamente.',
+                              confirmButtonText: 'Continuar',
+                              confirmButtonColor: '#a18347',
+                            })
+                            btnSolicitar.removeAttribute('disabled');
                           }//error
                       });//ajax
 
@@ -587,6 +603,7 @@ btnSolicitar.addEventListener("click", function() {
                           confirmButtonText: 'Continuar',
                           confirmButtonColor: '#a18347',
                       })
+                      btnSolicitar.removeAttribute('disabled');
                   }//error
               });//ajax
 
@@ -602,6 +619,7 @@ btnSolicitar.addEventListener("click", function() {
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
           })
+          btnSolicitar.removeAttribute('disabled');
         }//error
       });//ajax obtener coincidencia
     }
