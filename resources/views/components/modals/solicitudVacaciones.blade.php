@@ -29,7 +29,7 @@
             Para proceder con la firma de convenio de adelanto de vacaciones la información será enviada al correo <span id="correoPerMuestra"></span>, ingresar al correo mencionado para continuar con el proceso.
         </div>
         <div class="modal-footer">
-            <a href="#"><button type="button" id="aceptaFirma" class="btn btn-secondary" data-bs-dismiss="modal"> Enviar</button></a>
+            <a href="#"><button type="button" id="aceptaFirma" class="btn btn-success btnDorado" data-bs-dismiss="modal"> Enviar</button></a>
         </div>
         </div>
     </div>
@@ -115,6 +115,7 @@
 
 <script type="text/javascript">
 var fechIniCalendario = null;
+var fchFinCalendario = null;
 window.onload= function() {
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
@@ -131,7 +132,8 @@ window.onload= function() {
           document.getElementById('correoPerMuestra').innerHTML=result["response"]["dsc_mail_personal"];
           document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
-          fechIniCalendario = result["response"]["fch_proxima_vacaciones"];
+          fechIniCalendario = (result["response"]["fch_proxima_vacaciones"] != '1900-01-01T00:00:00') ? result["response"]["fch_proxima_vacaciones"].split("T") : null;
+          fchFinCalendario = (result["response"]["fch_fin"] != '1900-01-01T00:00:00') ? result["response"]["fch_fin"].split("T") : null;
          
           fch_ingreso = result["response"]["fch_ingreso_planilla"];
           var fechaActual = new Date();
@@ -161,6 +163,7 @@ window.onload= function() {
           }
 
           numUltDias = result['response']['num_ultimo_dias'];
+          muestraCalendario(fechIniCalendario,fchFinCalendario);
       }
   });//ajax obtener trabajador
 
@@ -270,8 +273,10 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
 
             if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
               disBtnFir = 'disabled';
+              disBtnEdit = '';
             }else{
               disBtnFir = '';
+              disBtnEdit = 'disabled';
             }
 
             if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
@@ -402,7 +407,7 @@ fIni.addEventListener('change', function() {
 
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
-
+  btnSolicitar.setAttribute('disabled','disabled');
   var diasGenerados = document.getElementById('num_vacaciones_pendiente').innerHTML;
   diasGenerados = parseInt(diasGenerados);
   var form = document.getElementById("FormSolicitudVac");
@@ -619,6 +624,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
+          var codSupervisor = respuesta['response']['cod_supervisor'];
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
           var mes = fechaActual.getMonth() + 1;
@@ -628,10 +634,21 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
           var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+          var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Ingreso de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad,'guarda  ');
+          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad);
+          
+          var fechaActualMas8Dias = new Date();
+          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          
+          if (fchLimite < fchIni) {
+            fchLimite = fchBD;
+          }
+
+          enviaCorreoMensaje(codSupervisor,solicitante,'1002',fchLimite,actividadSup,actividadSup);
 
       },//success
       error(e){
@@ -651,6 +668,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
+          var codSupervisor = respuesta['response']['cod_supervisor'];
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
           var mes = fechaActual.getMonth() + 1;
@@ -663,7 +681,17 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Rechazo de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
+          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
+
+          var fechaActualMas8Dias = new Date();
+          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          
+          if (fchLimite < fchIni) {
+            fchLimite = fchBD;
+          }
+
+          enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);
 
       },//success
       error(e){

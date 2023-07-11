@@ -383,14 +383,22 @@ class APIController extends Controller
     function enviarCorreo(Request $request) {
 
         $destinatario = $request['destinatario'];
-        $correoDestino = $request['correoDestino'];
+        $correoPersonal = $request['correoPersonal'];
         $correoCorp = $request['correoCorp'];
-        $correoSupervisor = $request['correoSup'];
         $actividad = $request['actividad'];
         $fechaLimite = $request['fchLimite'];
         $fechaNotificacion = $request['fchNotif'];
         $asunto = $request['asunto'];
         $solicitante =  $request['solicitante'];
+        $codigoMensaje = $request['codigoMensaje'];
+        if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'){
+            $correoDestino = $correoPersonal;
+            $correoCC = $correoCorp;
+        }else if($codigoMensaje == '1001' || $codigoMensaje == '1002'){
+            $correoDestino = $correoCorp;
+            $correoCC = '';
+        }
+
 
         // Extraer los datos de configuración 
         $correo = $request->session()->get('correoEnvio');
@@ -451,19 +459,16 @@ class APIController extends Controller
         ]);
     
         // Enviar el correo
-        Mail::html($mensaje, function ($message) use ($correoDestino,$correoSupervisor,$correoCorp, $asunto) {
+        Mail::html($mensaje, function ($message) use ($correoDestino,$correoCC, $asunto) {
             $message->to($correoDestino);
             $message->subject($asunto);
-            if ($correoSupervisor != '' || $correoSupervisor != null) {
-                $message->cc($correoSupervisor);
-            }
-            if ($correoCorp != '' || $correoCorp != null) {
-                $message->cc($correoCorp);
+            if ($correoCC != '' || $correoCC != null) {
+                $message->cc($correoCC);
             }
             $message->cc('echanganaqui@kunaq.pe');
             $message->cc('larias@kunaq.pe');
             $message->cc('mgonzalez@kunaq.pe');
-           $message->cc('bgalvan@kunaq.pe');
+            $message->cc('bgalvan@kunaq.pe');
         });
 
     }
@@ -576,15 +581,15 @@ class APIController extends Controller
         }
     }
 
-    public function ObtenerCoincidenciaVacaciones(Request $request)
+    public function ObtenerCoincidenciaVacacionesxTrabajador(Request $request)
     {   
         $client = new Client();
-        $codGrupo = $request['codGrupo'];
+        $codTra = $request['codTra'];
         $fchIni = $request['fchIni'];
         $fchFin = $request['fchFin'];
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacaciones/20555348887/'.$codGrupo.'/'.$fchIni.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -596,6 +601,7 @@ class APIController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
     public function ReprogramarSolicitudVacaciones(Request $request)
     {  

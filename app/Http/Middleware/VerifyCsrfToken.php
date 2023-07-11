@@ -58,7 +58,7 @@ class VerifyCsrfToken extends Middleware
         '/api/InsertarResponsable',
         'lista/ListarReglasJefe',
         'lista/ListarReglasTrabajador',
-        'api/ObtenerCoincidenciaVacaciones',
+        'api/ObtenerCoincidenciaVacacionesxTrabajador',
         'lista/ListarParametro',
         'lista/ObtenerCorreo',
         'api/ListarVentana',

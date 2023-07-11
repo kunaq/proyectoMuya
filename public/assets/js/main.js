@@ -339,7 +339,7 @@ function obtenerFechaISO(fecha) {
 
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
-function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad,accion) {
+function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -352,7 +352,6 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
           var correoCorp = respuesta['response']['dsc_mail_empresa'];
-          var correoSup = respuesta['response']['dsc_mail_empresa_supervisor'];
 
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
@@ -368,7 +367,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
               method: "post",
               crossDomain: true,
               dataType: 'json',
-              data:{'destinatario':dscTra,'correoDestino':correoTra,'correoCorp':correoCorp,'correoSup':correoSup,'fchNotif':fechaFormateada,'fchLimite':fchLimite,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'accion':accion},
+              data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'codigoMensaje':codMensaje},
               success: function(respuesta){
                   console.log(respuesta);
               },//success
@@ -380,7 +379,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
             'cod_trabajador': codTra,
             'cod_mensaje': codMensaje,
             'fch_notificacion': fchBD,
-            'fch_limite': ''
+            'fch_limite': fchLimite
           }
 
           $.ajax({
@@ -424,7 +423,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea) {
               console.log(respuesta);
               Swal.fire({
                   icon: 'success',
-                  text: 'Se ha registrado la firma',
+                  text: 'Se realizó el envio satisfactoriamente.',
                   confirmButtonText: 'Continuar',
                   confirmButtonColor: '#a18347',
               }).then((result) => {
@@ -467,7 +466,7 @@ function firmaConvenio(codTra) {
             console.log(resp);
             Swal.fire({
               icon: 'success',
-              text: 'Se ha registrado la firma',
+              text: 'Se realizó el envio satisfactoriamente.',
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#a18347',
             }).then((result) => {
@@ -482,7 +481,7 @@ function firmaConvenio(codTra) {
         
           Swal.fire({
             icon: 'success',
-            text: 'Se ha registrado la firma',
+            text: 'Se realizó el envio satisfactoriamente.',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
           }).then((result) => {
