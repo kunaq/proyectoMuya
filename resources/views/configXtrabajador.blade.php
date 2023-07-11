@@ -33,6 +33,9 @@
     .select2-container--classic .select2-results__option {
       padding: 0.5em 0.8em;
     }
+    .tooltip{
+        position: fixed!important;
+    }
 
     /* Otros estilos personalizados */
     /* .my-select2 {
