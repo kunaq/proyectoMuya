@@ -83,7 +83,7 @@
                                 </div>
                                 <div class="col-md-2" style="text-align: -webkit-center">
                                     <div class="form-group">
-                                        <h5><button class="btn btn-success btnDorado" id="buscarDoc">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
+                                        <h5><button class="btn btn-success btnDorado login-btn" id="buscarDoc">Buscar&nbsp;&nbsp;<span class="bi bi-search"></span></button></h5>
                                     </div>
                                 </div>
                             </div>
@@ -105,54 +105,54 @@
                             <h5 class="card-title" style="font-size: 30px;">2023</h5>
                             <div class="row">
                                 <div class="col-6 col-md-2">
-                                    <a href="assets/file/boleta.pdf" class="btn btn-block login-btn mb-4"
+                                    <a href="assets/file/boleta.pdf" class="btn btn-block mb-4"
                                         target="_blank"><i class="bx bx-calendar"></i> Enero</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Febrero</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Febrero</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Marzo</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Marzo</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Abril</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Abril</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Mayo</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Mayo</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Junio</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Junio</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Julio</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Julio</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Agosto</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Agosto</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i>
                                         Septiembre</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i> Octubre</a>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i> Octubre</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i>
                                         Noviembre</a>
                                 </div>
                                 <div class="col-6 col-md-2">
                                     <a href="assets/file/boleta.pdf" target="_blank"
-                                        class="btn btn-block login-btn mb-4"><i class="bx bx-calendar"></i>
+                                        class="btn btn-block mb-4"><i class="bx bx-calendar"></i>
                                         Diciembre</a>
                                 </div>
                             </div>
@@ -311,7 +311,7 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                         var mes = resultado.dsc_periodo.split(' ')[0];
                         var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
                         sectionContent += `<div class="col-6 col-md-2">
-                                                <button class="btn btn-success btnDorado login-btn" onclick="buscarDocumento('${mes}','${year}')" ${deshabilita} >${mes}</button>
+                                                <button class="btn btn-success btnDorado" onclick="buscarDocumento('${mes}','${year}')" ${deshabilita} >${mes}</button>
                                             </div>`;
                     });
                     sectionContent += `

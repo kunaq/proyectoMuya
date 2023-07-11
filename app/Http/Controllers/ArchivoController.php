@@ -136,19 +136,23 @@ class ArchivoController extends Controller
             }
 
             // Validar que la fila tenga la misma cantidad de elementos
-            if (count($fila) !== 7) {
+            if (count($fila) !== 9) {
                 return response()->json(['error' => 'La fila tiene una cantidad incorrecta de elementos.'], 400);
             }
-            // for ($i=0; $i < 7; $i++) { 
-            //     if($fila[$i] == ''){
-            //         $fila[$i] = "''";
-            //     }
-            // }
+
+            //Cambia Y y N por SI y NO
+            for ($i=0; $i < 9; $i++) { 
+                if($fila[$i] == 'Y'){
+                    $fila[$i] = "SI";
+                }else if($fila[$i] == 'N'){
+                    $fila[$i] = "NO";
+                }
+            }
 
             $datos[] = $fila;
-            $sql .= "INSERT INTO gplde_grupo_vacaciones_temporal (cod_trabajador,cod_responsable,flg_no_cruzar,flg_no_cruzar_jefe,flg_delegar_permiso,flg_requiere_aprobacion,num_ultimo_dias,cod_trabajador_registro ) VALUES('".$fila[0]."','".$fila[1]."','".$fila[2]."','".$fila[3]."','".$fila[4]."','".$fila[5]."','".$fila[6]."','".session('codTrabajador')."')";
+            $sql .= "INSERT INTO gplde_grupo_vacaciones_temporal (cod_trabajador,flg_requiere_aprobacion,cod_responsable,num_ultimo_dias,flg_requiere_supervision,cod_supervisor,flg_no_cruzar,flg_no_cruzar_jefe,flg_delegar_permiso,cod_trabajador_registro ) VALUES('".$fila[0]."','".$fila[1]."','".$fila[2]."','".$fila[3]."','".$fila[4]."','".$fila[5]."','".$fila[6]."','".$fila[7]."','".$fila[8]."','".session('codTrabajador')."')";
         }
-
+        
         // Generar el contenido JSON
         $contenidoJson = json_encode($datos);
         response()->json($contenidoJson);
