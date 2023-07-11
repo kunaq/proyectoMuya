@@ -273,8 +273,10 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
 
             if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
               disBtnFir = 'disabled';
+              disBtnEdit = '';
             }else{
               disBtnFir = '';
+              disBtnEdit = 'disabled';
             }
 
             if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
