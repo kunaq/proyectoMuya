@@ -624,6 +624,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
+          var codSupervisor = respuesta['response']['cod_supervisor'];
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
           var mes = fechaActual.getMonth() + 1;
@@ -633,10 +634,21 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
           var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+          var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Ingreso de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad,'guarda  ');
+          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad);
+          
+          var fechaActualMas8Dias = new Date();
+          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          
+          if (fchLimite < fchIni) {
+            fchLimite = fchBD;
+          }
+
+          enviaCorreoMensaje(codSupervisor,solicitante,'1002',fchLimite,actividadSup,actividadSup);
 
       },//success
       error(e){
@@ -656,6 +668,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
           console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
+          var codSupervisor = respuesta['response']['cod_supervisor'];
           var fechaActual = new Date();
           var dia = fechaActual.getDate();
           var mes = fechaActual.getMonth() + 1;
@@ -668,7 +681,17 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Rechazo de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
+          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
+
+          var fechaActualMas8Dias = new Date();
+          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+          var fchLimite = fechaActualMas8Dias.getFullYear() + '-' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '-' + fechaActualMas8Dias.getDate().toString().padStart(2, '0');
+          
+          if (fchLimite < fchIni) {
+            fchLimite = fchBD;
+          }
+
+          enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);
 
       },//success
       error(e){
