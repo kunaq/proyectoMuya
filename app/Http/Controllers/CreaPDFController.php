@@ -125,7 +125,7 @@ class CreaPDFController extends Controller
         $correoTrabajador = $request['datos']['response']['dsc_mail_personal'];
         $celularTrabajador =($request['datos']['response']['dsc_telefono_personal'] != '') ? str_replace(' ', '',$request['datos']['response']['dsc_telefono_personal'])  : '' ;
         $sedeTrabajador = $request['datos']['response']['cod_localidad'];
-        $paisTrabajador = ($request['datos']['response']['cod_pais'] == '') ? 'PE' : ['datos']['response']['cod_pais'];
+        $paisTrabajador = ($request['datos']['response']['cod_pais'] == '') ? 'PE' : $request['datos']['response']['cod_pais'];
         $fechActual = Carbon::now();
         $fechaCompleta = $fechActual->format('Y-m-d H:i');
         $anio =$fechActual->format('Y');
