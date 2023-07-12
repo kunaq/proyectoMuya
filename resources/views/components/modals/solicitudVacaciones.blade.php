@@ -628,7 +628,7 @@ btnSolicitar.addEventListener("click", function() {
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
-  firmaConvenio('@php echo(session('codTrabajador')) @endphp');       
+  firmaConvenio('@php echo(session('codTrabajador')) @endphp','@php echo(session('docTraRRHH')) @endphp');       
 });//evento click
 
 function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {

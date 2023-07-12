@@ -110,6 +110,7 @@ class CreaPDFController extends Controller
         $client = new Client();
         $token = APIController::solicitud();
         $cod_trabajador = $request['cod_trabajador'];
+        $docTraRRHH = $request['docTraRRHH'];
         $fchIni = $request['fchIni'];
         $fchFin = $request['fchFin'];
         $fchRein = $request['fchReinc'];
@@ -136,13 +137,13 @@ class CreaPDFController extends Controller
             
                 $docBase64 = explode('"',CreaPDFController::generarPDF());
                 $formato = '11005';
-                $firmante1 = array( 
-                    'documento'=>'20555348887',
+                $firmante2 = array( 
+                    'documento'=>$docTraRRHH,
                     'tipofirma'=>'FC',
                     'perfil'=>'GH'
                 );
 
-                $firmante2 = array( 
+                $firmante1 = array( 
                     'documento'=>$numDocTrabajador,
                     'tipofirma'=>'FE',
                     'perfil'=>'CO'

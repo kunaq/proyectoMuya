@@ -458,7 +458,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea) {
 
 //--------------------------firma convenio adelanto----------------------------
 
-function firmaConvenio(codTra) {
+function firmaConvenio(codTra,docTraRRHH) {
   $.ajax({
     url: 'api/ObtenerTrabajador', 
     method: "GET",
@@ -471,7 +471,7 @@ function firmaConvenio(codTra) {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-          data:{'cod_trabajador':codTra,'datos':respuesta,'accion':'firmar'},
+          data:{'cod_trabajador':codTra,'datos':respuesta,'docTraRRHH':docTraRRHH,'accion':'firmar'},
         success: function(resp){
             console.log(resp);
             Swal.fire({

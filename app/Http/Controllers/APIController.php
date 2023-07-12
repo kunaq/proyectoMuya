@@ -47,6 +47,7 @@ class APIController extends Controller
             Session::put('ctdProgVac', $responseData->response->num_ctd);
             Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
             Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
+            Session::put('docTraRRHH', $responseData->response->dsc_documento_rrhh);
 
 
             // Ejemplo de retorno de la respuesta
