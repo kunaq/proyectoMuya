@@ -237,8 +237,9 @@ btnSolicitar.addEventListener("click", function() {
       data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':mes},
       success: function(result){
         console.log(result['response']['dsc_base_64'])
+        var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3'];
         if (result['response']['dsc_base_64'] != null) {
-            base64ToPDF(result['response']['dsc_base_64']);
+            base64ToPDF(completo);
         }else{
             Swal.fire({
                 icon: 'warning',
