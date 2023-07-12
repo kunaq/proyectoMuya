@@ -100,7 +100,7 @@ class CreaPDFController extends Controller
         // Eliminar el archivo PDF
         Storage::disk('downloads')->delete($nombreArchivo);
 
-        return $pdfBase64;
+        return response()->json(['base64' => $pdfBase64, 'nombre' => $nombreArchivo]);
 
     }
 
@@ -204,6 +204,7 @@ class CreaPDFController extends Controller
                     'FILEname'=> $docBase64[7],
                     'FILEcontent'=> $docBase64[3]
                 );
+               
 
                 $trx = array (
                     'cod_trabajador'=> $cod_trabajador,
