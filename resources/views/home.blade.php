@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title tarjeta-foco"><b><span id="dsc_ultima_boleta"></span></b></h1>
-                                <h5><button class="btn btn-success btnDorado">Descargar Boleta</button></h5>
+                                <h5><button class="btn btn-success btnDorado" id="btnDscgBoleta">Descargar Boleta</button></h5>
                             </div>
                         </div>
                     </div> 
