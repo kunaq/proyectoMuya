@@ -220,7 +220,7 @@ class CreaPDFController extends Controller
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
             // $body = $respuesta->getData()->body;
-            var_dump($respuesta->getData());
+            //var_dump($respuesta->getData());
             if (property_exists($respuesta->getData(), 'iddocumento')) {
                 $iddocumento = $respuesta->getData()->iddocumento;
             } else {

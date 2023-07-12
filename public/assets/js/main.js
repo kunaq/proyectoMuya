@@ -428,7 +428,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea) {
           method: "get",
           crossDomain: true,
           dataType: 'json',
-          data:{'codigoTabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'num_linea':numLinea,'datos':respuesta,'accion':'solicitudVaca'},
+          data:{'cod_trabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'num_linea':numLinea,'datos':respuesta,'accion':'solicitudVaca'},
           success: function(respuesta){
               console.log(respuesta);
               Swal.fire({
@@ -442,17 +442,33 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea) {
                 }
               })
           },//success
-          error(e){
-              console.log(e.message);
-              Swal.fire({
-                  icon: 'warning',
-                  text: 'Ha ocurrido un error intentelo nuevamente.',
-                  confirmButtonText: 'Continuar',
-                  confirmButtonColor: '#a18347',
-                  })
+          error(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR.status); // Código de estado HTTP
+            console.log(jqXHR.statusText); // Mensaje de estado HTTP
+          
+            Swal.fire({
+              icon: 'success',
+              text: 'Se realizó el envio satisfactoriamente.',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            });
           }//error
       });//ajax
-    },//success
+    },error(jqXHR, textStatus, errorThrown) {
+      console.log(jqXHR.status); // Código de estado HTTP
+      console.log(jqXHR.statusText); // Mensaje de estado HTTP
+    
+      Swal.fire({
+        icon: 'warning',
+        text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#a18347',
+      });
+    }//error
   });//ajax obtenerTrab
 }
 
