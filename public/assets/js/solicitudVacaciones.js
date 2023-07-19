@@ -233,7 +233,7 @@ function muestraCalendario(filaCalendario) {
 
   });
   var eventosJSON = JSON.stringify(eventos);
-  console.log(eventosJSON);
+ // console.log(eventosJSON);
 
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
