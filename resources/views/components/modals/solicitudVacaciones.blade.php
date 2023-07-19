@@ -117,6 +117,7 @@
 <script type="text/javascript">
 var fechIniCalendario = null;
 var fchFinCalendario = null;
+var filaCalendario = [];
 window.onload= function() {
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
@@ -164,7 +165,7 @@ window.onload= function() {
           }
 
           numUltDias = result['response']['num_ultimo_dias'];
-          muestraCalendario(fechIniCalendario,fchFinCalendario);
+          muestraCalendario(filaCalendario);
       }
   });//ajax obtener trabajador
 
@@ -262,113 +263,125 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
         //console.log(result);
         var filasArray = [];
         var filasMovil = [];
+        filaCalendario = [];
+
         result['response'].forEach(element => {
-            var auxFecIni =  element['fch_inicio'].split("T");
-            fchIni = formatDate(auxFecIni[0]);
-            var auxFecFin =  element['fch_fin'].split("T");
-            fchFin = formatDate(auxFecFin[0]);
-            var flgFirmado = '';
-            var disBtnFir = '';
-            var disBtnDwn = '';
-            var disBtnEdit = '';
+          var auxFecIni =  element['fch_inicio'].split("T");
+          fchIni = formatDate(auxFecIni[0]);
+          var auxFecFin =  element['fch_fin'].split("T");
+          fchFin = formatDate(auxFecFin[0]);
+          var flgFirmado = '';
+          var disBtnFir = '';
+          var disBtnDwn = '';
+          var disBtnEdit = '';
 
-            if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
-              disBtnFir = 'disabled';
-              disBtnEdit = '';
-            }else{
-              disBtnFir = '';
-              disBtnEdit = 'disabled';
-            }
-
-            if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
-              flgFirmado = 'Sin firmar';
-            }else{
-              flgFirmado = 'Firmado';
-              disBtnFir = 'disabled';
-              disBtnEdit = 'disabled';
-            }
-            var flgPagado = '';
-            if(element['flg_pagado'] == 'NO' || element['flg_pagado'] == ''){
-              flgPagado = 'No pagado';
-              disBtnDwn = 'disabled';
-            }else{
-              flgPagado = 'Pagado';
-              disBtnFir = 'disabled';
-              disBtnEdit = 'disabled';
-            }
-            if(element['flg_rechazado'] == 'SI'){
-              disBtnFir = 'disabled';
-              disBtnDwn = 'disabled';
-              disBtnEdit = 'disabled';
-            }
-            var cantDias = element['cant_dia'];
-            var numLinea = element['num_linea'];
-            var fchReinc = document.getElementById("datepickerFinSolVac").value;
-            var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
-            var finFchIni = "'"+fchIni+"'";
-            var finFchFin = "'"+fchFin+"'";
-
-            var filaData = [
-                fchIni,
-                fchFin,
-                cantDias,
-                element['dsc_estado'],
-                flgFirmado,
-                flgPagado,
-                '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')"><span class="bi bi-vector-pen"></span></button>'+
-                '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
-                '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
-            ];
-
-            filasArray.push(filaData);
-
-            var filaDataMovil = [
-              '<tr>'+
-                '<td>'+
-                    '<b>Inicio:</b> '+fchIni+'<br>'+
-                    '<b>Término:</b> '+fchFin+' <br>'+
-                    '<b>Número de días:</b> '+cantDias+' <br>'+
-                    '<b>Estado:</b> '+element['dsc_estado']+'<br>'+
-                    '<b>Firma:</b> '+flgFirmado+' <br>'+
-                    '<b>Pago:</b> '+flgPagado+' <br><br>'+
-                    '<div style="text-align-last: center;">'+
-                        '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')">Firma</button>'+
-                        '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
-                        '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')">Edita</button>'+
-                    '</div>'+  
-                '</td>'+
-              '</tr>'
-            ];
-
-            filasMovil.push(filaDataMovil);
-          });
-          if ($.fn.dataTable.isDataTable('#listaVacSol')) {
-              $('#listaVacSol').DataTable().clear();
-              $('#listaVacSol').DataTable().destroy();        
+          if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
+            disBtnFir = 'disabled';
+            disBtnEdit = '';
+          }else{
+            disBtnFir = '';
+            disBtnEdit = 'disabled';
           }
-          //console.log(filasArray);
-          $('#listaVacSol').DataTable({
-            language: {
-              url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            data: filasArray,
-            columns: [
-              { title: 'Inicio' },
-              { title: 'Término' },
-              { title: 'Num. días' },
-              { title: 'Estado' },
-              { title: 'Firma' },
-              { title: 'Pago' },
-              { title: 'Acciones' },
-            ],
-            dom: 'trip',
-            processing: true,
-          });//datatable
 
-          $('#bodySolicitudMovil').html(filasMovil);
+          if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
+            flgFirmado = 'Sin firmar';
+          }else{
+            flgFirmado = 'Firmado';
+            disBtnFir = 'disabled';
+            disBtnEdit = 'disabled';
+          }
+          var flgPagado = '';
+          if(element['flg_pagado'] == 'NO' || element['flg_pagado'] == ''){
+            flgPagado = 'No pagado';
+            disBtnDwn = 'disabled';
+          }else{
+            flgPagado = 'Pagado';
+            disBtnFir = 'disabled';
+            disBtnEdit = 'disabled';
+          }
+          if(element['flg_rechazado'] == 'SI'){
+            disBtnFir = 'disabled';
+            disBtnDwn = 'disabled';
+            disBtnEdit = 'disabled';
+          }
+          var cantDias = element['cant_dia'];
+          var numLinea = element['num_linea'];
+          var fchReinc = document.getElementById("datepickerFinSolVac").value;
+          var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
+          var finFchIni = "'"+fchIni+"'";
+          var finFchFin = "'"+fchFin+"'";
+
+          var filaData = [
+              fchIni,
+              fchFin,
+              cantDias,
+              element['dsc_estado'],
+              flgFirmado,
+              flgPagado,
+              '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')"><span class="bi bi-vector-pen"></span></button>'+
+              '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
+              '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
+          ];
+
+          filasArray.push(filaData);
+
+          var filaDataMovil = [
+            '<tr>'+
+              '<td>'+
+                  '<b>Inicio:</b> '+fchIni+'<br>'+
+                  '<b>Término:</b> '+fchFin+' <br>'+
+                  '<b>Número de días:</b> '+cantDias+' <br>'+
+                  '<b>Estado:</b> '+element['dsc_estado']+'<br>'+
+                  '<b>Firma:</b> '+flgFirmado+' <br>'+
+                  '<b>Pago:</b> '+flgPagado+' <br><br>'+
+                  '<div style="text-align-last: center;">'+
+                      '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')">Firma</button>'+
+                      '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
+                      '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')">Edita</button>'+
+                  '</div>'+  
+              '</td>'+
+            '</tr>'
+          ];
+
+          filasMovil.push(filaDataMovil);
+          //---------------fechas para calendario-------------------
+          var eventos = [
+            element['dsc_estado'],
+            auxFecIni[0],
+            auxFecFin[0]
+          ];
+
+          filaCalendario.push(eventos);
+        });//foreach
+        
+        if ($.fn.dataTable.isDataTable('#listaVacSol')) {
+            $('#listaVacSol').DataTable().clear();
+            $('#listaVacSol').DataTable().destroy();        
+        }
+        //console.log(filasArray);
+        $('#listaVacSol').DataTable({
+          language: {
+            url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+          },
+          data: filasArray,
+          columns: [
+            { title: 'Inicio' },
+            { title: 'Término' },
+            { title: 'Num. días' },
+            { title: 'Estado' },
+            { title: 'Firma' },
+            { title: 'Pago' },
+            { title: 'Acciones' },
+          ],
+          dom: 'trip',
+          processing: true,
+        });//datatable
+
+        $('#bodySolicitudMovil').html(filasMovil);
 
       }//success
   });//ajax
+  
 }//funcion
 
 //----------validacion fecha registro de vacaciones---

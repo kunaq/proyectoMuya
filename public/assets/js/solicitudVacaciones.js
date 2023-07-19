@@ -1,3 +1,5 @@
+//const { parseJSON } = require("jquery");
+
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
@@ -192,48 +194,72 @@ function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
 }
 
 // ---------apartado del calendario--------------
-function muestraCalendario(fechIniCalendario,fchFinCalendario) {
-    var calendarEl = document.getElementById('calendar');
-    var calendar = new FullCalendar.Calendar(calendarEl, {
-      locale: 'es-PE', // Cambia la configuración local a español de Perú
-      initialView: 'dayGridMonth',
-      scrollTime: false, // Desactiva el desplazamiento de la hora
-      headerToolbar: {
-        start: '',
-        center: 'title',
-        end: 'prev,next'
-      },
-      buttonText: {
-        today: 'Hoy' // Cambia el texto del botón "Today" a "Hoy"
-      },
 
-      eventDidMount: function(info) {
-        var tooltip = new Tooltip(info.el, {
-          title: info.event.extendedProps.description,
-          placement: 'top',
-          trigger: 'hover',
-          container: 'body'
-        });
-      },
-  
-      events: [
-        // {
-        //   title: 'Visita Camposanto',
-        //   description: 'Prospecto: Juan Torres\n Movilidad: C3D-010/Miguel Cerna ',
-        //   start: '2023-07-01T11:00:00'
-        // },
-        {
-          title: 'Vacaciones aprobadas',
-          description: 'Fecha completa de vacaciones',
-          start: fechIniCalendario,
-          end: fchFinCalendario
-        }
-        // ...otros eventos
-      ]
+function muestraCalendario(filaCalendario) {
 
-    });
-    // Ajusta el tamaño del contenedor del calendario para que sea lo suficientemente grande
-    calendarEl.style.height = '100%';
-    calendar.render();
-  }
+  var eventos = [];
+  filaCalendario.forEach(muestra => {
+    if(muestra[0] == 'APROBADO' || muestra[0] == 'SOLICITADO'){
+
+      var start = muestra[1];
+      var end = muestra[2];
+
+      // Convertir las fechas en objetos Date
+      var startDate = new Date(start);
+      var endDate = new Date(end);
+     
+      // Sumar un día a la fecha de fin
+      endDate.setDate(endDate.getDate() + 1);
+
+      if (muestra[0] == 'SOLICITADO') {
+        var evento = {
+          title: 'Vacaciones Solicitadas',
+          start: start,
+          end: endDate.toISOString().split('T')[0],
+          color: '#6c757d'
+        };
+      }else{
+        var evento = {
+          title: 'VACACIONES ' + muestra[0],
+          start: start,
+          end: endDate.toISOString().split('T')[0]
+        };
+      }
+
+      eventos.push(evento);
+    }
+
+  });
+  var eventosJSON = JSON.stringify(eventos);
+  //console.log(eventosJSON);
+
+  var calendarEl = document.getElementById('calendar');
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    locale: 'es-PE', // Cambia la configuración local a español de Perú
+    initialView: 'dayGridMonth',
+    scrollTime: false, // Desactiva el desplazamiento de la hora
+    headerToolbar: {
+      start: '',
+      center: 'title',
+      end: 'prev,next'
+    },
+    buttonText: {
+      today: 'Hoy' // Cambia el texto del botón "Today" a "Hoy"
+    },
+
+    eventDidMount: function(info) {
+      var tooltip = new Tooltip(info.el, {
+        title: info.event.extendedProps.description,
+        placement: 'top',
+        trigger: 'hover',
+        container: 'body'
+      });
+    },
+
+  });
+  calendar.addEventSource(JSON.parse(eventosJSON)); // Agrega los eventos desde la variable eventosJSON
+  // Ajusta el tamaño del contenedor del calendario para que sea lo suficientemente grande
+  calendarEl.style.height = '100%';
+  calendar.render();
+}
   //console.log('revision calendario',);
