@@ -210,19 +210,21 @@ function muestraCalendario(filaCalendario) {
      
       // Sumar un día a la fecha de fin
       endDate.setDate(endDate.getDate() + 1);
+      fin = endDate.toISOString().split('T')[0]
+      endDate.toISOString().split('T')[0];
 
       if (muestra[0] == 'SOLICITADO') {
         var evento = {
           title: 'Vacaciones Solicitadas',
           start: start,
-          end: endDate.toISOString().split('T')[0],
+          end: fin,
           color: '#6c757d'
         };
       }else{
         var evento = {
-          title: 'VACACIONES ' + muestra[0],
+          title: 'Vacaciones Aprobadas',
           start: start,
-          end: endDate.toISOString().split('T')[0]
+          end: fin
         };
       }
 
@@ -231,7 +233,7 @@ function muestraCalendario(filaCalendario) {
 
   });
   var eventosJSON = JSON.stringify(eventos);
-  //console.log(eventosJSON);
+  console.log(eventosJSON);
 
   var calendarEl = document.getElementById('calendar');
   var calendar = new FullCalendar.Calendar(calendarEl, {
