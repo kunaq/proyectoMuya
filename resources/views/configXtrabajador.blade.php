@@ -36,6 +36,9 @@
     .tooltip{
         position: fixed!important;
     }
+    .select2-container--open{
+        z-index: 9999;
+    }
 
     /* Otros estilos personalizados */
     /* .my-select2 {
@@ -336,7 +339,7 @@
                                 </div>
                             </div>                      
                             <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
+                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault4">
                             </div>
                             <div class="col-11 col-md-3" style="text-align: -webkit-center">
                                 <div class="form-group">
@@ -740,7 +743,7 @@ btnProcesar.addEventListener("click", function() {
     var yearF = fechaPartsF[2]; 
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
-    var chckDsc = document.getElementById('flexCheckDefault2');
+    var chckDsc = document.getElementById('flexCheckDefault4');
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
     //var codTra = '@php echo(session('codTrabajador')) @endphp';
