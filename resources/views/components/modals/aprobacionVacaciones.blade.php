@@ -69,7 +69,7 @@
 
 
               <div class="col-12 col-md-12 mb-3">
-                <label for="formFile" class="form-label" style="margin-left:5%">Seleccione un archivo Excel con <i class="" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos sin encabezado</p>"><u>formato válido</u></i> y extensión .xls/.xlsx</label>
+                <p class="form-label" style="margin-left:5%">Seleccione un archivo Excel con <i class="" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos sin encabezado</p>"><u>formato válido</u></i> y extensión .xls/.xlsx</p>
                 <input type="file" id="archivo" name="archivo" class="form-control" aria-label="file example" style="max-width:70%; margin-left:15%" required>
                 {{-- <div class="invalid-feedback">Example invalid form file feedback</div> --}}
               </div>

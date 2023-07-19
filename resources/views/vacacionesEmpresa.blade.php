@@ -1,3 +1,50 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    span.select2.select2-container.select2-container--classic{
+        width: 100% !important;
+    }
+    /* Personalización del tema Classic */
+    .select2-container--classic .select2-selection--single {
+      height: 2em;
+      border-radius: 4px;
+      background-color: #f2f2f2;
+      border: 1px solid #ccc;
+    }
+    .select2-container--classic .select2-selection--single .select2-selection__rendered {
+      line-height: 2em;
+    }
+
+    .select2-container--classic .select2-selection--single .select2-selection__arrow {
+      /* top: 6px; */
+      height: 1.9em;
+    }
+    .select2-container--classic.select2-container--open .select2-dropdown {
+    border-color: #155450;
+    }
+    .select2-container--classic.select2-container--open .select2-selection--single {
+    border: 1px solid #155450;
+    }
+    .select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable {
+        background-color: #155450;
+        color: #fff;
+    }
+
+    .select2-container--classic .select2-results__option {
+      padding: 0.5em 0.8em;
+    }
+    .tooltip{
+        position: fixed!important;
+    }
+    .select2-container--open{
+        z-index: 9999;
+    }
+
+    /* Otros estilos personalizados */
+    /* .my-select2 {
+      width: 200px;
+    } */
+</style>
+
 <x-layouts.app title="vacacionesEmpresa" meta-description="Home meta description">
 
   <main id="main" class="main">
@@ -381,29 +428,23 @@
         </div>    
     </section>
 
+    {{-- Cargar vacaciones --}}
     <section class="section dashboard">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title" style="font-size: 28px;">Cargar vacaciones</h5>
-                        <div class="row">
-                            <div class="col-md-2" style="text-align: -webkit-center">
-                                <div class="form-group">
-                                    <h5><button class="btn btn-success btnDorado" id="buscarDoc">Cargar</button></h5>
-                                </div>
-                            </div>                      
-                            <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
-                            </div>
-                            <div class="col-11 col-md-8">
-                                <div class="form-group">
-                                    <h5>Aprobar automáticamente las vacaciones que inician el siguiente mes</h5>
-                                </div>
+                {{-- <form class="was-validated" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data"> --}}
+                    {{-- @csrf --}}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" style="font-size: 28px;">Cargar vacaciones</h5>
+                            <div class="row" style="text-align: center">
+                                <div class="col-12">
+                                    <button class="btn btn-success btnDorado" data-bs-toggle="modal" data-bs-target="#ModalCargaMasiva" id="buscarDoc">Carga Masiva</button>
+                                </div>                    
                             </div>
                         </div>
                     </div>
-                </div>
+                {{-- </form> --}}
             </div>  
         </div>    
     </section>
@@ -440,9 +481,15 @@
   </main><!-- End #main -->
 
 <x-modals.vacacionesEmpresa/>
-
 </x-layouts.app>
+
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
+
 <script src="{{asset('assets/js/vacacionesEmpresa.js')}}"></script>
+
 <script type="text/javascript">
 window.onload= function() {
         if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
@@ -1130,6 +1177,31 @@ btnProcesar.addEventListener("click", function() {
         }//error    
     });
 
+});
+
+$.ajax({
+    url: 'lista/MuestraAnhos', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){ 
+      respuesta['response'].forEach(function(word){
+        //console.log(word);
+        $("#annoIniVE").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+      });
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+});//ajax muestraAnno
+
+$('#annoIniVE, #periodo').select2({
+    language: "es",
+    theme: "classic",
+    width: 'resolve',
+    placeholder: "Escriba el nombre del trabajador",
+    allowClear: true,
+    // dir: "rtl",
 });
 
 

@@ -384,7 +384,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     <script src="{{asset('assets/js/configXtrabajador.js')}}"></script>
-    <script>
+    
+<script>
     
 
 window.onload= function() {
@@ -415,7 +416,7 @@ window.onload= function() {
         })  
     }
 
-    $('select').select2({
+    $('#annoIniConfig, #periodo, #codTrabajador, #Responsable, #tipoDoc3').select2({
         language: "es",
         theme: "classic",
         width: 'resolve',
