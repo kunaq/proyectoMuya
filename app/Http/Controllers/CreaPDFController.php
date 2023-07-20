@@ -118,6 +118,8 @@ class CreaPDFController extends Controller
         $accion = $request['accion'];
         $idTransaccion = APIController::idTansaccion();
         $numDocTrabajador = session('docTrabajador');
+        $periodoConvenio = session('periodoConvenio');
+        $numVacaciones = session('numVacaciones');
         $tipoDocTrabajador = $request['datos']['response']['dsc_tipo_documento'];
         $nombresTrabajador = $request['datos']['response']['dsc_nombres'];
         $apellPTrabajador = $request['datos']['response']['dsc_apellido_paterno'];
@@ -243,19 +245,30 @@ class CreaPDFController extends Controller
             }else{
                 $estadoEnv = 'ERR';
             }
-            $tranx = array(
-                'as_trabajador'=> $cod_trabajador,
-                'ai_trx'=> $idTransaccion,
-                'as_formato'=> $formato,
-                'ai_anno'=> $anio,
-                'as_mes'=> $mes,
-                'as_estado'=> $estadoEnv,
-                'as_usuario'=> $numDocTrabajador,
-                'as_dsc_envio'=> $mensaje,
-                'as_id_doc'=> $iddocumento
-            );
-            CreaPDFController::InsertarSeguimientoEnvio($tranx); 
-            return 'OK';
+            if ($accion == 'solicitudVaca') {
+                $tranx = array(
+                    'as_trabajador'=> $cod_trabajador,
+                    'ai_trx'=> $idTransaccion,
+                    'as_formato'=> $formato,
+                    'ai_anno'=> $anio,
+                    'as_mes'=> $mes,
+                    'as_estado'=> $estadoEnv,
+                    'as_usuario'=> $numDocTrabajador,
+                    'as_dsc_envio'=> $mensaje,
+                    'as_id_doc'=> $iddocumento
+                );
+                CreaPDFController::InsertarSeguimientoEnvio($tranx); 
+                return 'OK';
+            }else{
+                $tranx = array(
+                    'cod_trabajador'=> $cod_trabajador,
+                    'cod_periodo_vacaciones'=>$periodoConvenio,
+                    'num_vacaciones'=>$numVacaciones,
+                    'num_transaccion'=> $idTransaccion,
+                );
+                CreaPDFController::InsertarSeguimientoFirma($tranx); 
+                return 'OK';
+            }
 
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
@@ -323,6 +336,28 @@ class CreaPDFController extends Controller
                 $reason = $response->getReasonPhrase(); 
 
                 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function InsertarSeguimientoFirma($data)
+    {   
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/InsertarTransaccion/20555348887',$headers,$data);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
             });
             $promise->wait();

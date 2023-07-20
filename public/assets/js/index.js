@@ -172,10 +172,35 @@ btnEnvia.addEventListener("click", function() {
                         success: function(respuesta){
                             console.log(respuesta);
                             location.reload();
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                        }//error
+                        },error(jqXHR, textStatus, errorThrown) {
+                            //console.log(jqXHR.responseJSON.message);
+                             // Verificar si el error es específico de código 550
+                            var errorMessage = jqXHR.responseJSON.message;
+                            var emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
+                            var matches = errorMessage.match(emailPattern);
+          
+                            if (matches && matches.length > 1) {
+                              var email = matches[1];
+                              var customErrorMessage = "El correo no pudo ser entregado a " + email + ", la cuenta no existe, o ha sido bloqueada.";
+                              //console.log(customErrorMessage);
+          
+                              Swal.fire({
+                                icon: 'warning',
+                                text: customErrorMessage,
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                              });
+                            } else {
+                              console.log(jqXHR.responseJSON.message);
+          
+                              Swal.fire({
+                                icon: 'warning',
+                                text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                              });
+                            }
+                          }//error
                     });//ajax
                 }else{
                     Swal.fire({

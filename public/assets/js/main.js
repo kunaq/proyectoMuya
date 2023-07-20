@@ -340,7 +340,7 @@ function obtenerFechaISO(fecha) {
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
 function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,actividad) {
-
+  console.log('codTra',codTra)
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
@@ -361,20 +361,46 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           var mesFormateado = mes < 10 ? '0' + mes : mes;
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+          
+            $.ajax({
+                url: 'api/enviarCorreo', 
+                method: "post",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'fchLimite':fchLimite,'codigoMensaje':codMensaje},
+                success: function(respuesta){
+                    console.log(respuesta);
+                },error(jqXHR, textStatus, errorThrown) {
+                  //console.log(jqXHR.responseJSON.message);
+                   // Verificar si el error es específico de código 550
+                  var errorMessage = jqXHR.responseJSON.message;
+                  var emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
+                  var matches = errorMessage.match(emailPattern);
 
-          $.ajax({
-              url: 'api/enviarCorreo', 
-              method: "post",
-              crossDomain: true,
-              dataType: 'json',
-              data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'fchLimite':fchLimite,'codigoMensaje':codMensaje},
-              success: function(respuesta){
-                  console.log(respuesta);
-              },//success
-              error(e){
-                  console.log(e.message);
-              }//error
-          });//ajax
+                  if (matches && matches.length > 1) {
+                    var email = matches[1];
+                    var customErrorMessage = "El correo no pudo ser entregado a " + email + ", la cuenta no existe, o ha sido bloqueada.";
+                    //console.log(customErrorMessage);
+
+                    Swal.fire({
+                      icon: 'warning',
+                      text: customErrorMessage,
+                      confirmButtonText: 'Continuar',
+                      confirmButtonColor: '#a18347',
+                    });
+                  } else {
+                    console.log(jqXHR.responseJSON.message);
+
+                    Swal.fire({
+                      icon: 'warning',
+                      text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
+                      confirmButtonText: 'Continuar',
+                      confirmButtonColor: '#a18347',
+                    });
+                  }
+                }//error
+            });//ajax
+
           if (fchLimite != '' || fchLimite != null) {
             var fecha = fchLimite.split('/');
             var day = fecha[0];
@@ -384,13 +410,15 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           }else{
             fchaLimiteFor = '';
           }
-
+          console.log(fchaLimiteFor);
           data = {
             'cod_trabajador': codTra,
             'cod_mensaje': codMensaje,
             'fch_notificacion': fchBD,
             'fch_limite': fchaLimiteFor
           }
+
+          console.log('data',data);
 
           $.ajax({
               url: 'api/InsertarMensajeTrabajador', 

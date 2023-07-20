@@ -48,6 +48,8 @@ class APIController extends Controller
             Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
             Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
             Session::put('docTraRRHH', $responseData->response->dsc_documento_rrhh);
+            Session::put('periodoConvenio', $responseData->response->cod_periodo_vacaciones_convenio);
+            Session::put('numVacaciones', $responseData->response->num_vacaciones);
 
 
             // Ejemplo de retorno de la respuesta
@@ -392,14 +394,26 @@ class APIController extends Controller
         $asunto = $request['asunto'];
         $solicitante =  $request['solicitante'];
         $codigoMensaje = $request['codigoMensaje'];
-        if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'){
-            $correoDestino = $correoPersonal;
-            $correoCC = $correoCorp;
-        }else if($codigoMensaje == '1001' || $codigoMensaje == '1002'){
-            $correoDestino = $correoCorp;
-            $correoCC = '';
+        $correoDestino = '';
+        switch ($codigoMensaje) {
+            case ('1001'||'1004'||'4001'||'4002'||'4003'):
+                $correoDestino = $correoPersonal;
+                $correoCC = $correoCorp;
+                break;
+            
+            case ('1002' || '1003'||'4004'||'4005'):
+                $correoDestino = $correoCorp;
+                $correoCC = '';
+                break;
         }
 
+        // if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'){
+        //     $correoDestino = $correoPersonal;
+        //     $correoCC = $correoCorp;
+        // }else if($codigoMensaje == '1001' || $codigoMensaje == '1002' || $codigoMensaje == '1003'){
+        //     $correoDestino = $correoCorp;
+        //     $correoCC = '';
+        // }
 
         // Extraer los datos de configuración 
         $correo = $request->session()->get('correoEnvio');
