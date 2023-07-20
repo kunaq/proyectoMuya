@@ -119,6 +119,7 @@ var fechIniCalendario = null;
 var fchFinCalendario = null;
 var filaCalendario = [];
 window.onload= function() {
+
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   var botonSolicitud = document.getElementById("btnSolicitarVac");

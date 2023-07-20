@@ -119,7 +119,7 @@ class CreaPDFController extends Controller
         $idTransaccion = APIController::idTansaccion();
         $numDocTrabajador = session('docTrabajador');
         $periodoConvenio = session('periodoConvenio');
-        $numVacaciones = session('numVacaciones');
+        $numVacaciones = intval(session('numVacaciones'));
         $tipoDocTrabajador = $request['datos']['response']['dsc_tipo_documento'];
         $nombresTrabajador = $request['datos']['response']['dsc_nombres'];
         $apellPTrabajador = $request['datos']['response']['dsc_apellido_paterno'];
@@ -257,17 +257,18 @@ class CreaPDFController extends Controller
                     'as_dsc_envio'=> $mensaje,
                     'as_id_doc'=> $iddocumento
                 );
-                CreaPDFController::InsertarSeguimientoEnvio($tranx); 
+                CreaPDFController::InsertarSeguimientoEnvio(json_encode($tranx)); 
                 return 'OK';
             }else{
                 $tranx = array(
                     'cod_trabajador'=> $cod_trabajador,
                     'cod_periodo_vacaciones'=>$periodoConvenio,
                     'num_vacaciones'=>$numVacaciones,
-                    'num_transaccion'=> $idTransaccion,
+                    'num_transaccion'=> intval($idTransaccion),
                 );
-                CreaPDFController::InsertarSeguimientoFirma($tranx); 
-                return 'OK';
+
+                $resp = CreaPDFController::InsertarSeguimientoFirma(json_encode($tranx)); 
+                return $resp;
             }
 
         } catch (\Exception $e) {
@@ -346,6 +347,7 @@ class CreaPDFController extends Controller
 
     public function InsertarSeguimientoFirma($data)
     {   
+        //return $data;
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',

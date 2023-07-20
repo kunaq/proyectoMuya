@@ -51,7 +51,7 @@ $("#loginBtn").click(function(){
         data:{'usuario':user,'password':passw},
         crossDomain: true,
         success: function(respuesta){
-            console.log('flg_bloq',respuesta.data.response.flg_bloqueado);
+            console.log('flg_bloq',respuesta);
             var bloqueo = respuesta.data.response.flg_bloqueado;
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
