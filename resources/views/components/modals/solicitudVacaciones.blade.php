@@ -156,7 +156,7 @@ window.onload= function() {
               botonSolicitud.disabled = false;
             }
           }else{
-            if ('@php echo(session('flgAcuerdoFirm')) @endphp' == 'NO') {
+            if (result["response"]["flg_acuerdo_firmado"] == 'NO') {
               botonSolicitud.disabled = true;
               botonConvenio.disabled = false;
             } else {
