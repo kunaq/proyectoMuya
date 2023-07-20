@@ -53,7 +53,7 @@ class APIController extends Controller
 
 
             // Ejemplo de retorno de la respuesta
-            return response()->json(['status' => $statusCode, 'data' => $responseData],);
+            return response()->json(['status' => $statusCode, 'data' => $responseData]);
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);

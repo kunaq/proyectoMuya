@@ -55,6 +55,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title" style="font-size: 30px;">Tus últimos mensajes</h5>
+                    {{-- <button onclick="enviaCorreoMensaje('TRA01871','NOMBRE SOLICITANTE','1003','19/07/2023','PRUEBA ENVIO','ACTIVIDAD PRUEBA')"></button> --}}
                     <div class="row">
                         <div class="col-md-12 table-responsive" style="padding-left: 2rem;padding-right: 2rem;">
                             <table class="table table-striped ">
