@@ -50,7 +50,7 @@
             <tr>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p class="codigo">@REPRESENTANTE1# <br>espacio </p>
+                        <p class="codigo">@REPRESENTANTE1# <br><br><br></p>
                         <hr>
                         <b>EL EMPLEADOR</b>
                     </div>
@@ -58,8 +58,10 @@
                 <td><p class="codigo">espacioespa</p></td>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p><span class="codigo">@TRABAJADOR#</span> <span class='capital'>{{$nombre}}</span><br>DNI N° {{$dni}}</p>
+                        <p><span class="codigo">@TRABAJADOR#</span>
+                        <br><br><br>
                         <hr>
+                        <span class='capital'>{{$nombre}}</span><br>DNI N° {{$dni}}</p>
                         <b>EL TRABAJADOR</b>
                     </div>
                 </td>
