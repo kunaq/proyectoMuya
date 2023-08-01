@@ -22,6 +22,7 @@
         }
         .capital{
             text-transform: capitalize;
+            font-size: 0.8em;
         }
         .fechas{
             margin-left: 1rem;

@@ -22,6 +22,10 @@
         }
         .capital{
             text-transform: capitalize;
+            font-size: 0.8em;
+        }
+        .LineaFirma{
+            border-top: solid;
         }
     </style>
 </head>
@@ -50,19 +54,28 @@
             <tr>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p class="codigo">@REPRESENTANTE1# <br><br><br></p>
-                        <hr>
+                        <p class="codigo">@REPRESENTANTE1# </p>
+                    </div>
+                </td>
+                <td><p class="codigo">espacioespacio</p></td>
+                <td>
+                    <div class="cajaFirma titulo">
+                        <p><span class="codigo">@TRABAJADOR#</span></p>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="LineaFirma">
+                    <div class="cajaFirma titulo">
                         <b>EL EMPLEADOR</b>
                     </div>
                 </td>
-                <td><p class="codigo">espacioespa</p></td>
-                <td>
-                    <div class="cajaFirma titulo">
-                        <p><span class="codigo">@TRABAJADOR#</span>
-                        <br><br><br>
-                        <hr>
-                        <span class='capital'>{{$nombre}}</span><br>DNI N° {{$dni}}</p>
-                        <b>EL TRABAJADOR</b>
+                <td><p class="codigo">espacioespacio</p></td>
+                <td class="LineaFirma">
+                    <div class="cajaFirma">
+                        <span class='capital'>{{$nombre}}<br>DNI N° {{$dni}}</span>
+                        <br>
+                        <p class="titulo"><b>EL TRABAJADOR</b></p>
                     </div>
                 </td>
             </tr>
