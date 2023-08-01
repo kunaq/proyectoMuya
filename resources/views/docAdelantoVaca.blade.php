@@ -22,10 +22,15 @@
         }
         .capital{
             text-transform: capitalize;
+        }
+        .peq{
             font-size: 0.8em;
         }
         .LineaFirma{
             border-top: solid;
+        }
+        .altoFirma{
+            height: 5em;
         }
     </style>
 </head>
@@ -51,7 +56,7 @@
         <p>Ambas partes firman el presente acuerdo, a los Días {{$dia}} del mes de {{$mes}} del año {{$anio}}.</p>
         <br>
         <table class="tablaFirma">
-            <tr>
+            <tr class="altoFirma">
                 <td>
                     <div class="cajaFirma titulo">
                         <p class="codigo">@REPRESENTANTE1# </p>
@@ -73,7 +78,7 @@
                 <td><p class="codigo">espacioespacio</p></td>
                 <td class="LineaFirma">
                     <div class="cajaFirma">
-                        <span class='capital'>{{$nombre}}<br>DNI N° {{$dni}}</span>
+                        <span class='capital peq'>{{$nombre}}<br>DNI N° {{$dni}}</span>
                         <br>
                         <p class="titulo"><b>EL TRABAJADOR</b></p>
                     </div>

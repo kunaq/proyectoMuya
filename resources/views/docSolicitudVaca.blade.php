@@ -62,7 +62,7 @@
                         <p class="codigo">@TRABAJADOR# <br>espacio </p>
                         <br><br><br>
                         <hr>
-                        <p><span class='capital'>{{$nombre}}</span><br>{{$tipoDoc}} N° {{$dni}}</p>
+                        <p><span class='capital'>{{$nombre}}<br>{{$tipoDoc}} N° {{$dni}}</span></p>
                     </div>
                 </td>
             </tr>
