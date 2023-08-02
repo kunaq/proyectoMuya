@@ -261,6 +261,20 @@ class CreaPDFController extends Controller
                 return 'OK';
             }else{
                 $tranx = array(
+                    'as_trabajador'=> $cod_trabajador,
+                    'ai_trx'=> $idTransaccion,
+                    'as_formato'=> $formato,
+                    'ai_anno'=> $anio,
+                    'as_mes'=> $mes,
+                    'as_estado'=> $estadoEnv,
+                    'as_usuario'=> $numDocTrabajador,
+                    'as_dsc_envio'=> $mensaje,
+                    'as_id_doc'=> $iddocumento
+                );
+                
+                CreaPDFController::InsertarSeguimientoEnvio(json_encode($tranx)); 
+
+                $tranx = array(
                     'cod_trabajador'=> $cod_trabajador,
                     'cod_periodo_vacaciones'=>$periodoConvenio,
                     'num_vacaciones'=>$numVacaciones,
