@@ -155,6 +155,7 @@
                                             <th scope="col" width="10%">Alerta reprog.</th>
                                             <th scope="col" width="5%">Aceptar</th>
                                             <th scope="col" width="5%">Rechazar</th>
+                                            <th scope="col" width="5%">Anular</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -631,7 +632,8 @@ window.onload= function() {
                         alertaRegla,
                         alertaReprog,
                         '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
+                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="anularSol" value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
                     ];
                     filasArray.push(filaData);
                 });
@@ -652,6 +654,7 @@ window.onload= function() {
                         { title: 'Alerta reprog.' },
                         { title: 'Aceptar' },
                         { title: 'Rechazar' },
+                        { title: 'Anular' },
                     ],
                     dom: 'trip',
                     processing: true,
@@ -748,7 +751,7 @@ btnProcesar.addEventListener("click", function() {
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
-                        enviaRechazoVac(codTrabajador,fchIni,fchFin)
+                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'REC')
                         console.log(respuesta);
                         Swal.fire({
                             icon: 'success',
@@ -792,6 +795,40 @@ btnProcesar.addEventListener("click", function() {
                         }).then((result) => {
                             if (result.isConfirmed) {
                                 console.log('data aprobado',data);
+                                    location.reload();
+                            }
+                        })
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        })
+                        btnProcesar.removeAttribute('disabled');
+                    }//error
+                });//ajax
+            }else if(accion == 'ANULAR'){
+               // console.log('data rechazado',data);
+                $.ajax({
+                    url: 'api/RechazarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':data},
+                    success: function(respuesta){
+                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU')
+                        console.log(respuesta);
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se han procesado las solicitudes con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                console.log('data anulado',data);
                                     location.reload();
                             }
                         })
@@ -1204,5 +1241,54 @@ $('#annoIniVE, #periodo').select2({
     // dir: "rtl",
 });
 
+function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accion) {
+    $.ajax({
+        url: 'api/ObtenerTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_trabajador':codTra},
+        success: function(respuesta){
+            console.log(respuesta);
+            var dscTra = respuesta['response']['dsc_trabajador'];
+            var correoTra = respuesta['response']['dsc_mail_personal'];
+            var codSupervisor = respuesta['response']['cod_supervisor'];
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            var diaFormateado = dia < 10 ? '0' + dia : dia;
+            var mesFormateado = mes < 10 ? '0' + mes : mes;
+            var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+            var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+            var actividad = ''
+            if (accion = 'REC') {
+                actividad = 'La solicitud de vacaciones ha sido rechazada por el jefe. (Inicio: '+fchIni+', fin: '+fchFin+')';
+            }
+
+            var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+            var asunto = 'Rechazo de solicitud de vacaciones';
+
+            enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
+
+            var fchInicio = new Date(fchIni);
+            var fechaActualMas8Dias = new Date();
+            fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+            var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
+            
+            if (fechaActualMas8Dias < fchInicio) {
+                fchLimite = fchLimiteForm;
+            }else{
+                fchLimite = fechaFormateada;
+            }
+
+            enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax  
+}
 
 </script>

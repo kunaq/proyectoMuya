@@ -319,7 +319,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
               element['dsc_estado'],
               flgFirmado,
               flgPagado,
-              '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')"><span class="bi bi-vector-pen"></span></button>'+
+              '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+')"><span class="bi bi-vector-pen"></span></button>'+
               '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
               '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
           ];
@@ -336,7 +336,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                   '<b>Firma:</b> '+flgFirmado+' <br>'+
                   '<b>Pago:</b> '+flgPagado+' <br><br>'+
                   '<div style="text-align-last: center;">'+
-                      '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+finFchFin+','+cantDias+','+numLinea+')">Firma</button>'+
+                      '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+')">Firma</button>'+
                       '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
                       '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')">Edita</button>'+
                   '</div>'+  
@@ -519,8 +519,7 @@ btnSolicitar.addEventListener("click", function() {
                 //location.reload();
               }
             })
-          }
-          else{
+          }else{
             // console.log('else parametro x');
             if(reprog == 'NO'){
               console.log(solVac);
