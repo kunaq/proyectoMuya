@@ -204,54 +204,6 @@
     }
   </script> --}}
 
-  <script type="text/javascript">
-// ---------------valida parámetros----------------
-    function limitInputValue(elementId, maxValue) {
-    var input = document.getElementById(elementId);
-    input.addEventListener("input", function() {
-        var value = parseInt(input.value);
-        if (value > maxValue) {
-        input.value = maxValue;
-        }
-    });
-    }
-
-    limitInputValue("parametroX", 30);
-    limitInputValue("parametroY", 30);
-// ------------------------------------------------
-
-
-    $.extend(true, $.fn.dataTable.defaults, {
-        searching: false,
-        lengthChange: false,
-    });
-    $(document).ready(function () {
-        $('#listaColab').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            "order": [[4, "desc"]],
-
-        });
-    });
-    $(document).ready(function () {
-        $('#solAprobar').DataTable({
-            language: {
-                url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-            },
-            "order": [[4, "desc"]],
-
-        });
-    });
-    
-
-
-
-    $( function() {
-        $( "#datepicker1" ).datepicker();
-        $( "#datepicker2" ).datepicker();
-        $( "#datepicker3" ).datepicker();
-        $( "#datepicker4" ).datepicker();
-    } );
+<script type="text/javascript">
 
 </script>

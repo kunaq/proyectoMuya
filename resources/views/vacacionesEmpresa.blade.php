@@ -1262,8 +1262,10 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accion) {
             var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
             var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
             var actividad = ''
-            if (accion = 'REC') {
+            if (accion == 'REC') {
                 actividad = 'La solicitud de vacaciones ha sido rechazada por el jefe. (Inicio: '+fchIni+', fin: '+fchFin+')';
+            }else if(accion == 'ANU'){
+                actividad = 'La solicitud de vacaciones ha sido rechazada por anulación. (Inicio: '+fchIni+', fin: '+fchFin+')';
             }
 
             var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
@@ -1271,24 +1273,46 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accion) {
 
             enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
 
-            var fchInicio = new Date(fchIni);
-            var fechaActualMas8Dias = new Date();
-            fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
-            var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
-            
-            if (fechaActualMas8Dias < fchInicio) {
-                fchLimite = fchLimiteForm;
-            }else{
-                fchLimite = fechaFormateada;
-            }
-
-            enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);
-
         },//success
         error(e){
             console.log(e.message);
         }//error
     });//ajax  
+}
+
+function enviaAprobacionVac(codTrabajador,fchIni,fchFin) {
+    
+    $.ajax({
+        url: 'api/ObtenerTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_trabajador':codTra},
+        success: function(respuesta){
+            console.log(respuesta);
+            var dscTra = respuesta['response']['dsc_trabajador'];
+            var correoTra = respuesta['response']['dsc_mail_personal'];
+            var codSupervisor = respuesta['response']['cod_supervisor'];
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            var diaFormateado = dia < 10 ? '0' + dia : dia;
+            var mesFormateado = mes < 10 ? '0' + mes : mes;
+            var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+            var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+            var actividad = 'La solicitud de vacaciones ha sido aprobada por jefe. (Inicio: '+fchIni+', fin: '+fchFin+')';
+
+            var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+            var asunto = 'Aprobación de solicitud de vacaciones';
+
+            enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad);
+
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax
 }
 
 </script>
