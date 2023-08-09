@@ -1241,7 +1241,7 @@ $('#annoIniVE, #periodo').select2({
     // dir: "rtl",
 });
 
-function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accion) {
+function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accionEnvio) {
     $.ajax({
         url: 'api/ObtenerTrabajador', 
         method: "GET",
@@ -1262,9 +1262,9 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accion) {
             var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
             var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
             var actividad = ''
-            if (accion == 'REC') {
+            if (accionEnvio == 'REC') {
                 actividad = 'La solicitud de vacaciones ha sido rechazada por el jefe. (Inicio: '+fchIni+', fin: '+fchFin+')';
-            }else if(accion == 'ANU'){
+            }else if(accionEnvio == 'ANU'){
                 actividad = 'La solicitud de vacaciones ha sido rechazada por anulación. (Inicio: '+fchIni+', fin: '+fchFin+')';
             }
 
