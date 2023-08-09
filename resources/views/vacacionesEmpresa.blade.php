@@ -1261,7 +1261,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accionEnvio) {
             var mesFormateado = mes < 10 ? '0' + mes : mes;
             var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
             var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
-            var actividad = ''
+            var actividad = '';
             if (accionEnvio == 'REC') {
                 actividad = 'La solicitud de vacaciones ha sido rechazada por el jefe. (Inicio: '+fchIni+', fin: '+fchFin+')';
             }else if(accionEnvio == 'ANU'){
