@@ -348,7 +348,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
       dataType: 'json',
       data:{'cod_trabajador':codTra},
       success: function(respuesta){
-          console.log(respuesta);
+          //console.log(respuesta);
           var dscTra = respuesta['response']['dsc_trabajador'];
           var correoTra = respuesta['response']['dsc_mail_personal'];
           var correoCorp = respuesta['response']['dsc_mail_empresa'];
@@ -410,7 +410,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
           }else{
             fchaLimiteFor = '';
           }
-          console.log(fchaLimiteFor);
+          //console.log(fchaLimiteFor);
           data = {
             'cod_trabajador': codTra,
             'cod_mensaje': codMensaje,

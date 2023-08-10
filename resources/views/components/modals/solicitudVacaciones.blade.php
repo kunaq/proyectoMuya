@@ -459,17 +459,17 @@ btnSolicitar.addEventListener("click", function() {
     var numLineaAnt = (reprog == 'SI') ? numLineaAnt : '';
 
     var solVac = {
-        'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
-        'fch_inicio': fchInicio,
-        'fch_fin': fchFin,
-        'fch_retorno': fchRetorno,
-        'cant_dia': cantDias,
-        'flg_alerta_regla': 'NO',
-        'ctd_dias_exceso': diasExces,
-        'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
-        'num_linea_origen': 0
-      }
-      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchFin,cantDias);
+      'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
+      'fch_inicio': fchInicio,
+      'fch_fin': fchFin,
+      'fch_retorno': fchRetorno,
+      'cant_dia': cantDias,
+      'flg_alerta_regla': 'NO',
+      'ctd_dias_exceso': diasExces,
+      'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
+      'num_linea_origen': 0
+    }
+
     var parametroX = parseInt(document.getElementById('parametroX').value);
     var pagoHaber = document.getElementById('pagoPlanilla').value;
     var fechaActual = new Date();
