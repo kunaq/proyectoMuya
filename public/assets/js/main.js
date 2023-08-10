@@ -319,7 +319,7 @@
 
 })();
 
-// Función para formatear la fecha a "dd-mm-YYYY"
+// Función para formatear la fecha a "dd/mm/YYYY"
 function formatDate(fecha) {
   var fecha = fecha.split('-');
   var year = fecha[0];

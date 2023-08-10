@@ -307,7 +307,10 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           }
           var cantDias = element['cant_dia'];
           var numLinea = element['num_linea'];
-          var fchReinc = document.getElementById("datepickerFinSolVac").value;
+
+          var auxFecReinc =  element['fch_retorno'].split("T");
+          fchReinc = formatDate(auxFecReinc[0]);
+
           var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
           var finFchIni = "'"+fchIni+"'";
           var finFchFin = "'"+fchFin+"'";
