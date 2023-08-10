@@ -1249,7 +1249,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accionEnvio) {
         dataType: 'json',
         data:{'cod_trabajador':codTra},
         success: function(respuesta){
-            console.log(respuesta);
+            console.log('accionEnvio',accionEnvio);
             var dscTra = respuesta['response']['dsc_trabajador'];
             var correoTra = respuesta['response']['dsc_mail_personal'];
             var codSupervisor = respuesta['response']['cod_supervisor'];
