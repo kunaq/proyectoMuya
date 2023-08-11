@@ -595,7 +595,7 @@ window.onload= function() {
             dataType: 'json',
             data:{'codTrabajador':'%'},
             success: function(result){
-                //console.log(result);
+                console.log(result);
                 var filasArray = [];
                 result['response'].forEach(element => {
                     var auxFecIni =  element['fch_inicio'].split("T");
@@ -1241,7 +1241,7 @@ $('#annoIniVE, #periodo').select2({
     // dir: "rtl",
 });
 
-function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc,accionEnvio) {
+function enviaRechazoVac(codTra,fchIni,fchFin,accionEnvio) {
     $.ajax({
         url: 'api/ObtenerTrabajador', 
         method: "GET",

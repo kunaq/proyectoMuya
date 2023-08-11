@@ -402,7 +402,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
             });//ajax
 
           var fchaLimiteFor = '';
-          if (fchLimite != '' || fchLimite != null) {
+          if (fchLimite != '' || fchLimite != null || fchLimite) {
             var fecha = fecha.split('/');
             var day = fecha[0];
             var month = fecha[1];
