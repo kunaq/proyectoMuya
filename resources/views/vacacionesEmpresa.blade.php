@@ -606,17 +606,28 @@ window.onload= function() {
                     fchReinc = formatDate(auxFecRein[0]);
                     var alertaRegla = '';
                     var alertaReprog = '';
+                    var deshabilitaAprueba = '';
+                    var deshabilitaRechazo = '';
                     
                     if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
-                    alertaRegla = '';
+                        alertaRegla = '';
                     }else{
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                        alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
                     }
     
                     if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
-                    alertaReprog = '';
+                        alertaReprog = '';
                     }else{
-                    alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                        alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                    }
+
+                    if(element['flg_aprobado'] == 'SI' || element['flg_rechazado'] == 'SI'){
+                        deshabilitaRechazo = 'disabled';
+                        deshabilitaAprueba = 'disabled';
+                    }
+
+                    if(element['flg_aprobado'] == 'SI' && element['flg_pagado'] == 'NO'){
+
                     }
     
                     var cantDias = element['cant_dia'];
@@ -631,8 +642,8 @@ window.onload= function() {
                         element['dsc_estado'],
                         alertaRegla,
                         alertaReprog,
-                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" '+deshabilitaAprueba+' id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol"  '+deshabilitaRechazo+'value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
                         '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="anularSol" value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
                     ];
                     filasArray.push(filaData);
