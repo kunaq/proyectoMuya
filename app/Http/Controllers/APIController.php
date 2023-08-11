@@ -395,25 +395,26 @@ class APIController extends Controller
         $solicitante =  $request['solicitante'];
         $codigoMensaje = $request['codigoMensaje'];
         $correoDestino = '';
-        switch ($codigoMensaje) {
-            case ('1001'||'1004'||'4001'||'4002'||'4003'):
-                $correoDestino = $correoPersonal;
-                $correoCC = $correoCorp;
-                break;
+        $correoCC = '';
+        // switch ($codigoMensaje) {
+        //     case ('1001'||'1004'||'4001'||'4002'||'4003'):
+        //         $correoDestino = $correoPersonal;
+        //         $correoCC = $correoCorp;
+        //         break;
             
-            case ('1002' || '1003'||'4004'||'4005'):
-                $correoDestino = $correoCorp;
-                $correoCC = '';
-                break;
-        }
-
-        // if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'){
-        //     $correoDestino = $correoPersonal;
-        //     $correoCC = $correoCorp;
-        // }else if($codigoMensaje == '1001' || $codigoMensaje == '1002' || $codigoMensaje == '1003'){
-        //     $correoDestino = $correoCorp;
-        //     $correoCC = '';
+        //     case ('1002' || '1003'||'4004'||'4005'):
+        //         $correoDestino = $correoCorp;
+        //         $correoCC = '';
+        //         break;
         // }
+
+        if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'  || $codigoMensaje == '1001' || $codigoMensaje == '1004'){
+            $correoDestino = $correoPersonal;
+            $correoCC = $correoCorp;
+        }else if($codigoMensaje == '1002' || $codigoMensaje == '1003' || $codigoMensaje == '4004' || $codigoMensaje == '4005'){
+            $correoDestino = $correoCorp;
+            $correoCC = '';
+        }
 
         // Extraer los datos de configuración 
         $correo = $request->session()->get('correoEnvio');
