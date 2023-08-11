@@ -396,17 +396,6 @@ class APIController extends Controller
         $codigoMensaje = $request['codigoMensaje'];
         $correoDestino = '';
         $correoCC = '';
-        // switch ($codigoMensaje) {
-        //     case ('1001'||'1004'||'4001'||'4002'||'4003'):
-        //         $correoDestino = $correoPersonal;
-        //         $correoCC = $correoCorp;
-        //         break;
-            
-        //     case ('1002' || '1003'||'4004'||'4005'):
-        //         $correoDestino = $correoCorp;
-        //         $correoCC = '';
-        //         break;
-        // }
 
         if($codigoMensaje == '4001' || $codigoMensaje == '4002' || $codigoMensaje == '4003'  || $codigoMensaje == '1001' || $codigoMensaje == '1004'){
             $correoDestino = $correoPersonal;
