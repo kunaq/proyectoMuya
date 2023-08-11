@@ -578,7 +578,7 @@ btnSolicitar.addEventListener("click", function() {
                   data:{'solVac':data},
                   success: function(respuesta){
                       console.log(respuesta);
-                      enviaRechazoVac('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech);
+                      enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech);
                       $.ajax({
                           url: 'api/InsertarSolicitudVacaciones', 
                           method: "PUT",
@@ -696,7 +696,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
   });//ajax  
 }
 
-function enviaRechazoVac(codTra,fchIni,fchFin,fchRinc) {
+function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",

@@ -722,7 +722,7 @@ btnProcesar.addEventListener("click", function() {
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
-                        enviaRechazoVac(codTrabajador,fchIni,fchFin)
+                        enviaRechazoVacJefe(codTrabajador,fchIni,fchFin)
                         console.log(respuesta);
                         Swal.fire({
                             icon: 'success',
@@ -820,7 +820,7 @@ function enviaAprobacionVac(codTra,fchIni,fchFin) {
     });//ajax  
 }
 
-function enviaRechazoVac(codTra,fchIni,fchFin) {
+function enviaRechazoVacJefe(codTra,fchIni,fchFin) {
 $.ajax({
     url: 'api/ObtenerTrabajador', 
     method: "GET",
