@@ -403,7 +403,7 @@ function enviaCorreoMensaje(codTra,dscSolicitante,codMensaje,fchLimite,asunto,ac
 
           var fchaLimiteFor = '';
           if (fchLimite != '' || fchLimite != null || fchLimite) {
-            var fecha = fecha.split('/');
+            var fecha = fchLimite.split('/');
             var day = fecha[0];
             var month = fecha[1];
             var year = fecha[2];
