@@ -324,7 +324,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
               flgPagado,
               '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)"><span class="bi bi-vector-pen"></span></button>'+
               '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
-              '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
+              '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
           ];
 
           filasArray.push(filaData);
@@ -341,7 +341,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                   '<div style="text-align-last: center;">'+
                       '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)">Firma</button>'+
                       '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
-                      '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+fchIni+','+fchFin+','+fchReinc+')">Edita</button>'+
+                      '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')">Edita</button>'+
                   '</div>'+  
               '</td>'+
             '</tr>'
@@ -562,6 +562,7 @@ btnSolicitar.addEventListener("click", function() {
               var numLinea = document.getElementById('numLinea').value;
               var fchInicioRech = document.getElementById('fchInicioRech').value;
               var fchFinRech = document.getElementById('fchFinRech').value;
+              
               var fchReincRech = document.getElementById('fchReincRech').value;
               var cantDiasRech = document.getElementById('cantDiasRech').value;
               data = {
