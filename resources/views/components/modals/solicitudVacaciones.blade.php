@@ -583,6 +583,26 @@ btnSolicitar.addEventListener("click", function() {
                   success: function(respuesta){
                       console.log(respuesta);
                       enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,numLinea);
+                      
+                      //-------------------------Cambia estado de mensaje a finalizado---------------------------
+                      data = {
+                              'num_item':numLinea
+                      }
+                      $.ajax({
+                          url: 'lista/ActualizarEstadoMensaje', 
+                          method: "GET",
+                          crossDomain: true,
+                          dataType: 'json',
+                          data:{'data':data},
+                          success: function(respuesta){
+                              console.log('actualizaMensaje',respuesta);
+                          },//success
+                          error(e){
+                              console.log(e.message);
+                          }//error
+                      });
+
+                      //------------------Ingresa nueva solicitud-----------------------------------
                       $.ajax({
                           url: 'api/InsertarSolicitudVacaciones', 
                           method: "PUT",
