@@ -166,7 +166,9 @@ window.onload= function() {
           }
 
           numUltDias = result['response']['num_ultimo_dias'];
-          muestraCalendario(filaCalendario);
+          setTimeout(function() { 
+            muestraCalendario(filaCalendario);
+          }, 2000);
       }
   });//ajax obtener trabajador
 
