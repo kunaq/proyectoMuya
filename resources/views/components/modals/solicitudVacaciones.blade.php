@@ -538,7 +538,7 @@ btnSolicitar.addEventListener("click", function() {
                   success: function(respuesta){
                       console.log(respuesta);
                       numSolicitud = respuesta['response']['num_linea'];
-                      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitud);
+                      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitud,reprog);
                       Swal.fire({
                           icon: 'success',
                           text: 'Se ha registrado su solicitud con éxito',
@@ -612,7 +612,7 @@ btnSolicitar.addEventListener("click", function() {
                           success: function(respuesta){
                             console.log('respuesta Insertar',respuesta);
                             numSolicitudIn = respuesta['response']['num_linea'];
-                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn);
+                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn,reprog);
                             Swal.fire({
                               icon: 'success',
                               text: 'Se ha registrado su solicitud con éxito',
@@ -673,7 +673,7 @@ btnFirmaConvenio.addEventListener("click", function() {
   firmaConvenio('@php echo(session('codTrabajador')) @endphp','@php echo(session('docTraRRHH')) @endphp');       
 });//evento click
 
-function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud) {
+function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud,reprogramacion) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -695,24 +695,27 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud) {
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
           var actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchIni+', fin: '+fchFin+')';
-          var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Ingreso de solicitud de vacaciones';
 
           enviaCorreoMensaje(codTra,codTra,solicitante,'4001','',asunto,actividad,numSolicitud);
-          
-          var fchInicio = new Date(fchIni);
-          var fechaActualMas8Dias = new Date();
-          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
-          var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
-          
-          if (fechaActualMas8Dias < fchInicio) {
-            fchLimite = fchLimiteForm;
-          }else{
-            fchLimite = fechaFormateada;
-          }
 
-          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup,numSolicitud);
+          if(reprogramacion == 'NO'){
+
+            var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
+            var fchInicio = new Date(fchIni);
+            var fechaActualMas8Dias = new Date();
+            fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+            var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
+            
+            if (fechaActualMas8Dias < fchInicio) {
+              fchLimite = fchLimiteForm;
+            }else{
+              fchLimite = fechaFormateada;
+            }
+            
+            enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup,numSolicitud);
+          }
 
       },//success
       error(e){
@@ -757,10 +760,9 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc,numSolicitud) {
           }else{
             fchLimite = fechaFormateada;
           }
-          var asuntoJefe = 'Aceptar/rechazar una reprogramación de vacaciones.';
           var actividadJefe = 'Aceptar/rechazar una reprogramación de vacaciones.';
 
-          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asuntoJefe,actividadJefe,numSolicitud);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,actividadJefe,actividadJefe,numSolicitud);
 
           //-------------------------Cambia estado de mensaje a finalizado---------------------------
           data = {
