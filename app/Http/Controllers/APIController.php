@@ -403,6 +403,9 @@ class APIController extends Controller
         }else if($codigoMensaje == '1002' || $codigoMensaje == '1003' || $codigoMensaje == '4004' || $codigoMensaje == '4005'){
             $correoDestino = $correoCorp;
             $correoCC = '';
+        }else if($codigoMensaje == 'olvido'){
+            $correoDestino = $correoPersonal;
+            $correoCC = '';
         }
 
         // Extraer los datos de configuración 
@@ -412,7 +415,7 @@ class APIController extends Controller
         $puerto = $request->session()->get('numHost');
         $esSMTP = $request->session()->get('dscSmtp');
 
-        if($request['accion'] == 'olvido'){
+        if($codigoMensaje == 'olvido'){
             $host = 'mail.grupomuya.com.pe';
             $puerto = 587;
 
