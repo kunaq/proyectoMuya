@@ -737,8 +737,10 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc,numSolicitud) {
           }else{
             fchLimite = fechaFormateada;
           }
+          var asuntoJefe = 'Aceptar/rechazar una reprogramación de vacaciones.';
+          var actividadJefe = 'Aceptar/rechazar una reprogramación de vacaciones.';
 
-          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asunto,actividad,numSolicitud);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asuntoJefe,actividadJefe,numSolicitud);
 
           //-------------------------Cambia estado de mensaje a finalizado---------------------------
           data = {
