@@ -56,7 +56,7 @@
                       </div>
                       <div class="col-md-3" style="margin-bottom: 1rem;">
                           <div class="form-group">
-                              <input type="text" class="form-control" id="datepickerIniSolVac" name="datepickerIniSolVac">
+                              <input type="text" class="form-control" id="datepickerIniSolVac" name="datepickerIniSolVac" required>
                           </div>
                       </div>
                       <div class="col-md-2" style="margin-bottom: 1rem;">
@@ -66,7 +66,7 @@
                       </div>
                       <div class="col-md-3">
                           <div class="form-group">
-                              <input type="text" class="form-control" id="datepickerFinSolVac" name="datepickerFinSolVac">
+                              <input type="text" class="form-control" id="datepickerFinSolVac" name="datepickerFinSolVac" required>
                           </div>
                       </div>
                     </div>
@@ -461,7 +461,7 @@ btnSolicitar.addEventListener("click", function() {
     var numLinea = document.getElementById('numLinea').value;
     var fchRetorno = document.getElementById('fchRetornoBD').value;
 
-    var numLineaAnt = (reprog == 'SI') ? numLineaAnt : 0;
+    var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
 
     var solVac = {
       'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
@@ -492,6 +492,7 @@ btnSolicitar.addEventListener("click", function() {
           }
         })
     }else{
+      console.log('numLineaAnt',numLineaAnt);
       $.ajax({
         url: 'api/ObtenerCoincidenciaVacacionesxTrabajador', 
         method: "get",
