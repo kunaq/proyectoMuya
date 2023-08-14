@@ -592,9 +592,10 @@ class APIController extends Controller
         $codTra = $request['codTra'];
         $fchIni = $request['fchIni'];
         $fchFin = $request['fchFin'];
+        $numSolicitud = $request['numSolicitud'];
         try {
 
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerCoincidenciaVacacionesxTrabajador/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin.'/'.$numSolicitud);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

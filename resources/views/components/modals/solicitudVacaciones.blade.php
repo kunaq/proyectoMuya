@@ -461,7 +461,7 @@ btnSolicitar.addEventListener("click", function() {
     var numLinea = document.getElementById('numLinea').value;
     var fchRetorno = document.getElementById('fchRetornoBD').value;
 
-    var numLineaAnt = (reprog == 'SI') ? numLineaAnt : '';
+    var numLineaAnt = (reprog == 'SI') ? numLineaAnt : 0;
 
     var solVac = {
       'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
@@ -472,7 +472,7 @@ btnSolicitar.addEventListener("click", function() {
       'flg_alerta_regla': 'NO',
       'ctd_dias_exceso': diasExces,
       'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
-      'num_linea_origen': 0
+      'num_linea_origen': numLineaAnt
     }
 
     var parametroX = parseInt(document.getElementById('parametroX').value);
@@ -497,7 +497,7 @@ btnSolicitar.addEventListener("click", function() {
         method: "get",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin,'numSolicitud':numLineaAnt},
         success: function(respuesta){
           console.log('coincidencia',respuesta);
           if(respuesta['response']['ctd_coincidencia'] > parametroX){
