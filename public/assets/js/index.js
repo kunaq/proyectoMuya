@@ -168,7 +168,7 @@ btnEnvia.addEventListener("click", function() {
                         method: "post",
                         crossDomain: true,
                         dataType: 'json',
-                        data:{'destinatario':respuesta['response']['dsc_trabajador'],'correoPersonal':correo,'correoCorp':'','fchNotif':'','fchLimite':'','asunto':'Recuperación de contraseña','solicitante':'','actividad':user,'accion':'olvido'},
+                        data:{'destinatario':respuesta['response']['dsc_trabajador'],'correoPersonal':correo,'correoCorp':'','fchNotif':'','fchLimite':'','asunto':'Recuperación de contraseña','solicitante':'','actividad':user,'codigoMensaje':'olvido'},
                         success: function(respuesta){
                             console.log(respuesta);
                             location.reload();
