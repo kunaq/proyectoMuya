@@ -674,7 +674,7 @@ btnFirmaConvenio.addEventListener("click", function() {
 });//evento click
 
 function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud,reprogramacion) {
-
+  console.log('reprogramacion',reprogramacion)
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
@@ -700,20 +700,20 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud,repr
 
           enviaCorreoMensaje(codTra,codTra,solicitante,'4001','',asunto,actividad,numSolicitud);
 
+          
+          var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
+          var fchInicio = new Date(fchIni);
+          var fechaActualMas8Dias = new Date();
+          fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
+          var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
+          
+          if (fechaActualMas8Dias < fchInicio) {
+            fchLimite = fchLimiteForm;
+          }else{
+            fchLimite = fechaFormateada;
+          }
+          
           if(reprogramacion == 'NO'){
-
-            var actividadSup = 'Aceptar/rechazar una solicitud de vacaciones.';
-            var fchInicio = new Date(fchIni);
-            var fechaActualMas8Dias = new Date();
-            fechaActualMas8Dias.setDate(fechaActualMas8Dias.getDate() + 8);
-            var fchLimiteForm = fechaActualMas8Dias.getDate().toString().padStart(2, '0') + '/' + (fechaActualMas8Dias.getMonth() + 1).toString().padStart(2, '0') + '/' +  fechaActualMas8Dias.getFullYear();
-            
-            if (fechaActualMas8Dias < fchInicio) {
-              fchLimite = fchLimiteForm;
-            }else{
-              fchLimite = fechaFormateada;
-            }
-            
             enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup,numSolicitud);
           }
 
