@@ -534,7 +534,8 @@ btnSolicitar.addEventListener("click", function() {
                   data:{'solVac':solVac},
                   success: function(respuesta){
                       console.log(respuesta);
-                      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias);
+                      numSolicitud = respuesta['response']['num_linea'];
+                      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitud);
                       Swal.fire({
                           icon: 'success',
                           text: 'Se ha registrado su solicitud con éxito',
@@ -578,7 +579,7 @@ btnSolicitar.addEventListener("click", function() {
                   data:{'solVac':data},
                   success: function(respuesta){
                       console.log(respuesta);
-                      enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech);
+                      enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,numLinea);
                       $.ajax({
                           url: 'api/InsertarSolicitudVacaciones', 
                           method: "PUT",
@@ -586,8 +587,9 @@ btnSolicitar.addEventListener("click", function() {
                           dataType: 'json',
                           data:{'solVac':solVac},
                           success: function(respuesta){
-                            console.log(respuesta);
-                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias);
+                            console.log('respuesta Insertar',respuesta);
+                            numSolicitudIn = respuesta['response']['num_linea'];
+                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn);
                             Swal.fire({
                               icon: 'success',
                               text: 'Se ha registrado su solicitud con éxito',
@@ -648,7 +650,7 @@ btnFirmaConvenio.addEventListener("click", function() {
   firmaConvenio('@php echo(session('codTrabajador')) @endphp','@php echo(session('docTraRRHH')) @endphp');       
 });//evento click
 
-function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
+function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias,numSolicitud) {
 
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -674,7 +676,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Ingreso de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,codTra,solicitante,'4001','',asunto,actividad);
+          enviaCorreoMensaje(codTra,codTra,solicitante,'4001','',asunto,actividad,numSolicitud);
           
           var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
@@ -687,7 +689,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
             fchLimite = fechaFormateada;
           }
 
-          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup,numSolicitud);
 
       },//success
       error(e){
@@ -696,7 +698,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
   });//ajax  
 }
 
-function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
+function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc,numSolicitud) {
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",
@@ -720,7 +722,7 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Rechazo de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad);
+          enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad,numSolicitud);
 
           var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
@@ -733,7 +735,7 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
             fchLimite = fechaFormateada;
           }
 
-          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asunto,actividad);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asunto,actividad,numSolicitud);
 
       },//success
       error(e){

@@ -339,7 +339,7 @@ function obtenerFechaISO(fecha) {
 
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
-function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimite,asunto,actividad) {
+function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimite,asunto,actividad,numSolicitud) {
   console.log('fchLimite',fchLimite)
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -417,7 +417,8 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
             'cod_trabajador_sol':codTraSolic,
             'cod_mensaje': codMensaje,
             'fch_notificacion': fchBD,
-            'fch_limite': fchaLimiteFor
+            'fch_limite': fchaLimiteFor,
+            'num_item':numSolicitud
           }
          // console.log('data',data);
 
