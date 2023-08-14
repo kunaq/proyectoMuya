@@ -674,7 +674,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Ingreso de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4001','',asunto,actividad);
+          enviaCorreoMensaje(codTra,codTra,solicitante,'4001','',asunto,actividad);
           
           var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
@@ -687,7 +687,7 @@ function enviaSolitudVac(codTra,fchIni,fchFin,fchRinc,cantDias) {
             fchLimite = fechaFormateada;
           }
 
-          enviaCorreoMensaje(codSupervisor,solicitante,'1002',fchLimite,actividadSup,actividadSup);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1002',fchLimite,actividadSup,actividadSup);
 
       },//success
       error(e){
@@ -720,7 +720,7 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
           var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
           var asunto = 'Rechazo de solicitud de vacaciones';
 
-          enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
+          enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad);
 
           var fchInicio = new Date(fchIni);
           var fechaActualMas8Dias = new Date();
@@ -733,7 +733,7 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc) {
             fchLimite = fechaFormateada;
           }
 
-          enviaCorreoMensaje(codSupervisor,solicitante,'1003',fchLimite,asunto,actividad);
+          enviaCorreoMensaje(codSupervisor,codTra,solicitante,'1003',fchLimite,asunto,actividad);
 
       },//success
       error(e){

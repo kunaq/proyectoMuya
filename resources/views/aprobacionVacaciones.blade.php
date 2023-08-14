@@ -811,7 +811,7 @@ function enviaAprobacionVac(codTra,fchIni,fchFin) {
             var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
             var asunto = 'Aprobación de solicitud de vacaciones';
 
-            enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad,'guarda  ');
+            enviaCorreoMensaje(codTra,codTra,solicitante,'4002','',asunto,actividad,'guarda  ');
 
         },//success
         error(e){
@@ -843,7 +843,7 @@ $.ajax({
         var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
         var asunto = 'Rechazo de solicitud de vacaciones';
 
-        enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
+        enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad,'guarda  ');
 
     },//success
     error(e){

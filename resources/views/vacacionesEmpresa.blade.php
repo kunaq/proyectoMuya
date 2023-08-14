@@ -1282,7 +1282,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,accionEnvio) {
             var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
             var asunto = 'Rechazo de solicitud de vacaciones';
 
-            enviaCorreoMensaje(codTra,solicitante,'4003','',asunto,actividad);
+            enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad);
 
         },//success
         error(e){
@@ -1291,7 +1291,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,accionEnvio) {
     });//ajax  
 }
 
-function enviaAprobacionVac(codTrabajador,fchIni,fchFin) {
+function enviaAprobacionVac(codTra,fchIni,fchFin) {
     
     $.ajax({
         url: 'api/ObtenerTrabajador', 
@@ -1317,7 +1317,7 @@ function enviaAprobacionVac(codTrabajador,fchIni,fchFin) {
             var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
             var asunto = 'Aprobación de solicitud de vacaciones';
 
-            enviaCorreoMensaje(codTra,solicitante,'4002','',asunto,actividad);
+            enviaCorreoMensaje(codTra,codTra,solicitante,'4002','',asunto,actividad);
 
         },//success
         error(e){
