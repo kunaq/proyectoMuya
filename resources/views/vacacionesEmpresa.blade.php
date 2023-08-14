@@ -1284,6 +1284,24 @@ function enviaRechazoVac(codTra,fchIni,fchFin,accionEnvio,numSolicitud) {
 
             enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad,numSolicitud);
 
+            //-------------------------Cambia estado de mensaje a finalizado---------------------------
+            data = {
+                'num_item':numSolicitud
+            }
+            $.ajax({
+                url: 'lista/ActualizarEstadoMensaje', 
+                method: "GET",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'data':data},
+                success: function(respuesta){
+                    console.log('actualizaMensaje',respuesta);
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
+
         },//success
         error(e){
             console.log(e.message);
