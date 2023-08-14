@@ -830,7 +830,7 @@ btnProcesar.addEventListener("click", function() {
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
-                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU')
+                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU',numLinea)
                         console.log(respuesta);
                         Swal.fire({
                             icon: 'success',
