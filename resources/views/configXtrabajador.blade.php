@@ -76,7 +76,7 @@
                         <div class="row">
                             <div class="col-md-8 offset-md-3">
                                 <div class="form-group">
-                                    <select name="codTrabajador" id="codTrabajador" class="form-control selectForm js-example-diacritics"  onchange="ObtenerTrabajador(this.value)">
+                                    <select name="Trabajador" id="Trabajador" class="form-control selectForm js-example-diacritics"  onchange="ObtenerTrabajador(this.value)">
                                     </select>
                                 </div>
                             </div>
@@ -416,7 +416,7 @@ window.onload= function() {
         })  
     }
 
-    $('#annoIniConfig, #periodo, #codTrabajador, #Responsable, #tipoDoc3').select2({
+    $('#annoIniConfig, #periodo, #Trabajador, #Responsable, #tipoDoc3').select2({
         language: "es",
         theme: "classic",
         width: 'resolve',
@@ -433,6 +433,7 @@ window.onload= function() {
         dataType: 'json',
         success: function(respuesta){ 
             respuesta['response'].forEach(function(word){
+                $("#Trabajador").append('<option value="">Seleccione...</option>');
                 //console.log(word);
                 $("#Trabajador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
             });
@@ -450,6 +451,7 @@ window.onload= function() {
         dataType: 'json',
         success: function(respuesta){ 
                 respuesta['response'].forEach(function(word){
+                $("#Responsable").append('<option value="">Seleccione...</option>');
                 //console.log(word);
                 $("#Responsable").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
             });
@@ -748,7 +750,7 @@ btnProcesar.addEventListener("click", function() {
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
     //var codTra = '@php echo(session('codTrabajador')) @endphp';
-    var codTra = (document.getElementById('codTrabajador').value != '') ? document.getElementById('codTrabajador').value : '@php echo(session('codTrabajador')) @endphp';
+    var codTra = (document.getElementById('Trabajador').value != '') ? document.getElementById('Trabajador').value : '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
         url: 'ListarSolicitudVacacionesxResponsable', 
@@ -868,7 +870,7 @@ btnProcesar.addEventListener("click", function() {
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
     //var codTra = '@php echo(session('codTrabajador')) @endphp';
-    var codTra = (document.getElementById('codTrabajador').value != '') ? document.getElementById('codTrabajador').value : '@php echo(session('codTrabajador')) @endphp';
+    var codTra = (document.getElementById('Trabajador').value != '') ? document.getElementById('Trabajador').value : '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
         url: 'ListarReporteVacacionesxTrabajador', 
