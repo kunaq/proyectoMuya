@@ -489,6 +489,7 @@ btnSolicitar.addEventListener("click", function() {
       }).then((result) => {
           if (result.isConfirmed) {
             //location.reload();
+            btnSolicitar.removeAttribute('disabled');
           }
         })
     }else{
@@ -667,6 +668,11 @@ btnSolicitar.addEventListener("click", function() {
       });//ajax obtener coincidencia
     }
 });//onclick solicitar vacaciones
+
+const myModalEl = document.getElementById('ModalSolicitud')
+myModalEl.addEventListener('hidden.bs.modal', event => {
+  btnSolicitar.removeAttribute('disabled');
+})
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
