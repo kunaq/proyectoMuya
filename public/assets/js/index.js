@@ -84,7 +84,7 @@ $("#loginBtn").click(function(){
                                     window.location.href = "primerCambio";
                                 }
                             })
-                        }else if (passw == 'KUNAQ2024' || passw == 'GMUYA'+user) {
+                        }else if (passw == 'KUNAQ2024' || respuesta.data.response.flg_recuperar == 'SI') {
                             window.location.href = "primerCambio";
                         }else{
                             window.location.href = "home";

@@ -32,15 +32,18 @@ class FuncionesController extends Controller
         if($request['dsc_clave'] != ''){
             $clave = $request['dsc_clave'];
             $cambio = 'SI';
+            $flgOlvido = 'NO';
         }else{
             $aleatorio = FuncionesController::obtenerAleatorio();
             $clave='GMUYA'.$aleatorio;
             $cambio = 'olvido';
+            $flgOlvido = 'SI';
         }
         $data = [
             'dsc_ruc_empresa'=> '20555348887',
             'dsc_documento'=> $codigo,
-            'dsc_clave'=> $clave
+            'dsc_clave'=> $clave,
+            'flg_recuperar' => $flgOlvido
         ];
          
         $data = json_encode($data);
