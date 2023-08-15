@@ -60,6 +60,9 @@
                                 <span style="color: red;">El usuario se encuentra bloqueado temporalmente por
                                     exceso de intentos fallidos.</span>
                             </div>
+                            <div id="message4">
+                                <span style="color: red;">El cargo del usuario no tiene acceso al portal web.</span>
+                            </div>
                             <a href="#" class="btn btn-block login-btn" id="loginBtn">Ingresar</a>
                         </div>
                     </div>

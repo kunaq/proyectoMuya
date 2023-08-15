@@ -56,11 +56,18 @@ $("#loginBtn").click(function(){
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
                 document.getElementById('message3').style.display = "none";
+                document.getElementById('message4').style.display = "none";
+            }else if(respuesta.data.flg_cargo_sin_acceso == 'SI'){
+                document.getElementById('message2').style.display = "none";
+                document.getElementById('message3').style.display = "none";
+                document.getElementById('message4').style.display = "block";
             }else if(respuesta.data.response.flg_bloqueado == 'SI'){
                 document.getElementById('message3').style.display = "block";
+                document.getElementById('message4').style.display = "none";
             }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null)){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
+                document.getElementById('message4').style.display = "none";
                 $.ajax({
                     url: 'api/ListarVentana', 
                     method: "GET",
@@ -99,12 +106,6 @@ $("#loginBtn").click(function(){
             
     });//ajax
     
-    // if(passw.value == '00000'){
-    //     document.getElementById('message2').style.display = "block";
-    // }else{
-    //     document.getElementById('message2').style.display = "none";
-    //     window.location.href = "home";
-    // }
 });
 
 // Obtener el elemento del campo de entrada
