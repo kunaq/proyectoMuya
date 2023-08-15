@@ -51,20 +51,20 @@ $("#loginBtn").click(function(){
         data:{'usuario':user,'password':passw},
         crossDomain: true,
         success: function(respuesta){
-            console.log('flg_bloq',respuesta);
+            console.log('flg_cargo',respuesta.data.response.flg_cargo_sin_acceso);
             var bloqueo = respuesta.data.response.flg_bloqueado;
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "none";
-            }else if(respuesta.data.flg_cargo_sin_acceso == 'SI'){
+            }else if(respuesta.data.response.flg_cargo_sin_acceso == 'SI'){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "block";
             }else if(respuesta.data.response.flg_bloqueado == 'SI'){
                 document.getElementById('message3').style.display = "block";
                 document.getElementById('message4').style.display = "none";
-            }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null)){
+            }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null) && respuesta.data.response.flg_cargo_sin_acceso == 'NO'){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "none";
