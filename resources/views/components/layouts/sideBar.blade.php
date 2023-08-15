@@ -42,7 +42,7 @@
               <span>Solicitud</span>
             </a>
           </li>
-          @if (session('ventana4_2')==='SI')
+          @if (session('flgResponsable')==='SI')
           <li>
             <a href="{{route('aprobacionVacaciones')}}">
               <span>Aprobación</span>
@@ -69,7 +69,7 @@
               <span>Cambiar contraseña</span>
             </a>
           </li>
-          @if (session('ventana5_2')==='SI')
+          @if (session('flgResponsable')==='SI')
           
             <li>
               <a href="{{route('delegacion')}}">
