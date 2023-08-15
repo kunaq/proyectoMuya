@@ -426,7 +426,7 @@ class APIController extends Controller
             
             Ingrese al sistema con su DNI y la siguiente contraseña de recuperación:<br><br>
             
-            Contraseña: GMUYA".$actualiza."<br><br>
+            Contraseña: ".$actualiza."<br><br>
             
             Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
             
