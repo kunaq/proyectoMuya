@@ -30,6 +30,8 @@ class VerifyCsrfToken extends Middleware
         '/api/enviarCorreo',
         '/actualizaContrasenna',
         '/ListarSolicitudVacacionesxResponsable',
+        '/ObtenerValidacionVacacionesPagadas',
+        '/AnularGoceVacaciones',
 
         '/api/ObtenerTrabajador',
         '/lista/ListarUltimosMensajes',
@@ -62,14 +64,11 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarParametro',
         'lista/ObtenerCorreo',
         'api/ListarVentana',
-        'lista/ListarSolicitudVacacionesxResponsable',
         'lista/ListarFeriado',
         'lista/ListarReporteVacacionesxTrabajador',
         'lista/ListarBoletaPago',
         'lista/ListarConstanciaCTS',
         'lista/ActualizarEstadoMensaje',
-        'lista/ObtenerValidacionVacacionesPagadas',
-        'lista/AnularGoceVacaciones',
 
         'lista/ObtenerPromedioDiasPendiente',
         'lista/ObtenerReprogramaciones',

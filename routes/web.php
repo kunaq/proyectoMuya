@@ -77,6 +77,8 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     //Route::get('/logout', [FuncionesController::class, 'logout'])->name('logout');
     Route::put('/actualizaContrasenna', [FuncionesController::class, 'actualizaContrasenna'])->name('actualizaContrasenna');
     Route::get('/ListarSolicitudVacacionesxResponsable', [FuncionesController::class, 'ListarSolicitudVacacionesxResponsable'])->name('ListarSolicitudVacacionesxResponsable');
+    Route::get('/ObtenerValidacionVacacionesPagadas', [FuncionesController::class, 'ObtenerValidacionVacacionesPagadas'])->name('lista.ObtenerValidacionVacacionesPagadas');
+    Route::put('/AnularGoceVacaciones', [FuncionesController::class, 'AnularGoceVacaciones'])->name('lista.AnularGoceVacaciones');
 
      //-----------------------Mostrar Datos-----------------------------//
     Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');
@@ -117,8 +119,6 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/ListarBoletaPago', [ListaController::class, 'ListarBoletaPago'])->name('lista.ListarBoletaPago');
     Route::get('lista/ListarConstanciaCTS', [ListaController::class, 'ListarConstanciaCTS'])->name('lista.ListarConstanciaCTS');
     Route::get('lista/ActualizarEstadoMensaje', [ListaController::class, 'ActualizarEstadoMensaje'])->name('lista.ActualizarEstadoMensaje');
-    Route::get('lista/ObtenerValidacionVacacionesPagadas', [ListaController::class, 'ObtenerValidacionVacacionesPagadas'])->name('lista.ObtenerValidacionVacacionesPagadas');
-    Route::get('lista/AnularGoceVacaciones', [ListaController::class, 'AnularGoceVacaciones'])->name('lista.AnularGoceVacaciones');
 
     Route::get('lista/ListaVacia', function(){
         return ['mensaje'=> "OK", 'response'=> []];

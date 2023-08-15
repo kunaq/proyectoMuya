@@ -822,27 +822,46 @@ btnProcesar.addEventListener("click", function() {
                     }//error
                 });//ajax
             }else if(accion == 'ANULAR'){
-               // console.log('data rechazado',data);
                 $.ajax({
-                    url: 'api/RechazarSolicitudVacaciones', 
+                    url: 'lista/AprobarSolicitudVacaciones', 
                     method: "PUT",
                     crossDomain: true,
                     dataType: 'json',
                     data:{'solVac':data},
                     success: function(respuesta){
-                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU',numLinea)
-                        console.log(respuesta);
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Se han procesado las solicitudes con éxito',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data anulado',data);
-                                    location.reload();
-                            }
-                        })
+
+                        $.ajax({
+                            url: 'api/RechazarSolicitudVacaciones', 
+                            method: "PUT",
+                            crossDomain: true,
+                            dataType: 'json',
+                            data:{'solVac':data},
+                            success: function(respuesta){
+                                enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU',numLinea)
+                                console.log(respuesta);
+                                Swal.fire({
+                                    icon: 'success',
+                                    text: 'Se han procesado las solicitudes con éxito',
+                                    confirmButtonText: 'Continuar',
+                                    confirmButtonColor: '#a18347',
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        console.log('data anulado',data);
+                                            location.reload();
+                                    }
+                                })
+                            },//success
+                            error(e){
+                                console.log(e.message);
+                                Swal.fire({
+                                    icon: 'warning',
+                                    text: 'Ha ocurrido un error intentelo nuevamente.',
+                                    confirmButtonText: 'Continuar',
+                                    confirmButtonColor: '#a18347',
+                                })
+                                btnProcesar.removeAttribute('disabled');
+                            }//error
+                        });//ajax
                     },//success
                     error(e){
                         console.log(e.message);
