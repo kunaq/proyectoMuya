@@ -32,14 +32,15 @@ class FuncionesController extends Controller
         if($request['dsc_clave'] != ''){
             $clave = $request['dsc_clave'];
         }else{
-            $clave='GMUYA'.$request['actividad'];
+            $aleatorio = FuncionesController::obtenerAleatorio();
+            $clave='GMUYA'.$aleatorio;
         }
         $data = [
             'dsc_ruc_empresa'=> '20555348887',
             'dsc_documento'=> $codigo,
             'dsc_clave'=> $clave
         ];
-            
+         
         $data = json_encode($data);
 
         $header = [
@@ -88,6 +89,27 @@ class FuncionesController extends Controller
             
             $promise->wait();
            
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function obtenerAleatorio()
+    {   
+        $client = new Client();
+
+        try {
+            $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Logueo/ObtenerClaveAleatorio/20555348887');
+            $statusCode = $response->getStatusCode();
+            $responseData = $response->getBody()->getContents();
+
+            // Aquí puedes procesar la respuesta de la API según tus requisitos
+            $token = explode('":',$responseData);
+            
+            // Ejemplo de retorno de la respuesta
+            $limpiar = str_replace('}}', '',$token[3]);
+            return str_replace('"', '',$limpiar);
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
