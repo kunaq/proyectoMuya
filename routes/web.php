@@ -117,6 +117,8 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/ListarBoletaPago', [ListaController::class, 'ListarBoletaPago'])->name('lista.ListarBoletaPago');
     Route::get('lista/ListarConstanciaCTS', [ListaController::class, 'ListarConstanciaCTS'])->name('lista.ListarConstanciaCTS');
     Route::get('lista/ActualizarEstadoMensaje', [ListaController::class, 'ActualizarEstadoMensaje'])->name('lista.ActualizarEstadoMensaje');
+    Route::get('lista/ObtenerValidacionVacacionesPagadas', [ListaController::class, 'ObtenerValidacionVacacionesPagadas'])->name('lista.ObtenerValidacionVacacionesPagadas');
+    Route::get('lista/AnularGoceVacaciones', [ListaController::class, 'AnularGoceVacaciones'])->name('lista.AnularGoceVacaciones');
 
     Route::get('lista/ListaVacia', function(){
         return ['mensaje'=> "OK", 'response'=> []];
