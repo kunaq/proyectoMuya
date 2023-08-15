@@ -461,7 +461,7 @@ window.onload= function() {
         }//error
     });
 
-   ObtenerTrabajador('@php echo(session('codTrabajador')) @endphp');
+   //ObtenerTrabajador('@php echo(session('codTrabajador')) @endphp');
 
     //---------------------------Años------------------------------
     $.ajax({
@@ -506,16 +506,19 @@ function ObtenerTrabajador(codTra) {
         dataType: 'json',
         data :{'cod_trabajador': codTra},
         success: function(result){
-            // console.log(result);
-            if(result["response"]["flg_requiere_aprobacion"]=='SI'){document.getElementById("flg_requiere_aprobacion").checked = true;}else{document.getElementById("flg_requiere_aprobacion").checked = false;}
+            //console.log(result["response"]["cod_supervisor"]);
+            if(result["response"]["flg_requiere_aprobacion"]=='SI'){
+                document.getElementById("flg_requiere_aprobacion").checked = true;
+            }else{
+                document.getElementById("flg_requiere_aprobacion").checked = false;
+            }
             document.getElementById("num_ultimo_dias").value =result["response"]["num_ultimo_dias"];
             document.getElementById("cod_grupo").value =result["response"]["cod_grupo"];
             document.getElementById("dsc_grupo").value =result["response"]["dsc_grupo"];
             document.getElementById("cod_comisionista").value =result["response"]["cod_comisionista"];
             document.getElementById("dsc_comisionista").value =result["response"]["dsc_comisionista"];
 
-            var responsa=document.getElementById("Responsable") ;
-            responsa.value=result["response"]["cod_supervisor"];
+            $('#Responsable').val(result["response"]["cod_supervisor"]).trigger('change.select2');
 
             flg_existe_config=result["response"]["flg_existe_config"];
         }
@@ -551,8 +554,15 @@ function ObtenerTrabajador(codTra) {
 function Guardar()
 {
     console.log(cod_trabajador);
-    if(document.getElementById("flg_requiere_aprobacion").checked==true){ if (flg_existe_config=='NO'){InsertarColaborador();} else{ActualizarColaborador();}}
-    else{InsertarResponsable();}
+    if(document.getElementById("flg_requiere_aprobacion").checked==true){ 
+        if (flg_existe_config=='NO'){
+            InsertarColaborador();
+        } else{
+            ActualizarColaborador();
+        }
+    }else{
+        InsertarResponsable();
+    }
     
 }
 
