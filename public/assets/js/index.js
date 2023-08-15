@@ -37,6 +37,13 @@ $(document).ready(function() {
 
 // ---------------Fin ocultar/mostrar contraseña
 
+document.getElementById("password")
+.addEventListener("keyup", function(e) {
+    if (e.code === 'Enter') {
+        document.getElementById("loginBtn").click();
+    }
+});
+
 $("#loginBtn").click(function(){
     // Hacer la solicitud AJAX utilizando baseUrl y apiKey
     var user = document.getElementById("dni").value;
