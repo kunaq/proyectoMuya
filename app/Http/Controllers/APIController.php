@@ -419,21 +419,20 @@ class APIController extends Controller
             $host = 'mail.grupomuya.com.pe';
             $puerto = 587;
 
+            $controll = new FuncionesController();
+            $actualiza =$controll->actualizaContrasenna($request);
+
             $mensaje =  $mensaje = "Estimado(a) $destinatario,<br><br>
             
             Ingrese al sistema con su DNI y la siguiente contraseña de recuperación:<br><br>
             
-            Contraseña: GMUYA".$actividad."<br><br>
+            Contraseña: GMUYA".$actualiza."<br><br>
             
             Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
             
             Atte.<br><br>
             
             [Razón social] - Grupo Muya";
-
-            $controll = new FuncionesController();
-            $actualiza =$controll->actualizaContrasenna($request);
-            
 
         }else{
             

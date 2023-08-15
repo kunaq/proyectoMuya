@@ -31,9 +31,11 @@ class FuncionesController extends Controller
         }
         if($request['dsc_clave'] != ''){
             $clave = $request['dsc_clave'];
+            $cambio = 'SI';
         }else{
             $aleatorio = FuncionesController::obtenerAleatorio();
             $clave='GMUYA'.$aleatorio;
+            $cambio = 'olvido';
         }
         $data = [
             'dsc_ruc_empresa'=> '20555348887',
@@ -59,7 +61,11 @@ class FuncionesController extends Controller
             });
 
             $promise->wait();
-            $mensaje= 'Actualizado';
+            if($cambio == 'SI'){
+                $mensaje= 'Actualizado';
+            }else if($cambio == 'olvido'){
+                $mensaje = $clave;
+            }
             return $mensaje;
 
         } catch (\Exception $e) {
