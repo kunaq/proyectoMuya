@@ -669,8 +669,8 @@ btnSolicitar.addEventListener("click", function() {
     }
 });//onclick solicitar vacaciones
 
-const myModalEl = document.getElementById('ModalSolicitud')
-myModalEl.addEventListener('hidden.bs.modal', event => {
+const modalSolicitud = document.getElementById('ModalSolicitud')
+modalSolicitud.addEventListener('hidden.bs.modal', event => {
   btnSolicitar.removeAttribute('disabled');
 })
 
