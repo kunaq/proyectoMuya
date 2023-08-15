@@ -140,8 +140,7 @@ class FuncionesController extends Controller
             $token = explode('":',$responseData);
             
             // Ejemplo de retorno de la respuesta
-            $limpiar = str_replace('}}', '',$token[3]);
-            return str_replace('"', '',$limpiar);
+            return str_replace('}}', '',$token[3]);
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);

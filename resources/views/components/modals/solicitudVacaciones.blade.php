@@ -669,10 +669,10 @@ btnSolicitar.addEventListener("click", function() {
     }
 });//onclick solicitar vacaciones
 
-const modalSolicitud = document.getElementById('ModalSolicitud')
-modalSolicitud.addEventListener('hidden.bs.modal', event => {
-  btnSolicitar.removeAttribute('disabled');
-})
+// const modalSolicitud = document.getElementById('ModalSolicitud')
+// modalSolicitud.addEventListener('hidden.bs.modal', event => {
+//   btnSolicitar.removeAttribute('disabled');
+// })
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
