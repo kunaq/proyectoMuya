@@ -62,8 +62,6 @@
                                         <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
                                             <option value="11001">Boleta de pago</option>
                                             <option value="11002">Constancia de CTS</option>
-                                            <option value="11003">Participación de utilidades</option>
-                                            <option value="11004">Certificado de renta de 5ta categoría</option>
                                             <option value="11005">Convenio de adelanto de vacaciones</option>
                                             <option value="11006">Solicitud de vacaciones</option>
                                         </select>
