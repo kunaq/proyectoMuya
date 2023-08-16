@@ -278,7 +278,7 @@
         event.preventDefault();
       });
       var dsc_clave = verPass.value;
-      dsc_clave = dsc_clave.toUpperCase();
+
       if (passAct.value.trim() != 0) {      
         $.ajax({
           url: 'actualizaContrasenna', 
