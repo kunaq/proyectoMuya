@@ -598,7 +598,7 @@ window.onload= function() {
             dataType: 'json',
             data:{'codTrabajador':'%'},
             success: function(result){
-                console.log(result);
+                //console.log(result);
                 var filasArray = [];
                 result['response'].forEach(element => {
                     var auxFecIni =  element['fch_inicio'].split("T");
@@ -657,6 +657,7 @@ window.onload= function() {
                         url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
                     },
                     data: filasArray,
+                    "aaSorting":[],
                     columns: [
                         { title: 'Colaborador' },
                         { title: 'Inicio' },
