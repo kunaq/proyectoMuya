@@ -85,12 +85,13 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 table-responsive" style="padding-right: 2rem;height: 23rem;">
-                                <table class="table table-striped " id="listaColabEmp" style="text-align: center; height: 300px;">
+                                <table class="table table-striped " data-page-length="20" id="listaColabEmp" style="text-align: center; height: 300px;">
                                     <thead style="text-align: center;">
                                         <tr>
-                                            <th scope="col" width="15%">Colaborador</th>
-                                            <th scope="col" width="15%">Jefe</th>
+                                            <th scope="col" width="10%">Colaborador</th>
+                                            <th scope="col" width="10%">Jefe</th>
                                             <th scope="col" width="10%">Sede</th>
+                                            <th scope="col" width="10%">Área</th>
                                             <th scope="col" width="8%">Vacaciones generadas</th>
                                             <th scope="col" width="8%">Vacaciones programadas</th>
                                             <th scope="col" width="5%">Saldo</th>
@@ -142,7 +143,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 table-responsive" style="padding-left: 1rem;padding-right: 1rem;height: 23rem;">
-                                <table class="table table-striped " id="tablaSolAprobarEmp" style="text-align: center; height: 300px;">
+                                <table class="table table-striped " data-page-length="20" id="tablaSolAprobarEmp" style="text-align: center; height: 300px;">
                                     <thead>
                                         <tr>
                                             <th scope="col" width="15%">Colaborador</th>
@@ -552,6 +553,7 @@ window.onload= function() {
                         element['dsc_trabajador'],
                         element['dsc_responsable'],
                         element['dsc_sede'],
+                        element['dsc_area'],
                         element['num_vacaciones_generadas'],
                         element['num_vacaciones_programadas'],
                         element['num_saldo'],
@@ -572,6 +574,7 @@ window.onload= function() {
                         { title: 'Colaborador' },
                         { title: 'Responsable' },
                         { title: 'Sede' },
+                        { title: 'Area' },
                         { title: 'Vacaciones generadas' },
                         { title: 'Vacaciones programadas' },
                         { title: 'Saldo' },
