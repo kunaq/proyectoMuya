@@ -1411,4 +1411,60 @@ function enviaAprobacionVac(codTra,fchIni,fchFin,numSolicitud) {
     });//ajax
 }
 
+//-------------------------------carga masiva------------------------------------
+
+var obj = document.getElementById('archivo');
+
+obj.addEventListener('input', function(){
+    if (obj.value == '') {
+        document.getElementById('buscarDoc2').setAttribute('disabled','true');
+    }else{
+        document.getElementById('buscarDoc2').removeAttribute('disabled');
+    }
+});
+
+// Escucha el evento de envío del formulario
+document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
+    e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+    // Obtiene los datos del formulario
+    var formData = new FormData(this);
+
+    // Realiza la petición AJAX
+    fetch('{{ route('subirArchivo') }}', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            // Si hay un error, muestra la alerta de error
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.error,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            });
+        } else {
+            // Si no hay error, muestra la alerta de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: data.mensaje,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Cerrar'
+            }).then((result) => {
+                // Redirige a la página deseada después de cerrar la alerta de éxito
+                if (result.isConfirmed) {
+                    window.location.href = '{{ route('vacacionesEmpresa') }}';
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
+
 </script>
