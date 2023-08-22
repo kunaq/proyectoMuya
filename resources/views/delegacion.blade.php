@@ -103,8 +103,8 @@
                         <br>
                         <div class=" col-12 col-md-4">
                             <div class="form-group">
-                                <select name="Colaborador" id="Colaborador" class="form-control selectForm js-example-basic-single" onchange="ObtenerColaborador()">
-                                    
+                                <select name="Colaborador" id="Colaborador" class="form-control selectForm js-example-basic-single" onchange="ObtenerColaborador(this.value)">
+          
                                 </select>
                             </div>
                         </div>
@@ -127,96 +127,92 @@
   </x-layouts.app>
   
     <!-- Template Main JS File -->
-    <script src="{{asset('assets/js/delegacion.js')}}"></script>
+   {{-- <script src="{{asset('assets/js/delegacion.js')}}"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
-    <script>
-    window.onload= function() {
-      if ('@php echo(session('ventana5_2')) @endphp' != 'SI') {
-        let timerInterval
-        Swal.fire({
-            icon: 'error',
-            title: 'Error de acceso',
-            text: 'Usted no tiene acceso a esta opción.',
-            timer: 1500,
-            timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading()
-                    const b = Swal.getHtmlContainer().querySelector('b')
-                    timerInterval = setInterval(() => {
-                    b.textContent = Swal.getTimerLeft()
-                    }, 100)
-                },
-                willClose: () => {
-                    clearInterval(timerInterval)
-                }
-            }).then((result) => {
-            /* Read more about handling dismissals below */
-            if (result.dismiss === Swal.DismissReason.timer) {
-                window.location.href = "adios";
-            }
-        })  
+
+<script>
+  window.onload= function() {
+    if ('@php echo(session('ventana5_2')) @endphp' != 'SI') {
+      let timerInterval
+      Swal.fire({
+        icon: 'error',
+        title: 'Error de acceso',
+        text: 'Usted no tiene acceso a esta opción.',
+        timer: 1500,
+        timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+            b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+              clearInterval(timerInterval)
+          }
+        }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
+            window.location.href = "adios";
+        }
+      })  
     }
 
-        $('.js-example-basic-single').select2({
-            theme: "classic"
-        });
-
-        $.ajax({
-
-        url: 'lista/MuestraColaboradores', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        success: function(respuesta){ 
-                respuesta['response'].forEach(function(word){
-                console.log(word);
-                $("#Colaborador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-            });
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error
+    $('.js-example-basic-single').select2({
+        theme: "classic"
     });
 
     $.ajax({
-            url: 'api/ObtenerColaborador', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(result){
-               // document.getElementById("delegado").innerHTML=result["response"]["flg_delegar_permiso"];
-                if(result["response"]["flg_delegar_permiso"]=='SI'){document.getElementById("delegado").checked = true;}else{document.getElementById("delegado").checked = false;}
-                
-            }
+      url: 'lista/MuestraColaboradores', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      success: function(respuesta){ 
+        $("#Colaborador").append('<option value="">Seleccione...</option>');
+        respuesta['response'].forEach(function(word){
+          console.log(word);
+          $("#Colaborador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
         });
+      },//success
+      error(e){
+          console.log(e.message);
+      }//error
+    });
+  }
 
-    }
+  function ObtenerColaborador(codTra) {
+    $.ajax({
+      url: 'api/ObtenerColaborador', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data: {'codTra':codTra},
+      success: function(result){
+        if(result["response"]["flg_delegar_permiso"]=='SI'){
+          document.getElementById("delegado").checked = true;
+        }else{
+          document.getElementById("delegado").checked = false;
+        }
+          
+      }
+    });
+  }
 
-    function ObtenerColaborador() {
-      $.ajax({
-            url: 'api/ObtenerColaborador', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(result){
-              if(result["response"]["flg_delegar_permiso"]=='SI'){document.getElementById("delegado").checked = true;}else{document.getElementById("delegado").checked = false;}
-                
-            }
-        });
-    }
-    function ActualizarDelegado() {
-               var flg_delegado='NO';
-               var cod_trabajador='';
-              
-               if(document.getElementById("delegado").checked==true){ flg_delegado='SI';}
-               cod_trabajador=document.getElementById("Colaborador").value;
+  function ActualizarDelegado() {
+      var flg_delegado='NO';
+      var cod_trabajador='';
+    
+      if(document.getElementById("delegado").checked==true){
+        flg_delegado='SI';
+      }
+      cod_trabajador=document.getElementById("Colaborador").value;
 
-                data = {
-                    'cod_trabajador': cod_trabajador,
-                    'flg_delegar_permiso': flg_delegado
-                }
+      data = {
+        'cod_trabajador': cod_trabajador,
+        'flg_delegar_permiso': flg_delegado
+      }
            
       Swal.fire({
       title: '¿Esta seguro de modificar los permisos de este trabajador?',
@@ -230,36 +226,37 @@
       if (result.isConfirmed) {
         console.log(cod_trabajador);
         $.ajax({
-                        url: 'api/ActualizarDelegacion', 
-                        method: "PUT",
-                        crossDomain: true,
-                        dataType: 'json',
-                        data:{'data':data},
-                        success: function(respuesta){
-                            console.log(respuesta);
-                            Swal.fire({
-                                icon: 'success',
-                                text: 'Se guardo el permiso con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data rechazado',data);
-                            }
-                            })
-                        },//success
-                        error(e){
-                            console.log(e.message);
-                            Swal.fire({
-                                icon: 'warning',
-                                text: 'Ha ocurrido un error intentelo nuevamente.',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                })
-                        }//error
-                    });//ajax   
+          url: 'api/ActualizarDelegacion', 
+          method: "PUT",
+          crossDomain: true,
+          dataType: 'json',
+          data:{'data':data},
+          success: function(respuesta){
+            console.log(respuesta);
+            Swal.fire({
+              icon: 'success',
+              text: 'Se guardo el permiso con éxito',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+            }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+            })
+          },//success
+          error(e){
+            console.log(e.message);
+            Swal.fire({
+              icon: 'warning',
+              text: 'Ha ocurrido un error intentelo nuevamente.',
+              confirmButtonText: 'Continuar',
+              confirmButtonColor: '#a18347',
+            })
+          }//error
+        });//ajax   
       }
-    })
+    })//then
 
-    }
-    </script>
+  }
+
+</script>

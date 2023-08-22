@@ -483,7 +483,11 @@ class APIController extends Controller
     public function ObtenerColaborador(Request $request)
     {   
         $client = new Client();
-        $cod_trabajador = session('codTrabajador');
+        if($request['codTra'] != ''){
+            $cod_trabajador = $request['codTra'] ;
+        }else{
+            $cod_trabajador = session('codTrabajador');
+        }
 
         try {
 
