@@ -502,7 +502,7 @@ btnSolicitar.addEventListener("click", function() {
         data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin,'numSolicitud':numLineaAnt},
         success: function(respuesta){
           console.log('coincidencia',respuesta);
-          if(respuesta['response']['flg_coincide_jefe'] == 'SI'){
+          if(respuesta['response']['flg_coincide_jefe'] > 0){
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas del jefe de grupo. Elija otras fechas.',
@@ -511,7 +511,6 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
-                //location.reload();
               }
             })
           }else if(respuesta['response']['ctd_coincidencia'] > parametroX){
@@ -523,7 +522,6 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
-                //location.reload();
               }
             })
           }else if(respuesta['response']['flg_coincide_trabajador'] == 'SI'){
@@ -535,11 +533,9 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
-                //location.reload();
               }
             })
           }else{
-            // console.log('else parametro x');
             if(reprog == 'NO'){
               console.log(solVac);
               $.ajax({
@@ -680,11 +676,6 @@ btnSolicitar.addEventListener("click", function() {
       });//ajax obtener coincidencia
     }
 });//onclick solicitar vacaciones
-
-// const modalSolicitud = document.getElementById('ModalSolicitud')
-// modalSolicitud.addEventListener('hidden.bs.modal', event => {
-//   btnSolicitar.removeAttribute('disabled');
-// })
 
 var btnFirmaConvenio = document.getElementById('aceptaFirma');
 btnFirmaConvenio.addEventListener("click", function() {
