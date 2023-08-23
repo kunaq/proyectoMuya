@@ -134,7 +134,7 @@
 
 <script>
   window.onload= function() {
-    if ('@php echo(session('ventana5_2')) @endphp' != 'SI') {
+    if ('@php echo(session('flgResponsable')) @endphp' != 'SI') {
       let timerInterval
       Swal.fire({
         icon: 'error',
@@ -171,9 +171,26 @@
       dataType: 'json',
       success: function(respuesta){ 
         $("#Colaborador").append('<option value="">Seleccione...</option>');
+        let seleccionado = '';
         respuesta['response'].forEach(function(word){
           console.log(word);
-          $("#Colaborador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+          $.ajax({
+            url: 'api/ObtenerColaborador', 
+            method: "GET",
+            crossDomain: true,
+            dataType: 'json',
+            data: {'codTra':word['codvar']},
+            success: function(result){
+              if(result["response"]["flg_delegar_permiso"]=='SI'){
+                document.getElementById("delegado").checked = true;
+                seleccionado = 'selected';
+              }else{
+                document.getElementById("delegado").checked = false;
+                seleccionado = '';
+              }
+              $("#Colaborador").append('<option value="'+ word['codvar'] +'" '+seleccionado+'>'+ word['desvar1'] +'</option>');
+            }
+          });
         });
       },//success
       error(e){
@@ -192,8 +209,10 @@
       success: function(result){
         if(result["response"]["flg_delegar_permiso"]=='SI'){
           document.getElementById("delegado").checked = true;
+          return 'selected';
         }else{
           document.getElementById("delegado").checked = false;
+          return '';
         }
           
       }

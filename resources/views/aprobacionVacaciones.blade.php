@@ -445,7 +445,7 @@
 <script src="{{asset('assets/js/aprobacionVacaciones.js')}}"></script>
 <script type="text/javascript">
 window.onload= function() {
-    if ('@php echo(session('ventana4_2')) @endphp' != 'SI') {
+    if ('@php echo(session('flgResponsable')) @endphp' != 'SI') {
         let timerInterval
         Swal.fire({
             icon: 'error',
