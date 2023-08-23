@@ -1,6 +1,4 @@
-console.log('feriados',feriados);
 //const { parseJSON } = require("jquery");
-
 var hooy = new Date();
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
 
@@ -125,6 +123,22 @@ inputFchFin.addEventListener("change", function() {
     // Si es domingo, agregar un día adicional
     fchFin.setDate(fchFin.getDate() + 1);
     }
+    feriados.forEach(element => {
+
+      const FinDia = fchFin.getDate();
+      const diaForm = (FinDia < 10) ? '0'+FinDia : FinDia; 
+      const FinMes = fchFin.getMonth()+1;
+      const FinAno = fchFin.getFullYear();
+      var auxFchFin = diaForm+'-'+FinMes+'-'+FinAno;
+
+      if(element == auxFchFin){
+        fchFin.setDate(fchFin.getDate() + 1);
+      }  
+      if (fchFin.getDay() === 0) {
+        // Si es domingo, agregar un día adicional
+        fchFin.setDate(fchFin.getDate() + 1);
+      }
+    });
 
     // Obtener los componentes de la nueva fecha
     const nuevoDiaSemana = diasSemana[fchFin.getDay()];
