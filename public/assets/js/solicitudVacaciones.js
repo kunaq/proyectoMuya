@@ -1,9 +1,10 @@
 //const { parseJSON } = require("jquery");
-
+var hooy = new Date();
+var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
 flatpickr("#datepickerIniSolVac",{
     locale:"es",
     dateFormat: "d-m-Y",
-    minDate: "today",
+    minDate: inicioCalendario,
     disable: ["28-07-2023", "29-07-2023","08-10-2023","01-11-2023","25-12-2023"],
 });
 
