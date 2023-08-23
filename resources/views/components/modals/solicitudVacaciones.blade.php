@@ -503,7 +503,7 @@ btnSolicitar.addEventListener("click", function() {
         data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin,'numSolicitud':numLineaAnt},
         success: function(respuesta){
           console.log('coincidencia',respuesta);
-          if(respuesta['response']['flg_coincide_jefe'] > 0){
+          if(respuesta['response']['flg_coincide_jefe'] == 'SI'){
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas del jefe de grupo. Elija otras fechas.',
