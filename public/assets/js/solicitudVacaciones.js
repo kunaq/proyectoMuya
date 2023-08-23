@@ -128,9 +128,10 @@ inputFchFin.addEventListener("change", function() {
       const FinDia = fchFin.getDate();
       const diaForm = (FinDia < 10) ? '0'+FinDia : FinDia; 
       const FinMes = fchFin.getMonth()+1;
+      const mesForm = (FinMes < 10) ? '0'+FinMes : FinMes; 
       const FinAno = fchFin.getFullYear();
-      var auxFchFin = diaForm+'-'+FinMes+'-'+FinAno;
-
+      var auxFchFin = diaForm+'-'+mesForm+'-'+FinAno;
+      
       if(element == auxFchFin){
         fchFin.setDate(fchFin.getDate() + 1);
       }  
