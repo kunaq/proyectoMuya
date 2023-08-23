@@ -120,6 +120,14 @@ var fchFinCalendario = null;
 var filaCalendario = [];
 window.onload= function() {
 
+  var fcha = new Date();
+  var anno = fcha.getFullYear();
+  var mes = fcha.getMonth();
+
+  muestraListadoSolicitudes(anno,anno);
+
+  var meses = [ 'enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+
   var numUltDias = 0;
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   var botonSolicitud = document.getElementById("btnSolicitarVac");
@@ -171,13 +179,6 @@ window.onload= function() {
           }, 2000);
       }
   });//ajax obtener trabajador
-
-  var fcha = new Date();
-  var anno = fcha.getFullYear();
-  var mes = fcha.getMonth();
-  muestraListadoSolicitudes(anno,anno);
-
-  var meses = [ 'enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre']
 
   $.ajax({
     url: 'lista/MuestraAnhos', 

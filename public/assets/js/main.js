@@ -337,6 +337,25 @@ function obtenerFechaISO(fecha) {
   return year + "-" + month + "-" + day;
 }
 
+//-------------------------------------- Feriados-------------------------------------------
+
+var fchaFeriado = new Date();
+var annoFeriado = fchaFeriado.getFullYear();
+var feriados = [];
+
+$.ajax({
+  url: 'lista/ListarFeriado',
+  crossDomain: true,
+  dataType: 'json',
+  data:{'anno':annoFeriado},
+  success: function(result){
+    result['response'].forEach(element => {
+      var fechaFeriado = element['fch_feriado'].replaceAll('/','-');
+      feriados.push(fechaFeriado);
+    });
+  }
+});
+
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
 function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimite,asunto,actividad,numSolicitud) {
