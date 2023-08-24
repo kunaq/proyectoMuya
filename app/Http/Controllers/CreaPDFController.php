@@ -207,17 +207,17 @@ class CreaPDFController extends Controller
                     'FILEcontent'=> $docBase64[3]
                 );
                
-                
+
+                $trx = array (
+                    'cod_trabajador'=> $cod_trabajador,
+                    'num_linea'=> $cantDias = $request['num_linea'],
+                    'num_transaccion'=> intval($idTransaccion)
+                );
+                //return $trx;
+                CreaPDFController::ActualizarTransaccion(json_encode($trx)); 
             }
 
-            $trx = array (
-                'cod_trabajador'=> $cod_trabajador,
-                'num_linea'=> $cantDias = $request['num_linea'],
-                'num_transaccion'=> $idTransaccion
-            );
-            CreaPDFController::ActualizarTransaccion($trx); 
-
-            //return $trx;
+            //return $data;
             $dataJson = json_encode($data);
             
             $objeto = new APIController();

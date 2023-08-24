@@ -121,7 +121,13 @@ inputFchFin.addEventListener("change", function() {
     // Verificar si el nuevo día es domingo
     if (fchFin.getDay() === 0) {
     // Si es domingo, agregar un día adicional
-    fchFin.setDate(fchFin.getDate() + 1);
+      //fchFin.setDate(fchFin.getDate() + 1);
+      Swal.fire({
+        icon: 'warning',
+        text: 'El día de retorno es un día no laborable.',
+        confirmButtonText: 'Continuar',
+        confirmButtonColor: '#a18347',
+      })
     }
     feriados.forEach(element => {
 
@@ -131,13 +137,19 @@ inputFchFin.addEventListener("change", function() {
       const mesForm = (FinMes < 10) ? '0'+FinMes : FinMes; 
       const FinAno = fchFin.getFullYear();
       var auxFchFin = diaForm+'-'+mesForm+'-'+FinAno;
-      
+
       if(element == auxFchFin){
-        fchFin.setDate(fchFin.getDate() + 1);
+        //fchFin.setDate(fchFin.getDate() + 1);
+        Swal.fire({
+          icon: 'warning',
+          text: 'El día de retorno es un día no laborable.',
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#a18347',
+        })
       }  
       if (fchFin.getDay() === 0) {
         // Si es domingo, agregar un día adicional
-        fchFin.setDate(fchFin.getDate() + 1);
+        //fchFin.setDate(fchFin.getDate() + 1);
       }
     });
 
