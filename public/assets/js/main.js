@@ -421,39 +421,41 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
             });//ajax
 
           var fchaLimiteFor = '';
-          if (fchLimite) {
-            var fecha = fchLimite.split('/');
-            var day = fecha[0];
-            var month = fecha[1];
-            var year = fecha[2];
-            fchaLimiteFor = year + "-" + month + "-" + day;
-          }else{
-            fchaLimiteFor = '';
-          }
-          //console.log(fchaLimiteFor);
-          data = {
-            'cod_trabajador': codTra,
-            'cod_trabajador_sol':codTraSolic,
-            'cod_mensaje': codMensaje,
-            'fch_notificacion': fchBD,
-            'fch_limite': fchaLimiteFor,
-            'num_item':numSolicitud
-          }
-         // console.log('data',data);
-
-          $.ajax({
+          if(codMensaje != '4005'){
+            if (fchLimite) {
+              var fecha = fchLimite.split('/');
+              var day = fecha[0];
+              var month = fecha[1];
+              var year = fecha[2];
+              fchaLimiteFor = year + "-" + month + "-" + day;
+            }else{
+              fchaLimiteFor = '';
+            }
+            //console.log(fchaLimiteFor);
+            data = {
+              'cod_trabajador': codTra,
+              'cod_trabajador_sol':codTraSolic,
+              'cod_mensaje': codMensaje,
+              'fch_notificacion': fchBD,
+              'fch_limite': fchaLimiteFor,
+              'num_item':numSolicitud
+            }
+            // console.log('data',data);
+            
+            $.ajax({
               url: 'api/InsertarMensajeTrabajador', 
               method: "put",
               crossDomain: true,
               dataType: 'json',
               data:{'data':data},
               success: function(respuesta){
-                  console.log(respuesta);
+                console.log(respuesta);
               },//success
               error(e){
-                  console.log(e.message);
+                console.log(e.message);
               }//error
-          });//ajax
+            });//ajax
+          }
 
       },//success
       error(e){

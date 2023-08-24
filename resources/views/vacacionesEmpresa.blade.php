@@ -1472,14 +1472,16 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                     console.log('lista solicitud',respuesta);
                     respuesta['response'].forEach(element => {
                         var codTra = element['cod_trabajador'];
-                        var fchLimite = element['fch_limite'].split('T');
+                        var fchLimite = element['fch_limite'];
+                        var fchInicio = element['fch_inicio'];
+                        var fchFin = element['fch_fin'];
                         var numSolicitud = element['num_solicitud'];
                         var estado = 1;
                         var codMensaje = '';
                         var asunto = '';
                         var actividad = '';
-                        //var estado = element['estado'];
-                        if(estado == 1){  //Solicitado
+                        var estado = element['dsc_estado'];
+                        if(estado == 'SOLICITADO'){  //Solicitado
                             $.ajax({
                                 url: 'api/ObtenerTrabajador', 
                                 method: "GET",
@@ -1491,7 +1493,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                                     codMensaje = '4001';
                                     codMensajeJefe = '1002';
                                     asunto = 'Ingreso de solicitud de vacaciones';
-                                    actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                                    actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchInicio[0]+', fin: '+fchFin[0]+')';
                                     asuntoJefe = 'Aceptar/rechazar una solicitud de vacaciones.'; 
                                     //envia correo a trabajador
                                     enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
@@ -1500,16 +1502,16 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                                     enviaCorreoMensaje(codJefe,codTraSolic,dscSolicitante,codMensajeJefe,fchLimite[0],asuntoJefe,asuntoJefe,numSolicitud);
                                 }
                             });
-                        }else if (estado == 2){//Rechazado
+                        }else if (estado == 'RECHAZADO'){//Rechazado
                             codMensaje = '4003';
                             asunto = 'La solicitud de vacaciones ha sido rechazada';
-                            actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                            actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchInicio[0]+', fin: '+fchFin[0]+')';
                             //envia correo a trabajador
                             enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
-                        }else if (estado == 3){//Aprobado
+                        }else if (estado == 'APROBADO'){//Aprobado
                             codMensaje = '4002';
                             asunto = 'La solicitud de vacaciones ha sido aprobada';
-                            actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                            actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchInicio[0]+', fin: '+fchFin[0]+')';
                             //envia correo a trabajador
                             enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
                         }
