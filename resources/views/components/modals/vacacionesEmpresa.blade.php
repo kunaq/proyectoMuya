@@ -1,7 +1,7 @@
     <!-- -------------------Modal Carga Masiva Excel------------------------------- -->
 
   
-    <form id="formularioCargaMasiva" class="" action="{{ route('subirArchivo') }}" method="POST" enctype="multipart/form-data">
+    <form id="formularioCargaMasiva" class="" action="" method="POST" enctype="multipart/form-data">
       @csrf
       
       
