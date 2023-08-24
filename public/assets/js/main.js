@@ -359,7 +359,7 @@ $.ajax({
 //-----------------envia correo e ingresa mensajes para listado------------------------------------
 
 function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimite,asunto,actividad,numSolicitud) {
-  console.log('fchLimite',fchLimite)
+  console.log('fchLimite',fchLimite)// fromato fecha limite DD/MM/YYYY
   $.ajax({
       url: 'api/ObtenerTrabajador', 
       method: "GET",

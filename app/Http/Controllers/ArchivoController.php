@@ -110,7 +110,7 @@ class ArchivoController extends Controller
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarSolicitudVacacionesMasivo/20555348887',$headers,$contenidoJson);
             $promise = $client->sendAsync($request)->then(function ($response) {
-                // echo  $response->getBody();
+                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
                 $reason = $response->getReasonPhrase(); 
                 return response()->json(['status' => $code, 'mensaje' => $reason]);
@@ -121,14 +121,8 @@ class ArchivoController extends Controller
         }
 
         // Devolver una respuesta adecuada
-        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
-        return response()->json(['mensaje' => 'Archivo procesado correctamente']);
+        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'numTrx' => $reason]);
 
-        // Devolver una respuesta adecuada
-        // Éxito
-        return response()->json(['mensaje' => 'Archivo procesado correctamente']);
-
-        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
     }
 
     public function subirArchivoConfiguraciones(Request $request)

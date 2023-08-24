@@ -69,6 +69,7 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarBoletaPago',
         'lista/ListarConstanciaCTS',
         'lista/ActualizarEstadoMensaje',
+        'lista/ListarSolicitudMasiva',
 
         'lista/ObtenerPromedioDiasPendiente',
         'lista/ObtenerReprogramaciones',

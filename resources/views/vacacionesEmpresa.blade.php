@@ -1427,6 +1427,19 @@ obj.addEventListener('input', function(){
 document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
 
+    var codTraSolic = '@php echo(session('codTrabajador')) @endphp';
+    var dscSolicitante = '';
+    $.ajax({
+      url: 'api/ObtenerTrabajador', 
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'cod_trabajador':codTraSolic},
+      success: function(respuesta){
+        dscSolicitante = respuesta['response']['dsc_trabajador'];
+      }
+    });//ajax
+
     // Obtiene los datos del formulario
     var formData = new FormData(this);
 
@@ -1448,17 +1461,79 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
             });
         } else {
             // Si no hay error, muestra la alerta de éxito
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: data.mensaje,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Cerrar'
-            }).then((result) => {
-                // Redirige a la página deseada después de cerrar la alerta de éxito
-                if (result.isConfirmed) {
-                    window.location.href = '{{ route('vacacionesEmpresa') }}';
-                }
+            var numImport = data.response.num_importacion;
+            $.ajax({
+                url: 'lista/ListarSolicitudMasiva', 
+                method: "GET",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'numImport':numImport},
+                success: function(respuesta){
+                    console.log('lista solicitud',respuesta);
+                    respuesta['response'].forEach(element => {
+                        var codTra = element['cod_trabajador'];
+                        var fchLimite = element['fch_limite'].split('T');
+                        var numSolicitud = element['num_solicitud'];
+                        var estado = 1;
+                        var codMensaje = '';
+                        var asunto = '';
+                        var actividad = '';
+                        //var estado = element['estado'];
+                        if(estado == 1){  //Solicitado
+                            $.ajax({
+                                url: 'api/ObtenerTrabajador', 
+                                method: "GET",
+                                crossDomain: true,
+                                dataType: 'json',
+                                data:{'cod_trabajador':codTra},
+                                success: function(respuesta){
+                                    var codJefe = respuesta['response']['cod_supervisor'];
+                                    codMensaje = '4001';
+                                    codMensajeJefe = '1002';
+                                    asunto = 'Ingreso de solicitud de vacaciones';
+                                    actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                                    asuntoJefe = 'Aceptar/rechazar una solicitud de vacaciones.'; 
+                                    //envia correo a trabajador
+                                    enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+
+                                    //envia correo jefe de trabajador
+                                    enviaCorreoMensaje(codJefe,codTraSolic,dscSolicitante,codMensajeJefe,fchLimite[0],asuntoJefe,asuntoJefe,numSolicitud);
+                                }
+                            });
+                        }else if (estado == 2){//Rechazado
+                            codMensaje = '4003';
+                            asunto = 'La solicitud de vacaciones ha sido rechazada';
+                            actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                            //envia correo a trabajador
+                            enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+                        }else if (estado == 3){//Aprobado
+                            codMensaje = '4002';
+                            asunto = 'La solicitud de vacaciones ha sido aprobada';
+                            actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+element['num_solicitud']+', fin: '+element['num_solicitud']+')';
+                            //envia correo a trabajador
+                            enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+                        }
+                    });//foreach
+                    numSolicitudCarga = 404;
+                    //envia correo a trabajador que cargo el archivo
+                    enviaCorreoMensaje(codTraSolic,codTraSolic,dscSolicitante,'4005','','Has realizado la carga masiva de solicitud de vacaciones.','Has realizado la carga masiva de solicitud de vacaciones.',numSolicitudCarga);
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Éxito',
+                        text: data.mensaje,
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Cerrar'
+                    }).then((result) => {
+                        // Redirige a la página deseada después de cerrar la alerta de éxito
+                        if (result.isConfirmed) {
+                       // window.location.href = '{{ route('vacacionesEmpresa') }}';
+                        }
+                    });
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
             });
         }
     })
