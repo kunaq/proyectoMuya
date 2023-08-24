@@ -7,7 +7,7 @@ setTimeout(function() {
       locale:"es",
       dateFormat: "d-m-Y",
       minDate: inicioCalendario,
-      disable: feriados,
+      //disable: feriados,
   });
 }, 2000);
 
@@ -49,7 +49,7 @@ inputFchInicio.addEventListener("change", function() {
         locale:"es",
         dateFormat: "d-m-Y",
         minDate: minimo,
-        disable: feriados,
+        //disable: feriados,
         maxDate: maximaDate
     });
 
