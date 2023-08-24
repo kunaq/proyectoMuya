@@ -483,7 +483,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
               console.log(respuesta);
               Swal.fire({
                   icon: 'success',
-                  text: 'Se realizó el envio satisfactoriamente.',
+                  text: 'Se realizó el envio satisfactoriamente. num transaccion'+respuesta['num_trx'],
                   confirmButtonText: 'Continuar',
                   confirmButtonColor: '#a18347',
               }).then((result) => {
@@ -495,10 +495,11 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
           error(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR.status); // Código de estado HTTP
             console.log(jqXHR.statusText); // Mensaje de estado HTTP
+            numTrx = (jqXHR.responseText).split('}');
           
             Swal.fire({
               icon: 'success',
-              text: 'Se realizó el envio satisfactoriamente.',
+              text: 'Se realizó el envio satisfactoriamente. num Transaccion'+numTrx[2],
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#a18347',
             }).then((result) => {

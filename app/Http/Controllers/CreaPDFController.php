@@ -259,7 +259,7 @@ class CreaPDFController extends Controller
                     'as_id_doc'=> $iddocumento
                 );
                 CreaPDFController::InsertarSeguimientoEnvio(json_encode($tranx)); 
-                return 'OK';
+                return $idTransaccion;
             }else{
                 $tranx = array(
                     'as_trabajador'=> $cod_trabajador,
@@ -283,7 +283,7 @@ class CreaPDFController extends Controller
                 );
 
                 $resp = CreaPDFController::InsertarSeguimientoFirma(json_encode($tranx)); 
-                return $resp;
+                return $idTransaccion;
             }
 
         } catch (\Exception $e) {
