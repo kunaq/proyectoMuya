@@ -213,7 +213,7 @@ class CreaPDFController extends Controller
                     'num_linea'=> $cantDias = $request['num_linea'],
                     'num_transaccion'=> intval($idTransaccion)
                 );
-                //return $trx;
+                //return json_encode($trx);
                 CreaPDFController::ActualizarTransaccion(json_encode($trx)); 
             }
 

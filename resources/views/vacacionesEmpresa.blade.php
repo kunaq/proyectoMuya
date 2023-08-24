@@ -1447,9 +1447,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
     fetch('{{ route('subirArchivo') }}', {
         method: 'POST',
         body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
+    }).then(response => response.json()).then(data => {
         if (data.error) {
             // Si hay un error, muestra la alerta de error
             Swal.fire({
@@ -1538,8 +1536,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 }//error
             });
         }
-    })
-    .catch(error => {
+    }).catch(error => {
         console.error('Error:', error);
     });
 });
