@@ -92,10 +92,38 @@ class ArchivoController extends Controller
         }
 
         // Generar el contenido JSON
-        $contenidoJson = json_encode($datos);
-        response()->json($contenidoJson);
+        // $contenidoJson = json_encode($datos);
+        // response()->json($contenidoJson);
 
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
+
+        $client = new Client();
+        $headers = [
+            'Content-Type' => 'application/json',
+        ];
+        $data = [
+            'dsc_cadena'=> $sql,
+            'cod_trabajador' => session('codTrabajador')
+        ];
+        //return $data;
+        $contenidoJson = json_encode($data);
+        try {
+
+            $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarSolicitudVacacionesMasivo/20555348887',$headers,$contenidoJson);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                // echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+            });
+            $promise->wait();
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // Devolver una respuesta adecuada
+        // return response()->json(['mensaje' => 'Archivo procesado correctamente', 'datos' => $sql]);
+        return response()->json(['mensaje' => 'Archivo procesado correctamente']);
 
         // Devolver una respuesta adecuada
         // Éxito
@@ -154,8 +182,8 @@ class ArchivoController extends Controller
         }
         
         // Generar el contenido JSON
-        $contenidoJson = json_encode($datos);
-        response()->json($contenidoJson);
+        // $contenidoJson = json_encode($datos);
+        // response()->json($contenidoJson);
 
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
 
