@@ -88,7 +88,7 @@ class ArchivoController extends Controller
             }
 
             $datos[] = $fila;
-            $sql .= 'INSERT INTO webppm_solicitud_vacaciones_temporal (cod_trabajador,num_linea,fch_inicio,fch_fin,cod_periodo,cod_anho,cod_solicita) VALUES ('.$fila[0].',1,'.$fila[1].','.$fila[2].','.$request['periodo'].','.$request['annoIni'].','.session('codTrabajador').')';
+            $sql .= 'INSERT INTO webppm_solicitud_vacaciones_temporal (cod_trabajador,num_linea,fch_inicio,fch_fin,cod_periodo,cod_anho,cod_solicita) VALUES ('.$fila[0].',1,'.$fila[1].','.$fila[2].','.$request['periodo'].','.$request['annoIniVE'].','.session('codTrabajador').')';
         }
 
         // Generar el contenido JSON
