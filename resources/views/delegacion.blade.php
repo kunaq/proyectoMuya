@@ -83,6 +83,20 @@
                             <p class="titulo-tarjetaConfig" style="color: #a18347;"><b>Delegaciones:</b></p>
                         </div>
                     </div>
+                    <br><br>
+                    <div class="row" style="padding-bottom: 1rem;">
+                      <div class="col-12 col-md-6 offset-md-2">
+                        <p>Trabajador quien aprobará sus vacaciones temporalmente</p>
+                      </div>
+                      <br>
+                      <div class=" col-12 col-md-4">
+                        <div class="form-group">
+                          <select name="Colaborador" id="Colaborador" class="form-control selectForm js-example-basic-single" onchange="ObtenerColaborador(this.value)">
+    
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                     <br>
                     <br>
                     <div class="row" style="height: 3rem;">
@@ -94,20 +108,6 @@
                             <input class="form-check-input checkVerde" type="checkbox" value="" id="delegado" >
                         </div>
                       </div>
-                    </div>
-                    <br><br>
-                    <div class="row" style="padding-bottom: 1rem;">
-                        <div class="col-12 col-md-6 offset-md-2">
-                          <p>Trabajador quien aprobará sus vacaciones temporalmente</p>
-                        </div>
-                        <br>
-                        <div class=" col-12 col-md-4">
-                            <div class="form-group">
-                                <select name="Colaborador" id="Colaborador" class="form-control selectForm js-example-basic-single" onchange="ObtenerColaborador(this.value)">
-          
-                                </select>
-                            </div>
-                        </div>
                     </div>
                     <input type="hidden" name="existeDeleg" id="existeDeleg">
                     <br><br>
