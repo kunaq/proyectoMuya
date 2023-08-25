@@ -56,7 +56,7 @@
                   {{-- <div class="invalid-feedback">Example invalid form file feedback</div> --}}
                 </div>
                 <div class="row">
-                  <div class="col-2 col-md-1 offset-md-1" style="text-align: center;">
+                  <div class="col-2 col-md-1 offset-md-1" style="text-align: right;margin-top:-0.2em;">
                     <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2">
                   </div>
                   <div class="col-10 col-md-10">
