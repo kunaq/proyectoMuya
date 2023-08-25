@@ -1003,7 +1003,7 @@ btnModificaReglas.addEventListener("click", function() {
             'flg_trabajador': flgColab,
             'flg_jefe': flgJefe
         };
-
+        console.log(data);
         var promesa = $.ajax({
         url: 'api/ActualizarReglaTrabajador',
         method: "PUT",
