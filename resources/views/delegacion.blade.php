@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <input type="hidden" name="existeDeleg" id="existeDeleg">
                     <br><br>
                     <div class="row">
                       <div class="col-12 col-md-4 offset-md-4" style="text-align: -webkit-center;">
@@ -171,7 +171,7 @@
       dataType: 'json',
       success: function(respuesta){ 
         $("#Colaborador").append('<option value="">Seleccione...</option>');
-        let seleccionado = '';
+        let completedRequests = 0;
         respuesta['response'].forEach(function(word){
           console.log(word);
           $.ajax({
@@ -181,22 +181,33 @@
             dataType: 'json',
             data: {'codTra':word['codvar']},
             success: function(result){
+              console.log(result["response"]["flg_delegar_permiso"]);
               if(result["response"]["flg_delegar_permiso"]=='SI'){
-                document.getElementById("delegado").checked = true;
-                seleccionado = 'selected';
-              }else{
-                document.getElementById("delegado").checked = false;
-                seleccionado = '';
+                document.getElementById("existeDeleg").value = word['codvar'];
               }
-              $("#Colaborador").append('<option value="'+ word['codvar'] +'" '+seleccionado+'>'+ word['desvar1'] +'</option>');
-            }
-          });
-        });
+              $("#Colaborador").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+            },
+            complete: function() {
+              completedRequests++; // Increment the completed requests counter
+              if (completedRequests === respuesta['response'].length) {
+                // All requests have completed, now you can proceed with the rest of the code
+                var existeDeleg = document.getElementById("existeDeleg").value;
+                if(existeDeleg != ''){
+                  $("#Colaborador").val(existeDeleg).trigger('change');
+                  document.getElementById("delegado").checked = true;
+                }else{
+                  document.getElementById("Colaborador").value = '';
+                  document.getElementById("delegado").checked = false;
+                }
+              }
+            }//complete
+          });//ajax ObtenerColaborador
+        });//forEach
       },//success
       error(e){
           console.log(e.message);
       }//error
-    });
+    });//ajax MuestraColaboradores
   }
 
   function ObtenerColaborador(codTra) {
@@ -238,8 +249,8 @@
       text: 'Confirmación',
       icon: 'question',
       showCancelButton: true,
-      confirmButtonColor: '#35B44A',
-      cancelButtonColor: '#d33',
+      confirmButtonColor: '#a18347',
+      cancelButtonColor: '#6c757d',
       confirmButtonText: 'Aceptar'
     }).then((result) => {
       if (result.isConfirmed) {
