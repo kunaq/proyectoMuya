@@ -29,6 +29,9 @@
         .capital{
             text-transform: capitalize;
         }
+        .fondo{
+            background-image: 'assets/img/fondoPDF.png';
+        }
     </style>
 </head>
 <body>
@@ -36,7 +39,7 @@
         <p class="titulo"><b>CONVENIO DE ADELANTO DE VACACIONES</b></p>
         <br>
         <br>
-        <p>Conste por el presente documento, el convenio de adelanto de vacaciones que celebran, de una parte, <b>INVERSIONES MUYA S.A.C.</b>, identificada con RUC N.º <b>20555348887</b>, con domicilio en <b>Av. MONTEBLANCO NRO 305. URBANIZACIÓN RINCONADA ALTA ET DOS</b>, distrito de La Molina, provincia y departamento de Lima, debidamente representada por Representante legal, identificada con DNI Nº DNI representante , a la que en adelante se denominará <b>"EL EMPLEADOR"</b>; y, de la otra parte, el señor/la señora <span class='capital'>{{$nombre}}</span>, identificado/a con DNI N° {{$dni}}, con domicilio en domicilio  del trabajador, distrito de Distrito, provincia de Provincia y departamento de Departamento, a quién en adelante se le denominará <b>“EL TRABAJADOR”</b>, en los términos y condiciones siguientes:</p>
+        <p>Conste por el presente documento, el convenio de adelanto de vacaciones que celebran, de una parte, <b>INVERSIONES MUYA S.A.C.</b>, identificada con RUC N.º <b>20555348887</b>, con domicilio en <b>Av. MONTEBLANCO NRO 305. URBANIZACIÓN RINCONADA ALTA ET DOS</b>, distrito de La Molina, provincia y departamento de Lima, debidamente representada por Representante legal, identificada con DNI Nº DNI representante , a la que en adelante se denominará <b>"EL EMPLEADOR"</b>; y, de la otra parte, el señor/la señora <span class='capital'>nombre</span>, identificado/a con DNI N° dni, con domicilio en domicilio  del trabajador, distrito de Distrito, provincia de Provincia y departamento de Departamento, a quién en adelante se le denominará <b>“EL TRABAJADOR”</b>, en los términos y condiciones siguientes:</p>
         <br>
         <p><b>PRIMERO:</b></p>
         <p>De conformidad con el artículo 10° del Decreto legislativo N° 713, legislación sobre descansos remunerados de los trabajadores sujetos al régimen laboral de la actividad privada, se establece la posibilidad de efectuar el adelanto de días de descanso a cuenta del período vacacional que se genere a futuro mediante acuerdo escrito entre las partes.</p>
@@ -64,7 +67,7 @@
                 <td><p class="codigo">espacioespacio</p></td>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p><span class='capital'>{{$nombre}}</span><br>DNI N° {{$dni}}</p>
+                        <p><span class='capital'>nombre</span><br>DNI N° dni</p>
                         <hr>
                         <b>EL TRABAJADOR</b>
                     </div>
