@@ -514,10 +514,21 @@ btnSolicitar.addEventListener("click", function() {
                 btnSolicitar.removeAttribute('disabled');
               }
             })
+          }else if(respuesta['response']['flg_coincide_grupo'] == 'SI'){
+            Swal.fire({
+                icon: 'warning',
+                text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otro colaborador del grupo. Elija otras fechas.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                btnSolicitar.removeAttribute('disabled');
+              }
+            })
           }else if(respuesta['response']['ctd_coincidencia'] > parametroX){
             Swal.fire({
                 icon: 'warning',
-                text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otros trabajadores. Elija otras fechas.',
+                text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otros colaboradores del grupo. Elija otras fechas.',
                 confirmButtonText: 'Continuar',
                 confirmButtonColor: '#a18347',
             }).then((result) => {
