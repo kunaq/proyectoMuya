@@ -23,8 +23,8 @@ class CreaPDFController extends Controller
         $numDocTrabajador = session('docTrabajador');
 
         $data = [
-            'dniRepresentante' => '10525201',
-            'nombreRepresentante' => strtolower('JUAN CARLOS BARROS DOMINGUEZ'),
+            'dniRepresentante' => '43195452',
+            'nombreRepresentante' => strtolower('CASTRO LEON MARCOS MANUEL'),
             'dni' => $numDocTrabajador,
             'tipoDoc' => 'DNI',
             'nombre' => session('nombreTrabajador'),
