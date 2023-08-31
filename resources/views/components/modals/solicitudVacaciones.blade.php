@@ -317,12 +317,20 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
           var finFchIni = "'"+fchIni+"'";
           var finFchFin = "'"+fchFin+"'";
+          var tip = '';
+          if (element['dsc_estado'] == 'SOLICITADO') {
+            tip = element['dsc_subestado_solicitud'];
+          } else if (element['dsc_estado'] == 'APROBADO') {
+            tip = element['dsc_subestado_aprobacion'];
+          }else if (element['dsc_estado'] == 'RECHAZADO') {
+            tip = element['dsc_subestado_rechazo'];
+          }
 
           var filaData = [
               fchIni,
               fchFin,
               cantDias,
-              element['dsc_estado'],
+              '<p title="'+tip+'">'+element['dsc_estado']+'</p>',
               flgFirmado,
               flgPagado,
               '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)"><span class="bi bi-vector-pen"></span></button>'+
