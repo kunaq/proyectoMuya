@@ -144,6 +144,7 @@
                                                 <th scope="col" width="5%">Días</th>
                                                 <th scope="col" width="10%">Reincorpora</th>
                                                 <th scope="col" width="10%">Estado</th>
+                                                <th scope="col" width="10%">Subestado</th>
                                                 <th scope="col" width="10%">Alerta reglas</th>
                                                 <th scope="col" width="10%">Alerta reprog.</th>
                                                 <th scope="col" width="5%">Aceptar</th>
@@ -583,6 +584,7 @@ window.onload= function() {
                     cantDias,
                     fchReinc,
                     element['dsc_estado'],
+                    element['dsc_subestado_solicitud'],
                     alertaRegla,
                     alertaReprog,
                     '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
@@ -603,6 +605,7 @@ window.onload= function() {
                     { title: 'Días' },
                     { title: 'Reincorpora' },
                     { title: 'Estado' },
+                    { title: 'Subestado' },
                     { title: 'Alerta reglas' },
                     { title: 'Alerta reprog.' },
                     { title: 'Aceptar' },
