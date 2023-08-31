@@ -1529,7 +1529,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                     }).then((result) => {
                         // Redirige a la página deseada después de cerrar la alerta de éxito
                         if (result.isConfirmed) {
-                       // window.location.href = '{{ route('vacacionesEmpresa') }}';
+                            location.reload();
                         }
                     });
                 },//success

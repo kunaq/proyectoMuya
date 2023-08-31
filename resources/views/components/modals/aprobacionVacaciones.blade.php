@@ -41,8 +41,8 @@
               
               <div class="mb-3 col-12 col-md-6">
                 <div class="form-group">
-                  <label for="annoIni" class="form-label">Año:</label>
-                  <select class="form-select" name="annoIni" id="annoIni">
+                  <label for="annoIniVE" class="form-label">Año:</label>
+                  <select class="form-select" name="annoIniVE" id="annoIniVE">
                   </select>
                 </div>
               </div>
@@ -73,14 +73,14 @@
                 <input type="file" id="archivo" name="archivo" class="form-control" aria-label="file example" style="max-width:70%; margin-left:15%" required>
                 {{-- <div class="invalid-feedback">Example invalid form file feedback</div> --}}
               </div>
-              <div class="col-12 col-md-2" style="text-align: center;">
-                <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2">
-              </div>
-              <div class="col-12 col-md-10">
-                  <div class="form-group">
-                      <h6>Aprobar automáticamente las vacaciones que inician el siguiente mes</h6>
+              <div class="row">
+                  <div class="col-2 col-md-1 offset-md-1" style="text-align: right;margin-top:-0.2em;">
+                    <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2">
                   </div>
-              </div>
+                  <div class="col-10 col-md-10">
+                    <p>Aprobar automáticamente las vacaciones que inician el siguiente mes</p>
+                  </div>
+                </div>
             </div>
           </div>
           <div class="modal-footer">
