@@ -585,6 +585,7 @@ window.onload= function() {
                     ],
                     dom: 'trip',
                     processing: true,
+                    "pageLength": 20
                 });
                 // //console.log(filasArray1);
             }
@@ -673,6 +674,7 @@ window.onload= function() {
                     ],
                     dom: 'trip',
                     processing: true,
+                    "pageLength": 20
                 });
                 // //console.log(filasArray);
             }
