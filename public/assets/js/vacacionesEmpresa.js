@@ -75,4 +75,47 @@ function initializeDatePickers(inputId, outputId) {
 
 initializeDatePickers("datepicker1", "datepicker2");
 initializeDatePickers("datepicker3", "datepicker4");  
-//---------------  
+
+//---------------  Guarda parametros----------------------
+
+var form = document.getElementById("formParametros");
+form.addEventListener("submit", function(event) {
+  // Detener el envío del formulario
+  event.preventDefault();
+
+  var data = {    
+    "cantidad": document.getElementById("parametroY").value,
+    "cantidad": document.getElementById("parametroX").value,   
+  }
+
+  $.ajax({
+    url: 'func/ActualizarParametro', 
+    method: "PUT",
+    crossDomain: true,
+    dataType: 'json',
+    data:{'data':data},
+    success: function(respuesta){
+        console.log(respuesta);
+        Swal.fire({
+            icon: 'success',
+            text: 'Se han guardado los parámetros con éxito',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                console.log('parametros guardados',data);
+                    location.reload();
+            }
+        })
+    },//success
+    error(e){
+        console.log(e.message);
+        Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error intentelo nuevamente.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        })
+    }//error
+  });//ajax
+});

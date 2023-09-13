@@ -57,7 +57,7 @@
                 </div>
                 <div class="row">
                   <div class="col-2 col-md-1 offset-md-1" style="text-align: right;margin-top:-0.2em;">
-                    <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2">
+                    <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2" name="apruebaAutomatico">
                   </div>
                   <div class="col-10 col-md-10">
                     <p>Aprobar automáticamente las vacaciones que inician el siguiente mes</p>
@@ -153,41 +153,41 @@
                 <button class="nav-item nav-item-right nav-link" id="nav-colaborador-tab" data-bs-toggle="tab" data-bs-target="#nav-colaborador" type="button" role="tab" aria-controls="nav-colaborador" aria-selected="false">Colaborador</button>
             </div>
         </nav> --}}
-        <form action="" method="get">
-            <div class="modal-body">
-                {{-- <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade" id="nav-colaborador" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby= "nav-colaborador-tab"></div>
-    
-                    <div class="tab-pane fade show active" id="navSupervisor" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby="navSupervisor-tab"></div>
-                </div> --}}
-                <div class="row">
-                    <div class="col-12 col-md-2">
-                      <label for="parametroX" class="form-label">Parámetro X:</label>
-                    </div>
-                    <div class="col-12 col-md-3">
+        <form action="" id="formParametros" method="get">
+          <div class="modal-body">
+              {{-- <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade" id="nav-colaborador" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby= "nav-colaborador-tab"></div>
+  
+                  <div class="tab-pane fade show active" id="navSupervisor" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby="navSupervisor-tab"></div>
+              </div> --}}
+              <div class="row">
+                  <div class="col-12 col-md-2">
+                    <label for="parametroX" class="form-label">Parámetro X:</label>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <input type="number"
+                      class="form-control" name="parametroX" id="parametroX" aria-describedby="helpId" min="0" max="99">
+                  </div>
+                  <div class="col-12 col-md-2 offset-md-1">
+                      <label for="parametroY" class="form-label">Parámetro Y:</label>
+                  </div>
+                  <div class="col-12 col-md-3">
                       <input type="number"
-                        class="form-control" name="parametroX" id="parametroX" aria-describedby="helpId" min="0" max="99">
+                        class="form-control" name="parametroY" id="parametroY" aria-describedby="helpId" min="0" max="99">
                     </div>
-                    <div class="col-12 col-md-2 offset-md-1">
-                        <label for="parametroY" class="form-label">Parámetro Y:</label>
-                    </div>
-                    <div class="col-12 col-md-3">
-                        <input type="number"
-                          class="form-control" name="parametroY" id="parametroY" aria-describedby="helpId" min="0" max="99">
-                      </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <small id="helpId" class="form-text text-muted">Cantidad máxima de trabajadores de un mismo grupo que pueden coincidir en sus vacaciones en un mismo día. </small>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <small id="helpId" class="form-text text-muted">Cantidad total de días que pueden exeder las vacaciones solicitadas</small>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-success btnDorado" data-bs-dismiss="modal">Aceptar</button>
-            </div>
+              </div>
+              <div class="row">
+                  <div class="col-12 col-md-6">
+                      <small id="helpId" class="form-text text-muted">Cantidad máxima de trabajadores de un mismo grupo que pueden coincidir en sus vacaciones en un mismo día. </small>
+                  </div>
+                  <div class="col-12 col-md-6">
+                      <small id="helpId" class="form-text text-muted">Cantidad total de días que pueden exeder las vacaciones solicitadas</small>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success btnDorado" data-bs-dismiss="modal">Aceptar</button>
+          </div>
         </form>
       </div>
     </div>
