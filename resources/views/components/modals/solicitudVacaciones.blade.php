@@ -473,6 +473,8 @@ btnSolicitar.addEventListener("click", function() {
 
     var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
 
+    console.log('reglas', dscReglaDomingo+' '+dscReglaFeriado)
+
     var solVac = {
       'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
       'fch_inicio': fchInicio,

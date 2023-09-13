@@ -99,11 +99,17 @@ class ArchivoController extends Controller
         $headers = [
             'Content-Type' => 'application/json',
         ];
+        if($request['apruebaAutomatico'] == 'on'){
+            $flgAprueba = 'SI';
+        }else{
+            $flgAprueba = 'NO';
+        }
         $data = [
             'dsc_cadena'=> $sql,
-            'cod_trabajador' => session('codTrabajador')
+            'cod_trabajador' => session('codTrabajador'),
+            'flg_aprueba_automatico' => $flgAprueba
         ];
-        //return $data;
+
         $contenidoJson = json_encode($data);
         //return $contenidoJson;
         try {
@@ -186,8 +192,7 @@ class ArchivoController extends Controller
         ];
         $data = [
             'dsc_cadena'=> $sql,
-            'cod_trabajador' => session('codTrabajador'),
-            'flg_aprueba_automatico' => ''
+            'cod_trabajador' => session('codTrabajador')
         ];
         //return $data;
         $contenidoJson = json_encode($data);
