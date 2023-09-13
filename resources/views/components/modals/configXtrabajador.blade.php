@@ -48,7 +48,7 @@
               </div>
 
               <div class="col-12 col-md-12 mb-3">
-                <p class="form-label" style="margin-left:5%">Seleccione un archivo Excel con <i class="" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="La hoja de Excel debe tener 7 columnas ('codigo de trabajador', 'codigo del trabajador responsable','Requi',flg_no_cruzar_jefe,flg_delegar_permiso,flg_requiere_aprobacion,num_ultimo_dias,cod_trabajador_registro) y los datos sin encabezado"><u>formato válido</u></i> y extensión .xls/.xlsx</p>
+                <p class="form-label" style="margin-left:5%">Seleccione un archivo Excel con <i class="" data-bs-html="true" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="La hoja de Excel debe tener 7 columnas ('codigo de trabajador','Requiere aprobacion'(Y/N), 'codigo del trabajador responsable de aprobar','número de días antes de fin de mes que no puede salir de vacaciones', 'Requiere supervisión (Y/N)','codigo del trabajador supervisor','Puede cruzar su vacación con otro colaborador'(Y/N), 'Puede cruzar su vacación con su responsable' (Y/N), 'Es delegado para aprobar vacaciones del grupo' (Y/N)) y los datos sin encabezado"><u>formato válido</u></i> y extensión .xls/.xlsx</p>
                 <input type="file" id="archivo" name="archivo" class="form-control" aria-label="file example" style="max-width:70%; margin-left:15%" required>
                 {{-- <div class="invalid-feedback">Example invalid form file feedback</div> --}}
               </div>

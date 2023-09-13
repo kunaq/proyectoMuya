@@ -663,7 +663,7 @@ window.onload= function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':'@php echo(session('codTrabajador')) @endphp'},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':'%','codSede':'%','codArea':'%'},
         success: function(respuesta){ 
             console.log(respuesta['response']['ctd_dia_pendiente']);
             var indicador = document.getElementById('indPromVacPend');
@@ -679,7 +679,7 @@ window.onload= function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':'@php echo(session('codTrabajador')) @endphp'},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':'%','codSede':'%','codArea':'%'},
         success: function(respuesta){ 
             console.log(respuesta['response']['ctd_reprogramaciones']);
             var indicador = document.getElementById('indRepVac');

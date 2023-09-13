@@ -1,6 +1,9 @@
 //const { parseJSON } = require("jquery");
 var hooy = new Date();
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
+var flgRegla = '';
+var dscReglaDomingo = '';
+var dscReglaFeriado = '';
 
 setTimeout(function() { 
   flatpickr("#datepickerIniSolVac",{
@@ -122,12 +125,18 @@ inputFchFin.addEventListener("change", function() {
     if (fchFin.getDay() === 0) {
     // Si es domingo, agregar un día adicional
       //fchFin.setDate(fchFin.getDate() + 1);
+      flgRegla = 'SI';
+      dscReglaDomingo = 'El día de retorno es Domingo';
+
       Swal.fire({
         icon: 'warning',
         text: 'El día de retorno es un día no laborable.',
         confirmButtonText: 'Continuar',
         confirmButtonColor: '#a18347',
       })
+    }else{
+      flgRegla = 'NO';
+      dscReglaDomingo = '';
     }
     feriados.forEach(element => {
 
@@ -140,12 +149,18 @@ inputFchFin.addEventListener("change", function() {
 
       if(element == auxFchFin){
         //fchFin.setDate(fchFin.getDate() + 1);
+        flgRegla = 'SI';
+        dscReglaFeriado = +'El día de retorno es feriado';
+
         Swal.fire({
           icon: 'warning',
           text: 'El día de retorno es un día no laborable.',
           confirmButtonText: 'Continuar',
           confirmButtonColor: '#a18347',
         })
+      }else{
+        flgRegla = 'NO';
+        dscReglaFeriado = '';
       }  
       if (fchFin.getDay() === 0) {
         // Si es domingo, agregar un día adicional

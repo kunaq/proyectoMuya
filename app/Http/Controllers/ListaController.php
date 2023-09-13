@@ -497,9 +497,12 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $codTra =  $request['codTra'];
+        $codGrupo = $request['codGrupo'];
+        $codSede = $request['codSede'];
+        $codArea = $request['codArea'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/'.$codTra);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/'.$codTra.'/'.$codGrupo.'/'.$codSede.'/'.$codArea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -521,9 +524,12 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $codTra =  $request['codTra'];
+        $codGrupo = $request['codGrupo'];
+        $codSede = $request['codSede'];
+        $codArea = $request['codArea'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/'.$codTra);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/'.$codTra.'/'.$codGrupo.'/'.$codSede.'/'.$codArea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

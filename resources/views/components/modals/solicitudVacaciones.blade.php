@@ -118,6 +118,7 @@
 var fechIniCalendario = null;
 var fchFinCalendario = null;
 var filaCalendario = [];
+
 window.onload= function() {
 
   var fcha = new Date();
@@ -478,10 +479,11 @@ btnSolicitar.addEventListener("click", function() {
       'fch_fin': fchFin,
       'fch_retorno': fchRetorno,
       'cant_dia': cantDias,
-      'flg_alerta_regla': 'NO',
+      'flg_alerta_regla': flgRegla,
       'ctd_dias_exceso': diasExces,
       'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
-      'num_linea_origen': numLineaAnt
+      'num_linea_origen': numLineaAnt,
+      'cod_regla': dscReglaDomingo+' '+dscReglaFeriado
     }
 
     var parametroX = parseInt(document.getElementById('parametroX').value);

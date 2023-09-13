@@ -113,10 +113,6 @@ MENSAJE
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/ListarMensajeFinalizados/20555348887/TRA00011
 
     GET  https://webapiportalplanillamuya.azurewebsites.net/api/Mensaje/ListarMensajeAvisos/20555348887/TRA00011 
- 
-PARAMETRO
-
-    GET  https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ListarParametro/20555348887
 
 PERIODO
 
@@ -171,6 +167,26 @@ PARAMETRO
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ListarParametro/20555348887
         
         GET https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ObtenerParametro/20555348887/P0001
+
+        PUT  https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/InsertarParametro/20555348887
+
+            {  
+                "cod_parametro": "string",  
+                "dsc_parametro": "string",  
+                "flg_activo": "string",  
+                "cantidad": 0,  
+                "dsc_observacion": "string"
+            }
+        
+        PUT  https://webapiportalplanillamuya.azurewebsites.net/api/Parametro/ActualizarParametro/20555348887
+
+            {  
+                "cod_parametro": "string",  
+                "dsc_parametro": "string",  
+                "flg_activo": "string",  
+                "cantidad": 0,  
+                "dsc_observacion": "string"
+            }
 
 
 TRABAJADOR CORREO
