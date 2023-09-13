@@ -205,8 +205,8 @@
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Sede</option>
-                                                    <option value="todos">Todos</option>
+                                                    <option value="%" selected disabled>Sede</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="004">Cañete</option>
                                                     <option value="004">Chiclayo</option>
                                                     <option value="004">Chimbote</option>
@@ -223,8 +223,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <select name="annoFin" id="annoFin" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Área</option>
-                                                    <option value="todos">Todos</option>
+                                                    <option value="%" selected disabled>Área</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="A0001">Administración y finanzas</option>
                                                     <option value="A0002">Comercial</option>
                                                     <option value="A0003">Gerencia de atención al cliente</option>
@@ -250,8 +250,8 @@
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedePromVacPendHoy" id="sedePromVacPendHoy" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Sede</option>
-                                                    <option value="todos">Todos</option>
+                                                    <option value="%" selected disabled>Sede</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="004">Cañete</option>
                                                     <option value="004">Chiclayo</option>
                                                     <option value="004">Chimbote</option>
@@ -268,8 +268,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <select name="areaPromVacPendHoy" id="areaPromVacPendHoy" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Área</option>
-                                                    <option value="todos">Todos</option>
+                                                    <option value="%" selected disabled>Área</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="A0001">Administración y finanzas</option>
                                                     <option value="A0002">Comercial</option>
                                                     <option value="A0003">Gerencia de atención al cliente</option>
@@ -768,7 +768,7 @@ function indicadorPromVacPendHoy() {
         dataType: 'json',
         data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
         success: function(respuesta){ 
-            //console.log(respuesta['response']['ctd_dia_pendiente']);
+            console.log(respuesta['response']['ctd_dia_pendiente']);
             var indicador = document.getElementById('indPromVacPendHoy');
             indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
         },//success
