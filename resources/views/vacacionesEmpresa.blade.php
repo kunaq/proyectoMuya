@@ -199,7 +199,7 @@
                                 <div class="card-body">
                                     <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
                                     <hr>
-                                    <h1 class="tarjeta-vaca-foco"><b>259.3</b></h1>
+                                    <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPend">259.3</span></b></h1>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
@@ -244,12 +244,12 @@
                                 <div class="card-body">
                                     <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;">Promedio de días pendientes de vacaciones del equipo <b>a la fecha de hoy</b></h5>
                                     <hr>
-                                    <h1 class="tarjeta-vaca-foco"><b>201.2</b></h1>
+                                    <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPendHoy"></span></b></h1>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
-                                                <select name="annoIni" id="annoIni" class="form-control selectForm">
+                                                <select name="sedePromVacPendHoy" id="sedePromVacPendHoy" class="form-control selectForm">
                                                     <option value="0" selected disabled>Sede</option>
                                                     <option value="todos">Todos</option>
                                                     <option value="004">Cañete</option>
@@ -267,7 +267,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <select name="annoFin" id="annoFin" class="form-control selectForm">
+                                                <select name="areaPromVacPendHoy" id="areaPromVacPendHoy" class="form-control selectForm">
                                                     <option value="0" selected disabled>Área</option>
                                                     <option value="todos">Todos</option>
                                                     <option value="A0001">Administración y finanzas</option>
@@ -289,14 +289,14 @@
                                 <div class="card-body">
                                     <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;padding-bottom:1rem;">Número de reprogramaciones realizadas en el año del equipo</h5>
                                     <hr>
-                                    <h1 class="tarjeta-vaca-foco"><b>23</b></h1>
+                                    <h1 class="tarjeta-vaca-foco"><b><span id="indRepVac"></span></b></h1>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
-                                                <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Sede</option>
-                                                    <option value="todos">Todos</option>
+                                                <select name="sedeReprog" id="sedeReprog" class="form-control selectForm">
+                                                    <option value="%" selected disabled>Sede</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="004">Cañete</option>
                                                     <option value="004">Chiclayo</option>
                                                     <option value="004">Chimbote</option>
@@ -312,9 +312,9 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <select name="annoFin" id="annoFin" class="form-control selectForm">
-                                                    <option value="0" selected disabled>Área</option>
-                                                    <option value="todos">Todos</option>
+                                                <select name="areaReprog" id="areaReprog" class="form-control selectForm">
+                                                    <option value="%" selected disabled>Área</option>
+                                                    <option value="%">Todos</option>
                                                     <option value="A0001">Administración y finanzas</option>
                                                     <option value="A0002">Comercial</option>
                                                     <option value="A0003">Gerencia de atención al cliente</option>
@@ -494,246 +494,311 @@
 
 <script type="text/javascript">
 window.onload= function() {
-        if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
-            let timerInterval
-            Swal.fire({
-                icon: 'error',
-                title: 'Error de acceso',
-                text: 'Usted no tiene acceso a esta opción.',
-                timer: 1500,
-                timerProgressBar: true,
-                    didOpen: () => {
-                        Swal.showLoading()
-                        const b = Swal.getHtmlContainer().querySelector('b')
-                        timerInterval = setInterval(() => {
-                        b.textContent = Swal.getTimerLeft()
-                        }, 100)
-                    },
-                    willClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                }).then((result) => {
-                /* Read more about handling dismissals below */
-                if (result.dismiss === Swal.DismissReason.timer) {
-                    window.location.href = "adios";
+    if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
+        let timerInterval
+        Swal.fire({
+            icon: 'error',
+            title: 'Error de acceso',
+            text: 'Usted no tiene acceso a esta opción.',
+            timer: 1500,
+            timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading()
+                    const b = Swal.getHtmlContainer().querySelector('b')
+                    timerInterval = setInterval(() => {
+                    b.textContent = Swal.getTimerLeft()
+                    }, 100)
+                },
+                willClose: () => {
+                    clearInterval(timerInterval)
                 }
-            })  
+            }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                window.location.href = "adios";
+            }
+        })  
+    }
+
+    $.ajax({
+        url: 'lista/ListarVacacionesProgramadas', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTrabajador':'%'},
+        success: function(result){
+            //console.log(result);
+            var filasArray1 = [];
+            result['response'].forEach(element => {
+                var alertaRegla = '';
+                
+                if(element['flg_acuerdo_firmado'] == 'NO' || element['flg_acuerdo_firmado'] == ''){
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span>';
+                }else{
+                    alertaRegla = '';
+                }
+
+                var cantDias = element['cant_dia'];
+                var codTrabajador = "'"+element['cod_trabajador']+"'";
+                var flgJefe = '';
+                var flgEntre = '';
+                if(element['flg_no_cruzar_jefe'] == 'SI'){
+                    flgJefe = 'checked';
+                }
+                if(element['flg_no_cruzar'] == 'SI'){
+                    flgEntre = 'checked';
+                }
+
+                var filaData = [
+                    element['dsc_trabajador'],
+                    element['dsc_responsable'],
+                    element['dsc_sede'],
+                    element['dsc_area'],
+                    element['num_vacaciones_generadas'],
+                    element['num_vacaciones_programadas'],
+                    element['num_saldo'],
+                    alertaRegla,
+                    element['flg_acuerdo_firmado'],
+                    '<input class="form-check-input checkDorado" type="checkbox" '+flgJefe+' value="JEFE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault">',
+                    '<input class="form-check-input checkVerde" type="checkbox" '+flgEntre+' value="ENTRE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault2">'
+                ];
+                filasArray1.push(filaData);
+            });
+            //console.log(filasArray1);
+            $('#listaColabEmp').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                data: filasArray1,
+                columns: [
+                    { title: 'Colaborador' },
+                    { title: 'Responsable' },
+                    { title: 'Sede' },
+                    { title: 'Area' },
+                    { title: 'Vacaciones generadas' },
+                    { title: 'Vacaciones programadas' },
+                    { title: 'Saldo' },
+                    { title: 'Alerta' },
+                    { title: 'Firma' },
+                    { title: 'No cruzar con jefe' },
+                    { title: 'No cruzar entre si' },
+                ],
+                dom: 'trip',
+                processing: true,
+                "pageLength": 20
+            });
+            // //console.log(filasArray1);
         }
+    });
 
-        $.ajax({
-            url: 'lista/ListarVacacionesProgramadas', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'codTrabajador':'%'},
-            success: function(result){
-                //console.log(result);
-                var filasArray1 = [];
-                result['response'].forEach(element => {
-                    var alertaRegla = '';
-                    
-                    if(element['flg_acuerdo_firmado'] == 'NO' || element['flg_acuerdo_firmado'] == ''){
-                        alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span>';
-                    }else{
-                        alertaRegla = '';
-                    }
-    
-                    var cantDias = element['cant_dia'];
-                    var codTrabajador = "'"+element['cod_trabajador']+"'";
-                    var flgJefe = '';
-                    var flgEntre = '';
-                    if(element['flg_no_cruzar_jefe'] == 'SI'){
-                        flgJefe = 'checked';
-                    }
-                    if(element['flg_no_cruzar'] == 'SI'){
-                        flgEntre = 'checked';
-                    }
-    
-                    var filaData = [
-                        element['dsc_trabajador'],
-                        element['dsc_responsable'],
-                        element['dsc_sede'],
-                        element['dsc_area'],
-                        element['num_vacaciones_generadas'],
-                        element['num_vacaciones_programadas'],
-                        element['num_saldo'],
-                        alertaRegla,
-                        element['flg_acuerdo_firmado'],
-                        '<input class="form-check-input checkDorado" type="checkbox" '+flgJefe+' value="JEFE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault">',
-                        '<input class="form-check-input checkVerde" type="checkbox" '+flgEntre+' value="ENTRE-'+element['cod_trabajador']+'-'+element['cod_grupo_vacaciones']+'-'+element['num_linea']+'" id="flexCheckDefault2">'
-                    ];
-                    filasArray1.push(filaData);
-                });
-                //console.log(filasArray1);
-                $('#listaColabEmp').DataTable({
-                    language: {
-                        url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-                    },
-                    data: filasArray1,
-                    columns: [
-                        { title: 'Colaborador' },
-                        { title: 'Responsable' },
-                        { title: 'Sede' },
-                        { title: 'Area' },
-                        { title: 'Vacaciones generadas' },
-                        { title: 'Vacaciones programadas' },
-                        { title: 'Saldo' },
-                        { title: 'Alerta' },
-                        { title: 'Firma' },
-                        { title: 'No cruzar con jefe' },
-                        { title: 'No cruzar entre si' },
-                    ],
-                    dom: 'trip',
-                    processing: true,
-                    "pageLength": 20
-                });
-                // //console.log(filasArray1);
-            }
-        });
-    
     //------------------------Listado Aprobacion de solicitud----------------------------
-        $.ajax({
-            url: 'lista/ListarSolicitudColaboradorxAprobar', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'codTrabajador':'%'},
-            success: function(result){
-                //console.log(result);
-                var filasArray = [];
-                result['response'].forEach(element => {
-                    var auxFecIni =  element['fch_inicio'].split("T");
-                    fchIni = formatDate(auxFecIni[0]);
-                    var auxFecFin =  element['fch_fin'].split("T");
-                    fchFin = formatDate(auxFecFin[0]);
-                    var auxFecRein =  element['fch_retorno'].split("T");
-                    fchReinc = formatDate(auxFecRein[0]);
-                    var alertaRegla = '';
-                    var alertaReprog = '';
-                    var deshabilitaAprueba = '';
-                    var deshabilitaRechazo = '';
-                    
-                    if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
-                        alertaRegla = '';
-                    }else{
-                        alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
-                    }
-    
-                    if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
-                        alertaReprog = '';
-                    }else{
-                        alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
-                    }
+    $.ajax({
+        url: 'lista/ListarSolicitudColaboradorxAprobar', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTrabajador':'%'},
+        success: function(result){
+            //console.log(result);
+            var filasArray = [];
+            result['response'].forEach(element => {
+                var auxFecIni =  element['fch_inicio'].split("T");
+                fchIni = formatDate(auxFecIni[0]);
+                var auxFecFin =  element['fch_fin'].split("T");
+                fchFin = formatDate(auxFecFin[0]);
+                var auxFecRein =  element['fch_retorno'].split("T");
+                fchReinc = formatDate(auxFecRein[0]);
+                var alertaRegla = '';
+                var alertaReprog = '';
+                var deshabilitaAprueba = '';
+                var deshabilitaRechazo = '';
+                
+                if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
+                    alertaRegla = '';
+                }else{
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                }
 
-                    if(element['flg_aprobado'] == 'SI' || element['flg_rechazado'] == 'SI'){
-                        deshabilitaRechazo = 'disabled';
-                        deshabilitaAprueba = 'disabled';
-                    }
+                if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
+                    alertaReprog = '';
+                }else{
+                    alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                }
 
-                    if(element['flg_aprobado'] == 'SI' && element['flg_pagado'] == 'NO'){
+                if(element['flg_aprobado'] == 'SI' || element['flg_rechazado'] == 'SI'){
+                    deshabilitaRechazo = 'disabled';
+                    deshabilitaAprueba = 'disabled';
+                }
 
-                    }
-    
-                    var cantDias = element['cant_dia'];
-                    var codTrabajador = "'"+element['cod_trabajador']+"'";
-    
-                    var filaData = [
-                        element['dsc_trabajador'],
-                        fchIni,
-                        fchFin,
-                        cantDias,
-                        fchReinc,
-                        element['dsc_estado'],
-                        alertaRegla,
-                        alertaReprog,
-                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" '+deshabilitaAprueba+' id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                        '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol"  '+deshabilitaRechazo+' value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                        '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="anularSol" value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                    ];
-                    filasArray.push(filaData);
-                });
-                //console.log(filasArray);
-                $('#tablaSolAprobarEmp').DataTable({
-                    language: {
-                        url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-                    },
-                    data: filasArray,
-                    "aaSorting":[],
-                    columns: [
-                        { title: 'Colaborador' },
-                        { title: 'Inicio' },
-                        { title: 'Fin' },
-                        { title: 'Días' },
-                        { title: 'Reincorpora' },
-                        { title: 'Estado' },
-                        { title: 'Alerta reglas' },
-                        { title: 'Alerta reprog.' },
-                        { title: 'Aceptar' },
-                        { title: 'Rechazar' },
-                        { title: 'Anular' },
-                    ],
-                    dom: 'trip',
-                    processing: true,
-                    "pageLength": 20
-                });
-                // //console.log(filasArray);
-            }
-        });
+                if(element['flg_aprobado'] == 'SI' && element['flg_pagado'] == 'NO'){
+
+                }
+
+                var cantDias = element['cant_dia'];
+                var codTrabajador = "'"+element['cod_trabajador']+"'";
+
+                var filaData = [
+                    element['dsc_trabajador'],
+                    fchIni,
+                    fchFin,
+                    cantDias,
+                    fchReinc,
+                    element['dsc_estado'],
+                    alertaRegla,
+                    alertaReprog,
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" '+deshabilitaAprueba+' id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="recSol"  '+deshabilitaRechazo+' value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="anularSol" value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                ];
+                filasArray.push(filaData);
+            });
+            //console.log(filasArray);
+            $('#tablaSolAprobarEmp').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                data: filasArray,
+                "aaSorting":[],
+                columns: [
+                    { title: 'Colaborador' },
+                    { title: 'Inicio' },
+                    { title: 'Fin' },
+                    { title: 'Días' },
+                    { title: 'Reincorpora' },
+                    { title: 'Estado' },
+                    { title: 'Alerta reglas' },
+                    { title: 'Alerta reprog.' },
+                    { title: 'Aceptar' },
+                    { title: 'Rechazar' },
+                    { title: 'Anular' },
+                ],
+                dom: 'trip',
+                processing: true,
+                "pageLength": 20
+            });
+            // //console.log(filasArray);
+        }
+    });
     //-----Se muestra las reglas de trabajador y jefe--------------------------
-        $.ajax({
-            url: 'lista/ListarReglasTrabajador', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(respuesta){ 
-                // console.log(respuesta);
-                var body = document.getElementById('nav-colaborador');
-                var body2 = document.getElementById('txtReglasColab');
-                var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
-                body.innerHTML = aux;
-                body2.innerHTML = aux;
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });//ajax ListarReglasTrabajador
+    $.ajax({
+        url: 'lista/ListarReglasTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            // console.log(respuesta);
+            var body = document.getElementById('nav-colaborador');
+            var body2 = document.getElementById('txtReglasColab');
+            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+            body.innerHTML = aux;
+            body2.innerHTML = aux;
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ListarReglasTrabajador
 
-        $.ajax({
-            url: 'lista/ListarReglasJefe', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            success: function(respuesta){ 
-                // console.log(respuesta);
-                var body = document.getElementById('navSupervisor');
-                var body2 = document.getElementById('txtReglasJefe');
-                var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
-                body.innerHTML = aux;
-                body2.innerHTML = aux;
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });//ajax ListarReglasJefe
+    $.ajax({
+        url: 'lista/ListarReglasJefe', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            // console.log(respuesta);
+            var body = document.getElementById('navSupervisor');
+            var body2 = document.getElementById('txtReglasJefe');
+            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+            body.innerHTML = aux;
+            body2.innerHTML = aux;
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ListarReglasJefe
 
     //--------------------------parametros--------------------------
-        var fcha = new Date();
-        var anno = fcha.getFullYear();
-        $.ajax({
-            url: 'lista/ListarParametro', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno": anno },
-            success: function(result){
-                console.log('response',result['response'][0]['cantidad'])
-                document.getElementById("parametroX").value = result['response'][0]['cantidad'];
-                document.getElementById("parametroY").value = result['response'][1]['cantidad'];
-            }
-        });
+    var fcha = new Date();
+    var anno = fcha.getFullYear();
+    $.ajax({
+        url: 'lista/ListarParametro', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": anno },
+        success: function(result){
+            console.log('response',result['response'][0]['cantidad'])
+            document.getElementById("parametroX").value = result['response'][0]['cantidad'];
+            document.getElementById("parametroY").value = result['response'][1]['cantidad'];
+        }
+    });
+
+    indicadorPromVacPendHoy();
+    indicadorReprogramaciones();
 }
-    
-    //-----------------------Procesar solicitudes de vacaciones---------------------
+
+//---------------------------indicadores------------------------------
+
+function indicadorReprogramaciones() {
+    var codSede = document.getElementById("sedeReprog").value;
+    var codArea = document.getElementById("areaReprog").value;
+    $.ajax({
+        url: 'lista/ObtenerReprogramaciones', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
+        success: function(respuesta){ 
+            //console.log(respuesta['response']['ctd_reprogramaciones']);
+            var indicador = document.getElementById('indRepVac');
+            indicador.innerHTML = respuesta['response']['ctd_reprogramaciones'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerReprogramaciones  
+}
+
+function indicadorPromVacPendHoy() {
+    var codSede = document.getElementById("sedePromVacPendHoy").value;
+    var codArea = document.getElementById("areaPromVacPendHoy").value;
+    $.ajax({
+        url: 'lista/ObtenerPromedioDiasPendiente', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
+        success: function(respuesta){ 
+            //console.log(respuesta['response']['ctd_dia_pendiente']);
+            var indicador = document.getElementById('indPromVacPendHoy');
+            indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerPromedioDiasPendiente hasta hoy
+}
+
+var sedeReprog = document.getElementById('sedeReprog');
+sedeReprog.addEventListener("change", function() {
+    indicadorReprogramaciones();
+});
+
+var areaReprog = document.getElementById('areaReprog');
+areaReprog.addEventListener("change", function() {
+    indicadorReprogramaciones();
+});
+
+var sedePromVacPendHoy = document.getElementById('sedePromVacPendHoy');
+sedePromVacPendHoy.addEventListener("change", function() {
+    indicadorPromVacPendHoy();
+});
+
+var areaPromVacPendHoy = document.getElementById('areaPromVacPendHoy');
+areaPromVacPendHoy.addEventListener("change", function() {
+    indicadorPromVacPendHoy();
+});
+
+//-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVacEmp');
 btnProcesar.addEventListener("click", function() {
     btnProcesar.setAttribute('disabled','disabled');

@@ -84,8 +84,8 @@ form.addEventListener("submit", function(event) {
   event.preventDefault();
 
   var data = {    
-    "cantidad": document.getElementById("parametroY").value,
-    "cantidad": document.getElementById("parametroX").value,   
+    "valorx": document.getElementById("parametroX").value,   
+    "valory": document.getElementById("parametroY").value
   }
 
   $.ajax({

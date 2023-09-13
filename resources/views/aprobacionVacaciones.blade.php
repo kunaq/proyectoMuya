@@ -657,13 +657,13 @@ window.onload= function() {
     });//ajax muestraAnno
 
     //---------------------------indicadores------------------------------
-
+    var codGrupo = ('@php echo(session('codGrupoVac')) @endphp' != '') ? '@php echo(session('codGrupoVac')) @endphp' : '%';
     $.ajax({
         url: 'lista/ObtenerPromedioDiasPendiente', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':'%','codSede':'%','codArea':'%'},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':codGrupo,'codSede':'%','codArea':'%'},
         success: function(respuesta){ 
             console.log(respuesta['response']['ctd_dia_pendiente']);
             var indicador = document.getElementById('indPromVacPend');
@@ -679,7 +679,7 @@ window.onload= function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':'%','codSede':'%','codArea':'%'},
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':codGrupo,'codSede':'%','codArea':'%'},
         success: function(respuesta){ 
             console.log(respuesta['response']['ctd_reprogramaciones']);
             var indicador = document.getElementById('indRepVac');
