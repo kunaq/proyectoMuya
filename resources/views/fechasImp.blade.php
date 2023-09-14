@@ -349,7 +349,7 @@
                 document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
                 document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
                 document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1M").innerHTML=result["response"]["MAYO"];
+                document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
                 document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
                 document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
                 document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
@@ -480,7 +480,7 @@
                 document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
                 document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
                 document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1M").innerHTML=result["response"]["MAYO"];
+                document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
                 document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
                 document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
                 document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];

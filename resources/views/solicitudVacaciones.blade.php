@@ -17,12 +17,19 @@
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
+                    <div class="col-md-6">
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title tarjeta-foco"><b><span id="num_vacaciones_pendiente"></span></b></h1>
                                 <h5>Días generados de vacaciones</h5>
                                 <input type="hidden" id="numVacPend" name="numVacPend">
+                            </div>
+                        </div>
+                    </div>  
+                    <div class="col-md-6 d-none d-md-block">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 style="padding-top: 20px;"><span id="msgRecordar"></span></h5>
                             </div>
                         </div>
                     </div>  
@@ -35,7 +42,7 @@
     <div class="col-sm-10 d-sm-block d-md-none">
         <div class="card">
             <div class="card-body" style="text-align: center;">
-                <h5 style="padding-top: 20px;">Recuerda que tus próximas vacaciones programadas son desde el  <b>01/06/2023</b> hasta el <b>10/06/2023</b></h5>
+                <h5 style="padding-top: 20px;"><span id="msgRecordarM"></span></h5>
             </div>
         </div>  
     </div>

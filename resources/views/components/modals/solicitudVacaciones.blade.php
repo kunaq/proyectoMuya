@@ -319,13 +319,17 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           var finFchIni = "'"+fchIni+"'";
           var finFchFin = "'"+fchFin+"'";
           var tip = '';
+          var mensajeRecordar = 'No tienes vacaciones programadas';
           if (element['dsc_estado'] == 'SOLICITADO') {
             tip = element['dsc_subestado_solicitud'];
           } else if (element['dsc_estado'] == 'APROBADO') {
             tip = element['dsc_subestado_aprobacion'];
+            mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas son desde el  <b>'+fchIni+'</b> hasta el <b>'+fchFin+'</b>';
           }else if (element['dsc_estado'] == 'RECHAZADO') {
             tip = element['dsc_subestado_rechazo'];
           }
+          document.getElementById("msgRecordar").innerHTML = '<br>'+mensajeRecordar;
+          document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
 
           var filaData = [
               fchIni,
