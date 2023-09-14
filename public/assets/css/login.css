@@ -82,6 +82,17 @@ body {
     text-align: end;
 }
 
+/*------desaparece en iphone--------*/
+
+input, input:before, input:after {
+    -webkit-user-select: initial;
+    -khtml-user-select: initial;
+    -moz-user-select: initial;
+    -ms-user-select: initial;
+    user-select: initial;
+   } 
+
+/*------desaparece en iphone--------*/
 /* Design for mobile */
 /* [class*="col-"] {
     width: 100%;
