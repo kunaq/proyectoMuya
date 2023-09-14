@@ -308,7 +308,7 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                     resultados[year].forEach(function(resultado) {
                         var mes = resultado.dsc_periodo.split(' ')[0];
                         var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
-                        sectionContent += `<div class="col-6 col-md-2">
+                        sectionContent += `<div class="col-6 col-md-2" style="margin-bottom:1em;">
                                                 <button class="btn btn-success btnDorado" onclick="buscarDocumento('${mes}','${year}')" ${deshabilita} >${mes}</button>
                                             </div>`;
                     });
