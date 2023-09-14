@@ -91,11 +91,14 @@
 
           <div class="card d-sm-block d-md-none">         
             <nav>
-              <div class="nav nav-pills nav-fill navDatPer" id="nav-tab" role="tablist">
-                <a class="nav-item nav-item-left nav-link active" id="nav-pendientes-tab" data-toggle="tab" href="#nav-pendientes-sm" role="tab" aria-controls="nav-pendientes" aria-selected="true">Pendientes</a>
-                <a class="nav-item nav-item-centro nav-link" id="nav-finalizados-tab" data-toggle="tab" href="#nav-finalizados-sm" role="tab" aria-controls="nav-finalizados" aria-selected="false">Finalizados</a>
-                <a class="nav-item nav-item-right nav-link" id="nav-avisos-tab" data-toggle="tab" href="#nav-avisos-sm" role="tab" aria-controls="nav-avisos" aria-selected="false">Avisos</a>
+              <div class="nav nav-tabs nav-fill navDatPer" id="nav-tab" role="tablist">
+                <button class="nav-item nav-item-left nav-link active" id="nav-pendientes-tab" data-bs-toggle="tab" data-bs-target="#nav-pendientes-sm" type="button" role="tab" aria-controls="nav-pendientes" aria-selected="true">Pendientes</button>
+
+                <button class="nav-item nav-item-centro nav-link" id="nav-finalizados-tab" data-bs-toggle="tab" data-bs-target="#nav-finalizados-sm" type="button" role="tab" aria-controls="nav-finalizados" aria-selected="false">Finalizados</button>
+
+                <button class="nav-item nav-item-right nav-link" id="nav-avisos-tab" data-bs-toggle="tab" data-bs-target="#nav-avisos-sm" type="button" role="tab" aria-controls="nav-avisos" aria-selected="false">Avisos</button>
               </div>
+            </nav>
             </nav>
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade" id="nav-finalizados-sm" style="margin-bottom: 2rem;" role="tabpanel" aria-labelledby="nav-finalizados-tab">

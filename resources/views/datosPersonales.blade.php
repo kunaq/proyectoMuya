@@ -141,9 +141,9 @@
           <div class="card">          
             <nav>
               <div class="nav nav-pills nav-fill navDatPer" id="nav-tab" role="tablist">
-                <a class="nav-item nav-item-left nav-link active" id="nav-datosPer-tab" data-toggle="tab" href="#nav-datosPer-sm" role="tab" aria-controls="nav-datosPer" aria-selected="false">Datos Personales</a>
-                <a class="nav-item nav-item-centro nav-link" id="nav-empresa-tab" data-toggle="tab" href="#nav-empresa-sm" role="tab" aria-controls="nav-empresa" aria-selected="true">Empresa</a>
-                <a class="nav-item nav-item-right nav-link" id="nav-grupoFam-tab" data-toggle="tab" href="#nav-grupoFam-sm" role="tab" aria-controls="nav-grupoFam" aria-selected="false">Grupo Familiar</a>
+                <button class="nav-item nav-item-left nav-link active" id="nav-datosPer-tab" data-bs-toggle="tab" data-bs-target="#nav-datosPer-sm" role="tab" aria-controls="nav-datosPer" aria-selected="false">Datos Personales</button>
+                <button class="nav-item nav-item-centro nav-link" id="nav-empresa-tab" data-bs-toggle="tab" data-bs-target="#nav-empresa-sm" role="tab" aria-controls="nav-empresa" aria-selected="true">Empresa</button>
+                <button class="nav-item nav-item-right nav-link" id="nav-grupoFam-tab" data-bs-toggle="tab" data-bs-target="#nav-grupoFam-sm" role="tab" aria-controls="nav-grupoFam" aria-selected="false">Grupo Familiar</button>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">

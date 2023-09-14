@@ -96,7 +96,9 @@
 
     </ul>
     <div id="salirSideBar">
-      <a href="{{route('logout')}}" data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="Salir"><i class="bi bi-escape fs-1"></i></a>
+      <a href="{{route('logout')}}" data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="Salir">
+        <h5><button class="btn btn-success btnDorado"><span class="bi bi-box-arrow-right"></span>&nbsp;&nbsp;Salir</button></h5>
+      </a>
     </div>
 
   </aside><!-- End Sidebar-->

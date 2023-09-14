@@ -313,7 +313,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           var numLinea = element['num_linea'];
 
           var auxFecReinc =  element['fch_retorno'].split("T");
-          fchReinc = formatDate(auxFecReinc[0]);
+          fchReinc = "'"+formatDate(auxFecReinc[0])+"'";
 
           var codTrabajador = "'"+'@php echo(session('codTrabajador')) @endphp'+"'";
           var finFchIni = "'"+fchIni+"'";
@@ -351,9 +351,9 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                   '<b>Firma:</b> '+flgFirmado+' <br>'+
                   '<b>Pago:</b> '+flgPagado+' <br><br>'+
                   '<div style="text-align-last: center;">'+
-                      '<button class="btn btn-success btnDorado" '+disBtnFir+' onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)">Firma</button>'+
-                      '<button class="btn btn-success verdeMuya" '+disBtnDwn+'>Descarga</button>'+
-                      '<button class="btn btn-secondary" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')">Edita</button>'+
+                      '<button class="btn btn-success btnDorado" '+disBtnFir+' ontouchstart ="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)">Firma</button>'+
+                      '<button class="btn btn-success verdeMuya"  '+disBtnDwn+' ontouchstart="descargaDoc('+cantDias+','+numLinea+')">Descarga</button>'+
+                      '<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" '+disBtnEdit+' ontouchstart ="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')">Edita</button>'+
                   '</div>'+  
               '</td>'+
             '</tr>'

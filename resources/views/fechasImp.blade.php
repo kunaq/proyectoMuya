@@ -198,7 +198,7 @@
                       <tr>
                         <td><span id="ABRIL1M"></span></td>
                         <td><span id="MAYO1M"></span></td>
-                        <td><span id="JUNIOM1"></span></td>
+                        <td><span id="JUNIO1M"></span></td>
                       </tr>
                       <tr>
                         <th scope="col">Julio</th>
@@ -217,7 +217,7 @@
                       </tr>
                       <tr>
                         <td><span id="OCTUBRE1M"></span></td>
-                        <td><span id="NOVIMEBRE1M"></span></td>
+                        <td><span id="NOVIEMBRE1M"></span></td>
                         <td><span id="DICIEMBRE1M"></span></td>
                       </tr>
                     </tbody>
