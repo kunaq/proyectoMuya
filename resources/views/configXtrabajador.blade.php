@@ -45,7 +45,7 @@
       width: 200px;
     } */
 </style>
-<x-layouts.app title="cambioContrasena" meta-description="Cambio de contrasena meta description">
+<x-layouts.app title="ConfiguracionXtrabajador" meta-description="Configuracion por trabajador meta description">
 
     <main id="main" class="main">
       <div class="pagetitle">

@@ -1,4 +1,4 @@
-<x-layouts.app title="fechasimp" meta-description="fechas importantes meta description">
+<x-layouts.app title="fechasImportantes" meta-description="fechas importantes meta description">
 
   <main id="main" class="main">
     <div class="pagetitle">
