@@ -60,14 +60,14 @@
                 <td>
                     <div class="cajaFirma titulo">
                         <p class="codigo">@REPRESENTANTE1# </p>
-                        <br><br><br>
+                        <br><br><br><br>
                     </div>
                 </td>
                 <td><p class="codigo">espacioespacio</p></td>
                 <td>
                     <div class="cajaFirma titulo">
                         <p><span class="codigo">@TRABAJADOR#</span></p>
-                        <br><br><br>
+                        <br><br><br><br>
                     </div>
                 </td>
             </tr>

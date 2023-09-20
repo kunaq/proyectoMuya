@@ -54,7 +54,7 @@
         <br>
         <p>De contar con la aprobación de la empresa, agradeceré que en cumplimiento con lo dispuesto por el artículo 16º del Decreto legislativo N° 713, legislación sobre descansos remunerados de los trabajadores sujetos al régimen laboral de la actividad privada, se efectúe el pago de la correspondiente remuneración vacacional antes del inicio de cada descanso.</p>
         <p>Atentamente,</p>
-        <br>
+        
         <table class="tablaFirma">
             <tr>
                 <td>
