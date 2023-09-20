@@ -1043,7 +1043,7 @@ btnProcesar.addEventListener("click", function() {
                 icon: 'error',
                 title: 'Error',
                 text: data.error,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#a18347',
                 confirmButtonText: 'Cerrar'
             });
         } else {
@@ -1052,7 +1052,7 @@ btnProcesar.addEventListener("click", function() {
                 icon: 'success',
                 title: 'Éxito',
                 text: data.mensaje,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#a18347',
                 confirmButtonText: 'Cerrar'
             }).then((result) => {
                 // Redirige a la página deseada después de cerrar la alerta de éxito
