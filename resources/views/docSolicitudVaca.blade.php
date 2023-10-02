@@ -16,6 +16,7 @@
         }
         .codigo{
             color:white;
+            margin-bottom: 0.2em;
         }
         .tablaFirma{
             align-items: center;
