@@ -19,7 +19,7 @@
             width: 15rem;
         }
         .codigo{
-            color:white;
+            color:darkblue;
             margin-bottom: 0.2em;
         }
         .tablaFirma{

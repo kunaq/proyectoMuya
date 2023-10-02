@@ -3,8 +3,8 @@
 <head>
     <style>
         @page {
-            margin-left: 0;
             margin-right: 0;
+            margin-bottom: 0;
         }
         .cuerpo{
             padding: 4rem;
@@ -19,7 +19,7 @@
             width: 15rem;
         }
         .codigo{
-            color:white;
+            color:darkblue;
             margin-bottom: 0.2em;
         }
         .tablaFirma{
