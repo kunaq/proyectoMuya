@@ -31,7 +31,7 @@
     </style>
 </head>
 <body background="{{asset('assets/img/fondoPDF.png')}}">
-    <br>
+    <br><br>
     <div class="cuerpo"> 
         <p class="titulo"><b>SOLICITUD DE VACACIONES</b></p>
         <br>

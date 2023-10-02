@@ -36,7 +36,7 @@
     </style>
 </head>
 <body background="{{asset('assets/img/fondoPDF.png')}}">
-    <br>
+    <br><br>
     <div class="cuerpo"> 
         <p class="titulo"><b>CONVENIO DE ADELANTO DE VACACIONES</b></p>
         <br>
