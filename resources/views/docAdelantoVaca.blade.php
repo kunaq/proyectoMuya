@@ -2,6 +2,10 @@
 <html>
 <head>
     <style>
+        @page {
+            margin-left: 0;
+            margin-right: 0;
+        }
         .cuerpo{
             padding: 4rem;
         }
