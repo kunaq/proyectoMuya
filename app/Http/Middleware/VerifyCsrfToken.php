@@ -79,5 +79,7 @@ class VerifyCsrfToken extends Middleware
         
         '/subir-archivo',
         '/subir-archivo-config',
+
+        'lista/ListarUsoServicio',
     ];
 }

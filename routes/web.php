@@ -71,6 +71,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::view('/documentos','documentos')->name('documentos');
     Route::view('/datosPersonales','datosPersonales')->name('datosPersonales');
     Route::view('/aprobacionVacaciones','aprobacionVacaciones')->name('aprobacionVacaciones');
+    Route::view('/visorServicios','visorServicios')->name('visorServicios');
     Route::view('/','index')->name('index');
 
 
@@ -136,6 +137,10 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     //------------------------Subir archivo Excel--------------------------
     Route::post('/subir-archivo', [ArchivoController::class, 'SubirArchivo'])->name('subirArchivo');
     Route::post('/subir-archivo-config', [ArchivoController::class, 'subirArchivoConfiguraciones'])->name('subirArchivoConfiguraciones');
+
+    //-----------------------Visor de servicios----------------------------
+    Route::get('lista/ListarUsoServicio', [ListaController::class, 'ListarUsoServicio'])->name('lista.ListarUsoServicio');
+
 
 // Route::get('/', function () {
 //     return view('welcome');
