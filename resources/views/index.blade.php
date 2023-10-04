@@ -31,7 +31,7 @@
                             <br>
                             <div class="form-group">
                                 <label for="dni" class="sr-only">Número de DNI</label>
-                                <input type="text" name="dni" id="dni" class="form-control" placeholder="Número del DNI">
+                                <input type="text" name="dni" id="dni" class="form-control" style="color:black" placeholder="Número del DNI">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="sr-only">Clave</label>
