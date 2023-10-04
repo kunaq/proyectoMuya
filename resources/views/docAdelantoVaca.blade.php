@@ -59,7 +59,7 @@
         <p><b>CUARTO:</b></p>
         <p><b>EL TRABAJADOR</b> y <b>EL EMPLEADOR</b> dejan expresa constancia que, en caso de extinción del vínculo laboral, los días de descanso otorgados por adelantado a <b>EL TRABAJADOR</b> serán compensados con los días de vacaciones truncas adquiridos a la fecha de cese.</p>
         <br>
-        <p>Ambas partes firman el presente acuerdo, a los Días {{$dia}} del mes de {{$mes}} del año {{$anio}}.</p>
+        <p>Ambas partes firman el presente acuerdo, a los días {{$dia}} del mes de {{$mes}} del año {{$anio}}.</p>
         <br>
         <table class="tablaFirma">
             <tr class="altoFirma">

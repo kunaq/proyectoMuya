@@ -528,6 +528,7 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
+                return;
               }
             })
           }else if(respuesta['response']['flg_coincide_grupo'] == 'SI'){
@@ -539,9 +540,10 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
+                return;
               }
             })
-          }else if(respuesta['response']['ctd_coincidencia'] > parametroX){
+          }else if(respuesta['response']['flg_coincide_grupo'] != 'SI' && respuesta['response']['ctd_coincidencia'] > parametroX){
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otros colaboradores del grupo. Elija otras fechas.',
@@ -550,6 +552,7 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
+                return;
               }
             })
           }else if(respuesta['response']['flg_coincide_trabajador'] == 'SI'){
@@ -561,6 +564,7 @@ btnSolicitar.addEventListener("click", function() {
             }).then((result) => {
               if (result.isConfirmed) {
                 btnSolicitar.removeAttribute('disabled');
+                return;
               }
             })
           }else{

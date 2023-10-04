@@ -194,7 +194,7 @@ class ArchivoController extends Controller
             'dsc_cadena'=> $sql,
             'cod_trabajador' => session('codTrabajador')
         ];
-        //return $data;
+        return $data;
         $contenidoJson = json_encode($data);
         try {
 

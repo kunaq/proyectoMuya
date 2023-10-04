@@ -336,7 +336,7 @@
         </div>  
       </section>
 
-    <section class="section dashboard">
+    {{-- <section class="section dashboard">
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="card">
@@ -381,7 +381,7 @@
                 </div>
             </div>  
         </div>    
-    </section>
+    </section> --}}
 
     <section class="section dashboard">
         <div class="row">
@@ -1127,7 +1127,7 @@ btnProcesar.addEventListener("click", function() {
     var yearF = fechaPartsF[2]; 
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
-    var chckDsc = document.getElementById('CheckDescSolVac');
+    var chckDsc = document.getElementById('chckEquipSol');
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
 
     var codTra = '@php echo(session('codTrabajador')) @endphp';
@@ -1239,109 +1239,111 @@ btnProcesar.addEventListener("click", function() {
 
 //-----------------------Procesar descargar reporte vacaciones---------------------
 
-var btnProcesar = document.getElementById('btnDescRepVacEmp');
-btnProcesar.addEventListener("click", function() {
-    btnProcesar.setAttribute('disabled','disabled');
-    var fchInicio = document.getElementById('datepicker1').value;
-    var fechaParts = fchInicio.split('-');
-    var day = fechaParts[0];
-    var month = fechaParts[1];
-    var year = fechaParts[2];
-    fchInicio = year + "-" + month + "-" + day;
-    //console.log(fchInicio);
-    var fchFin = document.getElementById('datepicker2').value;
-    var fechaPartsF = fchFin.split('-');
-    var dayF = fechaPartsF[0];
-    var monthF = fechaPartsF[1];
-    var yearF = fechaPartsF[2];
-    fchFin = yearF + "-" + monthF + "-" + dayF;
-    //console.log(fchFin);
-    var chckDsc = document.getElementById('flexCheckDefault2');
-    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
-    var codTra = '@php echo(session('codTrabajador')) @endphp';
+// var btnProcesar = document.getElementById('btnDescRepVacEmp');
+// btnProcesar.addEventListener("click", function() {
+//     btnProcesar.setAttribute('disabled','disabled');
+//     var fchInicio = document.getElementById('datepicker1').value;
+//     var fechaParts = fchInicio.split('-');
+//     var day = fechaParts[0];
+//     var month = fechaParts[1];
+//     var year = fechaParts[2];
+//     fchInicio = year + "-" + month + "-" + day;
+//     //console.log(fchInicio);
+//     var fchFin = document.getElementById('datepicker2').value;
+//     var fechaPartsF = fchFin.split('-');
+//     var dayF = fechaPartsF[0];
+//     var monthF = fechaPartsF[1];
+//     var yearF = fechaPartsF[2];
+//     fchFin = yearF + "-" + monthF + "-" + dayF;
+//     //console.log(fchFin);
+//     var chckDsc = document.getElementById('flexCheckDefault2');
+//     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
+//     var codTra = '@php echo(session('codTrabajador')) @endphp';
 
-    $.ajax({
-        url: 'lista/ListarReporteVacacionesxTrabajador',
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
-        success: function(respuesta){
-           //console.log(respuesta['response']);
-            if (respuesta['response'].length > 0) {
-                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
-                var filasArray = [];
+//     $.ajax({
+//         url: 'lista/ListarReporteVacacionesxTrabajador',
+//         method: "GET",
+//         crossDomain: true,
+//         dataType: 'json',
+//         data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+//         success: function(respuesta){
+//            //console.log(respuesta['response']);
+//             if (respuesta['response'].length > 0) {
+//                 var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','SEDE','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR','CODIGO TRABAJADOR APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','CODIGO TRABAJADOR SUPERVISOR','REGLA'];
+//                 var filasArray = [];
 
-                respuesta['response'].forEach(element => {
-                    var fch_ingreso = element['fch_ingreso'].split('T');
-                    fch_ingreso = formatDate(fch_ingreso[0]);
-                    var fch_ingreso2 = (fch_ingreso == '01/01/1900') ? '' : fch_ingreso;
+//                 respuesta['response'].forEach(element => {
+//                     var fch_ingreso = element['fch_ingreso'].split('T');
+//                     fch_ingreso = formatDate(fch_ingreso[0]);
+//                     var fch_ingreso2 = (fch_ingreso == '01/01/1900') ? '' : fch_ingreso;
 
-                    filaData = [
-                        element['cod_trabajador'],
-                        element['dsc_trabajador'],
-                        element['dsc_localidad'],
-                        element['dsc_cargo'],
-                        element['dsc_area'],
-                        fch_ingreso2,
-                        element['ctd_vacaciones_generadas'],
-                        element['ctd_vacaciones_programadas'],
-                        element['ctd_saldo'],
-                        element['dsc_estado_adelanto_vacaciones'],
-                        element['dsc_grupo'],
-                        element['dsc_comisionista'],
-                        element['flg_requiere_aprobacion'],
-                        element['dsc_trabajador_aprobacion'],
-                        element['flg_requiere_supervision'],
-                        element['dsc_trabajador_supervision'],
-                        element['dsc_regla']
-                    ]
-                    filasArray.push(filaData);
-                });
-                // Crear un libro de trabajo (workbook)
-                var workbook = XLSX.utils.book_new();
-                var worksheet = XLSX.utils.json_to_sheet(filasArray);
+//                     filaData = [
+//                         element['cod_trabajador'],
+//                         element['dsc_trabajador'],
+//                         element['dsc_localidad'],
+//                         element['dsc_cargo'],
+//                         element['dsc_area'],
+//                         fch_ingreso2,
+//                         element['ctd_vacaciones_generadas'],
+//                         element['ctd_vacaciones_programadas'],
+//                         element['ctd_saldo'],
+//                         element['dsc_estado_adelanto_vacaciones'],
+//                         element['dsc_grupo'],
+//                         element['dsc_comisionista'],
+//                         element['flg_requiere_aprobacion'],
+//                         element['dsc_trabajador_aprobacion'],
+//                         element['cod_trabajador_aprobacion'],
+//                         element['flg_requiere_supervision'],
+//                         element['dsc_trabajador_supervision'],
+//                         element['cod_trabajador_supervision'],
+//                         element['dsc_regla']
+//                     ]
+//                     filasArray.push(filaData);
+//                 });
+//                 // Crear un libro de trabajo (workbook)
+//                 var workbook = XLSX.utils.book_new();
+//                 var worksheet = XLSX.utils.json_to_sheet(filasArray);
 
-                // Crear una hoja de cálculo (worksheet)
-                XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
+//                 // Crear una hoja de cálculo (worksheet)
+//                 XLSX.utils.sheet_add_aoa(worksheet, [header], { origin: 'A1' });
 
-                // Agregar la hoja de cálculo al libro de trabajo
-                XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+//                 // Agregar la hoja de cálculo al libro de trabajo
+//                 XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-                // Convertir el libro de trabajo a un archivo binario
-                var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+//                 // Convertir el libro de trabajo a un archivo binario
+//                 var excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-                // Crear un blob a partir del archivo binario
-                var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+//                 // Crear un blob a partir del archivo binario
+//                 var blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
 
-                // Crear una URL para el blob
-                var url = URL.createObjectURL(blob);
+//                 // Crear una URL para el blob
+//                 var url = URL.createObjectURL(blob);
 
-                // Crear un enlace de descarga
-                var link = document.createElement('a');
-                link.href = url;
-                link.download = 'reporteVacaciones'+codTra+'.xlsx';
+//                 // Crear un enlace de descarga
+//                 var link = document.createElement('a');
+//                 link.href = url;
+//                 link.download = 'reporteVacaciones'+codTra+'.xlsx';
 
-                // Simular un clic en el enlace para iniciar la descarga
-                link.click();
-                btnProcesar.removeAttribute('disabled');
-            }else{
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'No existen registros a retornar para el período seleccionado.',
-                    confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
-                });
-                btnProcesar.removeAttribute('disabled');
-            }
+//                 // Simular un clic en el enlace para iniciar la descarga
+//                 link.click();
+//                 btnProcesar.removeAttribute('disabled');
+//             }else{
+//                 Swal.fire({
+//                     icon: 'warning',
+//                     text: 'No existen registros a retornar para el período seleccionado.',
+//                     confirmButtonText: 'Continuar',
+//                     confirmButtonColor: '#a18347',
+//                 });
+//                 btnProcesar.removeAttribute('disabled');
+//             }
 
-        },//success
-        error(e){
-            console.log(e.message);
-        }//error    
-    });
+//         },//success
+//         error(e){
+//             console.log(e.message);
+//         }//error    
+//     });
 
-});
+// });
 
 $.ajax({
     url: 'lista/MuestraAnhos', 
