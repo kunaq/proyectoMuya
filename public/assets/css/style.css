@@ -5,6 +5,11 @@
 * License: https://bootstrapmade.com/license/
 */
 
+.flatpickr-day.flatpickr-disabled {
+  color: red !important;
+}
+
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
