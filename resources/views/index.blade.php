@@ -31,17 +31,14 @@
                             <br>
                             <div class="form-group">
                                 <label for="dni" class="sr-only">Número de DNI</label>
-                                <input type="text" name="dni" id="dni" class="form-control" autocomplete="false"
-                                    placeholder="Número del DNI">
+                                <input type="text" name="dni" id="dni" class="form-control" placeholder="Número del DNI">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="sr-only">Clave</label>
                                 <div class="input-group" id="show_hide_password">
-                                    <input type="password" name="password" id="password" autocomplete="false"
-                                        class="form-control" placeholder="Clave">
+                                    <input type="password" name="password" id="password" class="form-control" placeholder="Clave">
                                     <div class="input-group-append">
-                                        <span class="input-group-text"><a class="hidePass" href=""><i
-                                                    class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                                        <span class="input-group-text"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                                     </div>
                                 </div>
                             </div>

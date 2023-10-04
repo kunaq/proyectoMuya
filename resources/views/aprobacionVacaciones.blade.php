@@ -59,8 +59,20 @@
     </nav>
 </div>
 
+<section class="section dashboard d-sm-block d-md-none">
+    <div class="row">
+        <div class="col-md-10 offset-md-1 d-md-block">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="tarjeta-vaca-foco" style="font-size: 18px; padding-top: 1rem;;">Para acceder a todas las opciones por favor ingresar desde su ordenador.</h5>  
+                </div>
+            </div>
+        </div>        
+    </div>  
+</section>
+
 {{-- Lista de colaboradores --}}
-<section class="section dashboard d-none d-md-block">
+<section class="section dashboard d-md-block">
     <div class="row">
         <div class="col-md-10 offset-md-1 d-md-block">
             <div class="card">
@@ -118,7 +130,7 @@
 </section>
 
 {{-- Solicitudes por aprobar --}}
-<section class="section dashboard d-none d-md-block">
+<section class="section dashboard d-md-block">
     <div class="row">
         <div class="col-md-10 offset-md-1 d-md-block">
             <div class="card">
@@ -181,18 +193,7 @@
     </div>  
 </section>
 
-<section class="section dashboard d-sm-block d-md-none">
-    <div class="row">
-        <div class="col-md-10 offset-md-1 d-md-block">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="tarjeta-vaca-foco" style="font-size: 18px; padding-top: 1rem;;">Para acceder a todas las opciones por favor ingresar desde su ordenador.</h5>  
-                </div>
-            </div>
-        </div>        
-    </div>  
-</section>
-
+{{-- 
 <section class="section dashboard d-sm-block d-md-none">
     <div class="row">
         <div class="col-md-10 offset-md-1 d-md-block">
@@ -207,38 +208,21 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col" width="15%">Colaborador</th>
+                                                <th scope="col" width="10%">Inicio</th>
+                                                <th scope="col" width="10%">Fin</th>
+                                                <th scope="col" width="5%">Días</th>
+                                                <th scope="col" width="10%">Reincorpora</th>
+                                                <th scope="col" width="10%">Estado</th>
+                                                <th scope="col" width="10%">Subestado</th>
                                                 <th scope="col" width="10%">Alerta reglas</th>
                                                 <th scope="col" width="10%">Alerta reprog.</th>
+                                                <th scope="col" width="5%">Aceptar</th>
+                                                <th scope="col" width="5%">Rechazar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td>Milagros Huaman A.</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Adriana Jaramillo G.</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Carlos González H.</td>
-                                                <td></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>María Huaman C.</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Azucena Jaramillo G.</td>
-                                                <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
-                                                <td></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Ándres Jaramillo H.</td>
                                                 <td><span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span></td>
                                                 <td></td>
                                             </tr>
@@ -252,7 +236,7 @@
             </div>
         </div>        
     </div>  
-</section>
+</section> --}}
 
 {{-- Indicadores de gestion --}}
 <section class="section dashboard">
