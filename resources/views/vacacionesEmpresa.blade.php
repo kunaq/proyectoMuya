@@ -796,7 +796,7 @@ btnProcesar.addEventListener("click", function() {
     btnProcesar.setAttribute('disabled','disabled');
     var tabla = document.getElementById("tablaSolAprobarEmp");
     var filas = tabla.getElementsByTagName("tr");
-
+    console.log(filas.length);
     for (var i = 0; i < filas.length; i++) {
         var fila = filas[i];
         var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
@@ -915,9 +915,10 @@ btnProcesar.addEventListener("click", function() {
                                         dataType: 'json',
                                         data:{'data':dataAnu},
                                         success: function(respuesta){
+                                            console.log(respuesta)
                                         },//success
                                         error(e){
-                                            console.log(e.message);
+                                            console.log(e);
                                         }//error
                                     });//ajax
 
