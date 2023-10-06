@@ -57,7 +57,7 @@
                 </div>
                 <div class="row">
                   <div class="col-2 col-md-1 offset-md-1" style="text-align: right;margin-top:-0.2em;">
-                    <input class="form-check-input checkVerde" type="checkbox" checked value="" id="flexCheckDefault2" name="apruebaAutomatico">
+                    <input class="form-check-input checkVerde" type="checkbox" checked id="apruebaAutomatico" name="apruebaAutomatico">
                     <input type="hidden" name="origen" value="EMP">
                   </div>
                   <div class="col-10 col-md-10">

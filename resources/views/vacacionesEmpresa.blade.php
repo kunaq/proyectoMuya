@@ -816,6 +816,7 @@ btnProcesar.addEventListener("click", function() {
                 'num_linea': numLinea,
                 'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
             }
+            console.log(data,' accion'+accion);
             if(accion == 'RECHAZAR'){
                // console.log('data rechazado',data);
                 $.ajax({
@@ -945,11 +946,11 @@ btnProcesar.addEventListener("click", function() {
                             });//ajax
                         }else if(respuesta == 'SI'){
                             Swal.fire({
-                            icon: 'warning',
-                            text: 'No puede anular esta solicitud, ya se ha realizado el pago.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        })
+                                icon: 'warning',
+                                text: 'No puede anular esta solicitud, ya se ha realizado el pago.',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                            })
                         }
                     },//success
                     error(e){
