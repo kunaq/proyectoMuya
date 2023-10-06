@@ -969,12 +969,12 @@ btnProcesarD.addEventListener("click", function() {
     var codTra = '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
-        url: 'ListarSolicitudVacacionesxResponsable', 
+        url: 'lista/ListarSolicitudVacacionesxResponsable', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'APR','visualizar':flgTodos},
         success: function(respuesta){
             console.log(respuesta['response'].length);
             if (respuesta['response'].length > 0) {

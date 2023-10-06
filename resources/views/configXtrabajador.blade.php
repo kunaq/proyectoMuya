@@ -870,8 +870,6 @@ btnProcesar.addEventListener("click", function() {
     var yearF = fechaPartsF[2];
     fchFin = yearF + "-" + monthF + "-" + dayF;
     //console.log(fchFin);
-    var chckDsc = document.getElementById('flexCheckDefault2');
-    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
     var codTra = '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
@@ -936,7 +934,7 @@ btnProcesar.addEventListener("click", function() {
                 // Crear un enlace de descarga
                 var link = document.createElement('a');
                 link.href = url;
-                link.download = 'reporteVacaciones'+codTra+'.xlsx';
+                link.download = 'reporteVacaciones.xlsx';
 
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();

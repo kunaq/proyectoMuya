@@ -474,9 +474,11 @@ class ListaController extends Controller
         $codTra =  $request['codTra'];
         $fchIni =  $request['fchIni'];
         $fchFin =  $request['fchFin'];
+        $origen = $request['origen'];
+        $visualizar = $request['visualizar'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacacionesxResponsable/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacacionesxResponsable/20555348887/'.$codTra.'/'.$fchIni.'/'.$fchFin.'/'.$origen.'/'.$visualizar);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

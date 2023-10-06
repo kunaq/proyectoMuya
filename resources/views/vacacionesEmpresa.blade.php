@@ -390,7 +390,7 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 28px;">Descargar solicitudes de vacaciones</h5>
                         <div class="row">
-                            <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
+                            <div class="col-3 offset-md-2 col-md-1" style="margin-bottom: 1rem;">
                                 <div class="form-group">
                                     <span>Inicio:</span>
                                 </div>
@@ -415,14 +415,6 @@
                                     <h5><button class="btn btn-success btnDorado" id="btnDesSolEmp">Descargar</button></h5>
                                 </div>
                             </div>                      
-                            <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="chckEquipSol">
-                            </div>
-                            <div class="col-11 col-md-3" style="text-align: -webkit-center">
-                                <div class="form-group">
-                                    <h5>Visualizar equipos de mi equipo</h5>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1127,18 +1119,15 @@ btnProcesar.addEventListener("click", function() {
     var yearF = fechaPartsF[2]; 
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
-    var chckDsc = document.getElementById('chckEquipSol');
-    var flgTodos = chckDsc.checked ? 'SI' : 'NO';
-
     var codTra = '@php echo(session('codTrabajador')) @endphp';
 
     $.ajax({
-        url: 'ListarSolicitudVacacionesxResponsable', 
+        url: 'lista/ListarSolicitudVacacionesxResponsable', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'EMP','visualizar':'NO'},
         success: function(respuesta){
             console.log(respuesta['response'].length);
             if (respuesta['response'].length > 0) {
@@ -1216,7 +1205,7 @@ btnProcesar.addEventListener("click", function() {
                 // Crear un enlace de descarga
                 var link = document.createElement('a');
                 link.href = url;
-                link.download = 'solicitudVacaciones'+codTra+'.xlsx';
+                link.download = 'solicitudVacaciones.xlsx';
 
                 // Simular un clic en el enlace para iniciar la descarga
                 link.click();
