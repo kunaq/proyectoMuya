@@ -796,180 +796,186 @@ btnProcesar.addEventListener("click", function() {
     btnProcesar.setAttribute('disabled','disabled');
     var tabla = document.getElementById("tablaSolAprobarEmp");
     var filas = tabla.getElementsByTagName("tr");
-    console.log(filas.length);
+    
     for (var i = 0; i < filas.length; i++) {
         var fila = filas[i];
         var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
-        
+
+        //var datos = '';
         for (var j = 0; j < inputsRadio.length; j++) {
             var inputRadio = inputsRadio[j];
             var valor = inputRadio.value;
             //console.log("Valor seleccionado en la fila " + (i + 1) + ", radio " + (j + 1) + ": " + valor);
             var aux = valor.split('-');
             accion = aux[0];
-            codTrabajador = aux[1];
-            numLinea = aux[2];
+            codTrabajadorLista = aux[1];
+            numLineaLista = aux[2];
             fchIni = aux[3];
             fchFin = aux[4];
-            data = {
-                'cod_trabajador': codTrabajador,
-                'num_linea': numLinea,
-                'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
-            }
-            console.log(data,' accion'+accion);
-            if(accion == 'RECHAZAR'){
-               // console.log('data rechazado',data);
-                $.ajax({
-                    url: 'api/RechazarSolicitudVacaciones', 
-                    method: "PUT",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'solVac':data},
-                    success: function(respuesta){
-                        enviaRechazoVac(codTrabajador,fchIni,fchFin,'REC',numLinea)
-                        console.log(respuesta);
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Se han procesado las solicitudes con éxito',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data rechazado',data);
-                                    location.reload();
-                            }
-                        })
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        })
-                        btnProcesar.removeAttribute('disabled');
-                    }//error
-                });//ajax
-            }else if(accion == 'APROBAR'){
-               // console.log('data aprobado',data);
-                $.ajax({
-                    url: 'api/AprobarSolicitudVacaciones', 
-                    method: "PUT",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'solVac':data},
-                    success: function(respuesta){
-                        enviaAprobacionVac(codTrabajador,fchIni,fchFin,numLinea);
-                        console.log(respuesta);
-                        Swal.fire({
-                            icon: 'success',
-                            text: 'Se han procesado las solicitudes con éxito',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                console.log('data aprobado',data);
-                                    location.reload();
-                            }
-                        })
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        })
-                        btnProcesar.removeAttribute('disabled');
-                    }//error
-                });//ajax
-            }else if(accion == 'ANULAR'){
-                $.ajax({
-                    url: 'func/ObtenerValidacionVacacionesPagadas', 
-                    method: "get",
-                    crossDomain: true,
-                    dataType: 'json',
-                    data:{'codTra':codTrabajador,'numLinea':numLinea},
-                    success: function(respuesta){
-                        //console.log(respuesta);
-                        if (respuesta == 'NO') {
+            
+            procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fchFin);
+            
+        }//for
+    }//for
+});
+
+function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fchFin) {
+    datos = {
+        'cod_trabajador': codTrabajadorLista,
+        'num_linea': numLineaLista,
+        'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
+    }
+    
+    if(accion == 'RECHAZAR'){
+        // console.log('data rechazado',data);
+        $.ajax({
+            url: 'api/RechazarSolicitudVacaciones', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'solVac':datos},
+            success: function(respuesta){
+                enviaRechazoVac(codTrabajadorLista,fchIni,fchFin,'REC',numLineaLista)
+                console.log(respuesta);
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Se han procesado las solicitudes con éxito',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log('data rechazado',datos);
+                            //location.reload();
+                        }
+                    })
+                },//success
+            error(e){
+                console.log(e.message);
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Ha ocurrido un error intentelo nuevamente.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                })
+                btnProcesar.removeAttribute('disabled');
+            }//error
+        });//ajax
+    }else if(accion == 'APROBAR'){
+        // console.log('data aprobado',data);
+        $.ajax({
+            url: 'api/AprobarSolicitudVacaciones', 
+            method: "PUT",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'solVac':datos},
+            success: function(respuesta){
+                enviaAprobacionVac(codTrabajadorLista,fchIni,fchFin,numLineaLista);
+                console.log(respuesta);
+                Swal.fire({
+                    icon: 'success',
+                    text: 'Se han procesado las solicitudes con éxito',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        console.log('data aprobado',datos);
+                            //location.reload();
+                    }
+                })
+            },//success
+            error(e){
+                console.log(e.message);
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Ha ocurrido un error intentelo nuevamente.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                })
+                btnProcesar.removeAttribute('disabled');
+            }//error
+        });//ajax
+    }else if(accion == 'ANULAR'){
+        $.ajax({
+            url: 'func/ObtenerValidacionVacacionesPagadas', 
+            method: "get",
+            crossDomain: true,
+            dataType: 'json',
+            data:{'codTra':codTrabajadorLista,'numLinea':numLineaLista},
+            success: function(respuesta){
+                console.log(datos,' ObtenerValidacionVacacionesPagadas');
+                if (respuesta == 'NO') {
+                    $.ajax({
+                        url: 'api/RechazarSolicitudVacaciones', 
+                        method: "PUT",
+                        crossDomain: true,
+                        dataType: 'json',
+                        data:{'solVac':datos},
+                        success: function(respuesta){
+                            enviaRechazoVac(codTrabajadorLista,fchIni,fchFin,'ANU',numLineaLista);
+                            dataAnu = {
+                                "cod_trabajador" : codTrabajadorLista ,
+                                "num_linea": numLineaLista,
+                                "cod_usuario" : '@php echo(session('codTrabajador')) @endphp' 
+                            };
                             $.ajax({
-                                url: 'api/RechazarSolicitudVacaciones', 
+                                url: 'func/AnularGoceVacaciones',
                                 method: "PUT",
                                 crossDomain: true,
                                 dataType: 'json',
-                                data:{'solVac':data},
+                                data:{'data':dataAnu},
                                 success: function(respuesta){
-                                    enviaRechazoVac(codTrabajador,fchIni,fchFin,'ANU',numLinea);
-                                    dataAnu = {
-                                        "cod_trabajador" : codTrabajador ,
-                                        "num_linea": numLinea,
-                                        "cod_usuario" : '@php echo(session('codTrabajador')) @endphp' 
-                                    };
-                                    $.ajax({
-                                        url: 'func/AnularGoceVacaciones',
-                                        method: "PUT",
-                                        crossDomain: true,
-                                        dataType: 'json',
-                                        data:{'data':dataAnu},
-                                        success: function(respuesta){
-                                            console.log(respuesta)
-                                        },//success
-                                        error(e){
-                                            console.log(e);
-                                        }//error
-                                    });//ajax
-
-                                    Swal.fire({
-                                        icon: 'success',
-                                        text: 'Se han procesado las solicitudes con éxito',
-                                        confirmButtonText: 'Continuar',
-                                        confirmButtonColor: '#a18347',
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            console.log('data anulado',data);
-                                                location.reload();
-                                        }
-                                    })
+                                    console.log(respuesta)
                                 },//success
                                 error(e){
-                                    console.log(e.message);
-                                    Swal.fire({
-                                        icon: 'warning',
-                                        text: 'Ha ocurrido un error intentelo nuevamente.',
-                                        confirmButtonText: 'Continuar',
-                                        confirmButtonColor: '#a18347',
-                                    })
-                                    btnProcesar.removeAttribute('disabled');
+                                    console.log(e);
                                 }//error
                             });//ajax
-                        }else if(respuesta == 'SI'){
+
+                            Swal.fire({
+                                icon: 'success',
+                                text: 'Se han procesado las solicitudes con éxito',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    console.log('data anulado',datos);
+                                    //location.reload();
+                                }
+                            })
+                        },//success
+                        error(e){
+                            console.log(e.message);
                             Swal.fire({
                                 icon: 'warning',
-                                text: 'No puede anular esta solicitud, ya se ha realizado el pago.',
+                                text: 'Ha ocurrido un error intentelo nuevamente.',
                                 confirmButtonText: 'Continuar',
                                 confirmButtonColor: '#a18347',
                             })
-                        }
-                    },//success
-                    error(e){
-                        console.log(e.message);
-                        Swal.fire({
-                            icon: 'warning',
-                            text: 'Ha ocurrido un error intentelo nuevamente.',
-                            confirmButtonText: 'Continuar',
-                            confirmButtonColor: '#a18347',
-                        })
-                        btnProcesar.removeAttribute('disabled');
-                    }//error
-                });//ajax
-            }
-        }
+                            btnProcesar.removeAttribute('disabled');
+                        }//error
+                    });//ajax
+                }else if(respuesta == 'SI'){
+                    Swal.fire({
+                        icon: 'warning',
+                        text: 'No puede anular esta solicitud, ya se ha realizado el pago.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    })
+                }
+            },//success
+            error(e){
+                console.log(e.message);
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Ha ocurrido un error intentelo nuevamente.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                })
+                btnProcesar.removeAttribute('disabled');
+            }//error
+        });//ajax
     }
-
-});
+}
     
 //-----------------------Guarda configuraciones-----------------------------------
 var btnConfig = document.getElementById('actualizaConfigEmp');
