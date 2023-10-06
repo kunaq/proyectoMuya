@@ -448,9 +448,10 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $anno =  $request['anno'];
+        $codTra = session('codTrabajador');
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Feriado/ListarFeriado/20555348887/'.$anno);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Feriado/ListarFeriado/20555348887/'.$anno.'/'.$codTra);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
