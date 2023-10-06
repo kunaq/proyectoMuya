@@ -311,7 +311,7 @@
                             </div>
                         </div>                      
                         <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                            <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault2">
+                            <input class="form-check-input checkVerde" checked type="checkbox" value="" id="checkVisualizarVacaciones">
                         </div>
                         <div class="col-11 col-md-3" style="text-align: -webkit-center">
                             <div class="form-group">
@@ -1095,7 +1095,7 @@ btnProcesarD.addEventListener("click", function() {
     var yearF = fechaPartsF[2];
     fchFin = yearF + "-" + monthF + "-" + dayF;
     //console.log(fchFin);
-    var chckDsc = document.getElementById('flexCheckDefault2');
+    var chckDsc = document.getElementById('checkVisualizarVacaciones');
     var flgTodos = chckDsc.checked ? 'SI' : 'NO';
     var codTra = '@php echo(session('codTrabajador')) @endphp';
 
@@ -1104,7 +1104,7 @@ btnProcesarD.addEventListener("click", function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'APR','visualizar':flgTodos},
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {

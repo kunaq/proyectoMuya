@@ -266,7 +266,7 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones por trabajador</h5>
                         <div class="row">
-                            <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
+                            <div class="col-3 col-md-1 offset-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
                                     <span>Inicio:</span>
                                 </div>
@@ -291,14 +291,7 @@
                                     <h5><button class="btn btn-success btnDorado" id="btnDescVacaciones">Descargar</button></h5>
                                 </div>
                             </div>                      
-                            <div class="col-1 col-md-1" style="text-align: -webkit-center">
-                                <input class="form-check-input checkVerde" checked type="checkbox" value="" id="flexCheckDefault3">
-                            </div>
-                            <div class="col-11 col-md-3" style="text-align: -webkit-center">
-                                <div class="form-group">
-                                    <h5>Visualizar equipos de mi equipo</h5>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
@@ -886,7 +879,7 @@ btnProcesar.addEventListener("click", function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin},
+        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'TRA','visualizar':'NO'},
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
