@@ -150,11 +150,11 @@ inputFchFin.addEventListener("change", function() {
       if(element == auxFchFin){
         //fchFin.setDate(fchFin.getDate() + 1);
         flgRegla = 'SI';
-        dscReglaFeriado = +'El día de retorno es feriado';
+        dscReglaFeriado = '';
 
         Swal.fire({
           icon: 'warning',
-          text: 'El día de retorno es un día no laborable.',
+          text: 'El día de retorno es un día no laborable o día de descanso.',
           confirmButtonText: 'Continuar',
           confirmButtonColor: '#a18347',
         })
