@@ -107,7 +107,8 @@ class ArchivoController extends Controller
         $data = [
             'dsc_cadena'=> $sql,
             'cod_trabajador' => session('codTrabajador'),
-            'flg_aprueba_automatico' => $flgAprueba
+            'flg_aprueba_automatico' => $flgAprueba,
+            'origen' => $request['origen']
         ];
 
         $contenidoJson = json_encode($data);
