@@ -845,7 +845,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
                 }).then((result) => {
                     if (result.isConfirmed) {
                         console.log('data rechazado',datos);
-                            //location.reload();
+                            location.reload();
                         }
                     })
                 },//success
@@ -879,7 +879,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
                 }).then((result) => {
                     if (result.isConfirmed) {
                         console.log('data aprobado',datos);
-                            //location.reload();
+                            location.reload();
                     }
                 })
             },//success
@@ -939,7 +939,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     console.log('data anulado',datos);
-                                    //location.reload();
+                                    location.reload();
                                 }
                             })
                         },//success
