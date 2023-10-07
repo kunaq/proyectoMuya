@@ -1025,19 +1025,30 @@ btnProcesar.addEventListener("click", function() {
                 confirmButtonText: 'Cerrar'
             });
         } else {
-            // Si no hay error, muestra la alerta de éxito
-            Swal.fire({
-                icon: 'success',
-                title: 'Éxito',
-                text: data.mensaje,
-                confirmButtonColor: '#a18347',
-                confirmButtonText: 'Cerrar'
-            }).then((result) => {
-                // Redirige a la página deseada después de cerrar la alerta de éxito
-                if (result.isConfirmed) {
-                    window.location.href = '{{ route('configXtrabajador') }}';
-                }
-            });
+            //console.log(data);
+            if (data.response.dsc_observacion != "OK") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.mensaje,
+                    confirmButtonColor: '#a18347',
+                    confirmButtonText: 'Cerrar'
+                });
+            }else{
+                // Si no hay error, muestra la alerta de éxito
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: 'Archivo procesado correctamente',
+                    confirmButtonColor: '#a18347',
+                    confirmButtonText: 'Cerrar'
+                }).then((result) => {
+                    // Redirige a la página deseada después de cerrar la alerta de éxito
+                    if (result.isConfirmed) {
+                        window.location.href = '{{ route('configXtrabajador') }}';
+                    }
+                });
+            }
         }
     })
     .catch(error => {
