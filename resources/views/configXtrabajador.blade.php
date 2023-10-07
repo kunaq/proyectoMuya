@@ -546,7 +546,7 @@ function ObtenerTrabajador(codTra) {
 
 function Guardar()
 {
-    console.log(cod_trabajador);
+    //console.log(cod_trabajador);
     if(document.getElementById("flg_requiere_aprobacion").checked==true){ 
         if (flg_existe_config=='NO'){
             InsertarColaborador();
@@ -561,9 +561,9 @@ function Guardar()
 
 function InsertarColaborador() {
                
-    var cod_responsable=document.getElementById("Responsable").value;
-    //var cod_trabajador=cod_trabajador;
-    var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+    var cod_responsable = document.getElementById("Responsable").value;
+    var cod_trabajador = document.getElementById("Trabajador").value;
+    var num_ultimo_dias = document.getElementById("num_ultimo_dias").value;
         data = {
             'cod_responsable': cod_responsable,
             'cod_trabajador': cod_trabajador,
@@ -617,9 +617,9 @@ function InsertarColaborador() {
 
 function ActualizarColaborador() {
             
-    var cod_responsable=document.getElementById("Responsable").value;
-    var cod_trabajador=document.getElementById("Trabajador").value;
-    var num_ultimo_dias=document.getElementById("num_ultimo_dias").value;
+    var cod_responsable = document.getElementById("Responsable").value;
+    var cod_trabajador = document.getElementById("Trabajador").value;
+    var num_ultimo_dias = document.getElementById("num_ultimo_dias").value;
     data = {
         'cod_responsable': cod_responsable,
         'cod_trabajador': cod_trabajador,
