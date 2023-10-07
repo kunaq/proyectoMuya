@@ -138,7 +138,7 @@
                             </div>
                             <div class=" col-2 col-md-1">
                                 <div class="form-group">
-                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flg_requiere_aprobacion">
+                                    <input class="form-check-input checkVerde" type="checkbox" id="flg_requiere_aprobacion">
                                 </div>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                             </div>
                             <div class=" col-2 col-md-1">
                                 <div class="form-group">
-                                    <input class="form-check-input checkVerde" type="checkbox" value="" id="flexCheckDefault2">
+                                    <input class="form-check-input checkVerde" type="checkbox" id="flg_requiere_supervision">
                                 </div>
                             </div>
                         </div>
@@ -197,7 +197,7 @@
                             </div>
                             <div class=" col-12 col-md-5" style="margin-bottom: 1rem">
                                 <div class="form-group">
-                                    <select name="tipoDoc3" id="tipoDoc3" class="form-control selectForm js-example-diacritics">
+                                    <select name="codSupervisor" id="codSupervisor" class="form-control selectForm js-example-diacritics">
                                        
                                     </select>
                                 </div>
@@ -409,7 +409,7 @@ window.onload= function() {
         })  
     }
 
-    $('#annoIniConfig, #periodo, #Trabajador, #Responsable, #tipoDoc3').select2({
+    $('#annoIniConfig, #periodo, #Trabajador, #Responsable, #codSupervisor').select2({
         language: "es",
         theme: "classic",
         width: 'resolve',
@@ -564,10 +564,16 @@ function InsertarColaborador() {
     var cod_responsable = document.getElementById("Responsable").value;
     var cod_trabajador = document.getElementById("Trabajador").value;
     var num_ultimo_dias = document.getElementById("num_ultimo_dias").value;
+    var flg_aprob_vac = (document.getElementById("flg_requiere_aprobacion").checked) ? 'SI' : 'NO';
+    var flg_sup_asis = (document.getElementById("flg_requiere_supervision").checked) ? 'SI' : 'NO';
+    var cod_supervisor = document.getElementById("codSupervisor").value;
         data = {
             'cod_responsable': cod_responsable,
             'cod_trabajador': cod_trabajador,
-            'num_ultimo_dias': num_ultimo_dias
+            'num_ultimo_dias': num_ultimo_dias,
+            'flg_requiere_aprob_vac': flg_aprob_vac,
+            'flg_requiere_supervision_asis': flg_sup_asis,
+            'cod_supervisor_asistencia': cod_supervisor
         }
     //console.log(cod_trabajador);
     Swal.fire({
@@ -596,7 +602,8 @@ function InsertarColaborador() {
                         confirmButtonColor: '#a18347',
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        console.log('data rechazado',data);
+                        //console.log('data',data);
+                        location.reload();
                     }
                     })
                 },//success
@@ -620,10 +627,16 @@ function ActualizarColaborador() {
     var cod_responsable = document.getElementById("Responsable").value;
     var cod_trabajador = document.getElementById("Trabajador").value;
     var num_ultimo_dias = document.getElementById("num_ultimo_dias").value;
+    var flg_aprob_vac = (document.getElementById("flg_requiere_aprobacion").checked) ? 'SI' : 'NO';
+    var flg_sup_asis = (document.getElementById("flg_requiere_supervision").checked) ? 'SI' : 'NO';
+    var cod_supervisor = document.getElementById("codSupervisor").value;
     data = {
         'cod_responsable': cod_responsable,
         'cod_trabajador': cod_trabajador,
-        'num_ultimo_dias': num_ultimo_dias
+        'num_ultimo_dias': num_ultimo_dias,
+        'flg_requiere_aprob_vac': flg_aprob_vac,
+        'flg_requiere_supervision_asis': flg_sup_asis,
+        'cod_supervisor_asistencia': cod_supervisor
     }
                     
     Swal.fire({
@@ -652,7 +665,8 @@ function ActualizarColaborador() {
                         confirmButtonColor: '#a18347',
                     }).then((result) => {
                     if (result.isConfirmed) {
-                        console.log('data rechazado',data);
+                        //console.log('data',data);
+                        location.reload();
                     }
                     })
                 },//success
