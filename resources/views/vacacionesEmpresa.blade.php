@@ -204,34 +204,13 @@
                                     <div class="row">
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
-                                                <select name="annoIni" id="annoIni" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Sede</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="004">Cañete</option>
-                                                    <option value="004">Chiclayo</option>
-                                                    <option value="004">Chimbote</option>
-                                                    <option value="001">Corona del Fraile</option>
-                                                    <option value="002">Cusco I</option>
-                                                    <option value="003">Cusco II</option>
-                                                    <option value="004">Lambayeque</option>
-                                                    <option value="002">Lima</option>
-                                                    <option value="003">Pisco</option>
-                                                    <option value="004">San Antonio</option>
+                                                <select name="sedePromVacPend" id="sedePromVacPend" class="form-control selectForm">
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <select name="annoFin" id="annoFin" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Área</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="A0001">Administración y finanzas</option>
-                                                    <option value="A0002">Comercial</option>
-                                                    <option value="A0003">Gerencia de atención al cliente</option>
-                                                    <option value="A0004">Gerencia general</option>
-                                                    <option value="A0005">Operaciones</option>
-                                                    <option value="A0004">Parque</option>
-                                                    <option value="A0005">SAC</option>
+                                                <select name="areaPromVacPend" id="areaPromVacPend" class="form-control selectForm">
                                                 </select>
                                             </div>
                                         </div>
@@ -250,33 +229,12 @@
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedePromVacPendHoy" id="sedePromVacPendHoy" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Sede</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="004">Cañete</option>
-                                                    <option value="004">Chiclayo</option>
-                                                    <option value="004">Chimbote</option>
-                                                    <option value="001">Corona del Fraile</option>
-                                                    <option value="002">Cusco I</option>
-                                                    <option value="003">Cusco II</option>
-                                                    <option value="004">Lambayeque</option>
-                                                    <option value="002">Lima</option>
-                                                    <option value="003">Pisco</option>
-                                                    <option value="004">San Antonio</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <select name="areaPromVacPendHoy" id="areaPromVacPendHoy" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Área</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="A0001">Administración y finanzas</option>
-                                                    <option value="A0002">Comercial</option>
-                                                    <option value="A0003">Gerencia de atención al cliente</option>
-                                                    <option value="A0004">Gerencia general</option>
-                                                    <option value="A0005">Operaciones</option>
-                                                    <option value="A0004">Parque</option>
-                                                    <option value="A0005">SAC</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -295,33 +253,12 @@
                                         <div class="col-md-6" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedeReprog" id="sedeReprog" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Sede</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="004">Cañete</option>
-                                                    <option value="004">Chiclayo</option>
-                                                    <option value="004">Chimbote</option>
-                                                    <option value="001">Corona del Fraile</option>
-                                                    <option value="002">Cusco I</option>
-                                                    <option value="003">Cusco II</option>
-                                                    <option value="004">Lambayeque</option>
-                                                    <option value="002">Lima</option>
-                                                    <option value="003">Pisco</option>
-                                                    <option value="004">San Antonio</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <select name="areaReprog" id="areaReprog" class="form-control selectForm">
-                                                    <option value="%" selected disabled>Área</option>
-                                                    <option value="%">Todos</option>
-                                                    <option value="A0001">Administración y finanzas</option>
-                                                    <option value="A0002">Comercial</option>
-                                                    <option value="A0003">Gerencia de atención al cliente</option>
-                                                    <option value="A0004">Gerencia general</option>
-                                                    <option value="A0005">Operaciones</option>
-                                                    <option value="A0004">Parque</option>
-                                                    <option value="A0005">SAC</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -485,6 +422,24 @@
 <script src="{{asset('assets/js/vacacionesEmpresa.js')}}"></script>
 
 <script type="text/javascript">
+$('#sedePromVacPend, #sedePromVacPendHoy, #sedeReprog').select2({
+    language: "es",
+    theme: "classic",
+    width: 'resolve',
+    placeholder: "Sede",
+    allowClear: true,
+    // dir: "rtl",
+});
+
+$('#areaPromVacPend, #areaPromVacPendHoy, #areaReprog').select2({
+    language: "es",
+    theme: "classic",
+    width: 'resolve',
+    placeholder: "Área",
+    allowClear: true,
+    // dir: "rtl",
+});
+
 window.onload= function() {
     if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
         let timerInterval
@@ -724,8 +679,61 @@ window.onload= function() {
         }
     });
 
-    indicadorPromVacPendHoy();
-    indicadorReprogramaciones();
+    //--------------------------------sede y area----------------------------------
+    var promesas = [];
+
+    var promesa1 = $.ajax({
+        url: 'lista/ListarLocalidad', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            $("#sedePromVacPend").append('<option value="%">Todas</option>');
+            $("#sedePromVacPendHoy").append('<option value="%">Todas</option>');
+            $("#sedeReprog").append('<option value="%">Todas</option>');
+            respuesta['response'].forEach(function(word){
+                
+                $("#sedePromVacPend").append('<option value="'+ word['cod_localidad'] +'">'+ word['dsc_localidad'] +'</option>');
+                $("#sedePromVacPendHoy").append('<option value="'+ word['cod_localidad'] +'">'+ word['dsc_localidad'] +'</option>');
+                $("#sedeReprog").append('<option value="'+ word['cod_localidad'] +'">'+ word['dsc_localidad'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+
+    promesas.push(promesa1);
+
+    var promesa2 = $.ajax({
+        url: 'lista/ListarArea', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            $("#areaPromVacPend").append('<option value="%">Todas</option>');
+            $("#areaPromVacPendHoy").append('<option value="%">Todas</option>');
+            $("#areaReprog").append('<option value="%">Todas</option>');
+            respuesta['response'].forEach(function(word){
+                $("#areaPromVacPend").append('<option value="'+ word['cod_area'] +'">'+ word['dsc_area'] +'</option>');
+                $("#areaPromVacPendHoy").append('<option value="'+ word['cod_area'] +'">'+ word['dsc_area'] +'</option>');
+                $("#areaReprog").append('<option value="'+ word['cod_area'] +'">'+ word['dsc_area'] +'</option>');
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });
+
+    promesas.push(promesa2);
+
+    Promise.all(promesas)
+    .then(function() {
+        indicadorPromVacPendHoy();
+        indicadorReprogramaciones();
+    });
+
+    
 }
 
 //---------------------------indicadores------------------------------
