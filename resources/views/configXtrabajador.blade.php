@@ -505,6 +505,11 @@ function ObtenerTrabajador(codTra) {
             }else{
                 document.getElementById("flg_requiere_aprobacion").checked = false;
             }
+            if(result["response"]["flg_requiere_supervision"]=='SI'){
+                document.getElementById("flg_requiere_supervision").checked = true;
+            }else{
+                document.getElementById("flg_requiere_supervision").checked = false;
+            }
             document.getElementById("num_ultimo_dias").value =result["response"]["num_ultimo_dias"];
             document.getElementById("cod_grupo").value =result["response"]["cod_grupo"];
             document.getElementById("dsc_grupo").value =result["response"]["dsc_grupo"];
@@ -512,6 +517,7 @@ function ObtenerTrabajador(codTra) {
             document.getElementById("dsc_comisionista").value =result["response"]["dsc_comisionista"];
 
             $('#Responsable').val(result["response"]["cod_supervisor"]).trigger('change.select2');
+            $('#codSupervisor').val(result["response"]["cod_supervisor_asistencia"]).trigger('change.select2');
 
             flg_existe_config=result["response"]["flg_existe_config"];
         }
