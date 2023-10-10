@@ -1187,7 +1187,8 @@ btnProcesarD.addEventListener("click", function() {
 
 });
 
-// Escucha el evento de envío del formulario
+// --------------------------Carga masiva solicitudes-------------------------------
+
 document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
 
@@ -1222,7 +1223,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Cerrar'
             });
-        } else {
+        } else if(data.response.dsc_observacion == "OK"){
             // Si no hay error, muestra la alerta de éxito
             var numImport = data.response.num_importacion;
             $.ajax({
@@ -1299,6 +1300,14 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 error(e){
                     console.log(e.message);
                 }//error
+            });
+        }else if (data.response.dsc_observacion != "OK") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: data.mensaje,
+                confirmButtonColor: '#a18347',
+                confirmButtonText: 'Cerrar'
             });
         }
     })
