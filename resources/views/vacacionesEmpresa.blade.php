@@ -194,7 +194,7 @@
                 <div class="card-body">
                     <h5 class="card-title" style="font-size: 28px;">Indicadores de gestión</h5>
                     <div class="row">
-                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                        <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
@@ -202,13 +202,15 @@
                                     <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPend">259.3</span></b></h1>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-6" style="margin-bottom: 1rem;">
+                                        <div class="col-md-12" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedePromVacPend" id="sedePromVacPend" class="form-control selectForm">
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <select name="areaPromVacPend" id="areaPromVacPend" class="form-control selectForm">
                                                 </select>
@@ -218,7 +220,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                        <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;">Promedio de días pendientes de vacaciones del equipo <b>a la fecha de hoy</b></h5>
@@ -226,13 +228,15 @@
                                     <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPendHoy"></span></b></h1>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-6" style="margin-bottom: 1rem;">
+                                        <div class="col-md-12" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedePromVacPendHoy" id="sedePromVacPendHoy" class="form-control selectForm">
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <select name="areaPromVacPendHoy" id="areaPromVacPendHoy" class="form-control selectForm">
                                                 </select>
@@ -242,7 +246,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4" style="margin-bottom: 1rem;">
+                        <div class="col-md-4">
                             <div class="card">
                                 <div class="card-body">
                                     <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;padding-bottom:1rem;">Número de reprogramaciones realizadas en el año del equipo</h5>
@@ -250,13 +254,15 @@
                                     <h1 class="tarjeta-vaca-foco"><b><span id="indRepVac"></span></b></h1>
                                     <hr>
                                     <div class="row">
-                                        <div class="col-md-6" style="margin-bottom: 1rem;">
+                                        <div class="col-md-12" style="margin-bottom: 1rem;">
                                             <div class="form-group">
                                                 <select name="sedeReprog" id="sedeReprog" class="form-control selectForm">
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
                                             <div class="form-group">
                                                 <select name="areaReprog" id="areaReprog" class="form-control selectForm">
                                                 </select>
@@ -688,9 +694,9 @@ window.onload= function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-            $("#sedePromVacPend").append('<option value="%">Todas</option>');
-            $("#sedePromVacPendHoy").append('<option value="%">Todas</option>');
-            $("#sedeReprog").append('<option value="%">Todas</option>');
+            $("#sedePromVacPend").append('<option value="%">TODAS</option>');
+            $("#sedePromVacPendHoy").append('<option value="%">TODAS</option>');
+            $("#sedeReprog").append('<option value="%">TODAS</option>');
             respuesta['response'].forEach(function(word){
                 
                 $("#sedePromVacPend").append('<option value="'+ word['cod_localidad'] +'">'+ word['dsc_localidad'] +'</option>');
@@ -711,9 +717,9 @@ window.onload= function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-            $("#areaPromVacPend").append('<option value="%">Todas</option>');
-            $("#areaPromVacPendHoy").append('<option value="%">Todas</option>');
-            $("#areaReprog").append('<option value="%">Todas</option>');
+            $("#areaPromVacPend").append('<option value="%">TODAS</option>');
+            $("#areaPromVacPendHoy").append('<option value="%">TODAS</option>');
+            $("#areaReprog").append('<option value="%">TODAS</option>');
             respuesta['response'].forEach(function(word){
                 $("#areaPromVacPend").append('<option value="'+ word['cod_area'] +'">'+ word['dsc_area'] +'</option>');
                 $("#areaPromVacPendHoy").append('<option value="'+ word['cod_area'] +'">'+ word['dsc_area'] +'</option>');
