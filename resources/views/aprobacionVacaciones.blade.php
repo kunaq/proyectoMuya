@@ -698,7 +698,7 @@ btnProcesar.addEventListener("click", function() {
             fchIni = aux[3];
             fchFin = aux[4];
             
-            function procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin);
+            procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin);
         }
     }
 });
