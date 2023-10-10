@@ -784,23 +784,19 @@ function indicadorPromVacPendHoy() {
     });//ajax ObtenerPromedioDiasPendiente hasta hoy
 }
 
-var sedeReprog = document.getElementById('sedeReprog');
-sedeReprog.addEventListener("change", function() {
+$("#sedeReprog").on("change", function() {
     indicadorReprogramaciones();
 });
 
-var areaReprog = document.getElementById('areaReprog');
-areaReprog.addEventListener("change", function() {
+$("#areaReprog").on("change", function() {
     indicadorReprogramaciones();
 });
 
-var sedePromVacPendHoy = document.getElementById('sedePromVacPendHoy');
-sedePromVacPendHoy.addEventListener("change", function() {
+$("#sedePromVacPendHoy").on("change", function() {
     indicadorPromVacPendHoy();
 });
 
-var areaPromVacPendHoy = document.getElementById('areaPromVacPendHoy');
-areaPromVacPendHoy.addEventListener("change", function() {
+$("#areaPromVacPendHoy").on("change", function() {
     indicadorPromVacPendHoy();
 });
 
