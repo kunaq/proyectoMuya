@@ -486,7 +486,7 @@ window.onload= function() {
                 var alertaRegla = '';
                 
                 if(element['flg_acuerdo_firmado'] == 'NO' || element['flg_acuerdo_firmado'] == ''){
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span>';
+                    alertaRegla = '<a href="#" style="font-size: 28px;color:red;" title="No hay firma"><span class="bi bi-exclamation-triangle"></span></a>';
                 }else{
                     alertaRegla = '';
                 }
@@ -624,6 +624,9 @@ window.onload= function() {
                     { title: 'Aceptar' },
                     { title: 'Rechazar' },
                     { title: 'Anular' },
+                ],
+                "columnDefs": [
+                    { className: "centro", "targets": "_all"}
                 ],
                 dom: 'trip',
                 processing: true,

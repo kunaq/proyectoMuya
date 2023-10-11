@@ -1566,6 +1566,12 @@ Estilos Vacaciones
   left: 8rem;
   bottom: 2rem;
 }
+.centro{
+  text-align: center;
+}
+.table th {
+  text-align: center;
+}
 /* .custom-tooltip {
   position: absolute;
     z-index: 9999;
