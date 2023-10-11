@@ -829,6 +829,5 @@ function enviaRechazoVacReprog(codTra,fchIni,fchFin,fchRinc,numSolicitud) {
       }//error
   });//ajax  
 }
-</script>
 
-   
+</script>
