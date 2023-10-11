@@ -73,7 +73,6 @@
     <div class="cuerpo"> 
         <p class="titulo"><b>CONVENIO DE ADELANTO DE VACACIONES</b></p>
         <br>
-        <br>
         <p>Conste por el presente documento, el convenio de adelanto de vacaciones que celebran, de una parte, <b>INVERSIONES MUYA S.A.C.</b>, identificada con RUC N.º <b>20555348887</b>, con domicilio en <b>Av. MONTEBLANCO NRO 305. URBANIZACIÓN RINCONADA ALTA ET DOS</b>, distrito de La Molina, provincia y departamento de Lima, debidamente representada por <span class='capital'>{{$nombreRepresentante}}</span>, identificado(a) con DNI Nº {{$dniRepresentante}} , a la que en adelante se denominará <b>"EL EMPLEADOR"</b>; y, de la otra parte, el señor/la señora <span class='capital'>{{$nombre}}</span>, identificado(a) con DNI N° {{$dni}}, con domicilio en <span class='capital'>{{$direccion}}</span>, distrito de <span class='capital'>{{$distrito}}</span>, provincia de <span class='capital'>{{$provincia}}</span> y departamento de <span class='capital'>{{$departamento}}</span>, a quién en adelante se le denominará <b>“EL TRABAJADOR”</b>, en los términos y condiciones siguientes:</p>
         <br>
         <p><b>PRIMERO:</b></p>
