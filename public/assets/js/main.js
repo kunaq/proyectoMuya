@@ -632,7 +632,7 @@ function esMovil() {
         alert("Estás usando un dispositivo móvil!!");
         return 'SI';
     } else {
-        //console.log("No estás usando un móvil");
+        alert("No estás usando un móvil");
         return 'NO';
     }
 }
