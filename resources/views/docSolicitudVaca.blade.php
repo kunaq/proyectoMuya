@@ -45,7 +45,7 @@
             width: 15rem;
         }
         .codigo{
-            color:darkblue;
+            color:white;
             margin-bottom: 0.2em;
         }
         .tablaFirma{
@@ -93,7 +93,7 @@
             <tr>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p class="codigo">@TRABAJADOR# <br>espacio </p>
+                        <p class="codigo">@TRABAJADOR# <br>espacio <br> </p>
                         <br><br>
                         <hr>
                         <p><span class='capital'>{{$nombre}}<br>{{$tipoDoc}} N° {{$dni}}</span></p>
