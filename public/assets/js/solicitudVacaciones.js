@@ -52,6 +52,7 @@ inputFchInicio.addEventListener("change", function() {
         locale:"es",
         dateFormat: "d-m-Y",
         minDate: minimo,
+        disableMobile: "true",
         //disable: feriados,
         maxDate: maximaDate
     });
