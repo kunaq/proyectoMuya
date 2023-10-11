@@ -629,10 +629,10 @@ return meses[mes] || null;
 function esMovil() {
   let navegador = navigator.userAgent;
     if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
-        alert(navegador);
-        //return 'SI';
+        //console.log("Estás usando un dispositivo móvil!!");
+        return 'SI';
     } else {
-        alert(navegador);
-       // return 'NO';
+        //console.log("No estás usando un móvil");
+        return 'NO';
     }
 }
