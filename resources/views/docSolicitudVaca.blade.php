@@ -93,7 +93,7 @@
             <tr>
                 <td>
                     <div class="cajaFirma titulo">
-                        <p class="codigo">@TRABAJADOR# <br>espacio <br>espacio <br>espacio <br>espacio </p>
+                        <p class="codigo">@TRABAJADOR# <br>espacio <br>espacio <br>espacio  </p>
                         <br><br>
                         <hr>
                         <p><span class='capital'>{{$nombre}}<br>{{$tipoDoc}} N° {{$dni}}</span></p>
