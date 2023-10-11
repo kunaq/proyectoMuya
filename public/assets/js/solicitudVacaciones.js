@@ -45,7 +45,7 @@ inputFchInicio.addEventListener("change", function() {
         minimaDate.setDate(parseInt(fechaParts[0]));
         minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
         minimaDate.setFullYear(parseInt(fechaParts[2]));
-        minimo = minimaDate.setDate(minimaDate.getDate() + 6);
+        minimo = minimaDate.setDate(minimaDate.getDate() + 5);
     }else{
         minimo = fchInicio;
     }
@@ -53,8 +53,8 @@ inputFchInicio.addEventListener("change", function() {
     var movil = esMovil();
     console.log(movil);
 
-    if(movil == 'SI'){
-      minimo = minimaDate.setDate(minimaDate.getDate() - 1);
+    if(movil == 'NO'){
+      minimo = minimaDate.setDate(minimaDate.getDate() + 1);
     }
     /// despues de todas las validaciones contruir faltpickr---
     flatpickr("#datepickerFinSolVac",{
