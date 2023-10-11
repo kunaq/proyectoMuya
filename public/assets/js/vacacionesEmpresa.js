@@ -109,13 +109,27 @@ form.addEventListener("submit", function(event) {
         })
     },//success
     error(e){
-        console.log(e.message);
-        Swal.fire({
-            icon: 'warning',
-            text: 'Ha ocurrido un error intentelo nuevamente.',
+        console.log(e.responseText);
+        if (e.responseText == 'Actualizado') {
+          Swal.fire({
+            icon: 'success',
+            text: 'Se han guardado los parámetros con éxito',
             confirmButtonText: 'Continuar',
             confirmButtonColor: '#a18347',
-        })
+          }).then((result) => {
+              if (result.isConfirmed) {
+                console.log('parametros guardados',data);
+                  location.reload();
+              }
+          })
+        }else{
+          Swal.fire({
+            icon: 'warning',
+            text: 'Ha ocurrido un error intentelo nuevamente. '+e.responseText,
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+          })
+        }
     }//error
   });//ajax
 });
