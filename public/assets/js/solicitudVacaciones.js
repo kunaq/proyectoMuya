@@ -10,6 +10,7 @@ setTimeout(function() {
       locale:"es",
       dateFormat: "d-m-Y",
       minDate: inicioCalendario,
+      allowInput: true,
       disableMobile: "true",
       //disable: feriados,
   });
@@ -53,6 +54,7 @@ inputFchInicio.addEventListener("change", function() {
         locale:"es",
         dateFormat: "d-m-Y",
         minDate: minimo,
+        allowInput: true,
         disableMobile: "true",
         //disable: feriados,
         maxDate: maximaDate
