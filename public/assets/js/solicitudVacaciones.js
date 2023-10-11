@@ -10,6 +10,7 @@ setTimeout(function() {
       locale:"es",
       dateFormat: "d-m-Y",
       minDate: inicioCalendario,
+      disableMobile: "true",
       //disable: feriados,
   });
 }, 2000);
