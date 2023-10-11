@@ -96,7 +96,7 @@
                                             <th scope="col" width="8%">Vacaciones programadas</th>
                                             <th scope="col" width="5%">Saldo</th>
                                             <th scope="col" width="5%">Alerta</th>
-                                            <th scope="col" width="5%">Firma</th>
+                                            <th scope="col" width="5%">Firma de solicitud</th>
                                             <th scope="col" width="12%">No cruzar con jefe</th>
                                             <th scope="col" width="17%">No cruzar entre si</th>
                                         </tr>
@@ -532,7 +532,7 @@ window.onload= function() {
                     { title: 'Vacaciones programadas' },
                     { title: 'Saldo' },
                     { title: 'Alerta' },
-                    { title: 'Firma' },
+                    { title: 'Firma de solicitud' },
                     { title: 'No cruzar con jefe' },
                     { title: 'No cruzar entre si' },
                 ],
