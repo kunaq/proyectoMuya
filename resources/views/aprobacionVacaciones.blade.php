@@ -572,8 +572,8 @@ window.onload= function() {
                     element['dsc_subestado_solicitud'],
                     alertaRegla,
                     alertaReprog,
-                    '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                    '<input class="form-check-input checkVerde" type="radio" '+disabled+' name="radioBtnSol'+element['cod_trabajador']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
+                    '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" '+disabled+' name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
                 ];
                 filasArray.push(filaData);
             });
@@ -1113,7 +1113,7 @@ btnProcesarD.addEventListener("click", function() {
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
-                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES PROGRAMADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
+                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','LOCALIDAD','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES SOLICITADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','REGLA'];
                 var filasArray = [];
 
                 respuesta['response'].forEach(element => {

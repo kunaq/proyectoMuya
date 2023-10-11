@@ -3,8 +3,34 @@
 <head>
     <style>
         @page {
-            margin-left: 0;
             margin-right: 0;
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        /** Defina ahora los márgenes reales de cada página en el PDF **/
+        body {
+            margin-top: 2cm;
+            margin-bottom: 2cm;
+        }
+
+        /** Definir las reglas del encabezado **/
+        header {
+            position: fixed;
+            top: 0cm;
+            left: 1cm;
+            right: 0cm;
+            height: 3cm;
+            z-index: 2;
+        }
+
+        /** Definir las reglas del pie de página **/
+        footer {
+            position: fixed;
+            bottom: 5cm;
+            left: 2.5cm;
+            right: 0cm;
+            height: 3.5cm;
+            z-index: 0;
         }
         .cuerpo{
             padding: 4rem;
@@ -34,8 +60,10 @@
         }
     </style>
 </head>
-<body background="{{asset('assets/img/fondoPDF.png')}}">
-    <br><br>
+<header>
+    <img src="{{asset('assets/img/GM.png')}}" width="35%"/>
+</header>
+<body>
     <div class="cuerpo"> 
         <p class="titulo"><b>SOLICITUD DE VACACIONES</b></p>
         <br>
@@ -75,4 +103,7 @@
         </table>
     </div>
 </body>
+<footer>
+    <img src="{{asset('assets/img/footerPDF.png')}}" width="100%"/>
+</footer>
 </html>
