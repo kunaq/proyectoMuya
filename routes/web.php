@@ -131,6 +131,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     //--------------------indicadores---------------------------------
     Route::get('lista/ObtenerPromedioDiasPendiente', [ListaController::class, 'ObtenerPromedioDiasPendiente'])->name('lista.ObtenerPromedioDiasPendiente');
     Route::get('lista/ObtenerReprogramaciones', [ListaController::class, 'ObtenerReprogramaciones'])->name('lista.ObtenerReprogramaciones');
+    Route::get('lista/ObtenerDiasPendiente', [ListaController::class, 'ObtenerDiasPendiente'])->name('lista.ObtenerDiasPendiente');
 
     //------------------------Guardar datos -------------------------------
     Route::put('api/InsertarSolicitudVacaciones', [APIController::class, 'InsertarSolicitudVacaciones'])->name('lista.InsertarSolicitudVacaciones');

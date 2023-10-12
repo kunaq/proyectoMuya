@@ -199,7 +199,7 @@
                                 <div class="card-body">
                                     <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
                                     <hr>
-                                    <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPend">259.3</span></b></h1>
+                                    <h1 class="tarjeta-vaca-foco"><b><span id="indPromVacPend"></span></b></h1>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12" style="margin-bottom: 1rem;">
@@ -740,6 +740,7 @@ window.onload= function() {
     .then(function() {
         indicadorPromVacPendHoy();
         indicadorReprogramaciones();
+        indicadorPromVacPendAnno();
     });
 
     
@@ -787,6 +788,26 @@ function indicadorPromVacPendHoy() {
     });//ajax ObtenerPromedioDiasPendiente hasta hoy
 }
 
+function indicadorPromVacPendAnno() {
+    var codSede = document.getElementById("sedePromVacPendHoy").value;
+    var codArea = document.getElementById("areaPromVacPendHoy").value;
+    $.ajax({
+        url: 'lista/ObtenerDiasPendiente', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
+        success: function(respuesta){ 
+            console.log(respuesta['response']['ctd_dia_pendiente']);
+            var indicador = document.getElementById('indPromVacPend');
+            indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerDiasPendiente hasta fin de año
+}
+
 $("#sedeReprog").on("change", function() {
     indicadorReprogramaciones();
 });
@@ -801,6 +822,14 @@ $("#sedePromVacPendHoy").on("change", function() {
 
 $("#areaPromVacPendHoy").on("change", function() {
     indicadorPromVacPendHoy();
+});
+
+$("#sedePromVacPend").on("change", function() {
+    indicadorPromVacPendAnno();
+});
+
+$("#areaPromVacPend").on("change", function() {
+    indicadorPromVacPendAnno();
 });
 
 //-----------------------Procesar solicitudes de vacaciones---------------------

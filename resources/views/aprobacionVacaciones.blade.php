@@ -249,7 +249,7 @@
                         <div class="col-md-4" style="margin-bottom: 1rem;">
                             <div class="card">
                                 <div class="card-body">
-                                    <h1 class="card-title tarjeta-vaca-foco"><b><span id="indPromVac">50</span></b></h1>
+                                    <h1 class="card-title tarjeta-vaca-foco"><b><span id="indPromVac"></span></b></h1>
                                     <h5 style="font-size: 17px; text-align: center;">Promedio de días pendientes de vacaciones del equipo <b>hasta fin de año</b></h5>
                                 </div>
                             </div>
@@ -642,6 +642,23 @@ window.onload= function() {
 
     //---------------------------indicadores------------------------------
     var codGrupo = ('@php echo(session('codGrupoVac')) @endphp' != '') ? '@php echo(session('codGrupoVac')) @endphp' : '%';
+
+    $.ajax({
+        url: 'lista/ObtenerDiasPendiente', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTra':'@php echo(session('codTrabajador')) @endphp','codGrupo':codGrupo,'codSede':'%','codArea':'%'},
+        success: function(respuesta){ 
+            console.log(respuesta['response']['ctd_dia_pendiente']);
+            var indicador = document.getElementById('indPromVac');
+            indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax ObtenerDiasPendiente hasta hoy
+
     $.ajax({
         url: 'lista/ObtenerPromedioDiasPendiente', 
         method: "GET",

@@ -76,6 +76,7 @@ class VerifyCsrfToken extends Middleware
 
         'lista/ObtenerPromedioDiasPendiente',
         'lista/ObtenerReprogramaciones',
+        'lista/ObtenerDiasPendiente',
         
         'api/InsertarSolicitudVacaciones',
         

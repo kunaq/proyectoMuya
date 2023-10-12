@@ -206,13 +206,18 @@ SOLCITUD VACACIONES X JEFE
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudVacacionesxResponsable/20555348887/TRA00603/2023-07-01/2023-07-30
 
 INDICADORES
+
+    PROMEDIO DE DIAS PENDIENTES HASTA FIN DE AÑO
+
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerDiasPendiente/20555348887/{cod_trabajador}/{cod_sede}/{cod_area}
     
     PROMEDIO DE DIAS PENDIENTE HASTA HOY
         
-        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/TRA00603
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerPromedioDiasPendiente/20555348887/{cod_trabajador}/{cod_sede}/{cod_area}
 
+    PROMEDIO REPROGRAMACIONES
         
-        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/TRA00603
+        GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerReprogramaciones/20555348887/{cod_trabajador}/{cod_sede}/{cod_area}
 
 LISTADO DE BOLETAS DE PAGO
     
