@@ -509,7 +509,7 @@ window.onload= function() {
                     { title: 'Vacaciones programadas' },
                     { title: 'Saldo' },
                     { title: 'Alerta' },
-                    { title: 'Firma' },
+                    { title: 'Firma de convenio' },
                     { title: 'No cruzar con jefe' },
                     { title: 'No cruzar entre si' },
                 ],
