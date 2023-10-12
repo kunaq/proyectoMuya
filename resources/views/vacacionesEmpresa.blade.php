@@ -682,7 +682,7 @@ window.onload= function() {
         dataType: 'json',
         data:{ "cod_anno": anno },
         success: function(result){
-            console.log('response',result['response'][0]['cantidad'])
+            //console.log('response',result['response'][0]['cantidad'])
             document.getElementById("parametroX").value = result['response'][0]['cantidad'];
             document.getElementById("parametroY").value = result['response'][1]['cantidad'];
         }
@@ -778,7 +778,7 @@ function indicadorPromVacPendHoy() {
         dataType: 'json',
         data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
         success: function(respuesta){ 
-            console.log(respuesta['response']['ctd_dia_pendiente']);
+            //console.log(respuesta['response']['ctd_dia_pendiente']);
             var indicador = document.getElementById('indPromVacPendHoy');
             indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
         },//success
@@ -798,7 +798,7 @@ function indicadorPromVacPendAnno() {
         dataType: 'json',
         data:{'codTra':'%','codGrupo':'%','codSede':codSede,'codArea':codArea},
         success: function(respuesta){ 
-            console.log(respuesta['response']['ctd_dia_pendiente']);
+           // console.log(respuesta['response']['ctd_dia_pendiente']);
             var indicador = document.getElementById('indPromVacPend');
             indicador.innerHTML = respuesta['response']['ctd_dia_pendiente'];
         },//success
