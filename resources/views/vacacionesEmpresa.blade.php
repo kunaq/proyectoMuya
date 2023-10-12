@@ -843,7 +843,6 @@ btnProcesar.addEventListener("click", function() {
         var fila = filas[i];
         var inputsRadio = fila.querySelectorAll('input[type="radio"]:checked');
 
-        //var datos = '';
         for (var j = 0; j < inputsRadio.length; j++) {
             var inputRadio = inputsRadio[j];
             var valor = inputRadio.value;
@@ -862,7 +861,7 @@ btnProcesar.addEventListener("click", function() {
 });
 
 function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fchFin) {
-    datos = {
+    var datos = {
         'cod_trabajador': codTrabajadorLista,
         'num_linea': numLineaLista,
         'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
