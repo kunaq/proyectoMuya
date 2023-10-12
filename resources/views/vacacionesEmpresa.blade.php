@@ -485,7 +485,7 @@ window.onload= function() {
             result['response'].forEach(element => {
                 var alertaRegla = '';
                 
-                if(element['flg_solicitud_firmado'] == 'NO' || element['flg_solicitud_firmado'] == ''){
+                if(element['flg_solicitud_firmado'] == 'SI'){
                     alertaRegla = '<a href="#" style="font-size: 28px;color:red;" title="Falta firma de solicitud de vacaciones"><span class="bi bi-exclamation-triangle"></span></a>';
                 }else{
                     alertaRegla = '';

@@ -97,7 +97,7 @@
                                                 <th scope="col" width="10%">Vacaciones programadas</th>
                                                 <th scope="col" width="10%">Saldo</th>
                                                 <th scope="col" width="10%">Alerta</th>
-                                                <th scope="col" width="10%">Firma</th>
+                                                <th scope="col" width="10%">Firma del convenio</th>
                                                 <th scope="col" width="15%">No cruzar con jefe</th>
                                                 <th scope="col" width="15%">No cruzar entre si</th>
                                             </tr>
@@ -468,8 +468,8 @@ window.onload= function() {
             result['response'].forEach(element => {
                 var alertaRegla = '';
                 
-                if(element['flg_acuerdo_firmado'] == 'NO' || element['flg_acuerdo_firmado'] == ''){
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="No hay firma"></span>';
+                if(element['flg_solicitud_firmado'] == 'SI'){
+                    alertaRegla = '<a href="#" style="font-size: 28px;color:red;" title="Falta firma de solicitud de vacaciones"><span class="bi bi-exclamation-triangle"></span></a>';
                 }else{
                     alertaRegla = '';
                 }
