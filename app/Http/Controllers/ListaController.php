@@ -560,7 +560,7 @@ class ListaController extends Controller
         $codArea = $request['codArea'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerDiasPendiente/20555348887/'.$codTra.'/'.$codGrupo.'/'.$codSede.'/'.$codArea);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ObtenerDiasPendiente/20555348887/'.$codTra.'/'.$codSede.'/'.$codArea);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
