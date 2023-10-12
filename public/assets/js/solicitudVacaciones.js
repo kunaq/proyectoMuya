@@ -49,9 +49,6 @@ inputFchInicio.addEventListener("change", function() {
         minimo = fchInicio;
     }
 
-    var movil = esMovil();
-    console.log(movil);
-
     /// despues de todas las validaciones contruir faltpickr---
     flatpickr("#datepickerFinSolVac",{
         locale:"es",
