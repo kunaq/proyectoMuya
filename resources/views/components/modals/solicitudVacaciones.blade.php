@@ -476,7 +476,17 @@ btnSolicitar.addEventListener("click", function() {
     var fchRetorno = document.getElementById('fchRetornoBD').value;
 
     var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
-    var dscExceso = (diasExces != 0) ? 'Excedió el saldo vacacional' : '';
+    var dscExceso = '';
+    if (flgRegla == 'SI') {
+      if(diasExces > 0){
+        dscExceso = 'Excedió el saldo vacacional';
+      }
+    }else{
+      if(diasExces > 0){
+        dscExceso = 'Excedió el saldo vacacional';
+        flgRegla = 'SI';
+      }
+    }
 
     console.log('reglas', dscRegla+' '+dscExceso)
 
