@@ -542,12 +542,14 @@ window.onload= function() {
                 var alertaReprog = '';
                 var codTra = "'"+element['cod_trabajador']+"'";
                 var dscTra = "'"+element['dsc_trabajador']+"'";
+                var regla1 = "'"+element['cod_regla']+"'";
+                var regla2 = "'"+element['cod_regla2']+"'";
                 
                 if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
                     alertaRegla = '';
                 }else{
                     tipo = "'reglas'";
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['cod_regla']+','+element['cod_regla2']+')" style="font-size: 28px;color:red;"></span>';
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+regla1+','+regla2+')" style="font-size: 28px;color:red;"></span>';
                 }
 
                 if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
