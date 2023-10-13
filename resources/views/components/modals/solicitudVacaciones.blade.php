@@ -476,8 +476,9 @@ btnSolicitar.addEventListener("click", function() {
     var fchRetorno = document.getElementById('fchRetornoBD').value;
 
     var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
+    var dscExceso = (diasExces != 0) ? 'Excedió el saldo vacacional' : '';
 
-    console.log('reglas', dscReglaDomingo+' '+dscReglaFeriado)
+    console.log('reglas', dscRegla+' '+dscExceso)
 
     var solVac = {
       'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
@@ -489,7 +490,8 @@ btnSolicitar.addEventListener("click", function() {
       'ctd_dias_exceso': diasExces,
       'cod_trabajador_registro': '@php echo(session('codTrabajador')) @endphp',
       'num_linea_origen': numLineaAnt,
-      'cod_regla': dscReglaDomingo+' '+dscReglaFeriado
+      'cod_regla': dscRegla,
+      'cod_regla2':dscExceso
     }
 
     var parametroX = parseInt(document.getElementById('parametroX').value);
