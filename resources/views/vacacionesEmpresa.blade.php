@@ -565,17 +565,21 @@ window.onload= function() {
                 var alertaReprog = '';
                 var deshabilitaAprueba = '';
                 var deshabilitaRechazo = '';
+                var codTra = "'"+element['cod_trabajador']+"'";
+                var dscTra = "'"+element['dsc_trabajador']+"'";
                 
                 if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
                     alertaRegla = '';
                 }else{
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                    tipo = "'reglas'";
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['cod_regla']+','+element['cod_regla2']+')" style="font-size: 28px;color:red;"></span>';
                 }
 
                 if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
                     alertaReprog = '';
                 }else{
-                    alertaReprog = '<span class="bi bi-exclamation-triangle" style="font-size: 28px;color:red;"></span>';
+                    tipo = "'reprogramacion'";
+                    alertaReprog = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['num_linea']+','+element['num_linea_origen']+');" style="font-size: 28px;color:red;"></span>';
                 }
 
                 if(element['flg_aprobado'] == 'SI' || element['flg_rechazado'] == 'SI'){

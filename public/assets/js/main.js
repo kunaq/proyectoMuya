@@ -636,3 +636,24 @@ function esMovil() {
         return 'NO';
     }
 }
+
+function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
+  if (tipo == 'reprogramacion') {
+    Swal.fire({
+      icon: 'warning',
+      title:dscTra,
+      html: '<b>Solicitud origen:</b> '+codTra+'-'+dato2+'<br><b>Nueva solicitud:</b> '+codTra+'-'+dato1,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#a18347',
+    })
+  }else if (tipo == 'reglas') {
+    Swal.fire({
+      icon: 'warning',
+      title:dscTra,
+      html: dato1+'<br>'+dato2,
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#a18347',
+    })
+  }
+  
+}
