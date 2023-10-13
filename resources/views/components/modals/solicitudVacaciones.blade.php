@@ -478,11 +478,11 @@ btnSolicitar.addEventListener("click", function() {
     var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
     var dscExceso = '';
     if (flgRegla == 'SI') {
-      if(diasExces > 0){
+      if(diferenciaExceso < 0){
         dscExceso = 'Excedió el saldo vacacional';
       }
     }else{
-      if(diasExces > 0){
+      if(diferenciaExceso < 0){
         dscExceso = 'Excedió el saldo vacacional';
         flgRegla = 'SI';
       }
