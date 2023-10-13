@@ -901,7 +901,7 @@ btnProcesar.addEventListener("click", function() {
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {
-                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','SEDE','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES SOLICITADAS','SALDO','ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR','CODIGO TRABAJADOR APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','CODIGO TRABAJADOR SUPERVISOR','REGLA'];
+                var header = ['CODIGO TRABAJADOR','NOMBRES Y APELLIDOS','SEDE','CARGO','AREA','FECHA INGRESO','VACACIONES GENERADAS','VACACIONES SOLICITADAS','SALDO','VACACIONES APROBADAS' ,'ESTADO ADELANTO VACACIONES','GRUPO','TIPO COMISIONISTA','REQUIERE APROBACION','APROBADOR','CODIGO TRABAJADOR APROBADOR',' REQUIERE SUPERVISION','SUPERVISOR','CODIGO TRABAJADOR SUPERVISOR','REGLA'];
                 var filasArray = [];
 
                 respuesta['response'].forEach(element => {
@@ -919,6 +919,7 @@ btnProcesar.addEventListener("click", function() {
                         element['ctd_vacaciones_generadas'],
                         element['ctd_vacaciones_programadas'],
                         element['ctd_saldo'],
+                        element['ctd_vacaciones_aprobadas'],
                         element['dsc_estado_adelanto_vacaciones'],
                         element['dsc_grupo'],
                         element['dsc_comisionista'],
