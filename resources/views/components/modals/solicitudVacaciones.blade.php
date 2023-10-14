@@ -465,10 +465,11 @@ btnSolicitar.addEventListener("click", function() {
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
     var cantDias = document.getElementById('cantDiasSol').value;
+    var numDiasReprog = parseInt(document.getElementById("numVacPendReprog").value);
     cantDias = parseInt(cantDias);
-    diferenciaExceso = cantDias - diasGenerados;
+    diferenciaExceso = (diasGenerados + numDiasReprog) - cantDias;
 
-    var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : 0;
+    var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : diferenciaExceso;
     //console.log('diferenciaExceso',diferenciaExceso);
 
     var reprog = document.getElementById('reprogramacion').value;
@@ -476,19 +477,23 @@ btnSolicitar.addEventListener("click", function() {
     var fchRetorno = document.getElementById('fchRetornoBD').value;
 
     var numLineaAnt = (reprog == 'SI') ? numLinea : 0;
+
+
     var dscExceso = '';
     if (flgRegla == 'SI') {
       if(diferenciaExceso < 0){
-        dscExceso = 'Excedió el saldo vacacional';
+        dscExceso = 'Excedió el saldo vacacional.';
       }
     }else{
       if(diferenciaExceso < 0){
-        dscExceso = 'Excedió el saldo vacacional';
+        dscExceso = 'Excedió el saldo vacacional.';
         flgRegla = 'SI';
       }
     }
 
-    console.log('reglas', dscRegla+' '+dscExceso)
+    var dscRegla = (flgReglaF != '' || flgReglaD != '') ? 'El día de retorno es un día no laborable.' : '';
+
+    //console.log('reglas', dscRegla+' '+dscExceso)
 
     var solVac = {
       'cod_trabajador': '@php echo(session('codTrabajador')) @endphp',
@@ -503,7 +508,7 @@ btnSolicitar.addEventListener("click", function() {
       'cod_regla': dscRegla,
       'cod_regla2':dscExceso
     }
-
+    //return solVac;
     var parametroX = parseInt(document.getElementById('parametroX').value);
     var pagoHaber = document.getElementById('pagoPlanilla').value;
     var fechaActual = new Date();

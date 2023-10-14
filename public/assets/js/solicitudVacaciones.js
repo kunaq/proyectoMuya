@@ -2,7 +2,9 @@
 var hooy = new Date();
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
 var flgRegla = '';
-var dscRegla = '';
+//var dscRegla = '';
+var flgReglaF = '';
+var flgReglaD = '';
 
 setTimeout(function() { 
   flatpickr("#datepickerIniSolVac",{
@@ -127,8 +129,8 @@ inputFchFin.addEventListener("change", function() {
     if (fchFin.getDay() === 0) {
     // Si es domingo, agregar un día adicional
       //fchFin.setDate(fchFin.getDate() + 1);
-      flgRegla = 'SI';
-      dscRegla = 'El día de retorno es un día no laborable';
+      flgReglaD = 'SI';
+      //dscReglaD = 'El día de retorno es un día no laborable';
 
       Swal.fire({
         icon: 'warning',
@@ -137,8 +139,8 @@ inputFchFin.addEventListener("change", function() {
         confirmButtonColor: '#a18347',
       })
     }else{
-      flgRegla = 'NO';
-      dscRegla = '';
+      flgReglaD = 'NO';
+      //dscReglaD = '';
     }
     feriados.forEach(element => {
 
@@ -152,8 +154,8 @@ inputFchFin.addEventListener("change", function() {
       if(element == auxFchFin){
         //si es feriado
         //fchFin.setDate(fchFin.getDate() + 1);
-        flgRegla = 'SI';
-        dscRegla = 'El día de retorno es un día no laborable';
+        flgReglaF = 'SI';
+        //dscReglaF = 'El día de retorno es un día no laborable';
 
         Swal.fire({
           icon: 'warning',
@@ -162,8 +164,8 @@ inputFchFin.addEventListener("change", function() {
           confirmButtonColor: '#a18347',
         })
       }else{
-        flgRegla = 'NO';
-        dscRegla = '';
+        flgReglaF = 'NO';
+        //dscReglaF = '';
       }  
       if (fchFin.getDay() === 0) {
         // Si es domingo, agregar un día adicional
