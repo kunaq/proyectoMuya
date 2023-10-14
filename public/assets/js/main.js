@@ -647,10 +647,18 @@ function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
       confirmButtonColor: '#a18347',
     })
   }else if (tipo == 'reglas') {
+    texto = '';
+    if(dato1 == '' && dato2 != ''){
+      texto = '<ul style="text-align:left;"><li>'+dato2+'</li></ul>';
+    }else if(dato2 == '' && dato1 != ''){
+      texto = '<ul style="text-align:left;"><li>'+dato1+'</li></ul>'
+    }else{
+      texto = '<ul style="text-align:left;"><li>'+dato1+'</li><li>'+dato2+'</li></ul>';
+    }
     Swal.fire({
       icon: 'warning',
       title:dscTra,
-      html: dato1+'<br>'+dato2,
+      html: texto,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#a18347',
     })
