@@ -645,7 +645,7 @@ function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
       method: "get",
       crossDomain: true,
       dataType: 'json',
-      data:{'num_linea':dato2},
+      data:{'num_linea':dato1},
       success: function(respuesta){
         console.log(respuesta.response);
         fila = respuesta.response;
