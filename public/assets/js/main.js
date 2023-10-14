@@ -639,10 +639,23 @@ function esMovil() {
 
 function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
   if (tipo == 'reprogramacion') {
+    texto = '<div style="text-align: -webkit-center;"><table style="text-align: center;"><tr><td></td><td>Inicio</td><td>Fin</td><td>Cant. días</td>'+
+              '</tr><tr>'+
+                  '<td><b>Origen:&nbsp;</b> </td>'+
+                  '<td>01/01/2023&nbsp;</td>'+
+                  '<td>01/01/2023</td>'+
+                  '<td>5</td>'+
+              '</tr><tr>'+
+                  '<td><b>Nueva: &nbsp; </b></td>'+
+                  '<td>10/10/2023&nbsp;</td>'+
+                  '<td>10/10/2023</td>'+
+                  '<td>6</td>'+
+              '</tr></table><div>';
+
     Swal.fire({
       icon: 'warning',
       title:dscTra,
-      html: '<b>Solicitud origen:</b> '+codTra+'-'+dato2+'<br><b>Nueva solicitud:</b> '+codTra+'-'+dato1,
+      html: texto,
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#a18347',
     })
