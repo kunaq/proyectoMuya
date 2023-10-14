@@ -1,8 +1,6 @@
 //const { parseJSON } = require("jquery");
 var hooy = new Date();
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
-var flgRegla = '';
-//var dscRegla = '';
 var flgReglaF = '';
 var flgReglaD = '';
 

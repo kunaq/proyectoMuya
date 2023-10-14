@@ -490,8 +490,11 @@ btnSolicitar.addEventListener("click", function() {
         flgRegla = 'SI';
       }
     }
-
-    var dscRegla = (flgReglaF != '' || flgReglaD != '') ? 'El día de retorno es un día no laborable.' : '';
+    var dscRegla = '';
+    if (flgReglaF != '' || flgReglaD != '') {
+      dscRegla = 'El día de retorno es un día no laborable.';
+      flgRegla = 'SI';
+    }
 
     //console.log('reglas', dscRegla+' '+dscExceso)
 
