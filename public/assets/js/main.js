@@ -638,42 +638,48 @@ function esMovil() {
 }
 
 function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
+  var texto = '';
   if (tipo == 'reprogramacion') {
-
     $.ajax({
       url: 'func/ListarVacacionesDias',
       method: "get",
       crossDomain: true,
       dataType: 'json',
-      data:{'num_linea':dato1},
+      data:{'num_linea':dato2},
       success: function(respuesta){
-        console.log(respuesta);
+        console.log(respuesta.response);
+        fila = respuesta.response;
+        fchIni1 = fila[0]['fch_inicio'].split('T');
+        fchFin1 = fila[0]['fch_fin'].split('T');
+        fchIni2 = fila[1]['fch_inicio'].split('T');
+        fchFin2 = fila[1]['fch_fin'].split('T');
+
+        texto = '<div class="tablaAlerta" style="text-align: -webkit-center;"><table style="text-align: center;"><tr><td></td><td>Inicio</td><td>Fin</td><td>Días</td>'+
+          '</tr><tr>'+
+              '<td><b>'+fila[0]['dsc_detalle']+':&nbsp;</b> </td>'+
+              '<td>'+formatDate(fchIni1[0])+'&nbsp;</td>'+
+              '<td>'+formatDate(fchFin1[0])+'</td>'+
+              '<td>'+fila[0]['cant_dia']+'</td>'+
+          '</tr><tr>'+
+          '<td><b>'+fila[1]['dsc_detalle']+':&nbsp;</b> </td>'+
+          '<td>'+formatDate(fchIni2[0])+'&nbsp;</td>'+
+          '<td>'+formatDate(fchFin2[0])+'</td>'+
+          '<td>'+fila[1]['cant_dia']+'</td>'+
+          '</tr></table><div>';
+
+          Swal.fire({
+            icon: 'warning',
+            title:dscTra,
+            html: texto,
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#a18347',
+          })
+
       },//success
       error(e){
-        console.log(e.message);
+        console.log(e);
       }//error
     });//ajax
-
-    texto = '<div class="tablaAlerta" style="text-align: -webkit-center;"><table style="text-align: center;"><tr><td></td><td>Inicio</td><td>Fin</td><td>Días</td>'+
-              '</tr><tr>'+
-                  '<td><b>Origen:&nbsp;</b> </td>'+
-                  '<td>01/01/2023&nbsp;</td>'+
-                  '<td>01/01/2023</td>'+
-                  '<td>5</td>'+
-              '</tr><tr>'+
-                  '<td><b>Nueva: &nbsp; </b></td>'+
-                  '<td>10/10/2023&nbsp;</td>'+
-                  '<td>10/10/2023</td>'+
-                  '<td>6</td>'+
-              '</tr></table><div>';
-
-    Swal.fire({
-      icon: 'warning',
-      title:dscTra,
-      html: texto,
-      confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#a18347',
-    })
   }else if (tipo == 'reglas') {
     texto = '';
     if(dato1 == '' && dato2 != ''){

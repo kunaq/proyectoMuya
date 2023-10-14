@@ -265,4 +265,4 @@ OBTENER BASE 64
 
 OBTENER SOLICITUD
 
-    GET https://webapiportaplanillamuya.azurewebsites.net/API/Vacaciones/ListarVacacionesDias/ruc/numlines
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarVacacionesDias/20555348887/numlinea
