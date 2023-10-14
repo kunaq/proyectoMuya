@@ -796,8 +796,8 @@ function indicadorPromVacPendHoy() {
 }
 
 function indicadorPromVacPendAnno() {
-    var codSede = document.getElementById("sedePromVacPendHoy").value;
-    var codArea = document.getElementById("areaPromVacPendHoy").value;
+    var codSede = document.getElementById("sedePromVacPend").value;
+    var codArea = document.getElementById("areaPromVacPend").value;
     $.ajax({
         url: 'lista/ObtenerDiasPendiente', 
         method: "GET",
