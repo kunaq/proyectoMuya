@@ -80,6 +80,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('func/ObtenerValidacionVacacionesPagadas', [FuncionesController::class, 'ObtenerValidacionVacacionesPagadas'])->name('lista.ObtenerValidacionVacacionesPagadas');
     Route::put('func/AnularGoceVacaciones', [FuncionesController::class, 'AnularGoceVacaciones'])->name('lista.AnularGoceVacaciones');
     Route::put('func/ActualizarParametro', [FuncionesController::class, 'ActualizarParametro'])->name('lista.ActualizarParametro');
+    Route::get('func/ListarVacacionesDias', [FuncionesController::class, 'ListarVacacionesDias'])->name('func.ListarVacacionesDias');
 
      //-----------------------Mostrar Datos-----------------------------//
     Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');

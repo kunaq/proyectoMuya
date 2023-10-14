@@ -639,6 +639,21 @@ function esMovil() {
 
 function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
   if (tipo == 'reprogramacion') {
+
+    $.ajax({
+      url: 'func/ListarVacacionesDias',
+      method: "get",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'num_linea':dato1},
+      success: function(respuesta){
+        console.log(respuesta);
+      },//success
+      error(e){
+        console.log(e.message);
+      }//error
+    });//ajax
+
     texto = '<div class="tablaAlerta" style="text-align: -webkit-center;"><table style="text-align: center;"><tr><td></td><td>Inicio</td><td>Fin</td><td>Días</td>'+
               '</tr><tr>'+
                   '<td><b>Origen:&nbsp;</b> </td>'+

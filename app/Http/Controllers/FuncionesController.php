@@ -181,4 +181,25 @@ class FuncionesController extends Controller
 
     }
 
+    public function ListarVacacionesDias(Request $request)
+    {   
+        $client = new Client();
+        $numLinea =  $request['num_linea'];
+
+        try {
+            $response = $client->request('GET', 'https://webapiportaplanillamuya.azurewebsites.net/API/Vacaciones/ListarVacacionesDias/20555348887/'.$numLinea);
+            $statusCode = $response->getStatusCode();
+            $responseData = $response->getBody()->getContents();
+
+            // Aquí puedes procesar la respuesta de la API según tus requisitos
+            $token = explode('":',$responseData);
+            
+            // Ejemplo de retorno de la respuesta
+            return str_replace('}}', '',$token[3]);
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }
