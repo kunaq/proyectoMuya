@@ -491,7 +491,7 @@ btnSolicitar.addEventListener("click", function() {
       }
     }
     var dscRegla = '';
-    if (flgReglaF != '' || flgReglaD != '') {
+    if (flgReglaF == 'SI' || flgReglaD == 'SI') {
       dscRegla = 'El día de retorno es un día no laborable.';
       flgRegla = 'SI';
     }
@@ -511,7 +511,9 @@ btnSolicitar.addEventListener("click", function() {
       'cod_regla': dscRegla,
       'cod_regla2':dscExceso
     }
-    //return solVac;
+    // console.log('reglas', solVac);
+    // console.log('f '+flgReglaF+'- D '+flgReglaD);
+    // return solVac;
     var parametroX = parseInt(document.getElementById('parametroX').value);
     var pagoHaber = document.getElementById('pagoPlanilla').value;
     var fechaActual = new Date();

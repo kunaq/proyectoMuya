@@ -141,30 +141,32 @@ inputFchFin.addEventListener("change", function() {
       flgReglaD = 'NO';
       //dscReglaD = '';
     }
-    feriados.forEach(element => {
-
+    feriados.every(element => { //igual al foreach pero se detiene con los return
+      
       const FinDia = fchFin.getDate();
       const diaForm = (FinDia < 10) ? '0'+FinDia : FinDia; 
       const FinMes = fchFin.getMonth()+1;
       const mesForm = (FinMes < 10) ? '0'+FinMes : FinMes; 
       const FinAno = fchFin.getFullYear();
       var auxFchFin = diaForm+'-'+mesForm+'-'+FinAno;
-
+      
       if(element == auxFchFin){
         //si es feriado
         //fchFin.setDate(fchFin.getDate() + 1);
         flgReglaF = 'SI';
         //dscReglaF = 'El día de retorno es un día no laborable';
-
+        //alert(flgReglaF);
         Swal.fire({
           icon: 'warning',
           text: 'El día de retorno es un día no laborable o día de descanso.',
           confirmButtonText: 'Continuar',
           confirmButtonColor: '#a18347',
         })
+        return false;
       }else{
         flgReglaF = 'NO';
         //dscReglaF = '';
+        return true;// tiene que tener return true o se detiene el every()
       }  
       if (fchFin.getDay() === 0) {
         // Si es domingo, agregar un día adicional
