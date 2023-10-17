@@ -21,7 +21,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h1 class="card-title tarjeta-foco"><b><span id="num_vacaciones_pendiente"></span></b></h1>
-                                <h5>Días generados de vacaciones</h5>
+                                <h5>Saldo pendiente de vacaciones</h5>
                                 <input type="hidden" id="numVacPend" name="numVacPend">
                             </div>
                         </div>
