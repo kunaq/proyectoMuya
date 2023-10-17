@@ -41,6 +41,7 @@ class ArchivoController extends Controller
         $datos = [];
         $sql = '';
         $filas = $hoja->toArray();
+
         foreach ($filas as $key => $fila) {
             // Validar que ningún elemento esté vacío
             if (in_array('', $fila, true)) {
@@ -51,7 +52,7 @@ class ArchivoController extends Controller
             Carbon::setLocale('en');
 
             // Obtener la fecha inicio y fecha fin
-            if ($fila[0] != '' || $fila[0] != null) {
+            if ($fila[0] != '' || $fila[0] != NULL) {
                 try {
                     //code...
                     $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
@@ -59,6 +60,8 @@ class ArchivoController extends Controller
                 } catch (\Throwable $th) {
                     return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
                 }
+            }else{
+                break;
             }
 
             // Restaurar la configuración regional original
@@ -80,19 +83,18 @@ class ArchivoController extends Controller
             }
 
             // Filtrar las columnas nulas en la fila
-            $filaFiltrada = array_filter($fila, function ($valor) {
-                return !is_null($valor);
-            });
+            // $filaFiltrada = array_filter($fila, function ($valor) {
+            //     return !is_null($valor);
+            // });
 
             // Validar que la fila filtrada tenga la misma cantidad de elementos
-            if (count($filaFiltrada) !== 3) {
-                return response()->json(['error' => 'La fila contiene columnas nulas.'], 400);
-            }
-
+            // if (count($filaFiltrada) !== 3) {
+            //     return response()->json(['error' => 'La fila contiene columnas nulas.'], 400);
+            // }
             $datos[] = $fila;
             $sql .= "INSERT INTO webppm_solicitud_vacaciones_temporal (cod_trabajador,num_linea,fch_inicio,fch_fin,cod_periodo,cod_anho,cod_trabajador_registro) VALUES ('".$fila[0]."',1,'".$fila[1]."','".$fila[2]."','".$request['periodo']."',".$request['annoIniVE'].",'".session('codTrabajador')."')";
         }
-
+        
         // Generar el contenido JSON
 
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
