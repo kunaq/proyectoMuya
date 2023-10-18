@@ -1656,4 +1656,13 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
     });
 });
 
+$("#ayudaCargaMasivaEmp").click(function () {
+    Swal.fire({
+        icon: 'info',
+        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos sin encabezado</p>",
+        confirmButtonColor: '#a18347',
+        confirmButtonText: 'Cerrar'
+    })
+});
+
 </script>

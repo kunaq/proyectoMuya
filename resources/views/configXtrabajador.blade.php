@@ -1077,4 +1077,13 @@ btnProcesar.addEventListener("click", function() {
     });
 });
 
+$("#ayudaCargaMasiva").click(function () {
+    Swal.fire({
+        icon: 'info',
+        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 9 columnas ('codigo de trabajador','Requiere aprobacion'(Y/N), 'codigo del trabajador responsable de aprobar','número de días antes de fin de mes que no puede salir de vacaciones', 'Requiere supervisión (Y/N)','codigo del trabajador supervisor','Puede cruzar su vacación con otro colaborador'(Y/N), 'Puede cruzar su vacación con su responsable' (Y/N), 'Es delegado para aprobar vacaciones del grupo' (Y/N)) y los datos sin encabezado.</p>",
+        confirmButtonColor: '#a18347',
+        confirmButtonText: 'Cerrar'
+    })
+});
+
 </script>
