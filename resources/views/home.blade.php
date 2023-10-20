@@ -7,7 +7,7 @@
         <div class="col-md-10 offset-md-1">
           <div class="card">
               <div class="card-body">
-                  <h1 class="card-title titulo-home"><span> ¡Hola </span><span class="primMayus" id="nombreTrabajador">{{session('nombreTrabajador')}}</span>! <br> <span> Bienvenida a la plataforma de Grupo Muya</span></h1>
+                  <h1 class="card-title titulo-home"><span> ¡Hola </span><span class="primMayus" id="nombreTrabajador">{{session('nombreBienvenida')}}</span>! <br> <span> BienvenidO(a) a la plataforma de Grupo Muya</span></h1>
               </div>
           </div>
         </div>  

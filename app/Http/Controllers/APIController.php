@@ -50,6 +50,7 @@ class APIController extends Controller
             Session::put('docTraRRHH', $responseData->response->dsc_documento_rrhh);
             Session::put('periodoConvenio', $responseData->response->cod_periodo_vacaciones_convenio);
             Session::put('numVacaciones', $responseData->response->num_vacaciones);
+            Session::put('nombreBienvenida', $responseData->response->nombres);
 
 
             // Ejemplo de retorno de la respuesta
