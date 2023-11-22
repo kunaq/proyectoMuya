@@ -458,11 +458,11 @@ class APIController extends Controller
         config([
             'mail.mailers.smtp.host' => $host,
             'mail.mailers.smtp.port' => $puerto,
-            'mail.mailers.smtp.username' => 'gdh.doc@grupomuya.com.pe',
-            'mail.mailers.smtp.password' => 'Cjg5XyJcJ6IJPFYY',
+            'mail.mailers.smtp.username' => '',
+            'mail.mailers.smtp.password' => '',
             'mail.mailers.smtp.encryption' => 'TLS',
             'mail.mailers.smtp.auth_mode' => 'PLAIN', 
-            'mail.from.address' => 'gdh.doc@grupomuya.com.pe',
+            'mail.from.address' => '',
             'mail.from.name' => 'Grupo Muya'
         ]);
     

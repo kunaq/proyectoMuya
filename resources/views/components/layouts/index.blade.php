@@ -23,12 +23,12 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- captcha google -->
-        
+{{--         
     <?php
-        $captcha_site_key  = '6LeXFtMgAAAAACtFv_jr3yUL5gaUuBC1qxp2_Ahe';
+         $captcha_site_key  = '6LeXFtMgAAAAACtFv_jr3yUL5gaUuBC1qxp2_Ahe';
     ?>
 
-    <script src="https://www.google.com/recaptcha/api.js?render=<?= $captcha_site_key ?>"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?= $captcha_site_key ?>"></script> --}}
 
 </head>
 
