@@ -54,7 +54,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr style="text-align: center;">
                         <td><span id="dsc_nombres"></span></td>
                         <td><span id="dsc_apellidos"></span></td>
                         <td><span id="dsc_documento"></span></td>
@@ -64,7 +64,7 @@
                         <th scope="col">Teléfono</th>
                         <th scope="col">Correo personal</th>
                       </tr>
-                      <tr>
+                      <tr style="text-align: center;">
                         <td><span id="fch_nacimiento"></span></td>
                         <td><span id="dsc_telefono_personal"></span></td>
                         <td><span id="dsc_mail_personal"></span></td>
@@ -89,7 +89,7 @@
                         <th scope="col">Cargo Actual</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="text-align: center;">
                       <tr>
                         <td><span id="fch_ingreso"></span></td>
                         <td><span id="dsc_cargo"></span></td>

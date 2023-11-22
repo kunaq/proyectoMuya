@@ -67,10 +67,10 @@ class APIController extends Controller
         $client = new Client();
 
         try {
-            $response = $client->request('POST', 'https://test45.davicloud.com/API/v1/api_rest.php/access_token', [
+            $response = $client->request('POST', 'https://grupomuya.davicloud.com/API/v1/api_rest.php/access_token', [
                 'headers' => [
-                    'Jcdf-Apib-Subscription-Key' => '69b220cffb8a89b060cabfd992cfa9b3',
-                    'Authorization' => 'Basic MTkyMGQyYzJlY2UyODM3Yjo2YjU2ODY0NTJkMDlmZGMx',
+                    'Jcdf-Apib-Subscription-Key' => 'd7fa065f15b3b4efe45030f47483ff63',
+                    'Authorization' => 'Basic YWYzN2I3ZDQ3OGUzMmMwMTo2NDQxOWJjZDZiNTQ4ODBl',
                 ],
                 'http_errors' => false, // Permite manejar errores HTTP personalizados
             ]);
@@ -97,12 +97,12 @@ class APIController extends Controller
         try {
 
             $headers = [
-                'Jcdf-Apib-Subscription-Key' => '69b220cffb8a89b060cabfd992cfa9b3',
+                'Jcdf-Apib-Subscription-Key' => 'd7fa065f15b3b4efe45030f47483ff63',
                 'Authorization' => 'Bearer '.$token,
                 'Content-Type' => 'application/json'
               ];
               
-            $request = new \GuzzleHttp\Psr7\Request('POST','https://test45.davicloud.com/API/v1/api_rest.php/genera_documento', $headers, $data);
+            $request = new \GuzzleHttp\Psr7\Request('POST','https://grupomuya.davicloud.com/API/v1/api_rest.php/genera_documento', $headers, $data);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 
                 $bodyContents = $response->getBody()->getContents();
@@ -429,7 +429,7 @@ class APIController extends Controller
             
             Contraseña: ".$actualiza."<br><br>
             
-            Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
+            Puedes ingresar al intranet <a href='https://intranet.grupomuya.com.pe/intranetpe/public'>aquí</a>.<br><br>
             
             Atte.<br><br>
             
@@ -446,7 +446,7 @@ class APIController extends Controller
             Solicitante/responsable: $solicitante <br>
             Actividad: $actividad <br><br>
             
-            Puedes ingresar al intranet <a href='http://proyectomuya.kunaq.net.pe/'>aquí</a>.<br><br>
+            Puedes ingresar al intranet <a href='https://intranet.grupomuya.com.pe/intranetpe/public'>aquí</a>.<br><br>
             
             Atte.<br><br>
             
@@ -458,11 +458,11 @@ class APIController extends Controller
         config([
             'mail.mailers.smtp.host' => $host,
             'mail.mailers.smtp.port' => $puerto,
-            'mail.mailers.smtp.username' => 'comprobantedepago@grupomuya.com.pe',
-            'mail.mailers.smtp.password' => '',
+            'mail.mailers.smtp.username' => 'gdh.doc@grupomuya.com.pe',
+            'mail.mailers.smtp.password' => 'Cjg5XyJcJ6IJPFYY',
             'mail.mailers.smtp.encryption' => 'TLS',
             'mail.mailers.smtp.auth_mode' => 'PLAIN', 
-            'mail.from.address' => 'comprobantedepago@grupomuya.com.pe',
+            'mail.from.address' => 'gdh.doc@grupomuya.com.pe',
             'mail.from.name' => 'Grupo Muya'
         ]);
     
@@ -474,7 +474,6 @@ class APIController extends Controller
                 $message->cc($correoCC);
             }
             $message->cc('echanganaqui@kunaq.pe');
-            $message->cc('larias@kunaq.pe');
             $message->cc('mgonzalez@kunaq.pe');
             $message->cc('bgalvan@kunaq.pe');
         });

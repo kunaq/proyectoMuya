@@ -39,7 +39,7 @@
             
             <div class="row" style="display: flex; align-items: baseline;">
               
-              <div class="mb-3 col-12 col-md-6">
+              <div class="mb-3 col-12 col-md-6" style="display: none;">
                 <div class="form-group">
                   <label for="annoIniVE" class="form-label">Año:</label>
                   <select class="form-select" name="annoIniVE" id="annoIniVE">
@@ -47,7 +47,7 @@
                 </div>
               </div>
 
-              <div class="mb-3 col-12 col-md-6">
+              <div class="mb-3 col-12 col-md-6" style="display: none;">
                 <div class="form-group">
                   <label for="periodo" class="form-label">Periodo:</label>
                   <select class="form-select" name="periodo" id="periodo">

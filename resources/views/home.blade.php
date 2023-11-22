@@ -238,7 +238,7 @@ btnSolicitar.addEventListener("click", function() {
       data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':mes},
       success: function(result){
         console.log(result['response']['dsc_base_64'])
-        var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3'];
+        var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3']+result['response']['dsc_base_64_4']+result['response']['dsc_base_64_5']+result['response']['dsc_base_64_6']+result['response']['dsc_base_64_7']+result['response']['dsc_base_64_8']+result['response']['dsc_base_64_9']+result['response']['dsc_base_64_10'];
         if (result['response']['dsc_base_64'] != null) {
             base64ToPDF(completo);
         }else{

@@ -551,7 +551,7 @@ window.onload= function() {
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTrabajador':'%'},
+        data:{'codTrabajador':'%','flg_equipos':'%'},
         success: function(result){
             //console.log(result);
             var filasArray = [];
@@ -566,6 +566,7 @@ window.onload= function() {
                 var alertaReprog = '';
                 var deshabilitaAprueba = '';
                 var deshabilitaRechazo = '';
+                var deshabilitaAnulado = '';
                 var codTra = "'"+element['cod_trabajador']+"'";
                 var dscTra = "'"+element['dsc_trabajador']+"'";
                 var regla1 = "'"+element['cod_regla']+"'";
@@ -585,9 +586,14 @@ window.onload= function() {
                     alertaReprog = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['num_linea']+','+element['num_linea_origen']+');" style="font-size: 28px;color:red;"></span>';
                 }
 
-                if(element['flg_aprobado'] == 'SI' || element['flg_rechazado'] == 'SI'){
+                if(element['flg_aprobado'] == 'SI' && element['flg_rechazado'] == 'NO'){
                     deshabilitaRechazo = 'disabled';
                     deshabilitaAprueba = 'disabled';
+
+                }else if( element['flg_rechazado'] == 'SI' || element['flg_pagado'] == 'SI'){
+                    deshabilitaRechazo = 'disabled';
+                    deshabilitaAprueba = 'disabled';
+                    deshabilitaAnulado = 'disabled';
                 }
 
                 if(element['flg_aprobado'] == 'SI' && element['flg_pagado'] == 'NO'){
@@ -608,7 +614,7 @@ window.onload= function() {
                     alertaReprog,
                     '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" '+deshabilitaAprueba+' id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
                     '<input class="form-check-input checkVerde" type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="recSol"  '+deshabilitaRechazo+' value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="anularSol" value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkDorado" type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="anularSol" '+deshabilitaAnulado+' value="ANULAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
                 ];
                 filasArray.push(filaData);
             });
@@ -652,7 +658,7 @@ window.onload= function() {
             // console.log(respuesta);
             var body = document.getElementById('nav-colaborador');
             var body2 = document.getElementById('txtReglasColab');
-            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+            var aux = (respuesta['response'] == '' || (respuesta['response'][0]['dsc_regla']=='')) ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
             body.innerHTML = aux;
             body2.innerHTML = aux;
         },//success
@@ -670,7 +676,7 @@ window.onload= function() {
             // console.log(respuesta);
             var body = document.getElementById('navSupervisor');
             var body2 = document.getElementById('txtReglasJefe');
-            var aux = (respuesta['response'][0]['dsc_regla']=='') ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
+            var aux = (respuesta['response'] == '' || (respuesta['response'][0]['dsc_regla']=='')) ? 'No hay reglas definidas por el momento..' : respuesta['response'][0]['dsc_regla'];
             body.innerHTML = aux;
             body2.innerHTML = aux;
         },//success
@@ -884,7 +890,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
             data:{'solVac':datos},
             success: function(respuesta){
                 enviaRechazoVac(codTrabajadorLista,fchIni,fchFin,'REC',numLineaLista)
-                console.log(respuesta);
+                //console.log(respuesta);
                 Swal.fire({
                     icon: 'success',
                     text: 'Se han procesado las solicitudes con éxito',
@@ -918,7 +924,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
             data:{'solVac':datos},
             success: function(respuesta){
                 enviaAprobacionVac(codTrabajadorLista,fchIni,fchFin,numLineaLista);
-                console.log(respuesta);
+                //console.log(respuesta);
                 Swal.fire({
                     icon: 'success',
                     text: 'Se han procesado las solicitudes con éxito',
@@ -950,7 +956,7 @@ function procesarSolicitud(accion, codTrabajadorLista, numLineaLista, fchIni, fc
             dataType: 'json',
             data:{'codTra':codTrabajadorLista,'numLinea':numLineaLista},
             success: function(respuesta){
-                console.log(datos,' ObtenerValidacionVacacionesPagadas');
+                //console.log(respuesta,' ObtenerValidacionVacacionesPagadas');
                 if (respuesta == 'NO') {
                     $.ajax({
                         url: 'api/RechazarSolicitudVacaciones', 
@@ -1119,7 +1125,7 @@ btnModificaReglas.addEventListener("click", function() {
             'flg_trabajador': flgColab,
             'flg_jefe': flgJefe
         };
-        console.log(data);
+        // console.log(data);
         var promesa = $.ajax({
         url: 'api/ActualizarReglaTrabajador',
         method: "PUT",
@@ -1186,7 +1192,7 @@ btnProcesar.addEventListener("click", function() {
         //data:{'codTra':'@php echo(session('codTrabajador')) @endphp','fchIni':fchInicio,'fchFin':fchFin},
         data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'EMP','visualizar':'NO'},
         success: function(respuesta){
-            console.log(respuesta['response'].length);
+            // console.log(respuesta['response'].length);
             if (respuesta['response'].length > 0) {
                 data = [];
                 var header = ['SOLICITUD','TRABAJADOR','NOMBRES Y APELLIDOS','ÁREA','SEDE','CARGO','FECHA INICIO VAC.','FECHA FIN VAC.','DÍAS VAC.','DÍA DE INCORPORACIÓN','ESTADO ACTUAL SOL.','SUBESTADO APROBACIÓN','SUBESTADO RECHAZO','SUBESTADO SOLICITUD','ESTADO FIRMA SOL.',' ESTADO DE PAGO','CANT. DÍAS EXCEDIDOS','REPROGRAMACIÓN','FECHA REGISTRO SOL.','CÓDIGO TRABAJADOR REGISTRÓ','FECHA APROBACIÓN SOL.','CÓDIGO TRABAJADOR DEL APROBADOR','FECHA RECHAZO SOL.','CÓDIGO TRABAJADOR DE RECHAZO'];
@@ -1424,7 +1430,7 @@ function enviaRechazoVac(codTra,fchIni,fchFin,accionEnvio,numSolicitud) {
         dataType: 'json',
         data:{'cod_trabajador':codTra},
         success: function(respuesta){
-            console.log('accionEnvio',accionEnvio);
+            // console.log('accionEnvio',accionEnvio);
             var dscTra = respuesta['response']['dsc_trabajador'];
             var correoTra = respuesta['response']['dsc_mail_personal'];
             var codSupervisor = respuesta['response']['cod_supervisor'];
@@ -1482,7 +1488,7 @@ function enviaAprobacionVac(codTra,fchIni,fchFin,numSolicitud) {
         dataType: 'json',
         data:{'cod_trabajador':codTra},
         success: function(respuesta){
-            console.log(respuesta);
+            // console.log(respuesta);
             var dscTra = respuesta['response']['dsc_trabajador'];
             var correoTra = respuesta['response']['dsc_mail_personal'];
             var codSupervisor = respuesta['response']['cod_supervisor'];
@@ -1563,6 +1569,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
         method: 'POST',
         body: formData
     }).then(response => response.json()).then(data => {
+        console.log(data);
         if (data.error) {
             // Si hay un error, muestra la alerta de error
             Swal.fire({
@@ -1573,83 +1580,93 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 confirmButtonText: 'Cerrar'
             });
         } else {
-            // Si no hay error, muestra la alerta de éxito
-            var numImport = data.response.num_importacion;
-            $.ajax({
-                url: 'lista/ListarSolicitudMasiva', 
-                method: "GET",
-                crossDomain: true,
-                dataType: 'json',
-                data:{'numImport':numImport},
-                success: function(respuesta){
-                    console.log('lista solicitud',respuesta);
-                    respuesta['response'].forEach(element => {
-                        var codTra = element['cod_trabajador'];
-                        var fchLimite = element['fch_limite'];
-                        var fchInicio = element['fch_inicio'];
-                        var fchFin = element['fch_fin'];
-                        var numSolicitud = element['num_solicitud'];
-                        var estado = 1;
-                        var codMensaje = '';
-                        var asunto = '';
-                        var actividad = '';
-                        var estado = element['dsc_estado'];
-                        if(estado == 'SOLICITADO'){  //Solicitado
-                            $.ajax({
-                                url: 'api/ObtenerTrabajador', 
-                                method: "GET",
-                                crossDomain: true,
-                                dataType: 'json',
-                                data:{'cod_trabajador':codTra},
-                                success: function(respuesta){
-                                    var codJefe = respuesta['response']['cod_supervisor'];
-                                    codMensaje = '4001';
-                                    codMensajeJefe = '1002';
-                                    asunto = 'Ingreso de solicitud de vacaciones';
-                                    actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
-                                    asuntoJefe = 'Aceptar/rechazar una solicitud de vacaciones.'; 
-                                    //envia correo a trabajador
-                                    enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+            if (data.response.dsc_observacion != "OK") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: data.mensaje,
+                    confirmButtonColor: '#a18347',
+                    confirmButtonText: 'Cerrar'
+                });
+            }else{
+                // Si no hay error, muestra la alerta de éxito
+                var numImport = data.response.num_importacion;
+                $.ajax({
+                    url: 'lista/ListarSolicitudMasiva', 
+                    method: "GET",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'numImport':numImport},
+                    success: function(respuesta){
+                        // console.log('lista solicitud',respuesta);
+                        respuesta['response'].forEach(element => {
+                            var codTra = element['cod_trabajador'];
+                            var fchLimite = element['fch_limite'];
+                            var fchInicio = element['fch_inicio'];
+                            var fchFin = element['fch_fin'];
+                            var numSolicitud = element['num_solicitud'];
+                            var estado = 1;
+                            var codMensaje = '';
+                            var asunto = '';
+                            var actividad = '';
+                            var estado = element['dsc_estado'];
+                            if(estado == 'SOLICITADO'){  //Solicitado
+                                $.ajax({
+                                    url: 'api/ObtenerTrabajador', 
+                                    method: "GET",
+                                    crossDomain: true,
+                                    dataType: 'json',
+                                    data:{'cod_trabajador':codTra},
+                                    success: function(respuesta){
+                                        var codJefe = respuesta['response']['cod_supervisor'];
+                                        codMensaje = '4001';
+                                        codMensajeJefe = '1002';
+                                        asunto = 'Ingreso de solicitud de vacaciones';
+                                        actividad = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
+                                        asuntoJefe = 'Aceptar/rechazar una solicitud de vacaciones.'; 
+                                        //envia correo a trabajador
+                                        enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
 
-                                    //envia correo jefe de trabajador
-                                    enviaCorreoMensaje(codJefe,codTraSolic,dscSolicitante,codMensajeJefe,fchLimite,asuntoJefe,asuntoJefe,numSolicitud);
-                                }
-                            });
-                        }else if (estado == 'RECHAZADO'){//Rechazado
-                            codMensaje = '4003';
-                            asunto = 'La solicitud de vacaciones ha sido rechazada';
-                            actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
-                            //envia correo a trabajador
-                            enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
-                        }else if (estado == 'APROBADO'){//Aprobado
-                            codMensaje = '4002';
-                            asunto = 'La solicitud de vacaciones ha sido aprobada';
-                            actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
-                            //envia correo a trabajador
-                            enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
-                        }
-                    });//foreach
-                    numSolicitudCarga = 404;
-                    //envia correo a trabajador que cargo el archivo
-                    enviaCorreoMensaje(codTraSolic,codTraSolic,dscSolicitante,'4005','','Has realizado la carga masiva de solicitud de vacaciones.','Has realizado la carga masiva de solicitud de vacaciones.',numSolicitudCarga);
+                                        //envia correo jefe de trabajador
+                                        enviaCorreoMensaje(codJefe,codTraSolic,dscSolicitante,codMensajeJefe,fchLimite,asuntoJefe,asuntoJefe,numSolicitud);
+                                    }
+                                });
+                            }else if (estado == 'RECHAZADO'){//Rechazado
+                                codMensaje = '4003';
+                                asunto = 'La solicitud de vacaciones ha sido rechazada';
+                                actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
+                                //envia correo a trabajador
+                                enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+                            }else if (estado == 'APROBADO'){//Aprobado
+                                codMensaje = '4002';
+                                asunto = 'La solicitud de vacaciones ha sido aprobada';
+                                actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
+                                //envia correo a trabajador
+                                enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
+                            }
+                        });//foreach
+                        numSolicitudCarga = 404;
+                        //envia correo a trabajador que cargo el archivo
+                        enviaCorreoMensaje(codTraSolic,codTraSolic,dscSolicitante,'4005','','Has realizado la carga masiva de solicitud de vacaciones.','Has realizado la carga masiva de solicitud de vacaciones.',numSolicitudCarga);
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Éxito',
-                        text: data.mensaje,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'Cerrar'
-                    }).then((result) => {
-                        // Redirige a la página deseada después de cerrar la alerta de éxito
-                        if (result.isConfirmed) {
-                            location.reload();
-                        }
-                    });
-                },//success
-                error(e){
-                    console.log(e.message);
-                }//error
-            });
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Éxito',
+                            text: data.mensaje,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'Cerrar'
+                        }).then((result) => {
+                            // Redirige a la página deseada después de cerrar la alerta de éxito
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    },//success
+                    error(e){
+                        console.log(e.message);
+                    }//error
+                });
+            }
         }
     }).catch(error => {
         console.error('Error:', error);
@@ -1659,7 +1676,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
 $("#ayudaCargaMasivaEmp").click(function () {
     Swal.fire({
         icon: 'info',
-        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos sin encabezado</p>",
+        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin')</p>",
         confirmButtonColor: '#a18347',
         confirmButtonText: 'Cerrar'
     })

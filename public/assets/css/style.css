@@ -1452,11 +1452,13 @@ Estilos Home
 @media (max-width: 2090px) {
   .btnConvenio{
     font-size: 0.9rem ;
+    width: -webkit-fill-available;
   }
 }
 @media (max-width: 767px) {
   .btnConvenio{
     font-size: 1.1em ;
+    width: -webkit-fill-available;
   }
 }
 
@@ -1590,3 +1592,7 @@ Estilos Vacaciones
     --bs-tooltip-color: #000 !important;
     background: #ffffff !important;
 } */
+
+.paginate_button{
+  margin-right: 1em !important;
+}

@@ -390,7 +390,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
               success: function(respuesta){
                   console.log(respuesta);
               },error(jqXHR, textStatus, errorThrown) {
-                //console.log(jqXHR.responseJSON.message);
+                console.log(jqXHR.responseJSON);
                   // Verificar si el error es específico de código 550
                 var errorMessage = jqXHR.responseJSON.message;
                 var emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
@@ -614,7 +614,7 @@ var meses = {
   junio: 6,
   julio: 7,
   agosto: 8,
-  septiembre: 9,
+  setiembre: 9,
   octubre: 10,
   noviembre: 11,
   diciembre: 12

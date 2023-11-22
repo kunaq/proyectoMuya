@@ -95,7 +95,7 @@ form.addEventListener("submit", function(event) {
     dataType: 'json',
     data:{'data':data},
     success: function(respuesta){
-        console.log(respuesta);
+        // console.log(respuesta);
         Swal.fire({
             icon: 'success',
             text: 'Se han guardado los parámetros con éxito',

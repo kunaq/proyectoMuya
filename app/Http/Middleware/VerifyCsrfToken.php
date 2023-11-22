@@ -33,7 +33,8 @@ class VerifyCsrfToken extends Middleware
         'func/ObtenerValidacionVacacionesPagadas',
         'func/AnularGoceVacaciones',
         'func/ActualizarParametro',
-        'func/ListarVacacionesDias', 
+        'func/ListarVacacionesDias',
+        'func/ObtenerDiasVacacionesProyectadas', 
 
         '/api/ObtenerTrabajador',
         '/lista/ListarUltimosMensajes',
@@ -70,10 +71,13 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarReporteVacacionesxTrabajador',
         'lista/ListarBoletaPago',
         'lista/ListarConstanciaCTS',
+        'lista/ListarConvenio',
+        'lista/ListarSolicitud',
         'lista/ActualizarEstadoMensaje',
         'lista/ListarSolicitudMasiva',
         'lista/ListarLocalidad',
         'lista/ListarArea',
+        'lista/ListarFormato',
 
         'lista/ObtenerPromedioDiasPendiente',
         'lista/ObtenerReprogramaciones',

@@ -199,4 +199,25 @@ class FuncionesController extends Controller
         }
     }
 
+    public function ObtenerDiasVacacionesProyectadas(Request $request)
+    {   
+        $client = new Client();
+        $fch_inicio =  $request['fch_inicio'];
+        $fch_fin =  $request['fch_fin'];
+        $codTra = session('codTrabajador');
+
+
+        try {
+            $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ObtenerDiasVacacionesTrabajador/20555348887/'.$codTra.'/'.$fch_inicio.'/'. $fch_fin);
+            echo  $response->getBody();
+            $code = $response->getStatusCode(); 
+            $reason = $response->getReasonPhrase(); 
+
+            //return response()->json(['status' => $code, 'mensaje' => $reason]);
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

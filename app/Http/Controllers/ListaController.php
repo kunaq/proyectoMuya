@@ -234,9 +234,10 @@ class ListaController extends Controller
     {   
         $client = new Client();
         $cod_trabajador = $request['codTrabajador'];
+        $flg_equipos = $request['flg_equipos'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudColaboradorxAprobar/20555348887/'.$cod_trabajador);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarSolicitudColaboradorxAprobar/20555348887/'.$cod_trabajador.'/'.$flg_equipos);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 
@@ -658,6 +659,58 @@ class ListaController extends Controller
         }
     }
 
+    public function ListarConvenio(Request $request)
+    {   
+        $client = new Client();
+        $codTra =  $request['codTra'];
+        $annoIni =  $request['annoIni'];
+        $annoFin =  $request['annoFin'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConvenio/20555348887/'.$codTra.'/'.$annoIni.'/'.$annoFin);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarSolicitud(Request $request)
+    {   
+        $client = new Client();
+        $codTra =  $request['codTra'];
+        $annoIni =  $request['annoIni'];
+        $annoFin =  $request['annoFin'];
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarSolicitud/20555348887/'.$codTra.'/'.$annoIni.'/'.$annoFin);
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function ActualizarEstadoMensaje(Request $request)
     {
         $client = new Client();
@@ -768,6 +821,29 @@ class ListaController extends Controller
         try {
                           
             $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Empresa/ListarArea/20555348887');
+            $promise = $client->sendAsync($request)->then(function ($response) {
+                echo  $response->getBody();
+                $code = $response->getStatusCode(); 
+                $reason = $response->getReasonPhrase(); 
+
+                return response()->json(['status' => $code, 'mensaje' => $reason]);
+
+            });
+            
+            $promise->wait();
+           
+        } catch (\Exception $e) {
+            // Manejo de errores en caso de que la petición falle
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function ListarFormato()
+    {   
+        $client = new Client();
+        try {
+                          
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Formato/ListarFormato/20555348887');
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

@@ -227,6 +227,14 @@ LISTADO DE CONSTANCIA CTS
     
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConstanciaCTS/20555348887/TRA00603/2022/2023
 
+LISTADO DE CONVENIOS DE ADELANTOS DE VACACIONES
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConvenio/20555348887/codTra/annoIni/annoFin
+
+LISTADO DE DOCUMENTOS DE SOLICITUDES DE VACACIONES
+
+    GET https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarSolicitud/20555348887/codTra/annoIni/annoFin
+    
 LISTA DE VACACIONES
 
     GET https://webapiportalplanillamuya.azurewebsites.net/api/Vacaciones/ListarReporteVacacionesxTrabajador/20555348887/%/2023-01-01/2023-01-31

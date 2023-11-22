@@ -12,7 +12,7 @@ use App\Http\Controllers\APIController;
 class CreaPDFController extends Controller
 {
 
-    public function generarPDF()
+    public function generarPDF($direccionTra,$departamentoTra,$provinciaTra,$distritoTra)
     {   
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $fecha = Carbon::now();
@@ -28,10 +28,10 @@ class CreaPDFController extends Controller
             'dni' => $numDocTrabajador,
             'tipoDoc' => 'DNI',
             'nombre' => session('nombreTrabajador'),
-            'direccion' => strtolower('DIRECCION DE PRUEBA DE TRABAJADOR'),
-            'distrito' =>  strtolower('LIMA'),
-            'provincia' => strtolower('LIMA'),
-            'departamento' => strtolower('CHORRILLOS'),
+            'direccion' => $direccionTra,
+            'distrito' =>  strtolower($distritoTra),
+            'provincia' => strtolower($provinciaTra),
+            'departamento' => strtolower($departamentoTra),
             'dia' => $dia,
             'mes' => $mes,
             'anio' => $anio
@@ -125,6 +125,10 @@ class CreaPDFController extends Controller
         $apellPTrabajador = $request['datos']['response']['dsc_apellido_paterno'];
         $apellMTrabajador = $request['datos']['response']['dsc_apellido_materno'];
         $correoTrabajador = $request['datos']['response']['dsc_mail_personal'];
+        $direccionTra = explode(' - ',$request['datos']['response']['dsc_direccion']);
+        $departamentoTra = $request['datos']['response']['dsc_departamento'];
+        $provinciaTra = $request['datos']['response']['dsc_provincia'];
+        $distritoTra = $request['datos']['response']['dsc_distrito'];
         $celularTrabajador =($request['datos']['response']['dsc_telefono_personal'] != '') ? str_replace(' ', '',$request['datos']['response']['dsc_telefono_personal'])  : '' ;
         $sedeTrabajador = $request['datos']['response']['cod_localidad'];
         $paisTrabajador = ($request['datos']['response']['cod_pais'] == '') ? 'PE' : $request['datos']['response']['cod_pais'];
@@ -137,7 +141,7 @@ class CreaPDFController extends Controller
         try {
             if ($accion =='firmar') {
             
-                $docBase64 = explode('"',CreaPDFController::generarPDF());
+                $docBase64 = explode('"',CreaPDFController::generarPDF($direccionTra[0],$departamentoTra,$provinciaTra,$distritoTra));
                 $formato = '11005';
                 $firmante2 = array( 
                     'documento'=>$docTraRRHH,
@@ -217,13 +221,12 @@ class CreaPDFController extends Controller
                 CreaPDFController::ActualizarTransaccion(json_encode($trx)); 
             }
 
-            //return $data;
             $dataJson = json_encode($data);
+            // return $dataJson;
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
             // $body = $respuesta->getData()->body;
-            //var_dump($respuesta->getData());
             if (property_exists($respuesta->getData(), 'iddocumento')) {
                 $iddocumento = $respuesta->getData()->iddocumento;
             } else {
@@ -345,7 +348,8 @@ class CreaPDFController extends Controller
             $codDoc = $request['codDoc'];
             $anno = $request['anno'];
             $mes = $request['mes'];
-            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerBase64/20555348887/'.$cod_trabajador.'/'.$codDoc.'/'.$anno.'/'.$mes);
+            $numTrx = $request['numTrx'];
+            $request = new \GuzzleHttp\Psr7\Request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/ControlEnvio/ObtenerBase64/20555348887/'.$cod_trabajador.'/'.$codDoc.'/'.$anno.'/'.$mes.'/'.$numTrx);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

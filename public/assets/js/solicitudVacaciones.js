@@ -28,39 +28,72 @@ inputFchInicio.addEventListener("change", function() {
 
     
     var parametroY = parseInt(document.getElementById('parametroY').value);
+    // console.log('parametroY',numPend+parametroY+numdiasReprog);
 
     var fchInicio = inputFchInicio.value;
+
     var maximaDate = new Date();
     var fechaParts = fchInicio.split('-');
     maximaDate.setDate(parseInt(fechaParts[0]));
     maximaDate.setMonth(parseInt(fechaParts[1]) - 1);
     maximaDate.setFullYear(parseInt(fechaParts[2]));
-    maximaDate.setDate(maximaDate.getDate() + numPend + parametroY + numdiasReprog);
     
-    var ctdProgVac = parseInt(document.getElementById('ctdProgPeriodo').value);
-    // console.log('ctdProgVac',ctdProgVac);
-    if (ctdProgVac < 2) {
-        var minimaDate = new Date();
-        minimaDate.setDate(parseInt(fechaParts[0]));
-        minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
-        minimaDate.setFullYear(parseInt(fechaParts[2]));
-        minimo = minimaDate.setDate(minimaDate.getDate() + 6);
-    }else{
-        minimo = fchInicio;
-    }
+    // var numAdic = vacacionesProyectadas(maximaDate);
+    var inicio = new Date();
+    inicio.setDate(inicio.getDate() + 1);
+    var mes = inicio.getMonth()+1;
+    var dia = inicio.getDate();
+    var anio = inicio.getFullYear();
+    var inicioBD = anio+'-'+mes+'-'+dia;
+  
+    var mesF = maximaDate.getMonth()+1;
+    var diaF = maximaDate.getDate();
+    var anioF = maximaDate.getFullYear();
+    var finBD = anioF+'-'+mesF+'-'+diaF;
+    $.ajax({
+      url: 'func/ObtenerDiasVacacionesProyectadas',
+      method: "GET",
+      crossDomain: true,
+      dataType: 'json',
+      data:{'fch_inicio':inicioBD, 'fch_fin': finBD},
+      success: function(respuesta){
+        // console.log('numDias',respuesta.response.num_dias);
+        var numAdic = respuesta.response.num_dias;
 
-    /// despues de todas las validaciones contruir faltpickr---
-    flatpickr("#datepickerFinSolVac",{
-        locale:"es",
-        dateFormat: "d-m-Y",
-        minDate: minimo,
-        disableMobile: "true",
-        //disable: feriados,
-        maxDate: maximaDate
+        maximaDate.setDate(maximaDate.getDate() + numPend + parametroY + numdiasReprog + numAdic - 1);
+      
+        var ctdProgVac = parseInt(document.getElementById('ctdProgPeriodo').value);
+        // console.log('ctdProgVac',ctdProgVac);
+        if (ctdProgVac < 2) {
+            var minimaDate = new Date();
+            minimaDate.setDate(parseInt(fechaParts[0]));
+            minimaDate.setMonth(parseInt(fechaParts[1]) - 1);
+            minimaDate.setFullYear(parseInt(fechaParts[2]));
+            minimo = minimaDate.setDate(minimaDate.getDate() + 6);
+        }else{
+            minimo = fchInicio;
+        }
+
+        /// despues de todas las validaciones contruir faltpickr---
+        flatpickr("#datepickerFinSolVac",{
+            locale:"es",
+            dateFormat: "d-m-Y",
+            minDate: minimo,
+            disableMobile: "true",
+            //disable: feriados,
+            maxDate: maximaDate
+        });
+
+        var formattedRange = 'Cantidad de días acumulados a la fecha de solicitud: '+(numAdic+numPend+numdiasReprog)+'<br>Usted ha seleccionado desde el día '+fchInicio;
+        document.getElementById('resutSolVac').innerHTML = formattedRange;
+
+      },//success
+      error(e){
+          console.log(e.message);
+          return 0;
+      }//error
     });
 
-    var formattedRange = 'Usted ha seleccionado desde el día '+fchInicio;
-    document.getElementById('resutSolVac').innerHTML = formattedRange;
 });
 
 //-----------------disparador de fecha fin -------
@@ -92,7 +125,7 @@ inputFchFin.addEventListener("change", function() {
     
     const diffInDays = (Math.floor((y - x) / (1000 * 60 * 60 * 24)))+1;
 
-    var formattedRange = ' al '+fchFin+'. Cantidad de días: '+diffInDays;
+    var formattedRange = ' al '+fchFin+'<br> Cantidad de días solicitados: '+diffInDays;
     document.getElementById('cantDiasSol').value = diffInDays;
     document.getElementById('resutSolVac2').innerHTML = formattedRange;
 
@@ -318,4 +351,3 @@ function muestraCalendario(filaCalendario) {
   calendarEl.style.height = '100%';
   calendar.render();
 }
-  //console.log('revision calendario',);

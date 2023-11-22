@@ -184,6 +184,17 @@
                                     </table>
                                 </div>
                             </div>
+                            <br>
+                            <div class="row">
+                                <div class="offset-md-8 col-1 col-md-1" style="text-align: -webkit-right">
+                                    <input class="form-check-input checkVerde" type="checkbox"  id="CheckVerEquipEquip">
+                                </div>
+                                <div class="col-10 col-md-3" style="text-align: -webkit-left">
+                                    <div class="form-group">
+                                        <h5 style="font-size: 17px;">Visualizar equipos de mi equipo</h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>  
                 </div>
@@ -522,95 +533,7 @@ window.onload= function() {
         }
     });
 
-    //------------------------Listado Aprobacion de solicitud----------------------------
-    $.ajax({
-        url: 'lista/ListarSolicitudColaboradorxAprobar', 
-        method: "GET",
-        crossDomain: true,
-        dataType: 'json',
-        data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp'},
-        success: function(result){
-            //console.log(result);
-            var filasArray = [];
-            result['response'].forEach(element => {
-                var auxFecIni =  element['fch_inicio'].split("T");
-                fchIni = formatDate(auxFecIni[0]);
-                var auxFecFin =  element['fch_fin'].split("T");
-                fchFin = formatDate(auxFecFin[0]);
-                var auxFecRein =  element['fch_retorno'].split("T");
-                fchReinc = formatDate(auxFecRein[0]);
-                var alertaRegla = '';
-                var alertaReprog = '';
-                var codTra = "'"+element['cod_trabajador']+"'";
-                var dscTra = "'"+element['dsc_trabajador']+"'";
-                var regla1 = "'"+element['cod_regla']+"'";
-                var regla2 = "'"+element['cod_regla2']+"'";
-                
-                if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
-                    alertaRegla = '';
-                }else{
-                    tipo = "'reglas'";
-                    alertaRegla = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+regla1+','+regla2+')" style="font-size: 28px;color:red;"></span>';
-                }
-
-                if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
-                    alertaReprog = '';
-                }else{
-                    tipo = "'reprogramacion'";
-                    alertaReprog = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['num_linea']+','+element['num_linea_origen']+');" style="font-size: 28px;color:red;"></span>';
-                }
-
-                if (element['dsc_estado'] == 'APROBADO' || element['dsc_estado'] == 'RECHAZADO') {
-                    disabled = 'disabled'
-                }else{
-                    disabled = '';
-                }
-
-                var cantDias = element['cant_dia'];
-                var codTrabajador = "'"+element['cod_trabajador']+"'";
-
-                var filaData = [
-                    element['dsc_trabajador'],
-                    fchIni,
-                    fchFin,
-                    cantDias,
-                    fchReinc,
-                    element['dsc_estado'],
-                    element['dsc_subestado_solicitud'],
-                    alertaRegla,
-                    alertaReprog,
-                    '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
-                    '<input class="form-check-input checkVerde" type="radio" '+disabled+' name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">'
-                ];
-                filasArray.push(filaData);
-            });
-            //console.log(filasArray);
-            $('#tablaSolAprobar').DataTable({
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
-                },
-                data: filasArray,
-                "aaSorting":[],
-                columns: [
-                    { title: 'Colaborador' },
-                    { title: 'Inicio' },
-                    { title: 'Fin' },
-                    { title: 'Días' },
-                    { title: 'Reincorpora' },
-                    { title: 'Estado' },
-                    { title: 'Subestado' },
-                    { title: 'Alerta reglas' },
-                    { title: 'Alerta reprog.' },
-                    { title: 'Aceptar' },
-                    { title: 'Rechazar' },
-                ],
-                dom: 'trip',
-                processing: true,
-                "pageLength": 20
-            });
-            // //console.log(filasArray);
-        }
-    });
+    listaSolicitudesxAprobar();
 
     //---------------------------reglas------------------------------
     $.ajax({
@@ -701,6 +624,125 @@ window.onload= function() {
 
 }
 
+var checkboxEquipo = document.getElementById("CheckVerEquipEquip");
+checkboxEquipo.addEventListener("change", function() {
+    listaSolicitudesxAprobar();
+});
+
+
+//------------------------Listado Aprobacion de solicitud----------------------------
+function listaSolicitudesxAprobar() {
+    var checkboxEquipo = document.getElementById("CheckVerEquipEquip");
+    var verEquipos = checkboxEquipo.checked ? 'SI' : 'NO';
+    
+    $.ajax({
+        url: 'lista/ListarSolicitudColaboradorxAprobar', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp','flg_equipos':verEquipos},
+        success: function(result){
+            //console.log(result);
+            var filasArray = [];
+            result['response'].forEach(element => {
+                var auxFecIni =  element['fch_inicio'].split("T");
+                fchIni = formatDate(auxFecIni[0]);
+                var auxFecFin =  element['fch_fin'].split("T");
+                fchFin = formatDate(auxFecFin[0]);
+                var auxFecRein =  element['fch_retorno'].split("T");
+                fchReinc = formatDate(auxFecRein[0]);
+                var alertaRegla = '';
+                var alertaReprog = '';
+                var codTra = "'"+element['cod_trabajador']+"'";
+                var dscTra = "'"+element['dsc_trabajador']+"'";
+                var regla1 = "'"+element['cod_regla']+"'";
+                var regla2 = "'"+element['cod_regla2']+"'";
+                
+                if(element['flg_alerta_regla'] == 'NO' || element['flg_alerta_regla'] == ''){
+                    alertaRegla = '';
+                }else{
+                    tipo = "'reglas'";
+                    alertaRegla = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+regla1+','+regla2+')" style="font-size: 28px;color:red;"></span>';
+                }
+                
+                if(element['flg_reprogramar'] == 'NO' || element['flg_reprogramar'] == ''){
+                    alertaReprog = '';
+                }else{
+                    tipo = "'reprogramacion'";
+                    alertaReprog = '<span class="bi bi-exclamation-triangle" onclick="muestraInfo('+codTra+','+dscTra+','+tipo+','+element['num_linea']+','+element['num_linea_origen']+');" style="font-size: 28px;color:red;"></span>';
+                }
+                
+                if (element['dsc_estado'] == 'APROBADO' || element['dsc_estado'] == 'RECHAZADO') {
+                    disabled = 'disabled';
+                    equipo = 'SI';
+                }else{
+                    disabled = '';
+                    equipo = 'NO';
+                }
+
+                if(element['flg_equipo'] && element['flg_equipo'] == 'NO'){
+                    disabled = 'disabled';
+                }
+                
+                var cantDias = element['cant_dia'];
+                var codTrabajador = "'"+element['cod_trabajador']+"'";
+                
+                var filaData = [
+                    element['dsc_trabajador'],
+                    fchIni,
+                    fchFin,
+                    cantDias,
+                    fchReinc,
+                    element['dsc_estado'],
+                    element['dsc_subestado_solicitud'],
+                    alertaRegla,
+                    alertaReprog,
+                    '<input class="form-check-input checkDorado" '+disabled+' type="radio" name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="aprobSol" value="APROBAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    '<input class="form-check-input checkVerde" type="radio" '+disabled+' name="radioBtnSol'+element['cod_trabajador']+'-'+element['num_linea']+'" id="recSol" value="RECHAZAR-'+element['cod_trabajador']+'-'+element['num_linea']+'-'+fchIni+'-'+fchFin+'">',
+                    element['flg_equipo']
+                ];
+                filasArray.push(filaData);
+            });
+            //console.log(filasArray);
+            if ($.fn.dataTable.isDataTable('#tablaSolAprobar')) {
+                $('#tablaSolAprobar').DataTable().clear();
+                $('#tablaSolAprobar').DataTable().destroy();        
+            }
+            $('#tablaSolAprobar').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
+                },
+                data: filasArray,
+                "aaSorting":[],
+                columns: [
+                    { title: 'Colaborador' },
+                    { title: 'Inicio' },
+                    { title: 'Fin' },
+                    { title: 'Días' },
+                    { title: 'Reincorpora' },
+                    { title: 'Estado' },
+                    { title: 'Subestado' },
+                    { title: 'Alerta reglas' },
+                    { title: 'Alerta reprog.' },
+                    { title: 'Aceptar' },
+                    { title: 'Rechazar' },
+                ],
+                rowCallback:function(row,data)
+                {
+                    if(data[11] == "NO")
+                    {
+                        $($(row).find("td")).css("color","#23817b");
+                    }
+                },
+                dom: 'trip',
+                processing: true,
+                "pageLength": 20
+            });
+            // //console.log(filasArray);
+        }
+    });
+    
+}//funcion lista solicitudes por aprobar
 //-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVac');
 btnProcesar.addEventListener("click", function() {

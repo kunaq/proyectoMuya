@@ -71,7 +71,7 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
                         <span id=resutSolVac></span><span id=resutSolVac2></span><p id=resutSolVac3></p>
                         <input type="hidden" id="cantDiasSol" value = 0>
                         <input type="hidden" id="numVacPendReprog" value = "0">
@@ -159,6 +159,7 @@ window.onload= function() {
         
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;
+            botonConvenio.innerHTML = 'Convenio de adelanto de vacaciones firmado';
             if (diferenciaMeses < 3) {
               botonSolicitud.disabled = true;  
             } else {
@@ -168,9 +169,15 @@ window.onload= function() {
             if (result["response"]["flg_acuerdo_firmado"] == 'NO') {
               botonSolicitud.disabled = true;
               botonConvenio.disabled = false;
-            } else {
+              botonConvenio.innerHTML = 'Firmar convenio de adelanto de vacaciones';
+            } else if(result["response"]["flg_acuerdo_firmado"] == 'EP') {
+              botonSolicitud.disabled = true;
+              botonConvenio.disabled = true;
+              botonConvenio.innerHTML = 'Convenio (Firma en proceso)';
+            }else{
               botonSolicitud.disabled = false;
               botonConvenio.disabled = true;
+              botonConvenio.innerHTML = 'Convenio de adelanto de vacaciones firmado';
             }
           }
 
@@ -265,10 +272,11 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
       dataType: 'json',
       data:{'codTrabajador':'@php echo(session('codTrabajador')) @endphp','annoIni':annoIni,'annoFin':annoFin},
       success: function(result){
-        //console.log(result);
+        // console.log(result);
         var filasArray = [];
         var filasMovil = [];
         filaCalendario = [];
+        var mensajeRecordar = 'No tienes vacaciones programadas';
 
         result['response'].forEach(element => {
           var auxFecIni =  element['fch_inicio'].split("T");
@@ -282,14 +290,16 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
 
           if(element['flg_aprobado'] == 'NO' || element['flg_aprobado'] == ''){
             disBtnFir = 'disabled';
-            disBtnEdit = '';
           }else{
             disBtnFir = '';
-            disBtnEdit = 'disabled';
           }
 
           if(element['flg_firmado'] == 'NO' || element['flg_firmado'] == ''){
             flgFirmado = 'Sin firmar';
+          }else if(element['flg_firmado'] == 'EP'){
+            flgFirmado = 'En proceso';
+            disBtnFir = 'disabled';
+            disBtnEdit = 'disabled';
           }else{
             flgFirmado = 'Firmado';
             disBtnFir = 'disabled';
@@ -319,7 +329,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           var finFchIni = "'"+fchIni+"'";
           var finFchFin = "'"+fchFin+"'";
           var tip = '';
-          var mensajeRecordar = 'No tienes vacaciones programadas';
+          
           if (element['dsc_estado'] == 'SOLICITADO') {
             tip = element['dsc_subestado_solicitud'];
           } else if (element['dsc_estado'] == 'APROBADO') {
@@ -384,6 +394,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             url: '//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json'
           },
           data: filasArray,
+          "aaSorting":[],
           columns: [
             { title: 'Inicio' },
             { title: 'Término' },
@@ -581,6 +592,18 @@ btnSolicitar.addEventListener("click", function() {
             Swal.fire({
                 icon: 'warning',
                 text: 'Ya tiene una solicitud en la fecha seleccionada. Elija otras fechas.',
+                confirmButtonText: 'Continuar',
+                confirmButtonColor: '#a18347',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                btnSolicitar.removeAttribute('disabled');
+                return;
+              }
+            })
+          }else if(numDiasReprog > cantDias){
+            Swal.fire({
+                icon: 'warning',
+                text: 'La cantidad de días debe ser igual o mayor a la solicitada originalmente.',
                 confirmButtonText: 'Continuar',
                 confirmButtonColor: '#a18347',
             }).then((result) => {

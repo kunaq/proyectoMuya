@@ -42,7 +42,6 @@ class CorreoController extends Controller
             $message->to($destinatario);
             $message->subject($asunto);
             $message->cc('echanganaqui@kunaq.pe');
-            $message->cc('larias@kunaq.pe');
             $message->cc('mgonzalez@kunaq.pe');
             $message->cc('bgalvan@kunaq.pe');
         });

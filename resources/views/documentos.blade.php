@@ -60,10 +60,6 @@
                                 <div class="col-md-4" style="margin-bottom: 1rem;">
                                     <div class="form-group">
                                         <select name="tipoDoc" id="tipoDoc" class="form-control selectForm js-example-basic-single">
-                                            <option value="11001">Boleta de pago</option>
-                                            <option value="11002">Constancia de CTS</option>
-                                            <option value="11005">Convenio de adelanto de vacaciones</option>
-                                            <option value="11006">Solicitud de vacaciones</option>
                                         </select>
                                     </div>
                                 </div>
@@ -192,6 +188,23 @@ window.onload= function() {
         }//error
     });//ajax muestraAnno
 
+    $.ajax({
+        url: 'lista/ListarFormato', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        success: function(respuesta){ 
+            respuesta['response'].forEach(function(word){
+                //console.log(word);
+                $("#tipoDoc").append('<option value="'+ word['cod_formato'] +'">'+ word['dsc_formato'] +'</option>');
+
+            });
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax muestraAnno
+
     
 }
 $(document).ready(function(){
@@ -255,6 +268,10 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
         dscUrl = 'lista/ListarBoletaPago';
     }else if(tipoDoc == '11002'){
         dscUrl = 'lista/ListarConstanciaCTS';
+    }else if(tipoDoc == '11005'){
+        dscUrl = 'lista/ListarConvenio'
+    }else if(tipoDoc == '11006'){
+        dscUrl = 'lista/ListarSolicitud'
     }else{
         dscUrl = 'lista/ListaVacia';
     }
@@ -277,7 +294,7 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
             resultados[anno].push(resultado);
         });
 
-        console.log(resultados);
+       // console.log(resultados);
         
         // Generar bloques por cada año entre el inicial y final seleccionados
         var sectionContainer = document.getElementById("sectionContainer");
@@ -306,11 +323,19 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                                         <div class="card-body" style="padding-top:1em;">
                                             <div class="row">`;
                     resultados[year].forEach(function(resultado) {
-                        var mes = resultado.dsc_periodo.split(' ')[0];
-                        var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
-                        sectionContent += `<div class="col-6 col-md-2" style="margin-bottom:1em;">
-                                                <button class="btn btn-success btnDorado" onclick="buscarDocumento('${mes}','${year}')" ${deshabilita} >${mes}</button>
-                                            </div>`;
+                        if(tipoDoc == '11001' || tipoDoc == '11002' ){
+                            var mes = resultado.dsc_periodo.split(' ')[0];
+                            var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
+                            sectionContent += `<div class="col-6 col-md-2" style="margin-bottom:1em;">
+                                                    <button class="btn btn-success btnDorado" onclick="buscarDocumento('${resultado.num_mes}','${year}','0')" ${deshabilita} >${mes}</button>
+                                                </div>`;
+                        }else if(tipoDoc == '11005' || tipoDoc == '11006'){
+                            var mes = resultado.dsc_periodo.split(' ')[0];
+                            var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
+                            sectionContent += `<div class="col-6 col-md-3" style="margin-bottom:1em;">
+                                                    <button class="btn btn-success btnDorado" onclick="buscarDocumento('${resultado.num_mes}','${year}','${resultado.num_transaccion}')" ${deshabilita} >${resultado.dsc_periodo}</button>
+                                                </div>`;
+                        }
                     });
                     sectionContent += `
                                             </div>
@@ -359,20 +384,20 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
 
 });
 
-function buscarDocumento(mes,anno){
+function buscarDocumento(mes,anno,numTrx){
     codTra = '@php echo(session('codTrabajador')) @endphp';
     codDoc = document.getElementById("tipoDoc").value;
-    numMes = nombreMesANumero(mes);
+    //numMes = nombreMesANumero(mes);
 
     $.ajax({
       url: 'ObtenerBase64',
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':numMes},
+      data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':mes,'numTrx':numTrx},
       success: function(result){
         console.log(result)
-        var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3'];
+        var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3']+result['response']['dsc_base_64_4']+result['response']['dsc_base_64_5']+result['response']['dsc_base_64_6']+result['response']['dsc_base_64_7']+result['response']['dsc_base_64_8']+result['response']['dsc_base_64_9']+result['response']['dsc_base_64_10'];
         if (result['response']['dsc_base_64'] != null) {
             base64ToPDF(completo);
         }else{

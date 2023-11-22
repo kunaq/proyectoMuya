@@ -19,7 +19,7 @@
                                 <h2 class="inicioSession">Inicio de Sesión</h2>
                             </div>
                             <div class="row banderas">
-                                <div class="form-group">
+                                <div class="form-group" style="display: none;">
                                     <select id="id_select2_example" style="width: 100px;" data-minimum-results-for-search="Infinity">
                                         <option data-img_src="assets/img/Peru_bandera.png"></option>
                                         <option data-img_src="assets/img/Ecuador_bandera.png"></option>

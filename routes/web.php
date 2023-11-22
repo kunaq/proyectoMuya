@@ -81,6 +81,7 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::put('func/AnularGoceVacaciones', [FuncionesController::class, 'AnularGoceVacaciones'])->name('lista.AnularGoceVacaciones');
     Route::put('func/ActualizarParametro', [FuncionesController::class, 'ActualizarParametro'])->name('lista.ActualizarParametro');
     Route::get('func/ListarVacacionesDias', [FuncionesController::class, 'ListarVacacionesDias'])->name('func.ListarVacacionesDias');
+    Route::get('func/ObtenerDiasVacacionesProyectadas', [FuncionesController::class, 'ObtenerDiasVacacionesProyectadas'])->name('func.ObtenerDiasVacacionesProyectadas');
 
      //-----------------------Mostrar Datos-----------------------------//
     Route::get('api/ObtenerTrabajador', [APIController::class, 'ObtenerTrabajador'])->name('api.ObtenerTrabajador');
@@ -120,10 +121,14 @@ Route::get('/adios', function (Request $request): RedirectResponse {
     Route::get('lista/ListarReporteVacacionesxTrabajador', [ListaController::class, 'ListarReporteVacacionesxTrabajador'])->name('lista.ListarReporteVacacionesxTrabajador');
     Route::get('lista/ListarBoletaPago', [ListaController::class, 'ListarBoletaPago'])->name('lista.ListarBoletaPago');
     Route::get('lista/ListarConstanciaCTS', [ListaController::class, 'ListarConstanciaCTS'])->name('lista.ListarConstanciaCTS');
+    Route::get('lista/ListarConvenio', [ListaController::class, 'ListarConvenio'])->name('lista.ListarConvenio');
+    Route::get('lista/ListarSolicitud', [ListaController::class, 'ListarSolicitud'])->name('lista.ListarSolicitud');
+
     Route::get('lista/ActualizarEstadoMensaje', [ListaController::class, 'ActualizarEstadoMensaje'])->name('lista.ActualizarEstadoMensaje');
     Route::get('lista/ListarSolicitudMasiva', [ListaController::class, 'ListarSolicitudMasiva'])->name('lista.ListarSolicitudMasiva');
     Route::get('lista/ListarLocalidad', [ListaController::class, 'ListarLocalidad'])->name('lista.ListarLocalidad');
     Route::get('lista/ListarArea', [ListaController::class, 'ListarArea'])->name('lista.ListarArea');
+    Route::get('lista/ListarFormato', [ListaController::class, 'ListarFormato'])->name('lista.ListarFormato');
 
     Route::get('lista/ListaVacia', function(){
         return ['mensaje'=> "OK", 'response'=> []];
