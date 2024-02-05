@@ -281,6 +281,12 @@
   /**
    * Initiate Bootstrap validation check
    */
+
+
+  date.toLocaleString('en-US', {
+    timeZone: 'America/Lima',
+  });
+
   var needsValidation = document.querySelectorAll('.needs-validation')
 
   Array.prototype.slice.call(needsValidation)

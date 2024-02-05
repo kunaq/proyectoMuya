@@ -14,9 +14,8 @@ setTimeout(function() {
     annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
     inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
 
-  }else{
-    inicioCalendario = hooy.setDate(hooy.getDate() + 1);
   }
+
   flatpickr("#datepickerIniSolVac",{
       locale:"es",
       dateFormat: "d-m-Y",
