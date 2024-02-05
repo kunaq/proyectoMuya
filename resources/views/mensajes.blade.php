@@ -156,6 +156,10 @@
   //  var num_vacaciones_pendiente="0";
 var cod_trabajador='';
 window.onload= function() {
+
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
+
         
   $.ajax({
     url: 'lista/ListarMensajePendientes', 

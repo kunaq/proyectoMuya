@@ -441,6 +441,9 @@
 <script src="{{asset('assets/js/aprobacionVacaciones.js')}}"></script>
 <script type="text/javascript">
 window.onload= function() {
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
+
     if ('@php echo(session('flgResponsable')) @endphp' != 'SI') {
         let timerInterval
         Swal.fire({
@@ -1390,6 +1393,15 @@ $('#annoIniVE,#periodo').select2({
     placeholder: "Escriba el nombre del trabajador",
     allowClear: true,
     // dir: "rtl",
+});
+
+$("#ayudaCargaMasivaApr").click(function () {
+    Swal.fire({
+        icon: 'info',
+        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos con encabezado.</p>",
+        confirmButtonColor: '#a18347',
+        confirmButtonText: 'Cerrar'
+    })
 });
 
 </script>

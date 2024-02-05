@@ -86,6 +86,7 @@
                         <input type="hidden" id="parametroY">
                         <input type="hidden" id="pagoPlanilla">
                         <input type="hidden" id="fchRetornoBD">
+                        <input type="hidden" id="diaPagoHaberes">
                       </div>
                     </div>
                   </div>
@@ -120,6 +121,10 @@ var fchFinCalendario = null;
 var filaCalendario = [];
 
 window.onload= function() {
+  
+  // Iniciar el temporizador cuando la página se carga
+  iniciarTemporizador();
+
 
   var fcha = new Date();
   var anno = fcha.getFullYear();
@@ -146,6 +151,13 @@ window.onload= function() {
           document.getElementById("numVacPend").value=result["response"]["num_vacaciones_pendiente"];
           fechIniCalendario = (result["response"]["fch_proxima_vacaciones"] != '1900-01-01T00:00:00') ? result["response"]["fch_proxima_vacaciones"].split("T") : null;
           fchFinCalendario = (result["response"]["fch_fin"] != '1900-01-01T00:00:00') ? result["response"]["fch_fin"].split("T") : null;
+          var mensajeRecordar = 'No tienes vacaciones programadas';
+          if (fechIniCalendario != null) {
+            mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas son desde el  <b>'+fchIni+'</b> hasta el <b>'+fchFin+'</b>';
+          }
+          document.getElementById("msgRecordar").innerHTML = '<br>'+mensajeRecordar;
+          document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
+          
          
           fch_ingreso = result["response"]["fch_ingreso_planilla"];
           var fechaActual = new Date();
@@ -194,10 +206,13 @@ window.onload= function() {
     crossDomain: true,
     dataType: 'json',
     success: function(respuesta){ 
+      var anio = new Date().getFullYear();
       respuesta['response'].forEach(function(word){
         //console.log(word);
-        $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-        $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+        if (word['codvar'] <= anio) {  
+          $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+          $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+        }
       });
     },//success
     error(e){
@@ -235,6 +250,7 @@ window.onload= function() {
           pagoHaberes = '"'+anno+'/'+(mes+1)+'/'+auxDia[1]+'"';
           diaPagoHaberes = new Date(pagoHaberes);
           var fechaActual = new Date();
+          document.getElementById("diaPagoHaberes").value = auxDia[1];
           if(diaPagoHaberes < fechaActual){
             document.getElementById('pagoPlanilla').value = 'SI';
            // botonSolicitud.disabled = true;
@@ -276,7 +292,6 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
         var filasArray = [];
         var filasMovil = [];
         filaCalendario = [];
-        var mensajeRecordar = 'No tienes vacaciones programadas';
 
         result['response'].forEach(element => {
           var auxFecIni =  element['fch_inicio'].split("T");
@@ -334,12 +349,9 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             tip = element['dsc_subestado_solicitud'];
           } else if (element['dsc_estado'] == 'APROBADO') {
             tip = element['dsc_subestado_aprobacion'];
-            mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas son desde el  <b>'+fchIni+'</b> hasta el <b>'+fchFin+'</b>';
           }else if (element['dsc_estado'] == 'RECHAZADO') {
             tip = element['dsc_subestado_rechazo'];
           }
-          document.getElementById("msgRecordar").innerHTML = '<br>'+mensajeRecordar;
-          document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
 
           var filaData = [
               fchIni,
@@ -453,6 +465,7 @@ fIni.addEventListener('change', function() {
 var btnSolicitar = document.getElementById('solicitaVacaciones');
 btnSolicitar.addEventListener("click", function() {
   btnSolicitar.setAttribute('disabled','disabled');
+  $("#overlay_load").show();
   var diasGenerados = document.getElementById('num_vacaciones_pendiente').innerHTML;
   diasGenerados = parseInt(diasGenerados);
   var form = document.getElementById("FormSolicitudVac");
@@ -531,6 +544,7 @@ btnSolicitar.addEventListener("click", function() {
     var mes = fechaActual.getMonth() + 1;
 
     if (pagoHaber == 'SI' && month == mes) {
+      $("#overlay_load").hide();
       Swal.fire({
           icon: 'warning',
           text: 'No puede seleccionar el mes donde ya se realizo el pago de planilla. Elija otras fechas.',
@@ -553,6 +567,7 @@ btnSolicitar.addEventListener("click", function() {
         success: function(respuesta){
           console.log('coincidencia',respuesta);
           if(respuesta['response']['flg_coincide_jefe'] == 'SI'){
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas del jefe de grupo. Elija otras fechas.',
@@ -565,6 +580,7 @@ btnSolicitar.addEventListener("click", function() {
               }
             })
           }else if(respuesta['response']['flg_coincide_grupo'] == 'SI'){
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otro colaborador del grupo. Elija otras fechas.',
@@ -577,6 +593,7 @@ btnSolicitar.addEventListener("click", function() {
               }
             })
           }else if(respuesta['response']['flg_coincide_grupo'] != 'SI' && respuesta['response']['ctd_coincidencia'] > parametroX){
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'warning',
                 text: 'Las fechas seleccionadas no estan permitidas, ya que estas coinciden con fechas de otros colaboradores del grupo. Elija otras fechas.',
@@ -589,6 +606,7 @@ btnSolicitar.addEventListener("click", function() {
               }
             })
           }else if(respuesta['response']['flg_coincide_trabajador'] == 'SI'){
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'warning',
                 text: 'Ya tiene una solicitud en la fecha seleccionada. Elija otras fechas.',
@@ -601,6 +619,7 @@ btnSolicitar.addEventListener("click", function() {
               }
             })
           }else if(numDiasReprog > cantDias){
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'warning',
                 text: 'La cantidad de días debe ser igual o mayor a la solicitada originalmente.',
@@ -625,19 +644,26 @@ btnSolicitar.addEventListener("click", function() {
                       console.log(respuesta);
                       numSolicitud = respuesta['response']['num_linea'];
                       enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitud,reprog);
-                      Swal.fire({
-                          icon: 'success',
-                          text: 'Se ha registrado su solicitud con éxito',
-                          confirmButtonText: 'Continuar',
-                          confirmButtonColor: '#a18347',
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          location.reload();
-                        }
-                      })
+                      $("#overlay_load").show();
+                      setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se ha registrado su solicitud con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                            allowOutsideClick:'false',
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            location.reload();
+                          }
+                        })
+                        $("#overlay_load").hide();
+                      }, 5000);
+
                   },//success
                   error(e){
                       console.log(e.message);
+                      $("#overlay_load").hide();
                       Swal.fire({
                         icon: 'warning',
                         text: 'Ha ocurrido un error intentelo nuevamente.',
@@ -699,19 +725,25 @@ btnSolicitar.addEventListener("click", function() {
                             console.log('respuesta Insertar',respuesta);
                             numSolicitudIn = respuesta['response']['num_linea'];
                             enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn,reprog);
-                            Swal.fire({
-                              icon: 'success',
-                              text: 'Se ha registrado su solicitud con éxito',
-                              confirmButtonText: 'Continuar',
-                              confirmButtonColor: '#a18347',
-                            }).then((result) => {
-                              if (result.isConfirmed) {
-                                location.reload();
-                              }
-                            })
+                            $("#overlay_load").show();
+                            setTimeout(function() {
+                              Swal.fire({
+                                icon: 'success',
+                                text: 'Se ha registrado su solicitud con éxito',
+                                confirmButtonText: 'Continuar',
+                                confirmButtonColor: '#a18347',
+                                allowOutsideClick:'false',
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  location.reload();
+                                }
+                              })
+                              $("#overlay_load").hide();
+                            }, 5000);
                           },//success
                           error(e){
                             console.log(e.message);
+                            $("#overlay_load").hide();
                             Swal.fire({
                               icon: 'warning',
                               text: 'Ha ocurrido un error intentelo nuevamente.',
@@ -725,6 +757,7 @@ btnSolicitar.addEventListener("click", function() {
                   },//success
                   error(e){
                       console.log(e.message);
+                      $("#overlay_load").hide();
                       Swal.fire({
                           icon: 'warning',
                           text: 'Ha ocurrido un error intentelo nuevamente.',
@@ -740,6 +773,7 @@ btnSolicitar.addEventListener("click", function() {
         },//success
         error(e){
           console.log(e.message);
+          $("#overlay_load").hide();
           var grupo = "'"+'@php echo(session('codGrupoVac')) @endphp'+"'";
           msjError = (grupo == '') ? 'No esta configurado su grupo de vacaciones,' : '';
           Swal.fire({

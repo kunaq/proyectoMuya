@@ -380,6 +380,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
           var mesFormateado = mes < 10 ? '0' + mes : mes;
           var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
           var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+          // alert('Enviando correo a: '+correoTra);
           
             $.ajax({
               url: 'api/enviarCorreo', 
@@ -389,8 +390,18 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
               data:{'destinatario':dscTra,'correoPersonal':correoTra,'correoCorp':correoCorp,'fchNotif':fechaFormateada,'asunto':asunto,'solicitante':dscSolicitante,'actividad':actividad,'fchLimite':fchLimite,'codigoMensaje':codMensaje},
               success: function(respuesta){
                   console.log(respuesta);
+                  Swal.fire({
+                    icon: 'success',
+                    text: 'Se ha enviado el correo éxito',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      location.reload();
+                    }
+                  })
               },error(jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR.responseJSON);
+                console.log(jqXHR, errorThrown);
                   // Verificar si el error es específico de código 550
                 var errorMessage = jqXHR.responseJSON.message;
                 var emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/;
@@ -408,11 +419,11 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
                     confirmButtonColor: '#a18347',
                   });
                 } else {
-                  console.log(jqXHR.responseJSON.message);
+                  console.log(jqXHR);
 
                   Swal.fire({
                     icon: 'warning',
-                    text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
+                    text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.'+jqXHR.responseJSON.message,
                     confirmButtonText: 'Continuar',
                     confirmButtonColor: '#a18347',
                   });
@@ -441,7 +452,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
               'num_item':numSolicitud
             }
             // console.log('data',data);
-            
+            // alert('Creando mensaje en el sistema: '+codMensaje);
             $.ajax({
               url: 'api/InsertarMensajeTrabajador', 
               method: "put",
@@ -450,9 +461,20 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
               data:{'data':data},
               success: function(respuesta){
                 console.log(respuesta);
+                Swal.fire({
+                  icon: 'success',
+                  text: 'Se ha generado el aviso éxito',
+                  confirmButtonText: 'Continuar',
+                  confirmButtonColor: '#a18347',
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    location.reload();
+                  }
+                })
               },//success
               error(e){
                 console.log(e.message);
+                alert('Error insertar aviso. '+e.message);
               }//error
             });//ajax
           }
@@ -460,7 +482,10 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
       },//success
       error(e){
           console.log(e.message);
+          alert('Error consulta datos trabajador. '+e.message);
       }//error
+
+
     });//ajax  
 }
 
@@ -485,7 +510,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
               console.log(respuesta);
               Swal.fire({
                   icon: 'success',
-                  text: 'Se realizó el envio satisfactoriamente. num transaccion'+respuesta['num_trx'],
+                  text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
                   confirmButtonText: 'Continuar',
                   confirmButtonColor: '#a18347',
               }).then((result) => {
@@ -501,7 +526,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
           
             Swal.fire({
               icon: 'success',
-              text: 'Se realizó el envio satisfactoriamente. num Transaccion'+numTrx[2],
+              text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#a18347',
             }).then((result) => {
@@ -585,9 +610,7 @@ function firmaConvenio(codTra,docTraRRHH) {
   });//ajax  
 }
 
-
 //------------------------------Muestra PDF--------------------------
-
 
 function base64ToPDF(base64String) {
   var byteCharacters = atob(base64String);
@@ -699,3 +722,34 @@ function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
   }
   
 }
+
+var temporizadorInactividad;
+var alertaMostrada = false;
+
+function iniciarTemporizador() {
+  temporizadorInactividad = setTimeout(function() {
+    if (!alertaMostrada) {
+      Swal.fire({
+        text: 'Su sesión ha caducado. Ingrese nuevamente.',
+        icon: 'warning',
+        confirmButtonText: 'Aceptar',
+        confirmButtonColor: '#a18347',
+      }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "adios";
+        } 
+    })
+      alertaMostrada = true;
+    }
+  }, 300000); // 300000 milisegundos = 5 minutos
+}
+
+function reiniciarTemporizador() {
+  clearTimeout(temporizadorInactividad);
+  alertaMostrada = false;
+  iniciarTemporizador();
+}
+
+// Eventos que reinician el temporizador
+document.addEventListener('mousemove', reiniciarTemporizador);
+document.addEventListener('keypress', reiniciarTemporizador);

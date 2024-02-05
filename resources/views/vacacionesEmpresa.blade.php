@@ -447,6 +447,10 @@ $('#areaPromVacPend, #areaPromVacPendHoy, #areaReprog').select2({
 });
 
 window.onload= function() {
+
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
+
     if ('@php echo(session('ventana4_3')) @endphp' != 'SI') {
         let timerInterval
         Swal.fire({
@@ -1676,7 +1680,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
 $("#ayudaCargaMasivaEmp").click(function () {
     Swal.fire({
         icon: 'info',
-        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin')</p>",
+        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos con encabezado.</p>",
         confirmButtonColor: '#a18347',
         confirmButtonText: 'Cerrar'
     })

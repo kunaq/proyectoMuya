@@ -58,6 +58,10 @@
 
 
   <!-- Template Main JS File -->
+  <script type="text/javascript">
+
+
+  </script>
   <script src="{{asset('assets/js/main.js')}}"></script>
 
   

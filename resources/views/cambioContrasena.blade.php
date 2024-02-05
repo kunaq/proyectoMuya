@@ -99,3 +99,10 @@
 
   <!-- Template Main JS File -->
   <script src="{{asset('assets/js/cambioContrasena.js')}}"></script>
+  
+  <script type="text/javascript">
+  // Iniciar el temporizador cuando la página se carga
+    window.onload = function() {
+      iniciarTemporizador();
+    }
+  </script>

@@ -134,6 +134,10 @@
 
 <script>
   window.onload= function() {
+
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
+    
     if ('@php echo(session('flgResponsable')) @endphp' != 'SI') {
       let timerInterval
       Swal.fire({

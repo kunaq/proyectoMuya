@@ -382,7 +382,10 @@
     
 
 window.onload= function() {
-    
+
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
+
     if ('@php echo(session('ventana5_3')) @endphp' != 'SI') {
         let timerInterval
         Swal.fire({

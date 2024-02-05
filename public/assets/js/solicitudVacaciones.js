@@ -1,11 +1,22 @@
 //const { parseJSON } = require("jquery");
 var hooy = new Date();
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
+//verificar si el pago de haberes esta hecho
+
 var flgRegla = '';
 var flgReglaF = '';
 var flgReglaD = '';
 
 setTimeout(function() { 
+  var diaPagoHaber = document.getElementById('pagoPlanilla').value;
+  if (diaPagoHaber == 'SI') {
+    mesinicio = hooy.getMonth() + 2;
+    annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
+    inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
+
+  }else{
+    inicioCalendario = hooy.setDate(hooy.getDate() + 1);
+  }
   flatpickr("#datepickerIniSolVac",{
       locale:"es",
       dateFormat: "d-m-Y",

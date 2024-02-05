@@ -267,6 +267,9 @@
   //  var num_vacaciones_pendiente="0";
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
     window.onload= function() {
+      // Iniciar el temporizador cuando la página se carga
+      iniciarTemporizador();
+
         $.ajax({
             url: 'api/ObtenerTrabajador', 
             method: "GET",

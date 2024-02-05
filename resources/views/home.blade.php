@@ -104,6 +104,10 @@
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
     window.onload= function() {
+
+        // Iniciar el temporizador cuando la página se carga
+        iniciarTemporizador();
+
         var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
         $.ajax({
             url: 'api/ObtenerTrabajador', 
@@ -230,12 +234,13 @@ btnSolicitar.addEventListener("click", function() {
     codDoc = '11001';
     var mes = document.getElementById("mesBoleta").value;
     var anno = document.getElementById("annoBoleta").value;
+
     $.ajax({
       url: 'ObtenerBase64',
       method: "GET",
       crossDomain: true,
       dataType: 'json',
-      data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':mes},
+      data:{'cod_trabajador':codTra,'codDoc':codDoc,'anno':anno,'mes':mes,'numTrx':'0'},
       success: function(result){
         console.log(result['response']['dsc_base_64'])
         var completo = result['response']['dsc_base_64']+result['response']['dsc_base_64_2']+result['response']['dsc_base_64_3']+result['response']['dsc_base_64_4']+result['response']['dsc_base_64_5']+result['response']['dsc_base_64_6']+result['response']['dsc_base_64_7']+result['response']['dsc_base_64_8']+result['response']['dsc_base_64_9']+result['response']['dsc_base_64_10'];

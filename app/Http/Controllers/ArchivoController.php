@@ -124,7 +124,7 @@ class ArchivoController extends Controller
         ];
 
         $contenidoJson = json_encode($data);
-        // return $contenidoJson;
+        return $contenidoJson;
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarSolicitudVacacionesMasivo/20555348887',$headers,$contenidoJson);

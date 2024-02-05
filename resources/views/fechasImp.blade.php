@@ -282,6 +282,9 @@
 <script type="text/javascript">
   //  var num_vacaciones_pendiente="0";
     window.onload= function() {
+      // Iniciar el temporizador cuando la página se carga
+      iniciarTemporizador();
+
         $.ajax({
             url: 'api/ObtenerPagoHaberes', 
             method: "GET",

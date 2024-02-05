@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="assets/css/fullCalendarCustom.css">
 <x-layouts.app title="solicitudVacaciones" meta-description="Home meta description">
-
+<div id="overlay_load" class="overlay_muya">
+    <img src="{{ asset('assets/img/GM.png') }}" alt="login" class="fading-element">
+</div>
   <main id="main" class="main">
     <div class="pagetitle">
         <h1>Solicitud de vacaciones</h1>

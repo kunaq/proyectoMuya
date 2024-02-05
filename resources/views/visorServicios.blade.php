@@ -30,6 +30,11 @@
 $(document).ready(function () {
     muestraCalendario();     
 });//end ready
+
+// Iniciar el temporizador cuando la página se carga
+window.onload = function() {
+    iniciarTemporizador();
+}
   
 function muestraCalendario() {
     var eventos = [];

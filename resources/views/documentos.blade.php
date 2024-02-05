@@ -168,7 +168,10 @@
 
 
 
-window.onload= function() {  
+window.onload= function() { 
+
+    // Iniciar el temporizador cuando la página se carga
+    iniciarTemporizador();
 
     $.ajax({
         url: 'lista/MuestraAnhos', 
@@ -176,10 +179,13 @@ window.onload= function() {
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
+            var anio = new Date().getFullYear();
             respuesta['response'].forEach(function(word){
                 //console.log(word);
-                $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-                $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                if (word['codvar'] <= anio) {   
+                    $("#annoIni").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                    $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                }
 
             });
         },//success
