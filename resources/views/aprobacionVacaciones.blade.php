@@ -822,19 +822,34 @@ function procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin){
             dataType: 'json',
             data:{'solVac':data},
             success: function(respuesta){
-                enviaAprobacionVac(codTrabajador,fchIni,fchFin,numLinea);
-                console.log(respuesta);
-                Swal.fire({
-                    icon: 'success',
-                    text: 'Se han procesado las solicitudes con éxito',
-                    confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        console.log('data aprobado',data);
-                            location.reload();
-                    }
-                })
+                if (respuesta['response']['dsc_retorno'] == 'OK') {
+                    enviaAprobacionVac(codTrabajador,fchIni,fchFin,numLinea);
+                    console.log(respuesta);
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se han procesado las solicitudes con éxito',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log('data aprobado',data);
+                                location.reload();
+                        }
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        text: respuesta['response']['dsc_retorno'],
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log('data con error',respuesta);
+                                location.reload();
+                        }
+                    })
+                }
+
             },//success
             error(e){
                 console.log(e.message);
@@ -1067,6 +1082,7 @@ btnProcesarD.addEventListener("click", function() {
                     fchReg = formatDate(fchReg[0]);
                     var fchRechz = element['fch_rechazado'].split('T');
                     fchRechz = formatDate(fchRechz[0]);
+                    fchRechz = (element['fch_rechazado'] == '01/01/1990') ? '' : fchRechz;
 
                     var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
                     var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';

@@ -1,5 +1,8 @@
 //const { parseJSON } = require("jquery");
 var hooy = new Date();
+hooy.toLocaleString('en-US', {
+  timeZone: 'America/Lima',
+});
 var inicioCalendario = hooy.setDate(hooy.getDate() + 1);
 //verificar si el pago de haberes esta hecho
 

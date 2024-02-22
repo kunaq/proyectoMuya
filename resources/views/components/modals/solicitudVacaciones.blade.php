@@ -253,10 +253,10 @@ window.onload= function() {
           document.getElementById("diaPagoHaberes").value = auxDia[1];
           if(diaPagoHaberes < fechaActual){
             document.getElementById('pagoPlanilla').value = 'SI';
-           // botonSolicitud.disabled = true;
+           botonSolicitud.disabled = true;
           }else{
             document.getElementById('pagoPlanilla').value = 'NO';
-            //botonSolicitud.disabled = false;
+            botonSolicitud.disabled = false;
           }
         //console.log('pagoHaberes',diaPagoHaberes < fechaActual);
       }
@@ -493,7 +493,7 @@ btnSolicitar.addEventListener("click", function() {
     cantDias = parseInt(cantDias);
     diferenciaExceso = (diasGenerados + numDiasReprog) - cantDias;
 
-    var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : diferenciaExceso;
+    var diasExces = (diferenciaExceso < 0) ? Math.abs(diferenciaExceso) : 0;
     //console.log('diferenciaExceso',diferenciaExceso);
 
     var reprog = document.getElementById('reprogramacion').value;
