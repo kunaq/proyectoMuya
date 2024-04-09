@@ -22,7 +22,7 @@ class APIController extends Controller
 
         $recaptchaToken = $request['token'];
 
-        $recaptchaSecret = '6LdEq58pAAAAAItj6uVEc401clIS32DuQpypNbrF';
+        $recaptchaSecret = '';
 
 
         try {
