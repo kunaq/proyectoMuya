@@ -117,7 +117,13 @@
             data:{'cod_trabajador':codTrabajador},
             success: function(result){
                 document.getElementById("num_vacaciones_pendiente").innerHTML=result["response"]["num_vacaciones_pendiente"];
-                document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
+                var btnDescarga = document.getElementById('btnDscgBoleta');
+                if(result["response"]["dsc_ultima_boleta"] == 'NULL' || result["response"]["dsc_ultima_boleta"] == "" ){
+                    btnDescarga.disabled = true;
+                }else{
+                    document.getElementById("dsc_ultima_boleta").innerHTML=result["response"]["dsc_ultima_boleta"];
+                    btnDescarga.disabled = false;
+                }
                 var aux = result["response"]["dsc_proxima_vacaciones"];
                 
                 if (aux == 'NO REGISTRADO') {

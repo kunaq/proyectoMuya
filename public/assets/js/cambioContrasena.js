@@ -44,6 +44,7 @@ var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
+var charEsp = document.getElementById("charEsp");
 var envia = document.getElementById("envia");
 var verPass = document.getElementById("nuevapass2");
 var mensaje = document.getElementById("message2");
@@ -97,7 +98,21 @@ myInput.onkeyup = function () {
         length.classList.add("invalid");
         todo--;
     }
-    if (todo == 4) {
+
+    // Validate special characters
+    var specialChars = /[!@#$%^&*(),.?":{}|<>\-_+¡¿Ññ]/g;
+
+    if (myInput.value.match(specialChars)) {    
+        charEsp.classList.remove("valid");
+        charEsp.classList.add("invalid");
+        todo--;
+    } else {
+        charEsp.classList.remove("invalid");
+        charEsp.classList.add("valid");
+        todo++;
+    }
+
+    if (todo == 5) {
         validoTodo.classList.remove("invalid");
         validoTodo.classList.add("validTodo");
     } else {

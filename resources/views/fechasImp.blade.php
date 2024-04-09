@@ -285,243 +285,231 @@
       // Iniciar el temporizador cuando la página se carga
       iniciarTemporizador();
 
-        $.ajax({
-            url: 'api/ObtenerPagoHaberes', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno":2023 },
-            success: function(result){
-              console.log('response',result)
-                //ESCRITORIO
-                document.getElementById("ENERO").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
-                document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
+      var fecha = new Date();
+      var ano = fecha.getFullYear();
 
-                //MOVIL
-                document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
-                document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
-            }
-        });
+      $.ajax({
+        url: 'api/ObtenerPagoHaberes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno":ano },
+        success: function(result){
+          console.log('response',result)
+          //ESCRITORIO
+          document.getElementById("ENERO").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
+          document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
 
-        var fecha = new Date();
-	      var ano = fecha.getFullYear();
+          //MOVIL
+          document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
+          document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
-        $.ajax({
-            url: 'api/ObtenerPagoAdelantoVacaciones', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno":ano },
-            success: function(result){
-                //ESCRITORIO
-                document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
-                document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
+      $.ajax({
+        url: 'api/ObtenerPagoAdelantoVacaciones', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno":ano },
+        success: function(result){
+          //ESCRITORIO
+          document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
 
-                //MOVIL
-                document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
-                document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
-            }
-        });
+          //MOVIL
+          document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
+      $.ajax({
+        url: 'api/ObtenerPagoCts', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno":ano },
+        success: function(result){
+          document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
+          document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
+        }
+      });
 
-        $.ajax({
-            url: 'api/ObtenerPagoCts', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno":ano },
-            success: function(result){
-                document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
-                document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
-            }
-        });
+      $.ajax({
+        url: 'api/ObtenerPagoGratificacion', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno":ano },
+        success: function(result){
+          document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
+          document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
-
-        $.ajax({
-            url: 'api/ObtenerPagoGratificacion', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno":ano },
-            success: function(result){
-                document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
-                document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
-            }
-        });
-
-       
-
-        $.ajax({
+      $.ajax({
         url: 'lista/MuestraAnhos', 
         method: "GET",
         crossDomain: true,
         dataType: 'json',
         success: function(respuesta){ 
-                respuesta['response'].forEach(function(word){
-                //console.log(word);
-                seleccion = '';
-                if(word['codvar'] == ano){
-                seleccion = 'selected';
-                }else{
-                seleccion = '';
-                }
-                $("#annoFimp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
-            });
+          respuesta['response'].forEach(function(word){
+            //console.log(word);
+            seleccion = '';
+            if(word['codvar'] == ano){
+              seleccion = 'selected';
+            }else{
+              seleccion = '';
+            }
+            $("#annoFimp").append('<option value="'+ word['codvar'] +'" '+seleccion+'>'+ word['desvar1'] +'</option>');
+          });
         },//success
         error(e){
             console.log(e.message);
         }//error
-    });
+      }); 
+    }//onload
 
-       
-    }
+    function BuscarPagos() {
+      var cod_anno = $('#annoFimp').val();
+      $.ajax({
+        url: 'api/ObtenerPagoHaberes', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": cod_anno },
+        success: function(result){
+          console.log('response',result)
+          //ESCRITORIO
+          document.getElementById("ENERO").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
+          document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
 
-        function BuscarPagos() {
+          //MOVIL
+          document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
+          document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
-        var cod_anno = $('#annoFimp').val();
-        $.ajax({
-            url: 'api/ObtenerPagoHaberes', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno": cod_anno },
-            success: function(result){
-              console.log('response',result)
-                //ESCRITORIO
-                document.getElementById("ENERO").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO").innerHTML=result["response"]["febrero"];
-                document.getElementById("MARZO").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE").innerHTML=result["response"]["diciembre"];
+      $.ajax({
+        url: 'api/ObtenerPagoAdelantoVacaciones', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": cod_anno  },
+        success: function(result){
+          //ESCRITORIO
+          document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
 
-                //MOVIL
-                document.getElementById("ENEROM").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBREROM").innerHTML=result["response"]["febrero"];
-                document.getElementById("MARZOM").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRILM").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYOM").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIOM").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIOM").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTOM").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBREM").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBREM").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBREM").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBREM").innerHTML=result["response"]["diciembre"];
-            }
-        });
+          //MOVIL
+          document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
+          document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
+          document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
+          document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
+          document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
+          document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
+          document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
+          document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
+          document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
+          document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
-        $.ajax({
-            url: 'api/ObtenerPagoAdelantoVacaciones', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno": cod_anno  },
-            success: function(result){
-                //ESCRITORIO
-                document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
-                document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO1").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO1").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO1").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE1").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE1").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE1").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE1").innerHTML=result["response"]["diciembre"];
+      $.ajax({
+        url: 'api/ObtenerPagoCts', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": cod_anno  },
+        success: function(result){
+          document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
+          document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
+        }
+      });
 
-                //MOVIL
-                document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
-                document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
-                document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
-                document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
-                document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
-                document.getElementById("JUNIO1M").innerHTML=result["response"]["junio"];
-                document.getElementById("JULIO1M").innerHTML=result["response"]["julio"];
-                document.getElementById("AGOSTO1M").innerHTML=result["response"]["agosto"];
-                document.getElementById("SEPTIEMBRE1M").innerHTML=result["response"]["septiembre"];
-                document.getElementById("OCTUBRE1M").innerHTML=result["response"]["octubre"];
-                document.getElementById("NOVIEMBRE1M").innerHTML=result["response"]["noviembre"];
-                document.getElementById("DICIEMBRE1M").innerHTML=result["response"]["diciembre"];
-            }
-        });
-
-
-        $.ajax({
-            url: 'api/ObtenerPagoCts', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno": cod_anno  },
-            success: function(result){
-                document.getElementById("MAYO2").innerHTML=result["response"]["mayo"];
-                document.getElementById("NOVIEMBRE2").innerHTML=result["response"]["noviembre"];
-            }
-        });
-
-
-        $.ajax({
-            url: 'api/ObtenerPagoGratificacion', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{ "cod_anno": cod_anno  },
-            success: function(result){
-                document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
-                document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
-            }
-        });
+      $.ajax({
+        url: 'api/ObtenerPagoGratificacion', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{ "cod_anno": cod_anno  },
+        success: function(result){
+          document.getElementById("JULIO3").innerHTML=result["response"]["julio"];
+          document.getElementById("DICIEMBRE3").innerHTML=result["response"]["diciembre"];
+        }
+      });
 
     }
-
-    
-
 </script>

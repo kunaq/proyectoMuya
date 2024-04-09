@@ -123,8 +123,8 @@ var filaCalendario = [];
 window.onload= function() {
   
   // Iniciar el temporizador cuando la página se carga
-  iniciarTemporizador();
-
+  iniciarTemporizador(); 
+  
 
   var fcha = new Date();
   var anno = fcha.getFullYear();
@@ -138,6 +138,8 @@ window.onload= function() {
   var codTrabajador = '@php echo(session('codTrabajador')) @endphp';
   var botonSolicitud = document.getElementById("btnSolicitarVac");
   var botonConvenio = document.getElementById("btnFirmarConvenio");
+  botonConvenio.disabled = true;
+  botonSolicitud.disabled = true;
   document.getElementById("ctdProgPeriodo").value = '@php echo(session('ctdProgVac')) @endphp';
   $.ajax({
       url: 'api/ObtenerTrabajador', 
@@ -153,7 +155,7 @@ window.onload= function() {
           fchFinCalendario = (result["response"]["fch_fin"] != '1900-01-01T00:00:00') ? result["response"]["fch_fin"].split("T") : null;
           var mensajeRecordar = 'No tienes vacaciones programadas';
           if (fechIniCalendario != null) {
-            mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas son desde el  <b>'+fchIni+'</b> hasta el <b>'+fchFin+'</b>';
+            mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas inician <b>'+result["response"]["dsc_proxima_vacaciones"]+'</b>';
           }
           document.getElementById("msgRecordar").innerHTML = '<br>'+mensajeRecordar;
           document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
@@ -165,9 +167,9 @@ window.onload= function() {
           var diferenciaMilisegundos = fechaActual - auxFech;
 
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
-          //console.log('diferenciaMeses',diferenciaMeses);
+          console.log('diferenciaMeses',diferenciaMeses);
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
-          //console.log('diferenciaAnios',diferenciaAnios);
+          console.log('diferenciaAnios',diferenciaAnios);
         
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;

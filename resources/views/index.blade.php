@@ -11,7 +11,7 @@
                         <img src="assets/img/GM-BLANCO.png" alt="login" class="login-card-img">
                     </div>
                     <div class="col-md-6">
-                        <div class="card-body">
+                        <div class="card-body" id="form_captcha">
                             <div class="brand-wrapper">
                                 <div class="row">
                                     <img class="logo" src="assets/img/LOGO_GRUPO_MUYA.png" alt="logo">
@@ -51,10 +51,13 @@
                                 </div>
                             </div>
                             <div id="message3">
-                                <span style="color: red;">El usuario se encuentra bloqueado temporalmente por exceso de intentos fallidos.</span>
+                                <span style="color: red;">El usuario se encuentra bloqueado temporalmente por exceso de intentos fallidos. Intente nuevamente en 2 minutos</span>
                             </div>
                             <div id="message4">
                                 <span style="color: red;">El cargo del usuario no tiene acceso al portal web.</span>
+                            </div>
+                            <div id="message5" style="display: none">
+                                <span style="color: red;">Su sesión ha caducado. Ingrese nuevamente.</span>
                             </div>
                             <a href="#" class="btn btn-block login-btn" id="loginBtn">Ingresar</a>
                         </div>
@@ -74,7 +77,7 @@
                     <form id="formOlvideC" action="#" method="get">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="dniOlvideC" class="form-label">Por favor introduzca su DNI</label>
+                                <label for="dniOlvideC" class="form-label">Por favor, introduzca su DNI. Le enviaremos una contraseña temporal a su correo personal.</label>
                                 <input type="number" class="form-control" @style('max-width:50%; margin-left: 25%;') name="dniOlvideC" id="dniOlvideC" min="0" max="999999999" aria-describedby="helpId" placeholder="" required>
                                 <div id="helpId" class="form-text" @style('max-width:50%; margin-left: 25%;') hidden>DNI formato inválido</div>
                             </div>
@@ -99,3 +102,19 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js"></script>
 
 <script src="{{asset('assets/js/index.js')}}"></script>
+
+<script type="text/javascript">
+
+    window.onload= function() {
+        @if(request()->has('mensaje'))
+            if('{{ request('mensaje') }}' == 'inactividad'){
+                document.getElementById('message5').style.display = "block";
+            }else{
+                document.getElementById('message5').style.display = "none";
+            }
+        @else
+            console.log('No se envió ningún mensaje');
+        @endif
+    }
+
+</script>

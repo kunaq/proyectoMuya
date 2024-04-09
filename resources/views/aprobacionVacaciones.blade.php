@@ -294,7 +294,7 @@
         <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones</h5>
+                    <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones por trabajador</h5>
                     <div class="row">
                         <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
                             <div class="form-group">
@@ -342,7 +342,7 @@
         <div class="col-md-10 offset-md-1">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title" style="font-size: 28px;">Descargar solicitudes de vacaciones</h5>
+                    <h5 class="card-title" style="font-size: 28px;">Reporte de solicitud de vacaciones</h5>
                     <div class="row">
                         <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
                             <div class="form-group">
@@ -565,7 +565,7 @@ window.onload= function() {
                 respuesta['response'].forEach(function(word){
                 //console.log(word);
                 $("#annoIniVE").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
-                // $("#annoFin").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
+                $("#annoFinVE").append('<option value="'+ word['codvar'] +'">'+ word['desvar1'] +'</option>');
 
             });
         },//success
@@ -624,6 +624,13 @@ window.onload= function() {
             console.log(e.message);
         }//error
     });//ajax ObtenerReprogramaciones
+
+    const actual = new Date();
+    const month = actual.getMonth();
+    $("#periodo").val(month);
+    $('#periodo').trigger('change');
+    $("#periodoFin").val(month);
+    $('#periodoFin').trigger('change'); 
 
 }
 
@@ -1402,19 +1409,19 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
     });
 });
 
-$('#annoIniVE,#periodo').select2({
-    language: "es",
-    theme: "classic",
-    width: 'resolve',
-    placeholder: "Escriba el nombre del trabajador",
-    allowClear: true,
-    // dir: "rtl",
-});
+// $('#annoIniVE,#periodo, #annoFinVE, #periodoFin').select2({
+//     language: "es",
+//     theme: "classic",
+//     width: 'resolve',
+//     // placeholder: "Escriba el nombre del trabajador",
+//     allowClear: true,
+//     // dir: "rtl",
+// });
 
 $("#ayudaCargaMasivaApr").click(function () {
     Swal.fire({
         icon: 'info',
-        html: "<p style='text-align: justify;'>La hoja de Excel debe tener 3 columnas ('codigo de trabajador', 'fecha inicio', 'fecha fin') y los datos con encabezado.</p>",
+        html: "<p style='text-align: center;'>Solicitar formato Excel a gdh.</p>",
         confirmButtonColor: '#a18347',
         confirmButtonText: 'Cerrar'
     })

@@ -56,7 +56,7 @@
                   <div class="row">
                     <div class="col-md-6 offset-md-5">
                       <div id="message">
-                       <p style="text-align: justify;"> Mínimo<span id="letter" class="invalid"> una letra minúscula</span>,<span id="capital" class="invalid"> una mayúscula</span> y <span id="number" class="invalid">un número</span>. <span id="length" class="invalid">Mínimo 8 caracteres. </span><span id="validoTodo" class="invalid"></span>
+                       <p style="text-align: justify;"> Mínimo<span id="letter" class="invalid"> una letra minúscula</span>,<span id="capital" class="invalid"> una mayúscula</span> y <span id="number" class="invalid">un número</span>. <span id="length" class="invalid">Mínimo 8 caracteres. </span><span id="charEsp" class="valid">Tu contraseña NO debe incluir caracteres especiales: !#$%&*. </span><span id="validoTodo" class="invalid"></span>
                       </div></p>
                     </div>
                   </div>

@@ -45,7 +45,15 @@ document.getElementById("password")
 });
 
 $("#loginBtn").click(function(){
-    // Hacer la solicitud AJAX utilizando baseUrl y apiKey
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LdEq58pAAAAACOUf9GgoVuFX5lWLndPLI9zBzrn', {
+            action: 'validarUsuario'
+        }).then(function(token) {
+            $('#form_captcha').prepend('<input type="hidden" name="token" value="'+token+'"/>');
+            $('#form_captcha').prepend('<input type="hidden" name="action" value="validarUsuario"/>');
+
+
+                // Hacer la solicitud AJAX utilizando baseUrl y apiKey
     var user = document.getElementById("dni").value;
     var passw = document.getElementById("password").value;
    
@@ -55,7 +63,12 @@ $("#loginBtn").click(function(){
         url: 'api/login', 
         method: "GET",
         dataType: 'json',
-        data:{'usuario':user,'password':passw},
+        data:{
+            'usuario':user,
+            'password':passw,
+            'token': token,
+            'action': 'validarUsuario'
+        },
         crossDomain: true,
         success: function(respuesta){
             console.log('flg_cargo',respuesta.data.response.flg_cargo_sin_acceso);
@@ -112,6 +125,10 @@ $("#loginBtn").click(function(){
         }//error
             
     });//ajax
+
+        });
+    });
+
     
 });
 

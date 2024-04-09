@@ -511,7 +511,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
               console.log(respuesta);
               Swal.fire({
                   icon: 'success',
-                  text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
+                  text: 'La solicitud de vacaciones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
                   confirmButtonText: 'Continuar',
                   confirmButtonColor: '#a18347',
               }).then((result) => {
@@ -527,7 +527,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
           
             Swal.fire({
               icon: 'success',
-              text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
+              text: 'La solicitud de vacaciones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
               confirmButtonText: 'Continuar',
               confirmButtonColor: '#a18347',
             }).then((result) => {
@@ -730,16 +730,19 @@ var alertaMostrada = false;
 function iniciarTemporizador() {
   temporizadorInactividad = setTimeout(function() {
     if (!alertaMostrada) {
-      Swal.fire({
-        text: 'Su sesión ha caducado. Ingrese nuevamente.',
-        icon: 'warning',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#a18347',
-      }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "adios";
-        } 
-    })
+      window.location.href = "adios/inactividad";
+      // Swal.fire({
+      //   text: 'Su sesión ha caducado. Ingrese nuevamente.',
+      //   icon: 'warning',
+      //   confirmButtonText: 'Aceptar',
+      //   confirmButtonColor: '#a18347',
+      //   allowOutsideClick: false,
+      //   allowEscapeKey:false,
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //       window.location.href = "adios";
+      //   } 
+      // })
       alertaMostrada = true;
     }
   }, 300000); // 300000 milisegundos = 5 minutos

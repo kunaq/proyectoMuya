@@ -82,7 +82,7 @@
                 <div class="row">
                   <div class="col-md-6 offset-md-5">
                     <div id="message">
-                      <p style="text-align: justify;"> Mínimo<span id="letter" class="invalid"> una letra minúscula</span>,<span id="capital" class="invalid"> una mayúscula</span> y <span id="number" class="invalid">un número</span>. <span id="length" class="invalid">Mínimo 8 caracteres. </span><span id="validoTodo" class="invalid"></span>
+                      <p style="text-align: justify;"> Mínimo<span id="letter" class="invalid"> una letra minúscula</span>,<span id="capital" class="invalid"> una mayúscula</span> y <span id="number" class="invalid">un número</span>. <span id="length" class="invalid">Mínimo 8 caracteres. </span><span id="charEsp" class="valid">Tu contraseña NO debe incluir caracteres especiales: !#$%&*. </span><span id="validoTodo" class="invalid"></span>
                     </div></p>
                   </div>
                 </div>
@@ -194,6 +194,7 @@
     var capital = document.getElementById("capital");
     var number = document.getElementById("number");
     var length = document.getElementById("length");
+    var charEsp = document.getElementById("charEsp");
     var envia = document.getElementById("envia1raVez");
     var verPass = document.getElementById("nuevapass2");
     var mensaje = document.getElementById("message2");
@@ -247,7 +248,18 @@
             length.classList.add("invalid");
             todo--;
         }
-        if (todo == 4) {
+        // Validate special characters
+        var specialChars =  /[!@#$%^&*(),.?":{}|<>\-_+¡¿Ññ]/g;
+        if (myInput.value.match(specialChars)) {
+            charEsp.classList.remove("valid");
+            charEsp.classList.add("invalid");
+            todo--;
+        } else {
+            charEsp.classList.remove("invalid");
+            charEsp.classList.add("valid");
+            todo++;
+        }
+        if (todo == 5) {
             validoTodo.classList.remove("invalid");
             validoTodo.classList.add("validTodo");
         } else {

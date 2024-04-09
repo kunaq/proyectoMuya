@@ -23,6 +23,7 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- captcha google -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdEq58pAAAAACOUf9GgoVuFX5lWLndPLI9zBzrn"></script>
 {{--         
     <?php
          $captcha_site_key  = '6LeXFtMgAAAAACtFv_jr3yUL5gaUuBC1qxp2_Ahe';

@@ -24,12 +24,16 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::view('/home', 'home')->name('home');
-Route::get('/adios', function (Request $request): RedirectResponse {
+Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): RedirectResponse {
     Auth::logout();
  
     $request->session()->invalidate();
- 
     $request->session()->regenerateToken();
+
+    // Redirigir a la página de inicio con el parámetro si está presente
+    if ($mensaje !== null) {
+        return redirect("/?mensaje=$mensaje");
+    }
  
     return redirect('/');
     

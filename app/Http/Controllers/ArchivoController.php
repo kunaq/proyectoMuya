@@ -57,27 +57,34 @@ class ArchivoController extends Controller
             }else{
                 if ($fila[0] != '' || $fila[0] != NULL) {
                     try {
-                        //code...
-                        $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
-                        $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+                        // Verificar si las fechas no están vacías antes de intentar convertirlas
+                        if (!empty($fila[1]) && !empty($fila[2])) {
+                            $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
+                            $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+
+                             // Restaurar la configuración regional original
+                            Carbon::setLocale(config('app.locale'));
+
+                            // Validar que las fechas sean válidas
+                            if (!$fechaInicio || !$fechaFin) {
+                                return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
+                            }
+
+                            // Validar que fecha-fin sea mayor o igual a fecha-inicio
+                            if ($fechaFin->lt($fechaInicio)) {
+                                return response()->json(['error' => 'La fecha de fin es menor a la fecha de inicio en el archivo.'], 400);
+                            }
+
+                        } else {
+                            // Si alguna de las fechas está vacía, asignar valores nulos o cualquier otro manejo deseado
+                            $fechaInicio = null;
+                            $fechaFin = null;
+                        }
                     } catch (\Throwable $th) {
                         return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
                     }
                 }else{
                     break;
-                }
-
-                // Restaurar la configuración regional original
-                Carbon::setLocale(config('app.locale'));
-
-                // Validar que las fechas sean válidas
-                if (!$fechaInicio || !$fechaFin) {
-                    return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
-                }
-
-                // Validar que fecha-fin sea mayor o igual a fecha-inicio
-                if ($fechaFin->lt($fechaInicio)) {
-                    return response()->json(['error' => 'La fecha de fin es menor a la fecha de inicio en el archivo.'], 400);
                 }
 
                 // Validar que la fila tenga la misma cantidad de elementos
@@ -120,11 +127,15 @@ class ArchivoController extends Controller
             'dsc_cadena'=> $sql,
             'cod_trabajador' => session('codTrabajador'),
             'flg_aprueba_automatico' => $flgAprueba,
-            'origen' => $request['origen']
+            'origen' => $request['origen'],
+            'anno_ini'=> $request['annoIniVE'],
+            'mes_ini'=> $request['periodo'],
+            'anno_fin'=> $request['annoFinVE'],
+            'mes_fin'=> $request['periodoFin']
         ];
 
         $contenidoJson = json_encode($data);
-        return $contenidoJson;
+        // return $contenidoJson;
         try {
 
             $request = new \GuzzleHttp\Psr7\Request('PUT', 'https://webapiportalplanillamuya.azurewebsites.net/api/Masivo/InsertarSolicitudVacacionesMasivo/20555348887',$headers,$contenidoJson);
