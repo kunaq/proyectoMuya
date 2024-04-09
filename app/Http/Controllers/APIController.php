@@ -15,46 +15,67 @@ use App\Http\Controllers\FuncionesController;
 class APIController extends Controller
 {
     public function login(Request $request)
-    {   
+    {
         $client = new Client();
         $usuario = $request['usuario'];
         $password = $request['password'];
+
+        $recaptchaToken = $request['token'];
+
+        $recaptchaSecret = '6LdEq58pAAAAAItj6uVEc401clIS32DuQpypNbrF';
+
+
         try {
-            $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Logueo/LogueoUsuario/20555348887/'.$usuario.'/'.$password, [
-                'http_errors' => false, // Permite manejar errores HTTP personalizados
+
+            $recaptchaResponse = $client->post('https://www.google.com/recaptcha/api/siteverify', [
+                'form_params' => [
+                    'secret' => $recaptchaSecret,
+                    'response' => $recaptchaToken
+                ]
             ]);
 
-            $statusCode = $response->getStatusCode();
-            $responseData = json_decode($response->getBody()->getContents());
 
-            // Aquí puedes procesar la respuesta de la API según tus requisitos
+            $recaptchaData = json_decode($recaptchaResponse->getBody()->getContents());
 
-            $nombre = strtolower($responseData->response->dsc_usuario);
+            if (!$recaptchaData->success) {
+                return response()->json(['error' => 'La verificación de reCAPTCHA falló.'], 400);
+            } else {
+                $response = $client->request('GET', 'https://webapiportalplanillamuya.azurewebsites.net/api/Logueo/LogueoUsuario/20555348887/' . $usuario . '/' . $password, [
+                    'http_errors' => false, // Permite manejar errores HTTP personalizados
+                ]);
 
-            //Definimos las variables de sesión
-            Session::put('codTrabajador', $responseData->response->cod_usuario);
-            Session::put('docTrabajador', $responseData->response->dsc_documento);
-            Session::put('nombreTrabajador', $responseData->response->dsc_usuario);
-            Session::put('flgResponsable', $responseData->response->flg_responsable);
-            Session::put('codSupervisor', $responseData->response->cod_supervisor);
-            Session::put('mailPerSupervisor', $responseData->response->dsc_mail_personal_supervisor);
-            Session::put('mailEmpSupervisor', $responseData->response->dsc_mail_empresa_supervisor);
-            Session::put('correoEnvio', $responseData->response->dsc_mail_configuracion);
-            Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
-            Session::put('dscHost', $responseData->response->dsc_host_configuracion);
-            Session::put('numHost', $responseData->response->num_host_configuracion);
-            Session::put('flgAcuerdoFirm', $responseData->response->flg_acuerdo_firmado);
-            Session::put('ctdProgVac', $responseData->response->num_ctd);
-            Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
-            Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
-            Session::put('docTraRRHH', $responseData->response->dsc_documento_rrhh);
-            Session::put('periodoConvenio', $responseData->response->cod_periodo_vacaciones_convenio);
-            Session::put('numVacaciones', $responseData->response->num_vacaciones);
-            Session::put('nombreBienvenida', $responseData->response->nombres);
+                $statusCode = $response->getStatusCode();
+                $responseData = json_decode($response->getBody()->getContents());
+
+                // Aquí puedes procesar la respuesta de la API según tus requisitos
+
+                $nombre = strtolower($responseData->response->dsc_usuario);
+
+                //Definimos las variables de sesión
+                Session::put('codTrabajador', $responseData->response->cod_usuario);
+                Session::put('docTrabajador', $responseData->response->dsc_documento);
+                Session::put('nombreTrabajador', $responseData->response->dsc_usuario);
+                Session::put('flgResponsable', $responseData->response->flg_responsable);
+                Session::put('codSupervisor', $responseData->response->cod_supervisor);
+                Session::put('mailPerSupervisor', $responseData->response->dsc_mail_personal_supervisor);
+                Session::put('mailEmpSupervisor', $responseData->response->dsc_mail_empresa_supervisor);
+                Session::put('correoEnvio', $responseData->response->dsc_mail_configuracion);
+                Session::put('claveEnvio', $responseData->response->dsc_password_configuracion);
+                Session::put('dscHost', $responseData->response->dsc_host_configuracion);
+                Session::put('numHost', $responseData->response->num_host_configuracion);
+                Session::put('flgAcuerdoFirm', $responseData->response->flg_acuerdo_firmado);
+                Session::put('ctdProgVac', $responseData->response->num_ctd);
+                Session::put('ctdDiasProgVac', $responseData->response->num_dias_programados);
+                Session::put('codGrupoVac', $responseData->response->cod_grupo_vacaciones);
+                Session::put('docTraRRHH', $responseData->response->dsc_documento_rrhh);
+                Session::put('periodoConvenio', $responseData->response->cod_periodo_vacaciones_convenio);
+                Session::put('numVacaciones', $responseData->response->num_vacaciones);
+                Session::put('nombreBienvenida', $responseData->response->nombres);
 
 
-            // Ejemplo de retorno de la respuesta
-            return response()->json(['status' => $statusCode, 'data' => $responseData]);
+                // Ejemplo de retorno de la respuesta
+                return response()->json(['status' => $statusCode, 'data' => $responseData]);
+            }
         } catch (\Exception $e) {
             // Manejo de errores en caso de que la petición falle
             return response()->json(['error' => $e->getMessage()], 500);
