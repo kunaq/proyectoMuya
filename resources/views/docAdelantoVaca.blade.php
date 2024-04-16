@@ -79,7 +79,7 @@
         <p>De conformidad con el artículo 10° del Decreto legislativo N° 713, legislación sobre descansos remunerados de los trabajadores sujetos al régimen laboral de la actividad privada, se establece la posibilidad de efectuar el adelanto de días de descanso a cuenta del período vacacional que se genere a futuro mediante acuerdo escrito entre las partes.</p>
         <br>
         <p><b>SEGUNDO:</b></p>
-        <p><b>EL TRABAJADOR</b> solicita a <b>EL EMPLEADOR</b> el adelanto de los días de vacaciones que se generen en proporción al número de días trabajados en el período {{$anio}}. Para tal efecto, <b>EL TRABAJADOR</b> precisará, oportunamente, mediante el intranet de la empresa, los días de vacaciones que adelantará siguiendo el procedimiento respectivo sobre adelanto de vacaciones de <b>EL EMPLEADOR</b>, para el cual <b>EL TRABAJADOR</b> ha sido debidamente capacitado.</p>
+        <p><b>EL TRABAJADOR</b> solicita a <b>EL EMPLEADOR</b> el adelanto de los días de vacaciones que se generen en proporción al número de días trabajados en el período {{$periodoVac}}. Para tal efecto, <b>EL TRABAJADOR</b> precisará, oportunamente, mediante el intranet de la empresa, los días de vacaciones que adelantará siguiendo el procedimiento respectivo sobre adelanto de vacaciones de <b>EL EMPLEADOR</b>, para el cual <b>EL TRABAJADOR</b> ha sido debidamente capacitado.</p>
         <br>
         <p><b>TERCERO:</b></p>
         <p><b>EL EMPLEADOR</b> previa evaluación de sus necesidades empresariales otorgará o no su aprobación a cada solicitud de adelanto de vacaciones enviada por <b>EL TRABAJADOR</b>, conforme el referido procedimiento.</p>

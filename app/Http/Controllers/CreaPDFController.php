@@ -12,7 +12,7 @@ use App\Http\Controllers\APIController;
 class CreaPDFController extends Controller
 {
 
-    public function generarPDF($direccionTra,$departamentoTra,$provinciaTra,$distritoTra)
+    public function generarPDF($direccionTra,$departamentoTra,$provinciaTra,$distritoTra,$periodoVac)
     {   
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $fecha = Carbon::now();
@@ -34,7 +34,8 @@ class CreaPDFController extends Controller
             'departamento' => strtolower($departamentoTra),
             'dia' => $dia,
             'mes' => $mes,
-            'anio' => $anio
+            'anio' => $anio,
+            'periodoVac' => $periodoVac
         ];
 
         $nombreArchivo = '11005-'.$numDocTrabajador.'-'.$mesNum.$anio.'.pdf';
@@ -137,11 +138,12 @@ class CreaPDFController extends Controller
         $anio =$fechActual->format('Y');
         $mes = $fechActual->format('m');
         $formato='';
+        $periodoVac = session('numPeriodoVacaciones');
 
         try {
             if ($accion =='firmar') {
             
-                $docBase64 = explode('"',CreaPDFController::generarPDF($direccionTra[0],$departamentoTra,$provinciaTra,$distritoTra));
+                $docBase64 = explode('"',CreaPDFController::generarPDF($direccionTra[0],$departamentoTra,$provinciaTra,$distritoTra,$periodoVac));
                 $formato = '11005';
                 $firmante2 = array( 
                     'documento'=>$docTraRRHH,

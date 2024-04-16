@@ -71,6 +71,7 @@ class APIController extends Controller
                 Session::put('periodoConvenio', $responseData->response->cod_periodo_vacaciones_convenio);
                 Session::put('numVacaciones', $responseData->response->num_vacaciones);
                 Session::put('nombreBienvenida', $responseData->response->nombres);
+                Session::put('numPeriodoVacaciones', $responseData->response->num_periodo_vacaciones);
 
 
                 // Ejemplo de retorno de la respuesta
