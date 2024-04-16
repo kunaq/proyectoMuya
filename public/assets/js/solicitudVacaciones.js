@@ -282,7 +282,7 @@ function descargaDoc() {
     console.log('descargar');
 }
 
-function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
+function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini,codEstado) {
     document.getElementById('cantDiasSol').value = cantDias;
     document.getElementById('numVacPendReprog').value = cantDias;
     document.getElementById('numLinea').value = numLinea;
@@ -291,6 +291,7 @@ function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
     document.getElementById('fchFinRech').value = fchFin;
     document.getElementById('fchReincRech').value = fchReini;    
     document.getElementById('cantDiasRech').value = cantDias;
+    document.getElementById('codEstado').value = codEstado;
 }
 
 // ---------apartado del calendario--------------

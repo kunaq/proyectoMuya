@@ -87,6 +87,7 @@
                         <input type="hidden" id="pagoPlanilla">
                         <input type="hidden" id="fchRetornoBD">
                         <input type="hidden" id="diaPagoHaberes">
+                         <input type="hidden" id="codEstado">           {{-- NUEVO --}}
                       </div>
                     </div>
                   </div>
@@ -346,6 +347,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
           var finFchIni = "'"+fchIni+"'";
           var finFchFin = "'"+fchFin+"'";
           var tip = '';
+          var codEstado = element['dsc_estado'];              //NUEVO + VARIABLE EN FUNCION DENTRO DE filaData Y filaDataMovil
           
           if (element['dsc_estado'] == 'SOLICITADO') {
             tip = element['dsc_subestado_solicitud'];
@@ -364,7 +366,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
               flgPagado,
               '<button class="btn btn-success btnDorado" data-bs-toggle="tooltip" data-bs-placement="top" '+disBtnFir+' title="Firmar" onClick="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)"><span class="bi bi-vector-pen"></span></button>'+
               '<button class = "btn btn-success verdeMuya" data-bs-toggle="tooltip" data-bs-placement="top" title = "Descargar" '+disBtnDwn+'><span class="bi bi-download" onClick="descargaDoc('+cantDias+','+numLinea+')"></span></button>'+
-              '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')"><span class = "bi bi-pencil-square"></span></button>' 
+              '<button class = "btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" data-bs-toggle = "tooltip" data-bs-placement="top" title = "Modificar" '+disBtnEdit+' onClick="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+','+codEstado+')"><span class = "bi bi-pencil-square"></span></button>' 
           ];
 
           filasArray.push(filaData);
@@ -381,7 +383,7 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
                   '<div style="text-align-last: center;">'+
                       '<button class="btn btn-success btnDorado" '+disBtnFir+' ontouchstart ="enviaDocSoli('+codTrabajador+','+finFchIni+','+finFchFin+','+fchReinc+','+cantDias+','+numLinea+',this)">Firma</button>'+
                       '<button class="btn btn-success verdeMuya"  '+disBtnDwn+' ontouchstart="descargaDoc('+cantDias+','+numLinea+')">Descarga</button>'+
-                      '<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" '+disBtnEdit+' ontouchstart ="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+')">Edita</button>'+
+                      '<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#ModalSolicitud" '+disBtnEdit+' ontouchstart ="reprograma('+cantDias+','+numLinea+','+finFchIni+','+finFchFin+','+fchReinc+','+codEstado+')">Edita</button>'+
                   '</div>'+  
               '</td>'+
             '</tr>'
@@ -688,86 +690,111 @@ btnSolicitar.addEventListener("click", function() {
                   'num_linea': numLinea,
                   'cod_trabajador_accion': '@php echo(session('codTrabajador')) @endphp'
                 }
+
+              
               $.ajax({
-                  url: 'api/ReprogramarSolicitudVacaciones', 
-                  method: "PUT",
-                  crossDomain: true,
-                  dataType: 'json',
-                  data:{'solVac':data},
-                  success: function(respuesta){
-                      console.log(respuesta);
-                      enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,numLinea);
+                url: 'api/ReprogramarSolicitudVacaciones', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'solVac':data},
+                success: function(respuesta){
+                  console.log(respuesta);
+                  enviaRechazoVacReprog('@php echo(session('codTrabajador')) @endphp',fchInicioRech,fchFinRech,fchReincRech,numLinea);
+
+                  //------------------------Anula solicitud anterior si esta APROBADA-------------------------
+                  var codEstado = document.getElementById("codEstado").value;
+                  if (codEstado == '002') {
+                    dataAnu = {
+                      "cod_trabajador" : '@php echo(session('codTrabajador')) @endphp' ,
+                      "num_linea": numLinea,
+                      "cod_usuario" : '@php echo(session('codTrabajador')) @endphp' 
+                    };
+                    $.ajax({
+                      url: 'func/AnularGoceVacaciones',
+                      method: "PUT",
+                      crossDomain: true,
+                      dataType: 'json',
+                      data:{'data':dataAnu},
+                      success: function(respuesta){
+                          console.log(respuesta)
+                      },//success
+                      error(e){
+                          console.log(e);
+                      }//error
+                    });//ajax
+                  }
                       
-                      //-------------------------Cambia estado de mensaje a finalizado---------------------------
-                      data = {
-                              'num_item':numLinea
-                      }
-                      $.ajax({
-                          url: 'lista/ActualizarEstadoMensaje', 
-                          method: "GET",
-                          crossDomain: true,
-                          dataType: 'json',
-                          data:{'data':data},
-                          success: function(respuesta){
-                              console.log('actualizaMensaje',respuesta);
-                          },//success
-                          error(e){
-                              console.log(e.message);
-                          }//error
-                      });
+                  //-------------------------Cambia estado de mensaje a finalizado---------------------------
+                  data = {
+                    'num_item':numLinea
+                  }
+                  $.ajax({
+                    url: 'lista/ActualizarEstadoMensaje', 
+                    method: "GET",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'data':data},
+                    success: function(respuesta){
+                      console.log('actualizaMensaje',respuesta);
+                    },//success
+                    error(e){
+                      console.log(e.message);
+                    }//error
+                  });
 
-                      //------------------Ingresa nueva solicitud-----------------------------------
-                      $.ajax({
-                          url: 'api/InsertarSolicitudVacaciones', 
-                          method: "PUT",
-                          crossDomain: true,
-                          dataType: 'json',
-                          data:{'solVac':solVac},
-                          success: function(respuesta){
-                            console.log('respuesta Insertar',respuesta);
-                            numSolicitudIn = respuesta['response']['num_linea'];
-                            enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn,reprog);
-                            $("#overlay_load").show();
-                            setTimeout(function() {
-                              Swal.fire({
-                                icon: 'success',
-                                text: 'Se ha registrado su solicitud con éxito',
-                                confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
-                                allowOutsideClick:'false',
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  location.reload();
-                                }
-                              })
-                              $("#overlay_load").hide();
-                            }, 5000);
-                          },//success
-                          error(e){
-                            console.log(e.message);
-                            $("#overlay_load").hide();
-                            Swal.fire({
-                              icon: 'warning',
-                              text: 'Ha ocurrido un error intentelo nuevamente.',
-                              confirmButtonText: 'Continuar',
-                              confirmButtonColor: '#a18347',
-                            })
-                            btnSolicitar.removeAttribute('disabled');
-                          }//error
-                      });//ajax
-
-                  },//success
-                  error(e){
+                  //------------------Ingresa nueva solicitud-----------------------------------
+                  $.ajax({
+                    url: 'api/InsertarSolicitudVacaciones', 
+                    method: "PUT",
+                    crossDomain: true,
+                    dataType: 'json',
+                    data:{'solVac':solVac},
+                    success: function(respuesta){
+                      console.log('respuesta Insertar',respuesta);
+                      numSolicitudIn = respuesta['response']['num_linea'];
+                      enviaSolitudVac('@php echo(session('codTrabajador')) @endphp',fchInicio,fchFin,fchRetorno,cantDias,numSolicitudIn,reprog);
+                      $("#overlay_load").show();
+                      setTimeout(function() {
+                        Swal.fire({
+                          icon: 'success',
+                          text: 'Se ha registrado su solicitud con éxito',
+                          confirmButtonText: 'Continuar',
+                          confirmButtonColor: '#a18347',
+                          allowOutsideClick:'false',
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            location.reload();
+                          }
+                        })
+                        $("#overlay_load").hide();
+                      }, 5000);
+                    },//success
+                    error(e){
                       console.log(e.message);
                       $("#overlay_load").hide();
                       Swal.fire({
-                          icon: 'warning',
-                          text: 'Ha ocurrido un error intentelo nuevamente.',
-                          confirmButtonText: 'Continuar',
-                          confirmButtonColor: '#a18347',
+                        icon: 'warning',
+                        text: 'Ha ocurrido un error intentelo nuevamente.',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
                       })
                       btnSolicitar.removeAttribute('disabled');
-                  }//error
+                    }//error
+                  });//ajax
+
+                },//success
+                error(e){
+                  console.log(e.message);
+                  $("#overlay_load").hide();
+                  Swal.fire({
+                    icon: 'warning',
+                    text: 'Ha ocurrido un error intentelo nuevamente.',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
+                  })
+                  btnSolicitar.removeAttribute('disabled');
+                }//error
               });//ajax
 
             }
