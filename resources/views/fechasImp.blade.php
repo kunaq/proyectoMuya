@@ -335,7 +335,7 @@
         success: function(result){
           //ESCRITORIO
           document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
-          document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1").innerHTML=result["response"]["febrero"];
           document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
           document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
           document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
@@ -349,7 +349,7 @@
 
           //MOVIL
           document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
-          document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1M").innerHTML=result["response"]["febrero"];
           document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
           document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
           document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
@@ -459,7 +459,7 @@
         success: function(result){
           //ESCRITORIO
           document.getElementById("ENERO1").innerHTML=result["response"]["enero"];
-          document.getElementById("FEBRERO1").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1").innerHTML=result["response"]["febrero"];
           document.getElementById("MARZO1").innerHTML=result["response"]["marzo"];
           document.getElementById("ABRIL1").innerHTML=result["response"]["abril"];
           document.getElementById("MAYO1").innerHTML=result["response"]["mayo"];
@@ -473,7 +473,7 @@
 
           //MOVIL
           document.getElementById("ENERO1M").innerHTML=result["response"]["enero"];
-          document.getElementById("FEBRERO1M").innerHTML=result["response"]["enero"];
+          document.getElementById("FEBRERO1M").innerHTML=result["response"]["febrero"];
           document.getElementById("MARZO1M").innerHTML=result["response"]["marzo"];
           document.getElementById("ABRIL1M").innerHTML=result["response"]["abril"];
           document.getElementById("MAYO1M").innerHTML=result["response"]["mayo"];
