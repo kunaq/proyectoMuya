@@ -67,7 +67,7 @@ class ArchivoController extends Controller
 
                             // Validar que las fechas sean válidas
                             if (!$fechaInicio || !$fechaFin) {
-                                return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
+                                return response()->json(['error' => 'Formato inválido.'], 400);
                             }
 
                             // Validar que fecha-fin sea mayor o igual a fecha-inicio
@@ -81,7 +81,7 @@ class ArchivoController extends Controller
                             $fechaFin = null;
                         }
                     } catch (\Throwable $th) {
-                        return response()->json(['error' => 'Formato de fecha inválido en el archivo.'], 400);
+                        return response()->json(['error' => 'Formato inválido.'], 400);
                     }
                 }else{
                     break;

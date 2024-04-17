@@ -1089,7 +1089,7 @@ btnProcesarD.addEventListener("click", function() {
                     fchReg = formatDate(fchReg[0]);
                     var fchRechz = element['fch_rechazado'].split('T');
                     fchRechz = formatDate(fchRechz[0]);
-                    fchRechz = (element['fch_rechazado'] == '01/01/1990') ? '' : fchRechz;
+                    fchRechz = (element['fch_rechazado'] == '01/01/1900') ? '' : fchRechz;
 
                     var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
                     var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';

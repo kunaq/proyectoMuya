@@ -276,6 +276,8 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
         dscUrl = 'lista/ListarConstanciaCTS';
     }else if(tipoDoc == '11005'){
         dscUrl = 'lista/ListarConvenio'
+    }else if(tipoDoc == '11003'){
+        dscUrl = 'lista/ListarUtilidades'
     }else if(tipoDoc == '11006'){
         dscUrl = 'lista/ListarSolicitud'
     }else{
@@ -300,7 +302,7 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
             resultados[anno].push(resultado);
         });
 
-       // console.log(resultados);
+       console.log(resultados);
         
         // Generar bloques por cada año entre el inicial y final seleccionados
         var sectionContainer = document.getElementById("sectionContainer");
@@ -335,11 +337,13 @@ document.getElementById("buscarDoc").addEventListener("click", function(e) {
                             sectionContent += `<div class="col-6 col-md-2" style="margin-bottom:1em;">
                                                     <button class="btn btn-success btnDorado" onclick="buscarDocumento('${resultado.num_mes}','${year}','0')" ${deshabilita} >${mes}</button>
                                                 </div>`;
-                        }else if(tipoDoc == '11005' || tipoDoc == '11006'){
-                            var mes = resultado.dsc_periodo.split(' ')[0];
+                        }else if(tipoDoc == '11005' || tipoDoc == '11006' || tipoDoc == '11003'){
+                            var titulo = (tipoDoc == '11003') ? resultado.cod_anno : resultado.dsc_periodo;
+                            var numTranx = (tipoDoc == '11003') ? '0' : resultado.num_transaccion;
+                            var numMes = (tipoDoc == '11003') ? '0' : resultado.num_mes;
                             var deshabilita = (resultado.flg_firmado == 'SI') ? '' : 'disabled';
                             sectionContent += `<div class="col-6 col-md-3" style="margin-bottom:1em;">
-                                                    <button class="btn btn-success btnDorado" onclick="buscarDocumento('${resultado.num_mes}','${year}','${resultado.num_transaccion}')" ${deshabilita} >${resultado.dsc_periodo}</button>
+                                                    <button class="btn btn-success btnDorado" onclick="buscarDocumento('${numMes}','${year}','${numTranx}')" ${deshabilita} >${titulo}</button>
                                                 </div>`;
                         }
                     });

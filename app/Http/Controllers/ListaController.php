@@ -693,7 +693,7 @@ class ListaController extends Controller
         $annoFin =  $request['annoFin'];
         try {
                           
-            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarUtilidades/20555348887/'.$codTra.'/'.$annoIni.'/'.$annoFin);
+            $request = new \GuzzleHttp\Psr7\Request('GET','https://webapiportalplanillamuya.azurewebsites.net/api/Indicador/ListarConstanciaUtilidades/20555348887/'.$codTra.'/'.$annoIni.'/'.$annoFin);
             $promise = $client->sendAsync($request)->then(function ($response) {
                 echo  $response->getBody();
                 $code = $response->getStatusCode(); 

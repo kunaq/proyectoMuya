@@ -126,8 +126,8 @@ Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): Re
     Route::get('lista/ListarBoletaPago', [ListaController::class, 'ListarBoletaPago'])->name('lista.ListarBoletaPago');
     Route::get('lista/ListarConstanciaCTS', [ListaController::class, 'ListarConstanciaCTS'])->name('lista.ListarConstanciaCTS');
     Route::get('lista/ListarConvenio', [ListaController::class, 'ListarConvenio'])->name('lista.ListarConvenio');
-    Route::get('lista/ListarUtilidades', [ListaController::class, 'ListarUtilidades'])->name('lista.ListarUtilidades');
     Route::get('lista/ListarSolicitud', [ListaController::class, 'ListarSolicitud'])->name('lista.ListarSolicitud');
+    Route::get('lista/ListarUtilidades', [ListaController::class, 'ListarUtilidades'])->name('lista.ListarUtilidades');
 
     Route::get('lista/ActualizarEstadoMensaje', [ListaController::class, 'ActualizarEstadoMensaje'])->name('lista.ActualizarEstadoMensaje');
     Route::get('lista/ListarSolicitudMasiva', [ListaController::class, 'ListarSolicitudMasiva'])->name('lista.ListarSolicitudMasiva');
