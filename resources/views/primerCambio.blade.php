@@ -42,7 +42,7 @@
               <form action="" id="myForm">
                 <h5 class="card-title">Cambiar contraseña</h5>
 
-                <div class="row">
+                {{--<div class="row">
                   <div class="col-md-2 offset-md-3">
                     <p>Actual</p>
                   </div>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <div class="input-group" id="show_hide_password1_1">
-                          <input type="password" required name="actualpass" id="actualpass" class="form-control" required>
+                           <input type="password" name="actualpass" id="actualpass" class="form-control"> 
                           <div class="input-group-append">
                               <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
                           </div>
@@ -62,7 +62,8 @@
                     </div>
                   </div>
                 </div>
-                <br>
+                <br>--}}
+
                 <div class="row">
                   <div class="col-md-2 offset-md-3">
                     <p>Nueva</p>
@@ -198,7 +199,7 @@
     var envia = document.getElementById("envia1raVez");
     var verPass = document.getElementById("nuevapass2");
     var mensaje = document.getElementById("message2");
-    var passAct = document.getElementById("actualpass");
+    // var passAct = document.getElementById("actualpass");
 
     myInput.onkeyup = function () {
         // Validate lowercase letters
@@ -291,7 +292,7 @@
       });
       var dsc_clave = verPass.value;
 
-      if (passAct.value.trim() != 0) {      
+      // if (passAct.value.trim() != 0) {      
         $.ajax({
           url: 'actualizaContrasenna', 
           method: "PUT",
@@ -334,7 +335,7 @@
               }
             }//error
         });//ajax
-      }
+      // }//if
     });
 
   </script>
