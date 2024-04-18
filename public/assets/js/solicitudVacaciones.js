@@ -12,11 +12,20 @@ var flgReglaD = '';
 
 setTimeout(function() { 
   var diaPagoHaber = document.getElementById('pagoPlanilla').value;
+  var mesesTra = document.getElementById("mesesTrabajados").value;
+  // console.log(mesesTra);
+  if (mesesTra < 3) {
+    aux = new Date(fch_ingreso);
+    diaInicio = aux.getDate();
+    mesinicio = aux.getMonth() + 4;
+    annioinicio = (mesinicio == 12) ? aux.getFullYear()+1 : aux.getFullYear();
+    inicioCalendario = diaInicio+"-"+mesinicio+"-"+annioinicio;
+  }
   if (diaPagoHaber == 'SI') {
     mesinicio = hooy.getMonth() + 2;
     annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
     inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
-
+    
   }
 
   flatpickr("#datepickerIniSolVac",{
@@ -26,7 +35,7 @@ setTimeout(function() {
       disableMobile: "true",
       //disable: feriados,
   });
-}, 2000);
+}, 3000);
 
 //----------disparador cambio en fecha de inicio-----------
 var inputFchInicio = document.getElementById('datepickerIniSolVac');

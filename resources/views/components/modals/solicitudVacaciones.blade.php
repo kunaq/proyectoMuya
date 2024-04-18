@@ -88,6 +88,7 @@
                         <input type="hidden" id="fchRetornoBD">
                         <input type="hidden" id="diaPagoHaberes">
                          <input type="hidden" id="codEstado">           {{-- NUEVO --}}
+                         <input type="hidden" id="mesesTrabajados">
                       </div>
                     </div>
                   </div>
@@ -120,6 +121,8 @@
 var fechIniCalendario = null;
 var fchFinCalendario = null;
 var filaCalendario = [];
+var mesesTra = '';
+var fch_ingreso = '';
 
 window.onload= function() {
   
@@ -169,17 +172,18 @@ window.onload= function() {
 
           var diferenciaMeses = diferenciaMilisegundos / (30 * 24 * 60 * 60 * 1000);
           console.log('diferenciaMeses',diferenciaMeses);
+          document.getElementById("mesesTrabajados").value = diferenciaMeses;
           var diferenciaAnios = diferenciaMilisegundos / (365 * 24 * 60 * 60 * 1000);
           console.log('diferenciaAnios',diferenciaAnios);
         
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;
             botonConvenio.innerHTML = 'Convenio de adelanto de vacaciones firmado';
-            if (diferenciaMeses < 3) {
-              botonSolicitud.disabled = true;  
-            } else {
-              botonSolicitud.disabled = false;
-            }
+            // if (diferenciaMeses < 3) {
+            //   botonSolicitud.disabled = true;  
+            // } else {
+            //   botonSolicitud.disabled = false;
+            // }
           }else{
             if (result["response"]["flg_acuerdo_firmado"] == 'NO') {
               botonSolicitud.disabled = true;
