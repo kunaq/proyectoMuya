@@ -224,7 +224,7 @@ class CreaPDFController extends Controller
             }
 
             $dataJson = json_encode($data);
-            return $dataJson;
+            // return $dataJson;
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);
