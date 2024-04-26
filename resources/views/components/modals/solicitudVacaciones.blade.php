@@ -497,7 +497,7 @@ btnSolicitar.addEventListener("click", function() {
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
     var cantDias = document.getElementById('cantDiasSol').value;
-    var numDiasReprog = parseInt(document.getElementById("numVacPendReprog").value);
+    var numDiasReprog = parseInt(document.getElementById("numVacPednReprog").value);
     cantDias = parseInt(cantDias);
     diferenciaExceso = (diasGenerados + numDiasReprog) - cantDias;
 

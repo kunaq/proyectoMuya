@@ -46,7 +46,9 @@
 </style>
 
 <x-layouts.app title="vacacionesEmpresa" meta-description="Home meta description">
-
+<div id="overlay_load" class="overlay_muya">
+    <img src="{{ asset('assets/img/GM.png') }}" alt="login" class="fading-element">
+</div>
   <main id="main" class="main">
     <div class="pagetitle">
         <h1>Vacaciones de la empresa</h1>
@@ -1604,7 +1606,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.error,
+                html: data.error,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Cerrar'
             });
@@ -1612,7 +1614,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
             if (data.response.dsc_observacion != "OK") {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Error',
+                    html: 'Error',
                     text: data.mensaje,
                     confirmButtonColor: '#a18347',
                     confirmButtonText: 'Cerrar'
@@ -1681,7 +1683,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                         Swal.fire({
                             icon: 'success',
                             title: 'Éxito',
-                            text: data.mensaje,
+                            html: data.mensaje,
                             confirmButtonColor: '#3085d6',
                             confirmButtonText: 'Cerrar'
                         }).then((result) => {

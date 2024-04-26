@@ -56,11 +56,16 @@ class ArchivoController extends Controller
                 $sql = '';
             }else{
                 if ($fila[0] != '' || $fila[0] != NULL) {
+                    
                     try {
                         // Verificar si las fechas no están vacías antes de intentar convertirlas
                         if (!empty($fila[1]) && !empty($fila[2])) {
-                            $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
-                            $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+                            // $fechaInicio = Carbon::createFromFormat('Y-m-d', $fila[1]);
+                            $aux1 = Carbon::parse($fila[1]);
+                            $fechaInicio = $aux1->format('Y-m-d');
+                            // $fechaFin = Carbon::createFromFormat('Y-m-d', $fila[2]);
+                            $aux2 = Carbon::parse($fila[2]);
+                            $fechaFin = $aux2->format('Y-m-d');
 
                              // Restaurar la configuración regional original
                             Carbon::setLocale(config('app.locale'));
@@ -71,7 +76,7 @@ class ArchivoController extends Controller
                             }
 
                             // Validar que fecha-fin sea mayor o igual a fecha-inicio
-                            if ($fechaFin->lt($fechaInicio)) {
+                            if ($aux2->lt($aux1)) {
                                 return response()->json(['error' => 'La fecha de fin es menor a la fecha de inicio en el archivo.'], 400);
                             }
 
@@ -106,14 +111,14 @@ class ArchivoController extends Controller
                 $sql = '';
             }else{
 
-                $sql .= "INSERT INTO webppm_solicitud_vacaciones_temporal (cod_trabajador,num_linea,fch_inicio,fch_fin,cod_periodo,cod_anho,cod_trabajador_registro) VALUES ('".$fila[0]."',1,'".$fila[1]."','".$fila[2]."','".$request['periodo']."',".$request['annoIniVE'].",'".session('codTrabajador')."')";
+                $sql .= "INSERT INTO webppm_solicitud_vacaciones_temporal (cod_trabajador,num_linea,fch_inicio,fch_fin,cod_periodo,cod_anho,cod_trabajador_registro) VALUES ('".$fila[0]."',1,'".$fechaInicio."','".$fechaFin."','".$request['periodo']."',".$request['annoIniVE'].",'".session('codTrabajador')."')";
             }
         }
         
         // Generar el contenido JSON
 
         // Aquí puedes hacer lo que necesites con el archivo JSON, como enviarlo a una API
-        //return $sql;
+        // return $sql;
         $client = new Client();
         $headers = [
             'Content-Type' => 'application/json',

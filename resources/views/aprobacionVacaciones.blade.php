@@ -46,7 +46,9 @@
 </style>
 
 <x-layouts.app title="aprobacionVacaciones" meta-description="aprobacion de vacaciones meta description">
-
+<div id="overlay_load" class="overlay_muya">
+    <img src="{{ asset('assets/img/GM.png') }}" alt="login" class="fading-element">
+</div>
 <main id="main" class="main">
 <div class="pagetitle">
     <h1>Aprobación de vacaciones</h1>
@@ -756,6 +758,7 @@ function listaSolicitudesxAprobar() {
 //-----------------------Procesar solicitudes de vacaciones---------------------
 var btnProcesar = document.getElementById('btnProcSolVac');
 btnProcesar.addEventListener("click", function() {
+    $("#overlay_load").show();
     btnProcesar.setAttribute('disabled','disabled');
     var tabla = document.getElementById("tablaSolAprobar");
     var filas = tabla.getElementsByTagName("tr");
@@ -778,6 +781,7 @@ btnProcesar.addEventListener("click", function() {
             procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin);
         }
     }
+    $("#overlay_load").hide();
 });
 
 function procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin){
@@ -874,7 +878,7 @@ function procesarSolicitud(accion, codTrabajador, numLinea, fchIni, fchFin){
 //------------------------funciones para enviar mensajes------------------------------
 
 function enviaAprobacionVac(codTra,fchIni,fchFin,numSolicitud) {
-
+    $("#overlay_load").show();
     $.ajax({
         url: 'api/ObtenerTrabajador', 
         method: "GET",
@@ -922,62 +926,66 @@ function enviaAprobacionVac(codTra,fchIni,fchFin,numSolicitud) {
             console.log(e.message);
         }//error
     });//ajax  
+    $("#overlay_load").hide();
 }
 
 function enviaRechazoVacJefe(codTra,fchIni,fchFin,numSolicitud) {
-$.ajax({
-    url: 'api/ObtenerTrabajador', 
-    method: "GET",
-    crossDomain: true,
-    dataType: 'json',
-    data:{'cod_trabajador':codTra},
-    success: function(respuesta){
-        console.log(respuesta);
-        var dscTra = respuesta['response']['dsc_trabajador'];
-        var correoTra = respuesta['response']['dsc_mail_personal'];
-        var fechaActual = new Date();
-        var dia = fechaActual.getDate();
-        var mes = fechaActual.getMonth() + 1;
-        var anio = fechaActual.getFullYear();
-        var diaFormateado = dia < 10 ? '0' + dia : dia;
-        var mesFormateado = mes < 10 ? '0' + mes : mes;
-        var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
-        var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
-        var actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchIni+', fin: '+fchFin+')';
-        var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
-        var asunto = 'Rechazo de solicitud de vacaciones';
+    $("#overlay_load").show();    
+    $.ajax({
+        url: 'api/ObtenerTrabajador', 
+        method: "GET",
+        crossDomain: true,
+        dataType: 'json',
+        data:{'cod_trabajador':codTra},
+        success: function(respuesta){
+            console.log(respuesta);
+            var dscTra = respuesta['response']['dsc_trabajador'];
+            var correoTra = respuesta['response']['dsc_mail_personal'];
+            var fechaActual = new Date();
+            var dia = fechaActual.getDate();
+            var mes = fechaActual.getMonth() + 1;
+            var anio = fechaActual.getFullYear();
+            var diaFormateado = dia < 10 ? '0' + dia : dia;
+            var mesFormateado = mes < 10 ? '0' + mes : mes;
+            var fechaFormateada = diaFormateado + '/' + mesFormateado + '/' + anio;
+            var fchBD = anio+'-'+mesFormateado+'-'+diaFormateado;
+            var actividad = 'La solicitud de vacaciones ha sido rechazada. (Inicio: '+fchIni+', fin: '+fchFin+')';
+            var solicitante = "'"+'@php echo(session('nombreTrabajador')) @endphp'+"'";
+            var asunto = 'Rechazo de solicitud de vacaciones';
 
-        enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad,numSolicitud);
+            enviaCorreoMensaje(codTra,codTra,solicitante,'4003','',asunto,actividad,numSolicitud);
 
-        //-------------------------Cambia estado de mensaje a finalizado---------------------------
-        data = {
-                'num_item':numSolicitud
-        }
-        $.ajax({
-            url: 'lista/ActualizarEstadoMensaje', 
-            method: "GET",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'data':data},
-            success: function(respuesta){
-                console.log('actualizaMensaje',respuesta);
-            },//success
-            error(e){
-                console.log(e.message);
-            }//error
-        });
+            //-------------------------Cambia estado de mensaje a finalizado---------------------------
+            data = {
+                    'num_item':numSolicitud
+            }
+            $.ajax({
+                url: 'lista/ActualizarEstadoMensaje', 
+                method: "GET",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'data':data},
+                success: function(respuesta){
+                    console.log('actualizaMensaje',respuesta);
+                },//success
+                error(e){
+                    console.log(e.message);
+                }//error
+            });
 
-    },//success
-    error(e){
-        console.log(e.message);
-    }//error
-});//ajax  
+        },//success
+        error(e){
+            console.log(e.message);
+        }//error
+    });//ajax  
+    $("#overlay_load").hide();
 }
 
 //-----------------------Guarda configuraciones-----------------------------------
 
 var btnConfig = document.getElementById('actualizaConfig');
 btnConfig.addEventListener("click", function() {
+    $("#overlay_load").show();
     btnConfig.setAttribute('disabled','disabled');
     var filas = document.querySelectorAll("#listaColab tbody tr");
     var promesas = [];
@@ -1019,6 +1027,7 @@ btnConfig.addEventListener("click", function() {
 
     Promise.all(promesas)
     .then(function() {
+        $("#overlay_load").hide();
         Swal.fire({
             icon: 'success',
             text: 'Se ha actualizado con éxito',
@@ -1032,6 +1041,7 @@ btnConfig.addEventListener("click", function() {
     })
     .catch(function(error) {
         console.log(error);
+        $("#overlay_load").hide();
         Swal.fire({
             icon: 'warning',
             text: 'Ha ocurrido un error. Inténtelo nuevamente.',
@@ -1284,7 +1294,7 @@ btnProcesarD.addEventListener("click", function() {
 
 document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
-
+    $("#overlay_load").show();
     var codTraSolic = '@php echo(session('codTrabajador')) @endphp';
     var dscSolicitante = '';
     $.ajax({
@@ -1312,7 +1322,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.error,
+                html: data.error,
                 confirmButtonColor: '#3085d6',
                 confirmButtonText: 'Cerrar'
             });
@@ -1376,11 +1386,11 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                     numSolicitudCarga = 404;
                     //envia correo a trabajador que cargo el archivo
                     enviaCorreoMensaje(codTraSolic,codTraSolic,dscSolicitante,'4005','','Has realizado la carga masiva de solicitud de vacaciones.','Has realizado la carga masiva de solicitud de vacaciones.',numSolicitudCarga);
-
+                    $("#overlay_load").hide();
                     Swal.fire({
                         icon: 'success',
                         title: 'Éxito',
-                        text: data.mensaje,
+                        html: data.mensaje,
                         confirmButtonColor: '#3085d6',
                         confirmButtonText: 'Cerrar'
                     }).then((result) => {
@@ -1395,16 +1405,18 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 }//error
             });
         }else if (data.response.dsc_observacion != "OK") {
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: data.mensaje,
+                html: data.mensaje,
                 confirmButtonColor: '#a18347',
                 confirmButtonText: 'Cerrar'
             });
         }
     })
     .catch(error => {
+        $("#overlay_load").hide();
         console.error('Error:', error);
     });
 });

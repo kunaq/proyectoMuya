@@ -112,6 +112,14 @@
             }else{
                 document.getElementById('message5').style.display = "none";
             }
+            const url = new URL(window.location.href)
+            const params = new URLSearchParams(url.search.slice(1))
+            params.delete('mensaje')
+            window.history.replaceState(
+                {},
+                '',
+                `${window.location.pathname}${params}${window.location.hash}`,
+            )
         @else
             console.log('No se envió ningún mensaje');
         @endif
