@@ -123,12 +123,26 @@ var fchFinCalendario = null;
 var filaCalendario = [];
 var mesesTra = '';
 var fch_ingreso = '';
+var fchActual = '';
 
 window.onload= function() {
   
   // Iniciar el temporizador cuando la página se carga
   iniciarTemporizador(); 
-  
+
+  $.ajax({
+    url: 'lista/ListarFechaActual', 
+    method: "GET",
+    crossDomain: true,
+    dataType: 'json',
+    success: function(respuesta){ 
+        // console.log(respuesta['response'][0]['fch_actual']);
+        fchActual = respuesta['response'][0]['fch_actual'];
+    },//success
+    error(e){
+      console.log(e.message);
+    }//error
+  });//ajax   
 
   var fcha = new Date();
   var anno = fcha.getFullYear();
@@ -497,7 +511,7 @@ btnSolicitar.addEventListener("click", function() {
     fchFin = yearF + "-" + monthF + "-" + dayF;
 
     var cantDias = document.getElementById('cantDiasSol').value;
-    var numDiasReprog = parseInt(document.getElementById("numVacPednReprog").value);
+    var numDiasReprog = parseInt(document.getElementById("numVacPendReprog").value);
     cantDias = parseInt(cantDias);
     diferenciaExceso = (diasGenerados + numDiasReprog) - cantDias;
 

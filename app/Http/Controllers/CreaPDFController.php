@@ -138,7 +138,8 @@ class CreaPDFController extends Controller
         $anio =$fechActual->format('Y');
         $mes = $fechActual->format('m');
         $formato='';
-        $periodoVac = session('numPeriodoVacaciones');
+        $periodoVac =session('numPeriodoVacaciones');
+        $anioConvenio =  explode('-',session('numPeriodoVacaciones'));
 
         try {
             if ($accion =='firmar') {
@@ -173,7 +174,7 @@ class CreaPDFController extends Controller
                     'celular'=>$celularTrabajador,
                     'sede'=>$sedeTrabajador,
                     'periodo_m'=>$mes,
-                    'periodo_a'=>$anio,
+                    'periodo_a'=>$anioConvenio[0],
                     'fechahoranotificacion'=>$fechaCompleta,
                     'firmantes'=> array('firmante1' => $firmante1,'firmante2' => $firmante2),
                     'FILEname'=> $docBase64[7],
@@ -270,7 +271,7 @@ class CreaPDFController extends Controller
                     'as_trabajador'=> $cod_trabajador,
                     'ai_trx'=> $idTransaccion,
                     'as_formato'=> $formato,
-                    'ai_anno'=> $anio,
+                    'ai_anno'=> $anioConvenio[0],
                     'as_mes'=> $mes,
                     'as_estado'=> $estadoEnv,
                     'as_usuario'=> $numDocTrabajador,

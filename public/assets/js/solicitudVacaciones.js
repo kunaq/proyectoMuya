@@ -22,12 +22,13 @@ setTimeout(function() {
     inicioCalendario = diaInicio+"-"+mesinicio+"-"+annioinicio;
   }
   if (diaPagoHaber == 'SI') {
-    mesinicio = hooy.getMonth() + 2;
-    annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
+    fchActual  = new Date(fchActual);
+    mesinicio = fchActual.getMonth() + 2;
+    annioinicio = (mesinicio == 12) ? fchActual.getFullYear()+1 : fchActual.getFullYear();
     inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
     
   }
-
+// console.log(inicioCalendario);
   flatpickr("#datepickerIniSolVac",{
       locale:"es",
       dateFormat: "d-m-Y",

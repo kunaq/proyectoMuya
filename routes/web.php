@@ -134,6 +134,7 @@ Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): Re
     Route::get('lista/ListarLocalidad', [ListaController::class, 'ListarLocalidad'])->name('lista.ListarLocalidad');
     Route::get('lista/ListarArea', [ListaController::class, 'ListarArea'])->name('lista.ListarArea');
     Route::get('lista/ListarFormato', [ListaController::class, 'ListarFormato'])->name('lista.ListarFormato');
+    Route::get('lista/ListarFechaActual', [ListaController::class, 'ListarFechaActual'])->name('lista.ListarFechaActual');
 
     Route::get('lista/ListaVacia', function(){
         return ['mensaje'=> "OK", 'response'=> []];
