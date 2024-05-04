@@ -150,6 +150,7 @@ Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): Re
 
     //------------------------Subir archivo Excel--------------------------
     Route::post('/subir-archivo', [ArchivoController::class, 'SubirArchivo'])->name('subirArchivo');
+    Route::post('/validar-archivo', [ArchivoController::class, 'ValidarArchivo'])->name('validarArchivo');
     Route::post('/subir-archivo-config', [ArchivoController::class, 'subirArchivoConfiguraciones'])->name('subirArchivoConfiguraciones');
 
     //-----------------------Visor de servicios----------------------------

@@ -78,6 +78,7 @@ class VerifyCsrfToken extends Middleware
         'lista/ListarLocalidad',
         'lista/ListarArea',
         'lista/ListarFormato',
+        'lista/ListarFechaActual',
 
         'lista/ObtenerPromedioDiasPendiente',
         'lista/ObtenerReprogramaciones',
@@ -86,6 +87,7 @@ class VerifyCsrfToken extends Middleware
         'api/InsertarSolicitudVacaciones',
         
         '/subir-archivo',
+        '/validar-archivo',
         '/subir-archivo-config',
 
         'lista/ListarUsoServicio',
