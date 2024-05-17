@@ -226,7 +226,7 @@
                         <div class="row">
                             <div class="col-md-6" style="margin-bottom: 1rem;">
                                 <div class="form-group table-responsive" style="padding-left: 0rem;padding-right: 1rem;height: 23rem;">
-                                    <table class="table table-striped " id="solAprobar" style="text-align: center; height: 300px;">
+                                    <table class="table table-striped " id="solAprobar" style="text-align: center; max-height: 300px;">
                                         <thead>
                                             <tr>
                                                 <th scope="col" class="card-title">Aprobación de vacaciones</th>

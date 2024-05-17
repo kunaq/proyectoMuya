@@ -645,7 +645,8 @@ window.onload= function() {
                     { title: 'Anular' },
                 ],
                 "columnDefs": [
-                    { className: "centro", "targets": "_all"}
+                    { className: "centro", "targets": "_all"},
+                    { type: 'date-uk', targets:[1,2] }
                 ],
                 dom: 'trip',
                 processing: true,
@@ -1237,7 +1238,7 @@ btnProcesar.addEventListener("click", function() {
                     fchReg = formatDate(fchReg[0]);
                     var fchRechz = element['fch_rechazado'].split('T');
                     fchRechz = formatDate(fchRechz[0]);
-                    fchRechz = (element['fch_rechazado'] == '01/01/1900') ? '' : fchRechz;
+                    var fchRechz = (fchRechz == '01/01/1900') ? '' : fchRechz;
 
                     var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
                     var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
@@ -1578,7 +1579,7 @@ obj.addEventListener('input', function(){
 // Escucha el evento de envío del formulario
 document.getElementById('formularioCargaMasiva').addEventListener('submit', function(e) {
     e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
-
+    $("#overlay_load").show();
     var codTraSolic = '@php echo(session('codTrabajador')) @endphp';
     var dscSolicitante = '';
     $.ajax({
@@ -1600,7 +1601,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
         method: 'POST',
         body: formData
     }).then(response => response.json()).then(dataV => {
-        console.log(data);
+        // console.log(dataV);
         if (dataV.response.dsc_observacion == null) {    
             fetch('{{ route('subirArchivo') }}', {
                 method: 'POST',
@@ -1706,12 +1707,12 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 }
             });
         }else{
+            $("#overlay_load").hide();
             Swal.fire({
                 icon: 'question',
-                text: "Existen reglas que no se cumplen. ¿Desea continuar?",
+                // text: "Existen reglas que no se cumplen. ¿Desea continuar?",
                 html: dataV.response.dsc_observacion,
                 showDenyButton: true,
-                showCancelButton: true,
                 confirmButtonText: "Continuar carga masiva",
                 confirmButtonColor: '#a18347',
                 denyButtonText: 'Abortar carga masiva'

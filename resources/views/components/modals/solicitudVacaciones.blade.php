@@ -438,6 +438,9 @@ function muestraListadoSolicitudes(annoIni,annoFin) {
             { title: 'Pago' },
             { title: 'Acciones' },
           ],
+          columnDefs: [
+            { type: 'date-uk', targets:[0,1] }
+          ],
           dom: 'trip',
           processing: true,
         });//datatable
