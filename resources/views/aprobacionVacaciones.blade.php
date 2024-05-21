@@ -747,7 +747,7 @@ function listaSolicitudesxAprobar() {
                     }
                 },
                 columnDefs: [
-                    { type: 'date-uk', targets:[1,2] }
+                    { type: 'date-uk', targets:[1,2,4] }
                 ],
                 dom: 'trip',
                 processing: true,
