@@ -1094,21 +1094,30 @@ btnProcesarD.addEventListener("click", function() {
 
                     var fchIni = element['fch_inicio'].split('T');
                     fchIni = formatDate(fchIni[0]);
+                    var fchInicio = (fchIni == '01/01/1900') ? '' : fchIni;
+                    
                     var fchFin = element['fch_fin'].split('T');
                     fchFin = formatDate(fchFin[0]);
+                    var fchFinal = (fchFin == '01/01/1900') ? '' : fchFin;
+
                     var fchReinc = element['fch_retorno'].split('T');
                     fchReinc = formatDate(fchReinc[0]);
+                    var fchRetorno = (fchReinc == '01/01/1900') ? '' : fchReinc;
+
                     var fchReg = element['fch_registro_solicitud'].split('T');
                     fchReg = formatDate(fchReg[0]);
+                    var fchRegistro = (fchReg == '01/01/1900') ? '' : fchReg;
+                    
                     var fchRechz = element['fch_rechazado'].split('T');
                     fchRechz = formatDate(fchRechz[0]);
-                    var fchRechz1 = (fchRechz == '01/01/1900') ? '' : fchRechz;
+                    var fchRechazo = (fchRechz == '01/01/1900') ? '' : fchRechz;
 
-                    var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
-                    var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
                     var fchAprob = element['fch_aprobado'].split('T');
                     fchAprob = formatDate(fchAprob[0]);
                     var fechaAproba = (fchAprob == '01/01/1900') ? '' : fchAprob;
+
+                    var firmado = (element['flg_firmado'] == 'SI') ? 'FIRMADO' : 'NO FIRMADO';
+                    var pagado = (element['flg_pagado'] == 'SI') ? 'PAGADO' : 'NO PAGADO';
                     var solicitudAnt = (element['num_linea_origen'] != 0) ? element['cod_trabajador']+'-'+element['num_linea_origen'] : '';
 
                     filaData = [
@@ -1118,10 +1127,10 @@ btnProcesarD.addEventListener("click", function() {
                         element['dsc_area'],
                         element['dsc_sede'],
                         element['dsc_cargo'],
-                        fchIni,
-                        fchFin,
+                        fchInicio,
+                        fchFinal,
                         element['cant_dia'],
-                        fchReinc,
+                        fchRetorno,
                         element['dsc_estado'],
                         element['dsc_subestado_aprobacion'],
                         element['dsc_subestado_rechazo'],
@@ -1130,11 +1139,11 @@ btnProcesarD.addEventListener("click", function() {
                         pagado,
                         element['ctd_dias_exceso'],
                         solicitudAnt,
-                        fchReg,
+                        fchRegistro,
                         element['cod_trabajador_registro'],
                         fechaAproba,
                         element['cod_trabajador_aprobado'],
-                        fchRechz1,
+                        fchRechazo,
                         element['cod_trabajador_rechazado']
                         
                     ]
