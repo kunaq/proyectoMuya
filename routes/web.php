@@ -123,6 +123,7 @@ Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): Re
     Route::get('lista/ListarSolicitudVacacionesxResponsable', [ListaController::class, 'ListarSolicitudVacacionesxResponsable'])->name('lista.ListarSolicitudVacacionesxResponsable');
     Route::get('lista/ListarFeriado', [ListaController::class, 'ListarFeriado'])->name('lista.ListarFeriado');
     Route::get('lista/ListarReporteVacacionesxTrabajador', [ListaController::class, 'ListarReporteVacacionesxTrabajador'])->name('lista.ListarReporteVacacionesxTrabajador');
+    Route::get('lista/ListarReporteVacacionesxTrabajadorV2', [ListaController::class, 'ListarReporteVacacionesxTrabajadorV2'])->name('lista.ListarReporteVacacionesxTrabajadorV2');
     Route::get('lista/ListarBoletaPago', [ListaController::class, 'ListarBoletaPago'])->name('lista.ListarBoletaPago');
     Route::get('lista/ListarConstanciaCTS', [ListaController::class, 'ListarConstanciaCTS'])->name('lista.ListarConstanciaCTS');
     Route::get('lista/ListarConvenio', [ListaController::class, 'ListarConvenio'])->name('lista.ListarConvenio');
@@ -150,7 +151,7 @@ Route::get('/adios/{mensaje?}', function (Request $request, $mensaje = null): Re
 
     //------------------------Subir archivo Excel--------------------------
     Route::post('/subir-archivo', [ArchivoController::class, 'SubirArchivo'])->name('subirArchivo');
-    Route::post('/validar-archivo', [ArchivoController::class, 'ValidarArchivo'])->name('validarArchivo');
+    Route::post('/validar-archivo', [ArchivoController::class, 'ValidarArchivo'])->name('validarArchivo'); 
     Route::post('/subir-archivo-config', [ArchivoController::class, 'subirArchivoConfiguraciones'])->name('subirArchivoConfiguraciones');
 
     //-----------------------Visor de servicios----------------------------

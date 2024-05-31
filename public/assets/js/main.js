@@ -493,6 +493,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
 //----------------------------firma solicitud de vacaciones--------------------------
 
 function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
+  $("#overlay_load").show();
   btn.setAttribute('disabled','disabled');
   $.ajax({
     url: 'api/ObtenerTrabajador', 
@@ -509,6 +510,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
           data:{'cod_trabajador':codTra,'fchIni':fchIni,'fchFin':fchFin,'fchReinc':fchRinc,'cantDias':cantDias,'num_linea':numLinea,'datos':respuesta,'accion':'solicitudVaca'},
           success: function(respuesta){
               console.log(respuesta);
+              $("#overlay_load").hide();
               Swal.fire({
                   icon: 'success',
                   text: 'La solicitud de vacaciones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',

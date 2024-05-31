@@ -1676,6 +1676,12 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                                     //envia correo a trabajador
                                     enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
                                 }else if (estado == 'APROBADO'){//Aprobado
+                                    codMensajeA = '4001';
+                                    asuntoA = 'Ingreso de solicitud de vacaciones';
+                                    actividadA = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
+                                    //envia correo a trabajador
+                                    enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensajeA,'',asuntoA,actividadA,numSolicitud);
+                                    
                                     codMensaje = '4002';
                                     asunto = 'La solicitud de vacaciones ha sido aprobada';
                                     actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
@@ -1727,6 +1733,7 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                 denyButtonText: 'Abortar carga masiva'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $("#overlay_load").show();
                     fetch('{{ route('subirArchivo') }}', {
                         method: 'POST',
                         body: formData
@@ -1791,6 +1798,12 @@ document.getElementById('formularioCargaMasiva').addEventListener('submit', func
                                             //envia correo a trabajador
                                             enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,'',asunto,actividad,numSolicitud);
                                         }else if (estado == 'APROBADO'){//Aprobado
+                                            codMensajeA = '4001';
+                                            asuntoA = 'Ingreso de solicitud de vacaciones';
+                                            actividadA = 'La solicitud de vacaciones ha sido ingresada. (Inicio: '+fchInicio+', fin: '+fchFin+')';
+                                            //envia correo a trabajador
+                                            enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensajeA,'',asuntoA,actividadA,numSolicitud);
+
                                             codMensaje = '4002';
                                             asunto = 'La solicitud de vacaciones ha sido aprobada';
                                             actividad = 'La solicitud de vacaciones ha sido aprobada. (Inicio: '+fchInicio+', fin: '+fchFin+')';

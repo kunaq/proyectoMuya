@@ -248,6 +248,17 @@ inputFchFin.addEventListener("change", function() {
 
     document.getElementById('resutSolVac3').innerHTML = 'Fecha de retorno: ' + nuevoFechaFormateada;
 
+    //----------------prueba dias exceso----------------------
+    var diasGeneradosPru = document.getElementById('num_vacaciones_pendiente').innerHTML;
+    diasGeneradosPru = parseInt(diasGeneradosPru);
+    var cantDiasPru = document.getElementById('cantDiasSol').value;
+    var numDiasReprogPru = parseInt(document.getElementById("numVacPendReprog").value);
+    cantDiasPru = parseInt(cantDiasPru);
+    diferenciaExcesoPru = (diasGeneradosPru + numDiasReprogPru) - cantDiasPru;
+
+    var diasExcesPru = (diferenciaExcesoPru < 0) ? Math.abs(diferenciaExcesoPru) : 0;
+    console.log('diferenciaExceso',diasExcesPru);
+
     
 });
 

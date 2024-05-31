@@ -266,9 +266,9 @@
                     <div class="card-body">
                         <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones por trabajador</h5>
                         <div class="row">
-                            <div class="col-3 col-md-1 offset-md-2" style="margin-bottom: 1rem;">
+                            <div class="col-3 col-md-2 offset-md-2" style="margin-bottom: 1rem;">
                                 <div class="form-group">
-                                    <span>Inicio:</span>
+                                    <span>Fecha:</span>
                                 </div>
                             </div>
                             <div class="col-9 col-md-2" style="margin-bottom: 1rem;">
@@ -276,7 +276,7 @@
                                     <input type="text" class="form-control" id="datepicker1" placeholder="Seleccione..">
                                 </div>
                             </div>
-                            <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
+                            {{-- <div class="col-3 col-md-1" style="margin-bottom: 1rem;">
                                 <div class="form-group">
                                     <span>Fin:</span>
                                 </div>
@@ -285,7 +285,7 @@
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="datepicker2" disabled>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-12 col-md-2" style="text-align: -webkit-center">
                                 <div class="form-group">
                                     <h5><button class="btn btn-success btnDorado" id="btnDescVacaciones">Descargar</button></h5>
@@ -886,21 +886,22 @@ btnProcesar.addEventListener("click", function() {
     var year = fechaParts[2];
     fchInicio = year + "-" + month + "-" + day;
     //console.log(fchInicio);
-    var fchFin = document.getElementById('datepicker2').value;
-    var fechaPartsF = fchFin.split('-');
-    var dayF = fechaPartsF[0];
-    var monthF = fechaPartsF[1];
-    var yearF = fechaPartsF[2];
-    fchFin = yearF + "-" + monthF + "-" + dayF;
+    // var fchFin = document.getElementById('datepicker2').value;
+    // var fechaPartsF = fchFin.split('-');
+    // var dayF = fechaPartsF[0];
+    // var monthF = fechaPartsF[1];
+    // var yearF = fechaPartsF[2];
+    // fchFin = yearF + "-" + monthF + "-" + dayF;
     //console.log(fchFin);
-    var codTra = '@php echo(session('codTrabajador')) @endphp';
+    // var codTra = '@php echo(session('codTrabajador')) @endphp';
+    var codTra = (document.getElementById("Trabajador").value == '') ? '%' : document.getElementById("Trabajador").value;
 
     $.ajax({
-        url: 'lista/ListarReporteVacacionesxTrabajador',
+        url: 'lista/ListarReporteVacacionesxTrabajadorV2',
         method: "GET",
         crossDomain: true,
         dataType: 'json',
-        data:{'codTra':codTra,'fchIni':fchInicio,'fchFin':fchFin,'origen':'TRA','visualizar':'NO'},
+        data:{'codTra':codTra,'fchIni':fchInicio,'origen':'CON','visualizar':'NO'},
         success: function(respuesta){
            //console.log(respuesta['response']);
             if (respuesta['response'].length > 0) {

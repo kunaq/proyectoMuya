@@ -192,6 +192,7 @@ window.onload= function() {
         
           if (diferenciaAnios < 1) {
             botonConvenio.disabled = true;
+            botonSolicitud.disabled = false;
             botonConvenio.innerHTML = 'Convenio de adelanto de vacaciones firmado';
             // if (diferenciaMeses < 3) {
             //   botonSolicitud.disabled = true;  
