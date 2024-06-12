@@ -102,6 +102,7 @@
   
   <script type="text/javascript">
   // Iniciar el temporizador cuando la página se carga
+  var guardado = '@php echo(session('md5')) @endphp';
     window.onload = function() {
       iniciarTemporizador();
     }

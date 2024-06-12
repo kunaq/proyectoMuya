@@ -72,6 +72,7 @@ class APIController extends Controller
                 Session::put('numVacaciones', $responseData->response->num_vacaciones);
                 Session::put('nombreBienvenida', $responseData->response->nombres);
                 Session::put('numPeriodoVacaciones', $responseData->response->num_periodo_vacaciones);
+                Session::put('md5',md5($responseData->response->dsc_clave));
 
 
                 // Ejemplo de retorno de la respuesta
@@ -431,17 +432,8 @@ class APIController extends Controller
             $correoCC = '';
         }
 
-        // Extraer los datos de configuración 
-        $correo = $request->session()->get('correoEnvio');
-        $clave = $request->session()->get('claveEnvio');
-        $host = $request->session()->get('dscHost');
-        $puerto = $request->session()->get('numHost');
-        $esSMTP = $request->session()->get('dscSmtp');
-
         if($codigoMensaje == 'olvido'){
-            $host = 'mail.grupomuya.com.pe';
-            $puerto = 587;
-
+            
             $controll = new FuncionesController();
             $actualiza =$controll->actualizaContrasenna($request);
 
@@ -478,8 +470,9 @@ class APIController extends Controller
         //return response()->json(compact('correo','clave','host','puerto','esSMTP'));
         // Configurar los datos del correo saliente
         config([
-            'mail.mailers.smtp.host' => $host,
-            'mail.mailers.smtp.port' => $puerto,
+            'mail.mailers.smtp.host' => '',
+            'mail.mailers.smtp.port' => 587,
+
             'mail.mailers.smtp.username' => '',
             'mail.mailers.smtp.password' => '',
             'mail.mailers.smtp.encryption' => 'TLS',

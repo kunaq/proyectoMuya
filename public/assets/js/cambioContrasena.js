@@ -135,6 +135,7 @@ verPass.onkeyup = function () {
     }
 };
 
+
 envia.addEventListener("click", function() {
     var form = document.getElementById("formCambioPass");
     form.addEventListener("submit", function(event) {
@@ -142,50 +143,62 @@ envia.addEventListener("click", function() {
         event.preventDefault();
     });
     var dsc_clave = verPass.value;
+    var encriptado = (CryptoJS.MD5(passAct.value)).toString();
+    if (encriptado != guardado) {
+        passAct.focus();
+        Swal.fire({
+            icon: 'warning',
+            text: 'La contraseña actual no concide con la guardada.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#a18347',
+        })
 
-    if (passAct.value.trim() != 0) {      
-        $.ajax({
-            url: 'actualizaContrasenna', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'dsc_clave':dsc_clave},
-            success: function(respuesta){
-                console.log(respuesta);
-                Swal.fire({
-                icon: 'success',
-                text: 'Se ha registrado su nueva clave con éxito',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#a18347',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "home";
-                    }
-                })
-            },//success
-            error(e){
-                //console.log(e.responseText);
-                if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+    }else{
+        if (passAct.value.trim() != 0) {      
+            $.ajax({
+                url: 'actualizaContrasenna', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'dsc_clave':dsc_clave},
+                success: function(respuesta){
+                    console.log(respuesta);
                     Swal.fire({
-                        icon: 'success',
-                        text: 'Se ha registrado su nueva clave con éxito',
-                        confirmButtonText: 'Continuar',
-                        confirmButtonColor: '#a18347',
+                    icon: 'success',
+                    text: 'Se ha registrado su nueva clave con éxito',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#a18347',
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = "home";
                         }
                     })
-                }else{
-                    Swal.fire({
-                        icon: 'warning',
-                        text: 'Ha ocurrido un error intentelo nuevamente.',
-                        confirmButtonText: 'Continuar',
-                        confirmButtonColor: '#a18347',
-                    })
-                }
-            }//error
-        });//ajax
+                },//success
+                error(e){
+                    //console.log(e.responseText);
+                    if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se ha registrado su nueva clave con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "home";
+                            }
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        })
+                    }
+                }//error
+            });//ajax
+        }
     }
+
 });
 
