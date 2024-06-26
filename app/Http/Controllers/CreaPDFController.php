@@ -12,7 +12,7 @@ use App\Http\Controllers\APIController;
 class CreaPDFController extends Controller
 {
 
-    public function generarPDF($direccionTra,$departamentoTra,$provinciaTra,$distritoTra)
+    public function generarPDF($direccionTra,$departamentoTra,$provinciaTra,$distritoTra,$periodoVac)
     {   
         $meses = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
         $fecha = Carbon::now();
@@ -34,7 +34,8 @@ class CreaPDFController extends Controller
             'departamento' => strtolower($departamentoTra),
             'dia' => $dia,
             'mes' => $mes,
-            'anio' => $anio
+            'anio' => $anio,
+            'periodoVac' => $periodoVac
         ];
 
         $nombreArchivo = '11005-'.$numDocTrabajador.'-'.$mesNum.$anio.'.pdf';
@@ -137,11 +138,13 @@ class CreaPDFController extends Controller
         $anio =$fechActual->format('Y');
         $mes = $fechActual->format('m');
         $formato='';
+        $periodoVac =session('numPeriodoVacaciones');
+        $anioConvenio =  explode('-',session('numPeriodoVacaciones'));
 
         try {
             if ($accion =='firmar') {
             
-                $docBase64 = explode('"',CreaPDFController::generarPDF($direccionTra[0],$departamentoTra,$provinciaTra,$distritoTra));
+                $docBase64 = explode('"',CreaPDFController::generarPDF($direccionTra[0],$departamentoTra,$provinciaTra,$distritoTra,$periodoVac));
                 $formato = '11005';
                 $firmante2 = array( 
                     'documento'=>$docTraRRHH,
@@ -171,7 +174,7 @@ class CreaPDFController extends Controller
                     'celular'=>$celularTrabajador,
                     'sede'=>$sedeTrabajador,
                     'periodo_m'=>$mes,
-                    'periodo_a'=>$anio,
+                    'periodo_a'=>$anioConvenio[0],
                     'fechahoranotificacion'=>$fechaCompleta,
                     'firmantes'=> array('firmante1' => $firmante1,'firmante2' => $firmante2),
                     'FILEname'=> $docBase64[7],
@@ -222,7 +225,7 @@ class CreaPDFController extends Controller
             }
 
             $dataJson = json_encode($data);
-            return $dataJson;
+            // return $dataJson;
             
             $objeto = new APIController();
             $respuesta = $objeto->generarDocumento($token,$dataJson);

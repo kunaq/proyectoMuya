@@ -1,14 +1,17 @@
 $(document).ready(function () {
+
     $("#show_hide_password1 a").on("click", function (event) {
+        console.log("test");
         event.preventDefault();
+        
         if ($("#show_hide_password1 input").attr("type") == "text") {
             $("#show_hide_password1 input").attr("type", "password");
-            $("#show_hide_password1 i").addClass("fa-eye-slash");
-            $("#show_hide_password1 i").removeClass("fa-eye");
+            $("#show_hide_password1 svg").addClass("fa-eye-slash");
+            $("#show_hide_password1 svg").removeClass("fa-eye");
         } else if ($("#show_hide_password1 input").attr("type") == "password") {
             $("#show_hide_password1 input").attr("type", "text");
-            $("#show_hide_password1 i").removeClass("fa-eye-slash");
-            $("#show_hide_password1 i").addClass("fa-eye");
+            $("#show_hide_password1 svg").removeClass("fa-eye-slash");
+            $("#show_hide_password1 svg").addClass("fa-eye");
         }
     });
 
@@ -16,12 +19,12 @@ $(document).ready(function () {
         event.preventDefault();
         if ($("#show_hide_password2 input").attr("type") == "text") {
             $("#show_hide_password2 input").attr("type", "password");
-            $("#show_hide_password2 i").addClass("fa-eye-slash");
-            $("#show_hide_password2 i").removeClass("fa-eye");
+            $("#show_hide_password2 svg").addClass("fa-eye-slash");
+            $("#show_hide_password2 svg").removeClass("fa-eye");
         } else if ($("#show_hide_password2 input").attr("type") == "password") {
             $("#show_hide_password2 input").attr("type", "text");
-            $("#show_hide_password2 i").removeClass("fa-eye-slash");
-            $("#show_hide_password2 i").addClass("fa-eye");
+            $("#show_hide_password2 svg").removeClass("fa-eye-slash");
+            $("#show_hide_password2 svg").addClass("fa-eye");
         }
     });
 
@@ -29,12 +32,12 @@ $(document).ready(function () {
         event.preventDefault();
         if ($("#show_hide_password3 input").attr("type") == "text") {
             $("#show_hide_password3 input").attr("type", "password");
-            $("#show_hide_password3 i").addClass("fa-eye-slash");
-            $("#show_hide_password3 i").removeClass("fa-eye");
+            $("#show_hide_password3 svg").addClass("fa-eye-slash");
+            $("#show_hide_password3 svg").removeClass("fa-eye");
         } else if ($("#show_hide_password3 input").attr("type") == "password") {
             $("#show_hide_password3 input").attr("type", "text");
-            $("#show_hide_password3 i").removeClass("fa-eye-slash");
-            $("#show_hide_password3 i").addClass("fa-eye");
+            $("#show_hide_password3 svg").removeClass("fa-eye-slash");
+            $("#show_hide_password3 svg").addClass("fa-eye");
         }
     });
 });
@@ -127,50 +130,62 @@ envia.addEventListener("click", function() {
         event.preventDefault();
     });
     var dsc_clave = verPass.value;
+    var encriptado = (CryptoJS.MD5(passAct.value)).toString();
+    if (encriptado != guardado) {
+        passAct.focus();
+        Swal.fire({
+            icon: 'warning',
+            text: 'La contraseña actual no concide con la guardada.',
+            confirmButtonText: 'Continuar',
+            confirmButtonColor: '#2596be',
+        })
 
-    if (passAct.value.trim() != 0) {      
-        $.ajax({
-            url: 'actualizaContrasenna', 
-            method: "PUT",
-            crossDomain: true,
-            dataType: 'json',
-            data:{'dsc_clave':dsc_clave},
-            success: function(respuesta){
-                console.log(respuesta);
-                Swal.fire({
-                icon: 'success',
-                text: 'Se ha registrado su nueva clave con éxito',
-                confirmButtonText: 'Continuar',
-                confirmButtonColor: '#a18347',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = "home";
-                    }
-                })
-            },//success
-            error(e){
-                //console.log(e.responseText);
-                if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+    }else{
+        if (passAct.value.trim() != 0) {      
+            $.ajax({
+                url: 'actualizaContrasenna', 
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data:{'dsc_clave':dsc_clave},
+                success: function(respuesta){
+                    console.log(respuesta);
                     Swal.fire({
-                        icon: 'success',
-                        text: 'Se ha registrado su nueva clave con éxito',
-                        confirmButtonText: 'Continuar',
-                        confirmButtonColor: '#a18347',
+                    icon: 'success',
+                    text: 'Se ha registrado su nueva clave con éxito',
+                    confirmButtonText: 'Continuar',
+                    confirmButtonColor: '#2596be',
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = "home";
                         }
                     })
-                }else{
-                    Swal.fire({
-                        icon: 'warning',
-                        text: 'Ha ocurrido un error intentelo nuevamente.',
-                        confirmButtonText: 'Continuar',
-                        confirmButtonColor: '#a18347',
-                    })
-                }
-            }//error
-        });//ajax
+                },//success
+                error(e){
+                    //console.log(e.responseText);
+                    if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se ha registrado su nueva clave con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#2596be',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "home";
+                            }
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#2596be',
+                        })
+                    }
+                }//error
+            });//ajax
+        }
     }
+
 });
 

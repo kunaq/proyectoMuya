@@ -7,16 +7,45 @@ var flgRegla = '';
 var flgReglaF = '';
 var flgReglaD = '';
 
+// setTimeout(function() { 
+//   var diaPagoHaber = document.getElementById('pagoPlanilla').value;
+//   if (diaPagoHaber == 'SI') {
+//     mesinicio = hooy.getMonth() + 2;
+//     annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
+//     inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
+
+//   }else{
+//     inicioCalendario = hooy.setDate(hooy.getDate() + 1);
+//   }
+//   flatpickr("#datepickerIniSolVac",{
+//       locale:"es",
+//       dateFormat: "d-m-Y",
+//       minDate: inicioCalendario,
+//       disableMobile: "true",
+//       //disable: feriados,
+//   });
+// }, 2000);
+
 setTimeout(function() { 
   var diaPagoHaber = document.getElementById('pagoPlanilla').value;
+
+  var mesesTra = document.getElementById("mesesTrabajados").value;
+  // console.log(mesesTra);
+  if (mesesTra < 3) {
+    aux = new Date(fch_ingreso);
+    diaInicio = aux.getDate();
+    mesinicio = aux.getMonth() + 4;
+    annioinicio = (mesinicio == 12) ? aux.getFullYear()+1 : aux.getFullYear();
+    inicioCalendario = diaInicio+"-"+mesinicio+"-"+annioinicio;
+  }
+
   if (diaPagoHaber == 'SI') {
     mesinicio = hooy.getMonth() + 2;
     annioinicio = (mesinicio == 12) ? hooy.getFullYear()+1 : hooy.getFullYear();
     inicioCalendario = "01-"+mesinicio+"-"+annioinicio;
 
-  }else{
-    inicioCalendario = hooy.setDate(hooy.getDate() + 1);
   }
+  
   flatpickr("#datepickerIniSolVac",{
       locale:"es",
       dateFormat: "d-m-Y",
@@ -24,7 +53,7 @@ setTimeout(function() {
       disableMobile: "true",
       //disable: feriados,
   });
-}, 2000);
+}, 3000);
 
 //----------disparador cambio en fecha de inicio-----------
 var inputFchInicio = document.getElementById('datepickerIniSolVac');
@@ -280,15 +309,17 @@ function descargaDoc() {
     console.log('descargar');
 }
 
-function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini) {
-    document.getElementById('cantDiasSol').value = cantDias;
-    document.getElementById('numVacPendReprog').value = cantDias;
-    document.getElementById('numLinea').value = numLinea;
-    document.getElementById('reprogramacion').value = 'SI';
-    document.getElementById('fchInicioRech').value = fhcIni;
-    document.getElementById('fchFinRech').value = fchFin;
-    document.getElementById('fchReincRech').value = fchReini;    
-    document.getElementById('cantDiasRech').value = cantDias;
+
+function reprograma(cantDias,numLinea,fhcIni,fchFin,fchReini,codEstado) { 
+  document.getElementById('cantDiasSol').value = cantDias;
+  document.getElementById('numVacPendReprog').value = cantDias;
+  document.getElementById('numLinea').value = numLinea;
+  document.getElementById('reprogramacion').value = 'SI';
+  document.getElementById('fchInicioRech').value = fhcIni;
+  document.getElementById('fchFinRech').value = fchFin;
+  document.getElementById('fchReincRech').value = fchReini;    
+  document.getElementById('cantDiasRech').value = cantDias;
+  document.getElementById('codEstado').value = codEstado;
 }
 
 // ---------apartado del calendario--------------

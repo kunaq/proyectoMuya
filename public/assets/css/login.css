@@ -3,6 +3,9 @@ body {
     background-color: #f6f4ef;
     min-height: 100vh;
     overflow-y: hidden;
+    background-image: url("../img/INTRANET-00.png");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .brand-wrapper {
@@ -50,17 +53,17 @@ body {
 }
 .login-card .login-btn {
     padding: 13px 20px 12px;
-    background-color: #a18347;
+    background-color: #2596be;
     border-radius: 4px;
     font-size: 17px;
     font-weight: bold;
     line-height: 20px;
     color: #fff;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 .login-card .login-btn:hover {
     border: 1px solid white;
-    background-color: #a18347;
+    /* background-color: #a18347; */
     color: #fff;
 }
 .login-card .forgot-password-link {
@@ -110,7 +113,14 @@ input, input:before, input:after {
     }
     .login-card {
         border: 0 !important;
-        border-radius: 27.5px !important;
+        /* border-radius: 27.5px !important; */
+
+
+        border-top-left-radius: 80px !important;
+        border-top-right-radius: 80px !important;
+        border-bottom-left-radius: 80px !important;
+        border-bottom-right-radius: 80px !important;
+
         box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43) !important;
         /* overflow: hidden !important; */
         margin-top: 18vh !important;
@@ -121,8 +131,13 @@ input, input:before, input:after {
     .login-card .card-body {
         padding: 1vh 6vh;
     }
+    .login-card .login-btn {
+        padding: 13px 15px 12px;
+    }
     
 }
+
+
 /* ---resolucion de samsung flold */
 @media (width: 280px) and (height: 653px) {
     .brand-wrapper .logo {
@@ -139,13 +154,20 @@ input, input:before, input:after {
     .inicioSession{
         display: none;
         font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 2rem;
-        text-align: center;
-        font-weight: 700;
+        font-size: 25px;
+        text-align: left;
+        /* font-weight: 700; */
     }
     .login-card {
         border: 0 !important;
-        border-radius: 27.5px !important;
+        /* border-radius: 27.5px !important; */
+
+
+        border-top-left-radius: 80px !important;
+        border-top-right-radius: 80px !important;
+        border-bottom-left-radius: 80px !important;
+        border-bottom-right-radius: 80px !important;
+
         box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43) !important;
         overflow: hidden !important;
         margin-top: 18vh !important;
@@ -155,7 +177,7 @@ input, input:before, input:after {
         border-radius: 0;
         position: absolute;
         width: 100%;
-        padding: 3rem;
+        padding: 8rem;
         height: 100%;
         object-fit: contain;
         background-color: #a18347;
@@ -164,13 +186,14 @@ input, input:before, input:after {
         margin-bottom: 24px;
     }
 }
+
 @media (width: 768px) and (height: 1024px){
     .login-card-img {
         display: block;
         border-radius: 0;
         position: absolute;
         width: 100%;
-        padding: 3rem;
+        padding: 8rem;
         height: 100%;
         object-fit: contain;
         background-color: #a18347;
@@ -179,6 +202,7 @@ input, input:before, input:after {
         display: none;
     }
 }  /* air pad mini desing */
+
 
 @media (min-width: 769px) and (max-width: 1279px) {
     .logo{
@@ -189,13 +213,18 @@ input, input:before, input:after {
     .inicioSession{
         display: block;
         font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 2rem;
-        text-align: center;
-        font-weight: 700;
+        font-size: 25px;
+        text-align: left;
+        /* font-weight: 700; */
     }
     .login-card {
         border: 0 !important;
-        border-radius: 27.5px !important;
+        /* border-radius: 27.5px !important; */
+        border-top-left-radius: 80px !important;
+        border-top-right-radius: 80px !important;
+        border-bottom-left-radius: 80px !important;
+        border-bottom-right-radius: 80px !important;
+
         box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43) !important;
         overflow: hidden !important;
         margin-top: 18vh !important;
@@ -204,15 +233,16 @@ input, input:before, input:after {
         border-radius: 0;
         position: absolute;
         width: 100%;
-        padding: 3rem;
+        padding: 8rem;
         height: 100%;
         object-fit: contain;
-        background-color: #a18347;
+        background-color: var(--color_c_n) !important;
     }
     .login-card-footer-text {
         margin-bottom: 24px;
     }
 }
+
 @media screen and (width:1024px) and (height:600px) {
     body {
         font-family: "Karla", sans-serif;
@@ -231,13 +261,18 @@ input, input:before, input:after {
     .inicioSession{
         display: block;
         font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        font-size: 2rem;
-        text-align: center;
-        font-weight: 700;
+        font-size: 25px;
+        text-align: left;
+        /* font-weight: 700; */
     }
     .login-card {
         border: 0 !important;
-        border-radius: 27.5px !important;
+        /* border-radius: 100.5px !important; */
+        border-top-left-radius: 80px !important;
+        border-top-right-radius: 80px !important;
+        border-bottom-left-radius: 80px !important;
+        border-bottom-right-radius: 80px !important;
+
         box-shadow: 0 10px 30px 0 rgba(172, 168, 168, 0.43) !important;
         overflow: hidden !important;
         margin-top: 18vh !important;
@@ -246,10 +281,10 @@ input, input:before, input:after {
         border-radius: 0;
         position: absolute;
         width: 100%;
-        padding: 3rem;
+        padding: 8rem;
         height: 100%;
         object-fit: contain;
-        background-color: #a18347;
+        background-color: #2596be;
     }
     .login-card-footer-text {
         margin-bottom: 24px;

@@ -394,7 +394,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
                     icon: 'success',
                     text: 'Se ha enviado el correo éxito',
                     confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
+                    confirmButtonColor: '#468EC3',
                   }).then((result) => {
                     if (result.isConfirmed) {
                       location.reload();
@@ -416,7 +416,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
                     icon: 'warning',
                     text: customErrorMessage,
                     confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
+                    confirmButtonColor: '#468EC3',
                   });
                 } else {
                   console.log(jqXHR);
@@ -425,7 +425,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
                     icon: 'warning',
                     text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.'+jqXHR.responseJSON.message,
                     confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
+                    confirmButtonColor: '#468EC3',
                   });
                 }
               }//error
@@ -465,7 +465,7 @@ function enviaCorreoMensaje(codTra,codTraSolic,dscSolicitante,codMensaje,fchLimi
                   icon: 'success',
                   text: 'Se ha generado el aviso éxito',
                   confirmButtonText: 'Continuar',
-                  confirmButtonColor: '#a18347',
+                  confirmButtonColor: '#468EC3',
                 }).then((result) => {
                   if (result.isConfirmed) {
                     location.reload();
@@ -510,9 +510,9 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
               console.log(respuesta);
               Swal.fire({
                   icon: 'success',
-                  text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
+                  text: 'La solicitud de vacaciones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
                   confirmButtonText: 'Continuar',
-                  confirmButtonColor: '#a18347',
+                  confirmButtonColor: '#468EC3',
               }).then((result) => {
                 if (result.isConfirmed) {
                   location.reload();
@@ -526,9 +526,9 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
           
             Swal.fire({
               icon: 'success',
-              text: 'La solicitud de vacaiones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
+              text: 'La solicitud de vacaciones se envió satisfactoriamente. Ingresa a tu correo personal para que la puedas firmar.',
               confirmButtonText: 'Continuar',
-              confirmButtonColor: '#a18347',
+              confirmButtonColor: '#468EC3',
             }).then((result) => {
               if (result.isConfirmed) {
                 location.reload();
@@ -544,7 +544,7 @@ function enviaDocSoli(codTra,fchIni,fchFin,fchRinc,cantDias,numLinea,btn) {
         icon: 'warning',
         text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
         confirmButtonText: 'Continuar',
-        confirmButtonColor: '#a18347',
+        confirmButtonColor: '#468EC3',
       });
     }//error
   });//ajax obtenerTrab
@@ -572,7 +572,7 @@ function firmaConvenio(codTra,docTraRRHH) {
               icon: 'success',
               text: 'Se realizó el envio satisfactoriamente.',
               confirmButtonText: 'Continuar',
-              confirmButtonColor: '#a18347',
+              confirmButtonColor: '#468EC3',
             }).then((result) => {
               if (result.isConfirmed) {
                 location.reload();
@@ -587,7 +587,7 @@ function firmaConvenio(codTra,docTraRRHH) {
             icon: 'success',
             text: 'Se realizó el envio satisfactoriamente.',
             confirmButtonText: 'Continuar',
-            confirmButtonColor: '#a18347',
+            confirmButtonColor: '#468EC3',
           }).then((result) => {
             if (result.isConfirmed) {
               location.reload();
@@ -604,7 +604,7 @@ function firmaConvenio(codTra,docTraRRHH) {
         icon: 'warning',
         text: 'Ha ocurrido un error. Por favor, inténtelo nuevamente.',
         confirmButtonText: 'Continuar',
-        confirmButtonColor: '#a18347',
+        confirmButtonColor: '#468EC3',
       });
     }//error
   });//ajax  
@@ -695,7 +695,7 @@ function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
             title:dscTra,
             html: texto,
             confirmButtonText: 'Aceptar',
-            confirmButtonColor: '#a18347',
+            confirmButtonColor: '#468EC3',
           })
 
       },//success
@@ -717,7 +717,7 @@ function muestraInfo(codTra,dscTra,tipo,dato1,dato2) {
       title:dscTra,
       html: texto,
       confirmButtonText: 'Aceptar',
-      confirmButtonColor: '#a18347',
+      confirmButtonColor: '#468EC3',
     })
   }
   
@@ -729,16 +729,18 @@ var alertaMostrada = false;
 function iniciarTemporizador() {
   temporizadorInactividad = setTimeout(function() {
     if (!alertaMostrada) {
-      Swal.fire({
-        text: 'Su sesión ha caducado. Ingrese nuevamente.',
-        icon: 'warning',
-        confirmButtonText: 'Aceptar',
-        confirmButtonColor: '#a18347',
-      }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = "adios";
-        } 
-    })
+      // Swal.fire({
+      //   text: 'Su sesión ha caducado. Ingrese nuevamente.',
+      //   icon: 'warning',
+      //   confirmButtonText: 'Aceptar',
+      //   confirmButtonColor: '#a18347',
+      //   allowOutsideClick: false,
+      //   allowEscapeKey:false,
+      // }).then((result) => {
+      //   if (result.isConfirmed) {
+      //   } 
+      // })
+      window.location.href = "adios/inactividad"; 
       alertaMostrada = true;
     }
   }, 300000); // 300000 milisegundos = 5 minutos

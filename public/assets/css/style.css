@@ -12,16 +12,20 @@
   scroll-behavior: smooth;
   --fc-event-bg-color: #155450;
   --fc-event-border-color: #155450;
+
+  --color_c_n: #468EC3;
+  --color_table_h: #E8E8E8;
+  --color_v_n: #AED392;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
-  background: #F6F4EF;
+  background: #E8E8E8;
   color: #444444;
 }
 
 a {
-  color: #a18347;
+  color: #2596be;
   text-decoration: none;
 }
 
@@ -51,7 +55,7 @@ h6 {
 # Main
 --------------------------------------------------------------*/
 #main {
-  margin-top: 90px;
+  margin-top: 10%;
   padding: 20px 30px;
   transition: all 0.3s;
 }
@@ -59,6 +63,7 @@ h6 {
 @media (max-width: 1199px) {
   #main {
     padding: 20px;
+    margin-top: 170px;
   }
 }
 
@@ -70,10 +75,10 @@ h6 {
 }
 
 .pagetitle h1 {
-  font-size: 24px;
+  font-size: 40px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 /*--------------------------------------------------------------
@@ -86,7 +91,7 @@ h6 {
   right: 15px;
   bottom: 15px;
   z-index: 99999;
-  background: #a18347;
+  background: var(--color_c_n);
   width: 40px;
   height: 40px;
   border-radius: 4px;
@@ -100,7 +105,7 @@ h6 {
 }
 
 .back-to-top:hover {
-  background: #a18347;
+  background: var(--color_c_n);
   color: #fff;
 }
 
@@ -247,7 +252,17 @@ h6 {
   background-color: #F9F8F7;
   margin-bottom: 30px;
   border: none;
-  border-radius: 5px;
+  border-radius: 45px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+.card_vacaciones {
+  background-color: #F9F8F7;
+  margin-bottom: 30px;
+  border: none;
+  /* border-radius: 45px; */
+  border-bottom-left-radius: 35px;
+  border-bottom-right-radius: 35px;
   box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
 }
 
@@ -263,7 +278,7 @@ h6 {
   padding: 20px 0 15px 0;
   font-size: 18px;
   font-weight: 500;
-  color: #a18347;
+  color: var(--color_c_n);
   font-family: "Poppins", sans-serif;
   text-transform: uppercase;
 }
@@ -310,7 +325,7 @@ h6 {
 }
 
 .accordion-button:not(.collapsed) {
-  color: #a18347;
+  color: var(--color_c_n);
   background-color: #F6F4EF;
 }
 
@@ -322,7 +337,7 @@ h6 {
 
 .accordion-flush .accordion-button:not(.collapsed) {
   box-shadow: none;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .accordion-flush .accordion-body {
@@ -333,14 +348,14 @@ h6 {
 
 /* Breadcrumbs */
 .breadcrumb {
-  font-size: 14px;
+  font-size: 20px;
   font-family: "Nunito", sans-serif;
-  color: #899bbd;
+  color: grey;
   font-weight: 600;
 }
 
 .breadcrumb a {
-  color: #899bbd;
+  color: #848484;
   transition: 0.3s;
 }
 
@@ -353,7 +368,7 @@ h6 {
 }
 
 .breadcrumb .active {
-  color: #51678f;
+  color: black;
   font-weight: 600;
 }
 
@@ -370,15 +385,80 @@ h6 {
 
 .nav-tabs-bordered .nav-link:hover,
 .nav-tabs-bordered .nav-link:focus {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .nav-tabs-bordered .nav-link.active {
   background-color: #fff;
-  color: #a18347;
-  border-bottom: 2px solid #a18347;
+  color: var(--color_c_n);
+  border-bottom: 2px solid var(--color_c_n);
 }
 
+
+.tr_bg_fechas{
+  background-color: var(--color_c_n);
+  
+}
+
+.th_bg_datos{
+  color: white !important;
+  
+}
+
+.tr_bg_cts, .tr_bg_grati{
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.th_bg_cts, .th_bg_grati{
+  background-color: var(--color_c_n) !important;
+  color: white !important;
+
+}
+
+.container_buttons_docs{
+  justify-content: space-evenly;
+  display: flex;
+}
+
+.container_inputs_fechas{
+  /* gap: 15%; */
+  align-items: center;
+  /* margin-left: 30%; */
+}
+
+.container_total_fechas{
+  padding-top: 5%;
+  padding-bottom: 4%;
+}
+
+
+.btns_docs{
+  background: white;
+  color: var(--color_c_n);
+  border: 0;
+  border-radius: 15px;
+  font-size: 24px;
+  font-weight: bolder;
+  height: 85px;
+  width: 20%;
+}
+
+.btn_buscar_fecha{
+  background: var(--color_c_n);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bolder;
+  height: 39px;
+  /* width: 30%; */
+}
+
+.titulo_busqueda_anio{
+  color: var(--color_c_n);
+  font-weight: bold;
+}
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
@@ -394,23 +474,25 @@ h6 {
 
 .logo img {
   width: 60%;
+  padding: 13%;
 }
 .logo-sm img {
-  width: 20%;
+  width: 175px;
 }
 
 
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #a18347;
+  color: var(--color_c_n);
   font-family: "Nunito", sans-serif;
 }
 
 .header {
   transition: all 0.5s;
   z-index: 997;
-  height: 90px;
+  /* height: 15%; */
+  height: 155px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
   background-color: #fff;
   padding-left: 20px;
@@ -461,7 +543,7 @@ h6 {
 .header .search-form input {
   border: 0;
   font-size: 14px;
-  color: #a18347;
+  color: var(--color_c_n);
   border: 1px solid rgba(1, 41, 112, 0.2);
   padding: 7px 38px 7px 8px;
   border-radius: 3px;
@@ -484,7 +566,7 @@ h6 {
 }
 
 .header .search-form button i {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 /*--------------------------------------------------------------
@@ -501,13 +583,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #a18347;
+  color: var(--color_c_n);
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .header-nav .nav-profile img {
@@ -632,7 +714,7 @@ h6 {
 --------------------------------------------------------------*/
 .sidebar {
   position: fixed;
-  top: 90px;
+  top: 155px;
   left: 0;
   bottom: 0;
   width: 300px;
@@ -643,10 +725,10 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: var(--color_c_n);
 }
 
-/* -------------brekpoints de las views------------- */
+/* -------------breakpoints de las views------------- */
 
 @media (max-width: 768px) {
 
@@ -669,6 +751,25 @@ h6 {
   }
   .header-nav{
     display: none;
+  }
+
+  .modal-content{
+    
+  }
+
+  .btns_docs {
+    font-size: 10px;
+    width: 110px;
+  }
+
+  .container_inputs_fechas {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn_buscar_fecha {
+      width: 100%;
+      max-width: 200px; /* Ajusta este valor según sea necesario */
   }
 
 }
@@ -696,6 +797,11 @@ h6 {
   }
   .logo{
     width: 27rem;
+  }
+
+  .btns_docs {
+    font-size: 10px;
+    width: 110px;
   }
 }
 
@@ -788,7 +894,7 @@ h6 {
   align-items: center;
   font-size: 15px;
   font-weight: 600;
-  color: #a18347;
+  color: black;
   transition: 0.3;
   background: #F6F4EF;
   padding: 10px 15px;
@@ -798,25 +904,25 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: #a18347;
+  color: black;
   background: #fff;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .sidebar-nav .nav-link:hover {
-  color: #a18347;
+  color: grey;
   background: #F6F4EF;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .sidebar-nav .nav-link .bi-chevron-down {
@@ -831,6 +937,7 @@ h6 {
 .sidebar-nav .nav-content {
   padding: 5px 0 0 0;
   margin: 0;
+  margin-left: 25px;
   list-style: none;
 }
 
@@ -839,10 +946,14 @@ h6 {
   align-items: center;
   font-size: 14px;
   font-weight: 600;
-  color: #a18347;
+  color: black;
   transition: 0.3;
   padding: 10px 0 10px 40px;
   transition: 0.3s;
+  margin-top: 8px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .sidebar-nav .nav-content a i {
@@ -854,11 +965,11 @@ h6 {
 
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: #a18347;
+  color: grey;
 }
 
 .sidebar-nav .nav-content a.active i {
-  background-color: #a18347;
+  background-color: var(--color_c_n);
 }
 
 /*--------------------------------------------------------------
@@ -881,7 +992,7 @@ h6 {
 
 .dashboard .filter .icon:hover,
 .dashboard .filter .icon:focus {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .dashboard .filter .dropdown-header {
@@ -909,7 +1020,7 @@ h6 {
 
 .dashboard .info-card h6 {
   font-size: 28px;
-  color: #a18347;
+  color: var(--color_c_n);
   font-weight: 700;
   margin: 0;
   padding: 0;
@@ -925,7 +1036,7 @@ h6 {
 }
 
 .dashboard .sales-card .card-icon {
-  color: #a18347;
+  color: var(--color_c_n);
   background: #f6f6fe;
 }
 
@@ -1005,12 +1116,12 @@ h6 {
 }
 
 .dashboard .news h4 a {
-  color: #a18347;
+  color: var(--color_c_n);
   transition: 0.3s;
 }
 
 .dashboard .news h4 a:hover {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .dashboard .news p {
@@ -1077,7 +1188,7 @@ h6 {
   background-color: #fff;
   border-radius: 0.25rem;
   text-align: center;
-  color: #a18347;
+  color: var(--color_c_n);
   padding: 15px 0;
 }
 
@@ -1126,7 +1237,7 @@ h6 {
 }
 
 .profile .profile-card .social-links a:hover {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .profile .profile-overview .row {
@@ -1135,7 +1246,7 @@ h6 {
 }
 
 .profile .profile-overview .card-title {
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .profile .profile-overview .label {
@@ -1158,7 +1269,7 @@ h6 {
 .faq .basic h6 {
   font-size: 18px;
   font-weight: 600;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .faq .basic p {
@@ -1176,12 +1287,12 @@ h6 {
 .contact .info-box i {
   font-size: 50px;
   line-height: 0;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: #a18347;
+  color: var(--color_c_n);
   font-weight: 700;
   margin: 20px 0 10px 0;
 }
@@ -1244,7 +1355,7 @@ h6 {
 
 .contact .php-email-form input:focus,
 .contact .php-email-form textarea:focus {
-  border-color: #a18347;
+  border-color: var(--color_c_n);
 }
 
 .contact .php-email-form input {
@@ -1256,7 +1367,7 @@ h6 {
 }
 
 .contact .php-email-form button[type=submit] {
-  background: #a18347;
+  background: var(--color_c_n);
   border: 0;
   padding: 10px 30px;
   color: #fff;
@@ -1266,6 +1377,10 @@ h6 {
 
 .contact .php-email-form button[type=submit]:hover {
   background: #5969f3;
+}
+
+.img_boleta{
+  height: 50px;
 }
 
 @-webkit-keyframes animate-loading {
@@ -1298,7 +1413,7 @@ h6 {
 .error-404 h1 {
   font-size: 180px;
   font-weight: 700;
-  color: #a18347;
+  color: var(--color_c_n);
   margin-bottom: 0;
   line-height: 150px;
 }
@@ -1306,7 +1421,7 @@ h6 {
 .error-404 h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #a18347;
+  color: var(--color_c_n);
   margin-bottom: 30px;
 }
 
@@ -1338,14 +1453,14 @@ h6 {
 
 .footer .copyright {
   text-align: center;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 /*-------------------------------------------------------------
@@ -1366,7 +1481,7 @@ select.icon-menu option {
 Boton esconder contraseña
 --------------------------------------------------------------*/
 a .hidePass, .hidePass:hover{
-  color: #a18347;
+  color: var(--color_c_n);
 }
 
 .btnCamPass{
@@ -1419,13 +1534,14 @@ Estilos Home
 
 .titulo-home span{
   font-size: 25px;
-  color: #a18347;
+  color: grey;
   font-weight: 500;
 }
 
 .tarjetas-home{
   text-align: center;
-  color: #a18347;
+  color: var(--color_c_n);
+  /* margin-bottom: -35px; */
 }
 
 .tarjeta-foco{
@@ -1439,15 +1555,65 @@ Estilos Home
 }
 
 .verdeMuya, .verdemuya:hover{
-  background-color: #155450 !important;
+  background-color: var(--color_c_n) !important;
+  border: transparent;
 }
 .btnTabHome{
   width: -webkit-fill-available;
 }
 .btnDorado, .btnDorado:hover{
-  background-color: #a18347 !important;
-  border-color: #a18347 !important;
+  background-color: var(--color_c_n) !important;
+  border-color: var(--color_c_n) !important;
   color: white;
+}
+
+.btnDorado:disabled{
+  background-color: grey !important;
+}
+
+
+.btnDorado_2, .btnDorado_2:hover{
+  background-color: var(--color_v_n) !important;
+  border-color: var(--color_v_n) !important;
+  color: grey;
+}
+
+.btnDorado_2:disabled, .verdemuya_2:disabled{
+  /* background-color: #E8E8E8 !important;
+  border-color: #E8E8E8 !important; */
+
+  background-color: grey !important;
+  border-color: grey !important;
+  color: white;
+  cursor: no-drop !important;
+  
+}
+
+.verdeMuya_2, .verdemuya_2:hover{
+  background-color: var(--color_v_n) !important;
+  border: transparent;
+}
+
+
+.btn-descarga-boleta{
+  background-color: var(--color_c_n);
+  color: white;
+  border-color: transparent;
+  border-radius: 20px;
+}
+.btn-descarga-boleta:hover{
+  color: white !important;
+  background-color: var(--color_c_n) !important;
+}
+
+
+.btn-descarga-boleta:active{
+  color: #124457;
+
+}
+
+#proxVac{
+  color: var(--color_c_n);
 }
 @media (max-width: 2090px) {
   .btnConvenio{
@@ -1477,12 +1643,12 @@ Estilos Datos personales
   color: gray;
 }
 .navDatPer .nav-item{
-  color: #a18347;
+  color: grey;
   font-size: 18px;
-  border-bottom: #a18347 solid 2px;
+  border-bottom: var(--color_c_n) solid 4px;
 }
 .nav-item-left{
-  border-top-left-radius: 5px !important;
+  border-top-left-radius: 45px !important;
   border-top-right-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
@@ -1492,12 +1658,12 @@ Estilos Datos personales
 }
 .nav-item-right{
   border-top-left-radius: 0 !important;
-  border-top-right-radius: 5px !important;
+  border-top-right-radius: 45px !important;
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
 .navDatPer .nav-item.active{
-  background-color:  #a18347 !important;
+  background-color:  black !important;
   color: white;
 }
 
@@ -1506,15 +1672,22 @@ Estilos Documentos
 --------------------------------------------------------------*/
 
 .login-btn {
-  background-color: #a18347;
+  background-color: var(--color_c_n);
   border-radius: 4px;
   color: #fff;
-  margin-bottom: 24px; 
-  width: -webkit-fill-available;
+  /* margin-bottom: 24px;  */
+  /* width: -webkit-fill-available; */
+  margin-top: 10%;
+  width: 35%;
+}
+
+.container-btn-login{
+  display: flex;
+  justify-content: center;
 }
 .login-btn:hover {
     border: 1px solid white;
-    background-color: #a18347;
+    background-color: var(--color_c_n);
     color: #fff; 
 }
 .selectForm:focus{
@@ -1525,24 +1698,124 @@ Estilos Documentos
 Estilos Vacaciones
 --------------------------------------------------------------*/
 
-.checkDorado{
+.checkDorado {
+  position: relative;
   font-size: 20px;
-  border-color: #a18347 !important;
+  border-color: grey !important;
   color: white;
+  width: 50px; /* Tamaño del checkbox */
+  height: 45px; /* Tamaño del checkbox */
+  /*border: 2px solid #000;  Borde del checkbox */
+  border-radius: 5px; /* Esquinas redondeadas del checkbox */
+  display: inline-block; /* Para poder usar margin y otras propiedades de bloque */
+  cursor: pointer; /* Cambiar el cursor a puntero */
+  margin-right: 10px; /* Espaciado a la derecha del checkbox */
 }
-.checkDorado:checked{
-  background-color: #a18347 !important;
-  border-color: #a18347 !important;
+
+.checkVerde, .checkRojo{
+  position: relative;
+  font-size: 20px;
+  border-color: grey !important;
   color: white;
+  width: 50px; /* Tamaño del checkbox */
+  height: 45px; /* Tamaño del checkbox */
+  /*border: 2px solid #000;  Borde del checkbox */
+  border-radius: 5px; /* Esquinas redondeadas del checkbox */
+  display: inline-block; /* Para poder usar margin y otras propiedades de bloque */
+  cursor: pointer; /* Cambiar el cursor a puntero */
+  margin-right: 10px; /* Espaciado a la derecha del checkbox */
 }
-.checkDorado:focus{
+
+.checkDorado:checked::before {
+  content: '✓'; /* Ícono de verificación */
+  position: absolute; /* Posicionamiento absoluto dentro del div */
+  top: 50%; /* Ajuste vertical */
+  left: 50%; /* Ajuste horizontal */
+  transform: translate(-50%, -50%); /* Centra el símbolo de verificación */
+  font-size: 20px; /* Tamaño del ícono de verificación */
+  color: green; /* Color del ícono de verificación */
+}
+
+.checkVerde:checked::before {
+  content: '✓'; /* Ícono de verificación */
+  position: absolute; /* Posicionamiento absoluto dentro del div */
+  top: 50%; /* Ajuste vertical */
+  left: 50%; /* Ajuste horizontal */
+  transform: translate(-50%, -50%); /* Centra el símbolo de verificación */
+  font-size: 20px; /* Tamaño del ícono de verificación */
+  color: green; /* Color del ícono de verificación */
+}
+
+.checkRojo:checked::before {
+  content: 'X'; /* Ícono de verificación */
+  position: absolute; /* Posicionamiento absoluto dentro del div */
+  top: 50%; /* Ajuste vertical */
+  left: 50%; /* Ajuste horizontal */
+  transform: translate(-50%, -50%); /* Centra el símbolo de verificación */
+  font-size: 20px; /* Tamaño del ícono de verificación */
+  color: white; /* Color del ícono de verificación */
+}
+
+.chkDatos{
+  position: relative;
+  font-size: 20px;
+  border-color: grey !important;
+  color: var(--color_c_n);
+  width: 40px; /* Tamaño del checkbox */
+  height: 35px; /* Tamaño del checkbox */
+  /*border: 2px solid #000;  Borde del checkbox */
+  border-radius: 5px; /* Esquinas redondeadas del checkbox */
+  display: inline-block; /* Para poder usar margin y otras propiedades de bloque */
+  cursor: pointer; /* Cambiar el cursor a puntero */
+  margin-right: 10px; /* Espaciado a la derecha del checkbox */
+}
+
+.chkDatos:checked::before {
+  content: '✓'; /* Ícono de verificación */
+  position: absolute; /* Posicionamiento absoluto dentro del div */
+  top: 50%; /* Ajuste vertical */
+  left: 50%; /* Ajuste horizontal */
+  transform: translate(-50%, -50%); /* Centra el símbolo de verificación */
+  font-size: 20px; /* Tamaño del ícono de verificación */
+  color: var(--color_c_n); /* Color del ícono de verificación */
+}
+
+
+
+
+
+.checkDorado:focus {
   outline: none;
   box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
   border: 1px solid rgba(1, 41, 112, 0.3);
 }
 
+.checkVerde:focus {
+  outline: none;
+  box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+  /* border: 1px solid rgba(1, 41, 112, 0.3); */
+}
 
-.checkVerde{
+#aprobSol{
+  background-color: var(--color_v_n) !important;
+  border-color: transparent !important;
+
+}
+#recSol{
+  background-color: tomato !important;
+  border-color: transparent !important;
+}
+
+.form-check-input:checked{
+  background-color: transparent !important;
+}
+
+.form-check-input:checked[type=checkbox]{
+  --bs-form-check-bg-image: none !important;
+}
+
+
+/* .checkVerde{
   font-size: 20px;
   border-color: #155450 !important;
   color: white;
@@ -1551,14 +1824,16 @@ Estilos Vacaciones
   background-color: #155450 !important;
   border-color: #155450 !important;
   color: white;
-}
+} */
+
+
 
 
 .tarjeta-vaca-foco{
   font-size: 30px;
   text-align: center;
   margin-bottom: 0;
-  color: #a18347;
+  color: var(--color_c_n);
   font-family: "Poppins", sans-serif;
 }
 
@@ -1574,6 +1849,23 @@ Estilos Vacaciones
 .table th {
   text-align: center !important;
 }
+
+.table{
+  /* --bs-table-striped-bg: var(--color_table_h) !important */
+}
+
+.table thead{
+  background-color: var(--color_c_n);
+  color: white;
+}
+
+.thead_empresa_datos_pers, .thead_personal_datos_pers, .thead_familia_datos_pers{
+  background-color: transparent !important;
+  color: grey !important;
+}
+
+
+
 .tablaAlerta table td{
   text-align: center !important;
   border: solid gray 0.1em;
@@ -1616,4 +1908,101 @@ Estilos Vacaciones
   right: 0;
   left: 40%;
   animation: fade 1s infinite;
+}
+
+.tittle_card{
+  background: var(--color_c_n);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+}
+
+.titulo_registro_v{
+  margin-left: 3%;
+  margin-top: 1%;
+  color: white;
+}
+
+.titulos_descargas_vac{
+  color: var(--color_c_n);
+  font-size: 19px;
+}
+
+.btn_chng_pass{
+  background: var(--color_c_n);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bolder;
+  height: 35px;
+
+}
+
+.btn_chng_pass:disabled{
+  background-color: grey;
+  color: white;
+}
+
+.btn_accept_vac{
+  background: var(--color_c_n);
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bolder;
+  height: 35px;
+}
+
+.btn_accept_vac:disabled{
+  background-color: grey;
+  color: white;
+}
+
+.titulo_1{
+  margin-left: -15px;
+  font-size: 25px;
+  color: var(--color_c_n);
+  font-weight: bold;
+}
+
+.dias_vacaciones{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color_c_n);
+}
+.dias_vacaciones_txt{
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--color_c_n);
+}
+
+.nro_dias_txt{
+  font-size: 80px;
+}
+
+.img_headers{
+  position: absolute;
+  object-fit: cover;
+  height: 104%;
+  top: -5px;
+  left: -2%;
+  width: -webkit-fill-available;
+}
+
+.fc .fc-button-primary {
+  background-color: #468EC3 !important;
+  border-color: #468EC3 !important;
+}
+
+.card_datos_pers{
+  width: 21.666667% !important;
+}
+
+.text_resaltado{
+  color: #468EC3;
+}
+
+#num_vacaciones_pendiente{
+  font-size: 40px;
 }
