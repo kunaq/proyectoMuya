@@ -40,7 +40,7 @@ function listaSeguimientos(){
                         <div class="d-flex flex-column align-items-center">
                             <p class="card-text">
                                 <label class="text_resaltado">Emitido:</label>
-                                <strong>${item.dsc_email}</strong>
+                                <strong>${item.fch_emision}</strong>
                             </p>
                             <p class="card-text">
                                 <label class="text_resaltado">Enviado:</label>
@@ -60,21 +60,21 @@ function listaSeguimientos(){
                             </ul>
                             <div class="d-flex flex-column align-items-center mt-2" id="info_1_${item.cod_contrato}">
                                 <p class="card-text text_resaltado">
-                                    <strong>${item.cod_contrato}</strong>
+                                    <strong>${item.dsc_cliente}</strong>
                                 </p>
                                 <p>
-                                    <strong>${item.cod_contrato}</strong>
+                                    <strong>${item.dsc_telefono_1}</strong>
                                 </p>
                                 <p>
-                                    <strong>${item.cod_contrato}</strong>
+                                    <strong>${item.dsc_email}</strong>
                                 </p>
                                 <p>
                                     <label class="text_resaltado">Notificacion Firma: </label>
-                                    <strong>${item.cod_contrato}</strong>
+                                    <strong>${item.fch_status_firmado_titular}</strong>
                                 </p>
                                 <p>
                                     <label class="text_resaltado">Firmado:</label>
-                                    <strong>${item.cod_contrato}</strong>
+                                    <strong>${item.fch_status_firmado_titular}</strong>
                                 </p>
                             </div>
                         </div>
