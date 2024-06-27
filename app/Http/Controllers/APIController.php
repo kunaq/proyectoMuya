@@ -749,17 +749,31 @@ class APIController extends Controller
         $cod_tra = session('codTrabajador');
 
         $response = Http::get("https://webapiportalplanillamuya.azurewebsites.net/api/Contratos/ListarContratoVendedor/12345678911/NO/NO/TRA01757");
-        
-        // var_dump($response);
-        if ($response->successful()) {
-            
-            $listado_seg = $response->json();
-            return response()->json([
-                'list_seg' => $listado_seg,
-            ]);
 
-        }else{
-            return response()->json(['error' => 'No se pudieron obtener los datos'], $response->status());
+        if ($response->successful()) {
+            $listado_seg = $response->json();
+        
+            // Verifica si 'response' existe y es un array
+            if (isset($listado_seg['response']) && is_array($listado_seg['response'])) {
+                $listado_seg['response'] = collect($listado_seg['response'])->map(function ($seguimientos) {
+                    // Formatea las fechas 'fch_emision' y 'fch_activacion'
+                    $seguimientos['fch_emision'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_emision']));
+                    $seguimientos['fch_activacion'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_activacion']));
+                    $seguimientos['fch_status_accion_titular'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_status_accion_titular']));
+                    $seguimientos['fch_status_firmado_titular'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_status_firmado_titular']));
+                    $seguimientos['fch_status_accion_seg_titular'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_status_accion_seg_titular']));
+                    $seguimientos['fch_status_firmado_seg_titular'] = date('d-m-Y H:i:s', strtotime($seguimientos['fch_status_firmado_seg_titular']));
+                    return $seguimientos;
+                });
+                
+                return response()->json([
+                    'list_seg' => $listado_seg['response'],
+                ]);
+            } else {
+                return response()->json(['error' => 'No se pudieron obtener los datos esperados en la respuesta'], 500);
+            }
+        } else {
+            return response()->json(['error' => 'No se pudieron obtener los datos de la API'], $response->status());
         }
     }
 }
