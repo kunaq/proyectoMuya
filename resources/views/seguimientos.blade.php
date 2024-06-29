@@ -1,6 +1,8 @@
 <x-layouts.app title="Seguimiento" meta-description="mensaje meta description">
 
-
+    <div id="overlay_load" class="overlay_muya">
+        <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
+    </div>
     <main id="main" class="main">
         <div class="pagetitle d-none d-md-block">
             <h1>Seguimiento de Contrato </h1>

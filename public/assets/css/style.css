@@ -2006,3 +2006,63 @@ Estilos Vacaciones
 #num_vacaciones_pendiente{
   font-size: 40px;
 }
+
+.fading-element {
+  width: 10%;
+  position: relative;
+  top: 45%;
+  bottom: 0;
+  right: 0;
+  left: 45%;
+  animation: fade 1s infinite;
+}
+
+
+@keyframes fade {
+  0%,
+  100% {
+  opacity: 0;
+  }
+
+  50% {
+  opacity: 1;
+  }
+}
+
+.overlay_muya{
+  display: block;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 99999;
+}
+
+.chkDatos {
+    margin-top: 0 !important;
+}
+
+#CheckDescSolVac + label {
+    font-size: 0.875rem; /* Ajustar tamaño de texto */
+    line-height: 1.2;   /* Ajustar la altura de la línea */
+    margin-left: 0.5rem; /* Ajustar margen entre checkbox y texto */
+}
+
+
+.card-body {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card-body h4 {
+  font-size: 1.25rem; /* Ajusta el tamaño de la fuente según sea necesario */
+  white-space: nowrap; /* Evita el salto de línea */
+  overflow: hidden; /* Oculta el desbordamiento */
+  text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+}
+
+
+
+

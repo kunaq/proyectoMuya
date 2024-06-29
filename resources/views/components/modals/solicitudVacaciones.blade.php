@@ -167,6 +167,7 @@
                     'cod_trabajador': codTrabajador
                 },
                 success: function(result) {
+
                     document.getElementById('correoPerMuestra').innerHTML = result["response"][
                         "dsc_mail_personal"
                     ];
@@ -232,6 +233,8 @@
 
                     numUltDias = result['response']['num_ultimo_dias'];
                     setTimeout(function() {
+                        $("#overlay_load").hide();
+
                         muestraCalendario(filaCalendario);
                     }, 2000);
                 }

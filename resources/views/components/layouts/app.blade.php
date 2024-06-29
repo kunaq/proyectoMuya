@@ -45,7 +45,10 @@
 
     <x-layouts.nav />
     <x-layouts.sideBar />
-
+    {{--     
+    <div id="overlay_load" class="overlay_muya">
+        <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
+    </div> --}}
 
     {{ $slot }}{{-- contenido variable de cada pagina --}}
 

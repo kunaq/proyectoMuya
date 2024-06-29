@@ -45,6 +45,8 @@ document.getElementById("password")
 });
 
 $("#loginBtn").click(function(){
+    $("#overlay_load_l").show();
+
     grecaptcha.ready(function() {
         grecaptcha.execute('6LdEq58pAAAAACOUf9GgoVuFX5lWLndPLI9zBzrn', {
             action: 'validarUsuario'
@@ -71,6 +73,7 @@ $("#loginBtn").click(function(){
         },
         crossDomain: true,
         success: function(respuesta){
+              
             console.log('flg_cargo',respuesta.data.response.flg_cargo_sin_acceso);
             var bloqueo = respuesta.data.response.flg_bloqueado;
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){

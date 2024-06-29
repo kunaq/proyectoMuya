@@ -1,4 +1,5 @@
 $(function() {
+    // $("#overlay_load").show();
     listaSeguimientos();
 });
 
@@ -8,7 +9,15 @@ function listaSeguimientos() {
         method: "GET",
         dataType: 'json',
         crossDomain: true,
-        success: function(data) {        
+        success: function(data) { 
+            
+            if (!data.list_seg || data.list_seg.length === 0) {
+                $("#overlay_load").hide();
+                console.log("No hay datos disponibles.");
+                return;
+            }
+
+            $("#overlay_load").hide();
             console.log(data.list_seg.response);
             
             const container = document.getElementById("container_cards_seguimientos");

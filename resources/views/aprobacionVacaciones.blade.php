@@ -446,14 +446,17 @@
                                     <button class="btn btn-success btnDorado mb-3 mb-sm-0" data-bs-toggle="modal"
                                         data-bs-target="#ModalCargaMasiva" id="buscarDoc"
                                         style="width: 225px">Cargar</button>
-                                    <div class="d-flex flex-row align-items-center ms-0 ms-sm-3 mt-2 mt-sm-0">
-                                        <input class="form-check-input chkDatos me-2 me-sm-2" checked type="checkbox"
-                                            value="" id="CheckDescSolVac">
-                                        <label for="CheckDescSolVac" class="mb-0 ms-2">Aprobar automáticamente las
-                                            vacaciones que inician el siguiente mes</label>
+                                    <div class="d-flex align-items-center ms-0 ms-sm-3 mt-2 mt-sm-0">
+                                        <input class="form-check-input chkDatos" type="checkbox" value=""
+                                            id="CheckDescSolVac">
+                                        <label for="CheckDescSolVac" class="mb-0 ms-2 text-wrap">Aprobar
+                                            automáticamente las vacaciones que inician el siguiente mes</label>
                                     </div>
                                 </div>
                             </div>
+
+
+
 
                             <div class="row mt-5 mb-3">
                                 <div class="col-12">
@@ -473,7 +476,28 @@
 
 
 
+        <style>
+            .chkDatos {
+                margin-top: 0 !important;
+            }
 
+            .d-flex.align-items-center {
+                display: flex;
+                align-items: center;
+                flex-wrap: nowrap;
+                /* No permitir que el contenedor se envuelva */
+            }
+
+            .text-wrap {
+                display: inline-block;
+                max-width: calc(100% - 25px);
+                /* Ajustar el ancho máximo del texto */
+                word-wrap: break-word;
+                /* Permitir que el texto se ajuste */
+                margin-left: 0.5rem;
+                /* Ajustar el margen entre checkbox y texto */
+            }
+        </style>
 
 
         {{-- {{ session('alert') }} --}}

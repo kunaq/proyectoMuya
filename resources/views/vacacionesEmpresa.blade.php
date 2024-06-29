@@ -54,7 +54,7 @@
 
 <x-layouts.app title="vacacionesEmpresa" meta-description="Home meta description">
     <div id="overlay_load" class="overlay_muya">
-        <img src="{{ asset('assets/img/GM.png') }}" alt="login" class="fading-element">
+        <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
     </div>
     <main id="main" class="main">
         <div class="pagetitle">
@@ -720,6 +720,7 @@
             },
             success: function(result) {
                 //console.log(result);
+                $("#overlay_load").hide();
                 var filasArray1 = [];
                 result['response'].forEach(element => {
                     var alertaRegla = '';

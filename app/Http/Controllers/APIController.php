@@ -75,7 +75,7 @@ class APIController extends Controller
                 Session::put('numPeriodoVacaciones', $responseData->response->num_periodo_vacaciones);
 
 
-                Session::put('flg_supervisor_vta', $responseData->response->flg_supervisor_vta);
+                Session::put('flg_supervisor', $responseData->response->flg_supervisor);
                 Session::put('flg_jefe_vta', $responseData->response->flg_jefe_vta);
 
                 Session::put('md5',md5($responseData->response->dsc_clave));
@@ -748,7 +748,7 @@ class APIController extends Controller
         $flg_jefe = session('flg_jefe_vta');
         $cod_tra = session('codTrabajador');
 
-        $response = Http::get("https://webapiportalplanillamuya.azurewebsites.net/api/Contratos/ListarContratoVendedor/12345678911/NO/NO/TRA01757");
+        $response = Http::get("https://webapiportalplanillamuya.azurewebsites.net/api/Contratos/ListarContratoVendedor/12345678911/NO/NO/$cod_tra");
 
         if ($response->successful()) {
             $listado_seg = $response->json();

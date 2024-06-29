@@ -158,7 +158,7 @@
                     btnDescarga.disabled = false;
                 }
 
-                var aux = result["response"]["dsc_proxima_vacaciones"];
+                var aux = result["response"]["dsc_fecha_vacaciones"];
 
                 if (aux == 'NO REGISTRADO') {
                     var parentElement = document.getElementById("dsc_proxima_vacaciones");

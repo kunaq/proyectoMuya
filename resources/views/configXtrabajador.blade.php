@@ -148,9 +148,9 @@
                                     <div class="col-10 col-md-4 offset-md-2">
                                         <p>Requiere aprobación de vacaciones</p>
                                     </div>
-                                    <div class=" col-2 col-md-1">
+                                    <div class="col-2 col-md-1">
                                         <div class="form-group">
-                                            <input class="form-check-input checkVerde" type="checkbox"
+                                            <input class="form-check-input chkDatos mt-0" type="checkbox"
                                                 id="flg_requiere_aprobacion">
                                         </div>
                                     </div>
@@ -200,7 +200,7 @@
                                     </div>
                                     <div class=" col-2 col-md-1">
                                         <div class="form-group">
-                                            <input class="form-check-input checkVerde" type="checkbox"
+                                            <input class="form-check-input chkDatos mt-0" type="checkbox"
                                                 id="flg_requiere_supervision">
                                         </div>
                                     </div>

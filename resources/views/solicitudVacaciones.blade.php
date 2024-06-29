@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="assets/css/fullCalendarCustom.css">
 <x-layouts.app title="solicitudVacaciones" meta-description="Home meta description">
+
     <div id="overlay_load" class="overlay_muya">
-        <img src="{{ asset('assets/img/GM.png') }}" alt="login" class="fading-element">
+        <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
     </div>
     <main id="main" class="main">
         <div class="pagetitle d-none d-md-block">
@@ -97,29 +98,35 @@
                 <div class="col-md-6 mb-5 mt-4">
                     <div class="d-flex" style="justify-content: space-between; gap: 530px;">
                         <div class="col-md-6">
-                            <div class="dias_vacaciones" style="display: flex; justify-content: flex-start;">
-                                <div>
+                            <div class="dias_vacaciones card"
+                                style="display: flex; justify-content: flex-start; height: fit-content;">
+                                <div class="card-body" style="width: 100%; box-sizing: border-box;">
                                     <strong id="num_vacaciones_pendiente_m" class="nro_dias_txt"></strong>
                                     <strong> dias</strong>
+                                    <h4
+                                        style="font-size: 1.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                        Saldo pendiente de vacaciones
+                                    </h4>
                                 </div>
-
-                                {{-- <h1 class="card-title tarjeta-foco">
-                                    <b><span id="num_vacaciones_pendiente"></span> días</b>
-                                </h1> --}}
                             </div>
 
-                            <div class="dias_vacaciones_txt" style="display: flex; justify-content: flex-start;">
+                            {{-- <div class="dias_vacaciones_txt"
+                                style="display: flex; flex-direction: column; justify-content: flex-start;">
                                 <div style="text-align: left">
                                     <h4>Saldo pendiente de vacaciones</h4>
                                 </div>
 
                                 <input type="hidden" id="numVacPend" name="numVacPend">
-                                {{-- <h1 class="card-title tarjeta-foco">
-                                    <b><span id="num_vacaciones_pendiente"></span> días</b>
-                                </h1> --}}
+                            </div> --}}
+
+                            <div class="col-sm-6 mt-1 card" id="msgRecordarContainer">
+                                <div class="card-body">
+                                    <div class="mt-4" style="position: relative;">
+                                        <h5 class="tarjetas-home"><span id="msgRecordarM"></span></h5>
+                                    </div>
+                                </div>
+
                             </div>
-
-
                         </div>
                         <div class="col-md-6 d-none d-md-block">
                             {{-- <h5><span id="msgRecordar"></span></h5> --}}
@@ -127,8 +134,8 @@
                     </div>
                 </div>
             </div>
-
         </section>
+
 
 
         <section class="section dashboard">
@@ -157,11 +164,7 @@
                                         vacaciones solicitadas</h5>
                                 </div>
 
-                                <div class="col-sm-6 mt-1">
-                                    <div style="position: relative;">
-                                        <h5 class="tarjetas-home"><span id="msgRecordarM"></span></h5>
-                                    </div>
-                                </div>
+
                             </div>
 
                             <div class="row">

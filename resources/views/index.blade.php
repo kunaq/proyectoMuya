@@ -3,6 +3,10 @@
 <x-layouts.index>
     <link rel="stylesheet" href="assets/css/login.css">
 
+    <div id="overlay_load_l" class="overlay_muya_l">
+        <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
+    </div>
+
     <main class="mainIndex">
         <div class="container">
             <div class="card login-card">

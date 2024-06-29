@@ -34,12 +34,13 @@
           </li>
 
 
-          <li class="nav-item{{ Request::route()->getName() === 'seguimiento' ? ' active' : '' }}">
+          <li class="nav-item d-block d-lg-none{{ Request::route()->getName() === 'seguimiento' ? ' active' : '' }}">
               <a class="nav-link collapsed{{ Request::route()->getName() === 'seguimiento' ? ' bg-black text-white' : '' }}"
                   href="{{ route('seguimiento') }}">
                   <span>Seguimiento</span>
               </a>
           </li>
+
 
           <li class="nav-item{{ Request::route()->getName() === 'mensajes' ? ' active' : '' }}">
               <a class="nav-link collapsed{{ Request::route()->getName() === 'mensajes' ? ' bg-black text-white' : '' }}"
@@ -121,6 +122,13 @@
                       </li>
                   @endif
               </ul>
+
+              <a href="{{ route('logout') }}" class="d-flex mt-5 justify-content-center"
+                  data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="Salir">
+                  <h5><button class="btn btn-success btnDorado" style="border-color: white !important;">
+                          <span class="bi bi-box-arrow-right"></span>&nbsp;&nbsp;Salir</button></h5>
+              </a>
+
           </li>
 
           {{-- <li class="nav-item d-sm-block d-md-none">
@@ -130,11 +138,11 @@
       </li> --}}
 
       </ul>
-      <div id="salirSideBar">
+      {{-- <div id="salirSideBar">
           <a href="{{ route('logout') }}" data-bs-custom-class="custom-tooltip" data-bs-placement="top" title="Salir">
               <h5><button class="btn btn-success btnDorado" style="border-color: white !important;">
                       <span class="bi bi-box-arrow-right"></span>&nbsp;&nbsp;Salir</button></h5>
           </a>
-      </div>
+      </div> --}}
 
   </aside><!-- End Sidebar-->

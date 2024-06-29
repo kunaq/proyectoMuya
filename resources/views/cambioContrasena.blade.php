@@ -2,12 +2,12 @@
 
     <main id="main" class="main">
         <div class="pagetitle">
-            <h1>Cambio de contraseña</h1>
+            <h1>CAMBIO CONTRASEÑA</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
                     <li class="breadcrumb-item active">Configuración</li>
-                    <li class="breadcrumb-item active">Cambiar de contraseña</li>
+                    <li class="breadcrumb-item active">Cambiar contraseña</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
