@@ -21,7 +21,7 @@ setTimeout(function() {
     annioinicio = (mesinicio == 12) ? aux.getFullYear()+1 : aux.getFullYear();
     inicioCalendario = diaInicio+"-"+mesinicio+"-"+annioinicio;
   }
-  if (diaPagoHaber == 'SI') {
+  if (diaPagoHaber == 'SI' && mesesTra >= 3) {
     fchActual  = new Date(fchActual);
     mesinicio = fchActual.getMonth() + 2;
     annioinicio = (mesinicio == 12) ? fchActual.getFullYear()+1 : fchActual.getFullYear();
