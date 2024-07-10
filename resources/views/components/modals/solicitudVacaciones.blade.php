@@ -171,13 +171,11 @@
                     document.getElementById('correoPerMuestra').innerHTML = result["response"][
                         "dsc_mail_personal"
                     ];
-                    document.getElementById("num_vacaciones_pendiente").innerHTML = result["response"][
-                        "num_vacaciones_pendiente"
-                    ];
-
-                    document.getElementById("num_vacaciones_pendiente_m").innerHTML = result["response"][
-                        "num_vacaciones_pendiente"
-                    ];
+                    document.getElementById("num_vacaciones_pendiente").innerHTML = result[
+                        "response"]["num_vacaciones_pendiente"];
+                    // document.getElementById("num_vacaciones_pendiente_m").innerHTML = result["response"][
+                    //     "num_vacaciones_pendiente"
+                    // ];
 
                     document.getElementById("numVacPend").value = result["response"][
                         "num_vacaciones_pendiente"
@@ -189,11 +187,10 @@
                         "response"]["fch_fin"].split("T") : null;
                     var mensajeRecordar = 'No tienes vacaciones programadas';
                     if (fechIniCalendario != null) {
-                        mensajeRecordar = 'Recuerda que tus próximas vacaciones programadas inician <b>' +
-                            result["response"]["dsc_proxima_vacaciones"] + '</b>';
+                        mensajeRecordar = result["response"]["dsc_fecha_vacaciones"];
                     }
-                    document.getElementById("msgRecordar").innerHTML = '<br>' + mensajeRecordar;
-                    document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
+                    document.getElementById("msgRecordar").innerHTML = '<br>' + mensajeRecordar + '<br>';
+                    // document.getElementById("msgRecordarM").innerHTML = mensajeRecordar;
 
 
                     fch_ingreso = result["response"]["fch_ingreso_planilla"];
@@ -578,7 +575,7 @@
             fchFin = yearF + "-" + monthF + "-" + dayF;
 
             var cantDias = document.getElementById('cantDiasSol').value;
-            var numDiasReprog = parseInt(document.getElementById("numVacPednReprog").value);
+            var numDiasReprog = parseInt(document.getElementById("numVacPendReprog").value);
             cantDias = parseInt(cantDias);
             diferenciaExceso = (diasGenerados + numDiasReprog) - cantDias;
 
@@ -638,7 +635,7 @@
                     icon: 'warning',
                     text: 'No puede seleccionar el mes donde ya se realizo el pago de planilla. Elija otras fechas.',
                     confirmButtonText: 'Continuar',
-                    confirmButtonColor: '#a18347',
+                    confirmButtonColor: '#468EC3',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         //location.reload();
@@ -706,7 +703,7 @@
                                 icon: 'warning',
                                 text: 'Ya tiene una solicitud en la fecha seleccionada. Elija otras fechas.',
                                 confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
+                                confirmButtonColor: '#468EC3',
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     btnSolicitar.removeAttribute('disabled');
@@ -719,7 +716,7 @@
                                 icon: 'warning',
                                 text: 'La cantidad de días debe ser igual o mayor a la solicitada originalmente.',
                                 confirmButtonText: 'Continuar',
-                                confirmButtonColor: '#a18347',
+                                confirmButtonColor: '#468EC3',
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     btnSolicitar.removeAttribute('disabled');
@@ -749,7 +746,7 @@
                                                 icon: 'success',
                                                 text: 'Se ha registrado su solicitud con éxito',
                                                 confirmButtonText: 'Continuar',
-                                                confirmButtonColor: '#a18347',
+                                                confirmButtonColor: '#468EC3',
                                                 allowOutsideClick: 'false',
                                             }).then((result) => {
                                                 if (result.isConfirmed) {
@@ -767,7 +764,7 @@
                                             icon: 'warning',
                                             text: 'Ha ocurrido un error intentelo nuevamente.',
                                             confirmButtonText: 'Continuar',
-                                            confirmButtonColor: '#a18347',
+                                            confirmButtonColor: '#468EC3',
                                         })
                                         btnSolicitar.removeAttribute('disabled');
                                     } //error

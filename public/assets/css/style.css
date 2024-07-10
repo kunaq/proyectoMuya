@@ -464,6 +464,7 @@ h6 {
 --------------------------------------------------------------*/
 .logo {
   line-height: 1;
+  z-index: 999;
 }
 
 /* @media (min-width: 1200px) {
@@ -1662,6 +1663,13 @@ Estilos Datos personales
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
+
+.nav-item-bottom{
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 45px !important;
+}
 .navDatPer .nav-item.active{
   background-color:  black !important;
   color: white;
@@ -1678,7 +1686,7 @@ Estilos Documentos
   /* margin-bottom: 24px;  */
   /* width: -webkit-fill-available; */
   margin-top: 10%;
-  width: 35%;
+  /* width: 35%;- */
 }
 
 .container-btn-login{
@@ -2004,7 +2012,8 @@ Estilos Vacaciones
 }
 
 #num_vacaciones_pendiente{
-  font-size: 40px;
+  font-size: 36px;
+  font-weight: bolder;
 }
 
 .fading-element {
@@ -2029,6 +2038,16 @@ Estilos Vacaciones
   }
 }
 
+.overlay_muya_0{
+  display: none;
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 99999;
+}
 .overlay_muya{
   display: block;
   position: fixed; 
@@ -2061,6 +2080,10 @@ Estilos Vacaciones
   white-space: nowrap; /* Evita el salto de línea */
   overflow: hidden; /* Oculta el desbordamiento */
   text-overflow: ellipsis; /* Añade puntos suspensivos si el texto es muy largo */
+}
+
+.titulo-tarjetaConfig{
+  color: var(--color_c_n) !important;
 }
 
 

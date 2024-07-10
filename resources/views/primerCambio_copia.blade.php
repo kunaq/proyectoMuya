@@ -24,31 +24,32 @@
 
 <body>
 
-    <x-layouts.nav />
+    {{-- <x-layouts.nav /> --}}
 
     <main id="main" class="main">
-        <div class="pagetitle">
-            {{-- <h1>Cambio de contraseña</h1>
+        {{-- <div class="pagetitle">
+            <h1>Cambio de contraseña</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Inicio</li>
                     <li class="breadcrumb-item active">Configuración</li>
                     <li class="breadcrumb-item active">Cambiar de contraseña</li>
                 </ol>
-            </nav> --}}
-        </div><!-- End Page Title -->
+            </nav>
+        </div><!-- End Page Title --> --}}
 
         <section class="section dashboard">
             <div class="row">
                 <div class="col-md-10">
+
                     <div class="card">
                         <div class="tittle_card">
-                            <h4 class="titulo_registro_v">Cambio de {{ utf8_encode('Contraseña') }}
+                            <h4 class="titulo_registro_v">Cambio de Contraseña
                             </h4>
                         </div>
-                        <div class="card-body mt-4">
+                        <div class="card-body">
                             <form action="" id="myForm">
-                                {{-- <h5 class="card-title">Cambiar contraseña</h5> --}}
+
 
                                 {{-- <div class="row">
                   <div class="col-md-2 offset-md-3">
@@ -58,7 +59,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <div class="input-group" id="show_hide_password1_1">
-                           <input type="password" name="actualpass" id="actualpass" class="form-control"> 
+                          <input type="password" required name="actualpass" id="actualpass" class="form-control" required>
                           <div class="input-group-append">
                               <span class="input-group-text btnCamPass"><a class="hidePass" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>                                  
                           </div>
@@ -71,97 +72,6 @@
                   </div>
                 </div>
                 <br> --}}
-
-                                <div class="row">
-                                    <div class="col-md-2 offset-md-3">
-                                        <p>Nueva</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group" id="show_hide_password2_1">
-                                                <input type="password" name="newpassword" id="newpassword"
-                                                    class="form-control" required>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text btnCamPass"><a class="hidePass"
-                                                            href=""><i class="fa fa-eye-slash"
-                                                                aria-hidden="true"></i></a></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-md-6 offset-md-5">
-                                        <div id="message">
-                                            <p style="text-align: justify;"> {{ utf8_encode('Mínimo') }}<span
-                                                    id="letter" class="invalid">
-                                                    una letra {{ utf8_encode('minúscula') }}</span>,<span id="capital"
-                                                    class="invalid"> una
-                                                    {{ utf8_encode('mayúscula') }}</span> y <span id="number"
-                                                    class="invalid">un
-                                                    {{ utf8_encode('número') }}</span>. <span id="length"
-                                                    class="invalid">{{ utf8_encode('Mínimo') }} 8
-                                                    caracteres. </span><span id="charEsp" class="valid">Tu
-                                                    {{ utf8_encode('contraseña') }}
-                                                    NO debe incluir caracteres especiales: {{ utf8_encode('!#$%&*') }}.
-                                                </span><span id="validoTodo" class="invalid"></span>
-                                        </div>
-                                        </p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row" style="height: 3rem;">
-                                    <div class="col-md-4 offset-md-1">
-                                        <p style="text-align: center;">Vuelva a escribir la
-                                            {{ utf8_encode('contraseña') }} nueva</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <div class="input-group" id="show_hide_password3_1">
-                                                <!-- <input type="text" name="nuevapass2" id="nuevapass2" class="form-control" required> -->
-                                                <input type="password" name="nuevapass2" id="nuevapass2"
-                                                    class="form-control" required>
-                                                <div class="input-group-append">
-                                                    <span class="input-group-text btnCamPass"><a class="hidePass"
-                                                            href=""><i class="fa fa-eye-slash"
-                                                                aria-hidden="true"></i></a></span>
-                                                </div>
-                                            </div>
-                                            <div id="message2">
-                                                <span style="color: red;">Las {{ utf8_encode('contraseñas') }} no
-                                                    coinciden</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br><br>
-                                <div class="row">
-                                    <div class="col-md-4 offset-md-4">
-                                        <button class="btn btn-success" id="envia1raVez" disabled="disabled"
-                                            type="submit" style="background-color: #155450;">Cambiar
-                                            {{ utf8_encode('contraseña') }}</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {{-- <section class="section dashboard">
-            <div class="row">
-                <div class="col-md-10">
-
-                    <div class="card">
-                        <div class="tittle_card">
-                            <h4 class="titulo_registro_v">Cambio de Contraseña
-                            </h4>
-                        </div>
-                        <div class="card-body">
-                            <form action="" id="myForm">
-
                                 <div class="row mt-5">
                                     <div class="col-md-2 offset-md-3">
                                         <p>Nueva</p>
@@ -184,10 +94,8 @@
                                 <div class="row">
                                     <div class="col-md-6 offset-md-5">
                                         <div id="message">
-                                            <p style="text-align: justify;"> Mínimo<span id="letter"
-                                                    class="invalid">
-                                                    una letra minúscula</span>,<span id="capital" class="invalid">
-                                                    una
+                                            <p style="text-align: justify;"> Mínimo<span id="letter" class="invalid">
+                                                    una letra minúscula</span>,<span id="capital" class="invalid"> una
                                                     mayúscula</span> y <span id="number" class="invalid">un
                                                     número</span>. <span id="length" class="invalid">Mínimo 8
                                                     caracteres. </span><span id="validoTodo" class="invalid"></span>
@@ -231,7 +139,7 @@
                     </div>
                 </div>
             </div>
-        </section> --}}
+        </section>
 
     </main><!-- End #main -->
 
@@ -257,9 +165,194 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="{{ asset('assets/js/primerCambio.js') }}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ancla = document.getElementById('anclaCambContr');
+            ancla.style.display = "none";
+            $("#anclaLogo").attr("href", "#");
+            $("#anclaLogoMobil").attr("href", "#");
+
+            $("#show_hide_password1_1 a").on("click", function(event) {
+                event.preventDefault();
+                if ($("#show_hide_password1_1 input").attr("type") == "text") {
+                    $("#show_hide_password1_1 input").attr("type", "password");
+                    $("#show_hide_password1_1 i").addClass("fa-eye-slash");
+                    $("#show_hide_password1_1 i").removeClass("fa-eye");
+                } else if ($("#show_hide_password1_1 input").attr("type") == "password") {
+                    $("#show_hide_password1_1 input").attr("type", "text");
+                    $("#show_hide_password1_1 i").removeClass("fa-eye-slash");
+                    $("#show_hide_password1_1 i").addClass("fa-eye");
+                }
+            });
+
+            $("#show_hide_password2_1 a").on("click", function(event) {
+                event.preventDefault();
+                if ($("#show_hide_password2_1 input").attr("type") == "text") {
+                    $("#show_hide_password2_1 input").attr("type", "password");
+                    $("#show_hide_password2_1 i").addClass("fa-eye-slash");
+                    $("#show_hide_password2_1 i").removeClass("fa-eye");
+                } else if ($("#show_hide_password2_1 input").attr("type") == "password") {
+                    $("#show_hide_password2_1 input").attr("type", "text");
+                    $("#show_hide_password2_1 i").removeClass("fa-eye-slash");
+                    $("#show_hide_password2_1 i").addClass("fa-eye");
+                }
+            });
+
+            $("#show_hide_password3_1 a").on("click", function(event) {
+                event.preventDefault();
+                if ($("#show_hide_password3_1 input").attr("type") == "text") {
+                    $("#show_hide_password3_1 input").attr("type", "password");
+                    $("#show_hide_password3_1 i").addClass("fa-eye-slash");
+                    $("#show_hide_password3_1 i").removeClass("fa-eye");
+                } else if ($("#show_hide_password3_1 input").attr("type") == "password") {
+                    $("#show_hide_password3_1 input").attr("type", "text");
+                    $("#show_hide_password3_1 i").removeClass("fa-eye-slash");
+                    $("#show_hide_password3_1 i").addClass("fa-eye");
+                }
+            });
+        });
+
+        var myInput = document.getElementById("newpassword");
+        var letter = document.getElementById("letter");
+        var capital = document.getElementById("capital");
+        var number = document.getElementById("number");
+        var length = document.getElementById("length");
+        var envia = document.getElementById("envia1raVez");
+        var verPass = document.getElementById("nuevapass2");
+        var mensaje = document.getElementById("message2");
+        // var passAct = document.getElementById("actualpass");
+
+        myInput.onkeyup = function() {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            var todo = 0;
+            if (myInput.value.match(lowerCaseLetters)) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+                todo++;
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+                todo--;
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            if (myInput.value.match(upperCaseLetters)) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+                todo++;
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+                todo--;
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            if (myInput.value.match(numbers)) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+                todo++;
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+                todo--;
+            }
+
+            // Validate length
+            if (myInput.value.length >= 8) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+                todo++;
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+                todo--;
+            }
+            if (todo == 4) {
+                validoTodo.classList.remove("invalid");
+                validoTodo.classList.add("validTodo");
+            } else {
+                validoTodo.classList.remove("validTodo");
+                validoTodo.classList.add("invalid");
+                envia.disabled = true;
+            }
+        };
+
+        verPass.onkeyup = function() {
+            //console.log(mensaje.style.display);
+            if (validoTodo.classList == "validTodo" && myInput.value == verPass.value) {
+                mensaje.style.display = "none";
+                envia.disabled = false;
+            } else if (verPass.value == "") {
+                mensaje.style.display = "none";
+            } else {
+                mensaje.style.display = "block";
+                envia.disabled = true;
+            }
+        };
 
 
+        envia.addEventListener("click", function() {
+            var form = document.getElementById("myForm");
+            form.addEventListener("submit", function(event) {
+                // Detener el envío del formulario
+                event.preventDefault();
+            });
+            var dsc_clave = verPass.value;
+
+            // if (passAct.value.trim() != 0) {
+
+            // }
+
+            $.ajax({
+                url: 'actualizaContrasenna',
+                method: "PUT",
+                crossDomain: true,
+                dataType: 'json',
+                data: {
+                    'dsc_clave': dsc_clave
+                },
+                success: function(respuesta) {
+                    console.log(respuesta);
+                    Swal.fire({
+                        icon: 'success',
+                        text: 'Se ha registrado su nueva clave con éxito',
+                        confirmButtonText: 'Continuar',
+                        confirmButtonColor: '#a18347',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "home";
+                        }
+                    })
+                }, //success
+                error(e) {
+                    //console.log(e.responseText);
+                    if (e.responseText == '{"mensaje":"Actualizado"}Actualizado') {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se ha registrado su nueva clave con éxito',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "home";
+                            }
+                        })
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            text: 'Ha ocurrido un error intentelo nuevamente.',
+                            confirmButtonText: 'Continuar',
+                            confirmButtonColor: '#a18347',
+                        })
+                    }
+                } //error
+            }); //ajax
+        });
+    </script>
 
 
 </body>

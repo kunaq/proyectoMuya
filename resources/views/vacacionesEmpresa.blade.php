@@ -227,11 +227,11 @@
                             <div class="row" style="justify-content: center;gap: 5%;text-align: center;">
 
                                 {{-- primer bloque --}}
-                                <div class="row col-1 mt-4 d-flex">
-                                    <strong id="indPromVacPend"></strong>
+                                <div class="col-md-3 mt-4">
+                                    {{-- <strong id="indPromVacPend"></strong> --}}
 
-                                    <strong>EMPRESA</strong>
-                                    {{-- <div class="card" hidden>
+                                    {{-- <strong>EMPRESA</strong> --}}
+                                    <div class="card">
                                         <div class="card-body">
                                             <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">
                                                 Promedio de días pendientes de vacaciones del equipo <b>hasta fin de
@@ -259,11 +259,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
 
 
-                                <div class="row col-1 mt-4 d-flex">
+                                {{-- <div class="row col-1 mt-4 d-flex">
                                     <strong>#</strong>
                                     <div class="d-flex">
                                         <select name="sedePromVacPend" id="sedePromVacPend"
@@ -271,10 +271,10 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> --}}
 
 
-                                <div class="row col-1 mt-4 d-flex">
+                                {{-- <div class="row col-1 mt-4 d-flex">
                                     <strong>#</strong>
                                     <div class="d-flex">
                                         <select name="areaPromVacPend" id="areaPromVacPend"
@@ -282,7 +282,7 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> --}}
 
                                 {{-- fin primer bloque --}}
 
@@ -290,11 +290,11 @@
 
                                 {{-- segundo bloque --}}
 
-                                <div class="row col-1 mt-4 d-flex">
+                                {{-- <div class="row col-3 mt-4 d-flex">
                                     <strong></strong>
                                     <strong>EMPRESA</strong>
 
-                                    <div class="card" hidden>
+                                    <div class="card">
                                         <div class="card-body">
                                             <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">
                                                 Promedio de días pendientes de vacaciones del equipo <b>hasta fin de
@@ -323,9 +323,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row col-1 mt-4 d-flex">
+                                </div> --}}
+
+                                {{-- <div class="row col-1 mt-4 d-flex">
                                     <strong>#</strong>
                                     <div class="d-flex">
                                         <select name="" id="" class="form-control selectForm">
@@ -343,18 +344,18 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> --}}
 
                                 {{-- fin segundo bloque --}}
 
 
                                 {{-- tercer bloque --}}
 
-                                <div class="row col-1 mt-4 d-flex">
+                                {{-- <div class="row col-3 mt-4 d-flex">
                                     <strong></strong>
                                     <strong>EMPRESA</strong>
 
-                                    <div class="card" hidden>
+                                    <div class="card">
                                         <div class="card-body">
                                             <h5 style="font-size: 17px; text-align: center; padding-top: 1rem;">
                                                 Promedio de días pendientes de vacaciones del equipo <b>hasta fin de
@@ -383,9 +384,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="row col-1 mt-4 d-flex">
+                                {{-- <div class="row col-1 mt-4 d-flex">
                                     <strong>#</strong>
                                     <div class="d-flex">
                                         <select name="" id="" class="form-control selectForm">
@@ -404,12 +405,12 @@
                                         </select>
                                     </div>
 
-                                </div>
+                                </div> --}}
 
                                 {{-- fin tercer bloque --}}
 
 
-                                <div class="col-md-4 mt-4" hidden>
+                                <div class="col-md-3 mt-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 style="font-size: 17px;text-align: center; padding-top: 1rem;">Promedio
@@ -440,7 +441,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mt-4" hidden>
+                                <div class="col-md-3 mt-4">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5

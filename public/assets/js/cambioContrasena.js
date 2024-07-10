@@ -124,6 +124,7 @@ verPass.onkeyup = function () {
 };
 
 envia.addEventListener("click", function() {
+    $("#overlay_load").show();
     var form = document.getElementById("formCambioPass");
     form.addEventListener("submit", function(event) {
       // Detener el envío del formulario
@@ -133,6 +134,7 @@ envia.addEventListener("click", function() {
     var encriptado = (CryptoJS.MD5(passAct.value)).toString();
     if (encriptado != guardado) {
         passAct.focus();
+        $("#overlay_load").hide();
         Swal.fire({
             icon: 'warning',
             text: 'La contraseña actual no concide con la guardada.',
@@ -149,6 +151,7 @@ envia.addEventListener("click", function() {
                 dataType: 'json',
                 data:{'dsc_clave':dsc_clave},
                 success: function(respuesta){
+                    $("#overlay_load").hide();
                     console.log(respuesta);
                     Swal.fire({
                     icon: 'success',
@@ -164,6 +167,7 @@ envia.addEventListener("click", function() {
                 error(e){
                     //console.log(e.responseText);
                     if(e.responseText == '{"mensaje":"Actualizado"}Actualizado'){
+                        $("#overlay_load").hide();
                         Swal.fire({
                             icon: 'success',
                             text: 'Se ha registrado su nueva clave con éxito',
@@ -175,6 +179,7 @@ envia.addEventListener("click", function() {
                             }
                         })
                     }else{
+                        $("#overlay_load").hide();
                         Swal.fire({
                             icon: 'warning',
                             text: 'Ha ocurrido un error intentelo nuevamente.',

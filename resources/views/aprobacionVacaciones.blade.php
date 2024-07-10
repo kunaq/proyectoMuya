@@ -396,8 +396,8 @@
 
                     <div class="card_vacaciones">
                         <div class="card-body">
-                            <h5 class="card-title d-none d-md-block" style="font-size: 28px;">Descargar solicitudes de
-                                vacaciones</h5>
+                            {{-- <h5 class="card-title d-none d-md-block" style="font-size: 28px;">Descargar solicitudes de
+                                vacaciones</h5> --}}
                             <div class="row">
                                 <div class="col-4 col-sm-2 col-md-1 mt-4">
                                     <div class="form-group">
@@ -437,7 +437,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mt-5 mb-3">
+                            {{-- <div class="row mt-5 mb-3">
                                 <div class="col-12">
                                     <strong class="titulos_descargas_vac">Cargar Vacaciones</strong>
                                 </div>
@@ -453,15 +453,79 @@
                                             automáticamente las vacaciones que inician el siguiente mes</label>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
 
 
 
-                            <div class="row mt-5 mb-3">
+                            {{-- <div class="row mt-5 mb-3">
                                 <div class="col-12">
                                     <strong class="titulos_descargas_vac">Reglas de solicitud de vacaciones</strong>
                                 </div>
+                                <div class="col-12 d-flex mt-4">
+                                    <button class="btn btn-success btnDorado" data-bs-toggle="modal"
+                                        data-bs-target="#ModalReglas" id="buscarDoc" style="width: 225px">Ver
+                                        reglas</button>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tittle_card">
+                        <h4 class="titulo_registro_v">Cargar Vacaciones</h4>
+                    </div>
+
+                    <div class="card_vacaciones">
+                        <div class="card-body">
+
+
+
+                            <div class="row mb-3">
+                                {{-- <div class="col-12 mt-4">
+                                    <strong class="titulos_descargas_vac">Cargar Vacaciones</strong>
+                                </div> --}}
+                                <div
+                                    class="col-12 d-flex flex-column flex-sm-row align-items-start align-items-sm-center mt-4">
+                                    <button class="btn btn-success btnDorado mb-3 mb-sm-0" data-bs-toggle="modal"
+                                        data-bs-target="#ModalCargaMasiva" id="buscarDoc"
+                                        style="width: 225px">Cargar</button>
+                                    <div class="d-flex align-items-center ms-0 ms-sm-3 mt-2 mt-sm-0">
+                                        <input class="form-check-input chkDatos" type="checkbox" value=""
+                                            id="CheckDescSolVac">
+                                        <label for="CheckDescSolVac" class="mb-0 ms-2 text-wrap">Aprobar
+                                            automáticamente las vacaciones que inician el siguiente mes</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section dashboard">
+            <div class="row">
+                <div class="col-12">
+                    <div class="tittle_card">
+                        <h4 class="titulo_registro_v">Reglas de solicitud de vacaciones</h4>
+                    </div>
+
+                    <div class="card_vacaciones">
+                        <div class="card-body">
+
+
+
+                            <div class="row mb-3">
+                                {{-- <div class="col-12 mt-4">
+                                    <strong class="titulos_descargas_vac">Reglas de solicitud de vacaciones</strong>
+                                </div> --}}
                                 <div class="col-12 d-flex mt-4">
                                     <button class="btn btn-success btnDorado" data-bs-toggle="modal"
                                         data-bs-target="#ModalReglas" id="buscarDoc" style="width: 225px">Ver

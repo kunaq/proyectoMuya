@@ -76,21 +76,31 @@ $("#loginBtn").click(function(){
               
             console.log('flg_cargo',respuesta.data.response.flg_cargo_sin_acceso);
             var bloqueo = respuesta.data.response.flg_bloqueado;
+            $("#overlay_load_l").hide();
+
             if(respuesta.data.mensaje == 'Contraseña incorrecta'){
                 document.getElementById('message2').style.display = "block";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "none";
+                $("#overlay_load_l").hide();
+
             }else if(respuesta.data.response.flg_cargo_sin_acceso == 'SI'){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "block";
+                $("#overlay_load_l").hide();
+
             }else if(respuesta.data.response.flg_bloqueado == 'SI'){
                 document.getElementById('message3').style.display = "block";
                 document.getElementById('message4').style.display = "none";
+                $("#overlay_load_l").hide();
+
             }else if(respuesta.data.mensaje == 'OK' && (bloqueo == 'NO'|| bloqueo == null) && respuesta.data.response.flg_cargo_sin_acceso == 'NO'){
                 document.getElementById('message2').style.display = "none";
                 document.getElementById('message3').style.display = "none";
                 document.getElementById('message4').style.display = "none";
+                $("#overlay_load_l").hide();
+
                 $.ajax({
                     url: 'api/ListarVentana', 
                     method: "GET",
@@ -109,6 +119,8 @@ $("#loginBtn").click(function(){
                                 text: 'Su contraseña ha expirado, modifiquela en la siguiente ventana.',
                                 confirmButtonText: 'Continuar',
                                 confirmButtonColor: '#468EC3',
+                                // $("#overlay_load_l").hide();
+
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     window.location.href = "primerCambio";

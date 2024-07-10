@@ -365,6 +365,7 @@ function muestraCalendario(filaCalendario) {
  // console.log(eventosJSON);
 
   var calendarEl = document.getElementById('calendar');
+  
   var calendar = new FullCalendar.Calendar(calendarEl, {
     locale: 'es-PE', // Cambia la configuración local a español de Perú
     initialView: 'dayGridMonth',

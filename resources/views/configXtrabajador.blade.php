@@ -58,12 +58,19 @@
             <h1>Configuración por trabajador</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                    <li class="breadcrumb-item active">Configuración</li>
-                    <li class="breadcrumb-item active">Por trabajador</li>
+                    <!-- Para dispositivos móviles -->
+                    <li class="breadcrumb-item d-block d-md-none"><a href="{{ route('home') }}">Inicio</a></li>
+                    <li class="breadcrumb-item d-block d-md-none active">Conf</li>
+                    <li class="breadcrumb-item d-block d-md-none active">Por trabajador</li>
+
+                    <!-- Para dispositivos de escritorio -->
+                    <li class="breadcrumb-item d-none d-md-block"><a href="{{ route('home') }}">Inicio</a></li>
+                    <li class="breadcrumb-item d-none d-md-block active">Configuración</li>
+                    <li class="breadcrumb-item d-none d-md-block active">Por trabajador</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
+
 
         <section class="section dashboard">
             <div class="row">
@@ -239,17 +246,22 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <div class="card">
+                        <div class="tittle_card">
+                            <h4 class="titulo_registro_v">Lista de personal a cargo
+                            </h4>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title" style="font-size: 28px;">Lista de personal a cargo</h5>
+                            {{-- <h5 class="card-title" style="font-size: 28px;">Lista de personal a cargo</h5> --}}
                             <div class="row">
                                 <div class="col-md-6" style="margin-bottom: 1rem;">
                                     <div class="form-group table-responsive"
                                         style="padding-left: 0rem;padding-right: 1rem;height: 23rem;">
                                         <table class="table table-striped " id="solAprobar"
-                                            style="text-align: center; height: 300px;">
+                                            style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" class="card-title">Aprobación de vacaciones
+                                                    <th scope="col" class="card-title"
+                                                        style="color: white !important">Aprobación de vacaciones
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -263,10 +275,11 @@
                                     <div class="form-group table-responsive"
                                         style="padding-left: 0rem;padding-right: 1rem;height: 23rem;">
                                         <table class="table table-striped " id="solAprobar"
-                                            style="text-align: center; height: 300px;">
+                                            style="text-align: center;">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" class="card-title">Gestión de asistencia</th>
+                                                    <th scope="col" class="card-title"
+                                                        style="color: white !important">Gestión de asistencia</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -286,9 +299,13 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <div class="card">
+                        <div class="tittle_card">
+                            <h4 class="titulo_registro_v">Reporte de vacaciones por trabajador
+                            </h4>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones por trabajador</h5>
-                            <div class="row">
+                            {{-- <h5 class="card-title" style="font-size: 28px;">Reporte de vacaciones por trabajador</h5> --}}
+                            <div class="row mt-4">
                                 <div class="col-3 col-md-2 offset-md-2 mt-2" style="margin-bottom: 1rem;">
                                     <div class="form-group d-flex" style="justify-content: right">
                                         <span>Fecha:</span>
@@ -375,9 +392,14 @@
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <div class="card">
+                        <div class="tittle_card">
+                            <h4 class="titulo_registro_v">Carga masiva de configuraciones
+                            </h4>
+                        </div>
                         <div class="card-body">
-                            <h5 class="card-title" style="font-size: 26px;">Carga masiva de configuraciones</h5>
-                            <div class="row">
+
+                            {{-- <h5 class="card-title" style="font-size: 26px;">Carga masiva de configuraciones</h5> --}}
+                            <div class="row mt-4">
                                 <div class="col-12" style="text-align: -webkit-center">
                                     <div class="form-group">
                                         <h5><button class="btn btn-success btnDorado" id="btnModalCarga"

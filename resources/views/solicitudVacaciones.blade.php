@@ -28,113 +28,62 @@
         </div>
         <!-- End Page Title -->
 
-        {{-- <section class="section tarjetas-home">
+        <section class="section tarjetas-home">
             <div class="row">
                 <div class="col-md-10 offset-md-1">
                     <div class="row">
+
                         <div class="col-md-6">
-                            <div class="card">
+                            <div class="card d-flex" style="justify-content: flex-end;">
                                 <div class="card-body">
-                                    <h1 class="card-title tarjeta-foco"><b><span id=""></span></b></h1>
-                                    <h5>Saldo pendiente de vacaciones</h5>
-                                    <input type="hidden" id="numVacPend" name="numVacPend">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 d-none d-md-block">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 style="padding-top: 20px;"><span id="msgRecordar"></span></h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                    <div class="dias_vacaciones">
+                                        {{-- <h1 class="card-title tarjeta-foco mt-4"> --}}
+                                        <h1 class="mt-4" style="font-size: 36px">
+                                            Tienes
+                                            <b><span id="num_vacaciones_pendiente"></span></b>
+                                            dias
+                                        </h1>
+                                        {{-- <h3 class="mt-4">Tienes <strong style="font-size: 36px"
+                                                id="num_vacaciones_pendiente"></strong> días</h3> --}}
 
-        </section> --}}
-
-
-        <section class="section tarjetas-home d-none d-md-block">
-            <div class="row" style="margin-left: 120px;">
-                <div class="col-md-6 mb-5 mt-4">
-                    <div class="d-flex" style="justify-content: space-between; gap: 530px;">
-                        <div class="col-md-6">
-                            <div class="dias_vacaciones" style="display: flex; justify-content: flex-start;">
-                                <div>
-                                    <strong id="num_vacaciones_pendiente" class="nro_dias_txt"></strong>
-                                    <strong> dias</strong>
-                                </div>
-
-                                {{-- <h1 class="card-title tarjeta-foco">
-                                    <b><span id="num_vacaciones_pendiente"></span> días</b>
-                                </h1> --}}
-                            </div>
-
-                            <div class="dias_vacaciones_txt" style="display: flex; justify-content: flex-start;">
-                                <div style="text-align: left">
-                                    <h4>Saldo pendiente de vacaciones</h4>
-                                </div>
-
-                                <input type="hidden" id="numVacPend" name="numVacPend">
-                                {{-- <h1 class="card-title tarjeta-foco">
-                                    <b><span id="num_vacaciones_pendiente"></span> días</b>
-                                </h1> --}}
-                            </div>
-
-
-                        </div>
-                        <div class="col-md-6 d-none d-md-block">
-                            {{-- <h5><span id="msgRecordar"></span></h5> --}}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <section class="section tarjetas-home d-sm-block d-md-none">
-            <div class="row">
-                <div class="col-md-6 mb-5 mt-4">
-                    <div class="d-flex" style="justify-content: space-between; gap: 530px;">
-                        <div class="col-md-6">
-                            <div class="dias_vacaciones card"
-                                style="display: flex; justify-content: flex-start; height: fit-content;">
-                                <div class="card-body" style="width: 100%; box-sizing: border-box;">
-                                    <strong id="num_vacaciones_pendiente_m" class="nro_dias_txt"></strong>
-                                    <strong> dias</strong>
-                                    <h4
-                                        style="font-size: 1.25rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                        Saldo pendiente de vacaciones
-                                    </h4>
-                                </div>
-                            </div>
-
-                            {{-- <div class="dias_vacaciones_txt"
-                                style="display: flex; flex-direction: column; justify-content: flex-start;">
-                                <div style="text-align: left">
-                                    <h4>Saldo pendiente de vacaciones</h4>
-                                </div>
-
-                                <input type="hidden" id="numVacPend" name="numVacPend">
-                            </div> --}}
-
-                            <div class="col-sm-6 mt-1 card" id="msgRecordarContainer">
-                                <div class="card-body">
-                                    <div class="mt-4" style="position: relative;">
-                                        <h5 class="tarjetas-home"><span id="msgRecordarM"></span></h5>
+                                        <input type="hidden" id="numVacPend" name="numVacPend">
+                                        <h5 style="color:var(--color_c_n)">saldo pendiente de vacaciones</h5>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
-                        <div class="col-md-6 d-none d-md-block">
-                            {{-- <h5><span id="msgRecordar"></span></h5> --}}
+
+                        {{-- <div class="col-md-6">
+                            <div class="card d-flex" style="justify-content: flex-end;">
+                                <div class="card-body">
+                                    <div class="dias_vacaciones">
+                                        <strong style="font-size: 36px" id="num_vacaciones_pendiente"></strong>
+                                        <h4>Inicio de tus proximas vacaciones</h4>
+                                        <input type="hidden" id="numVacPend" name="numVacPend">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
+                        <div class="col-md-6">
+                            <div class="card d-flex" style="justify-content: flex-end;">
+                                <div class="card-body">
+                                    <div class="dias_vacaciones">
+                                        <strong style="font-size: 36px" id="msgRecordar"></strong>
+                                        <h4>Inicio de tus proximas vacaciones</h4>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
+
         </section>
+
 
 
 
@@ -149,12 +98,15 @@
                                         vacaciones solicitadas</h5>
                                 </div>
 
-                                <div class="col-md-6 d-none d-md-block">
-                                    <div style="position: relative; top: -100px">
-                                        <h5 class="tarjetas-home"><span id="msgRecordar"></span></h5>
+                                {{-- <div class="card" style="position: relative; top: -182px">
+                                    <div class="card-body">
+                                        <div class="col-md-12 d-none d-md-block">
+                                            <div>
+                                                <h5 class="tarjetas-home" id="msgRecordar"></h5>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-
+                                </div> --}}
 
                             </div>
 
@@ -180,7 +132,8 @@
                 <div class="row">
                     <div class="col-md-2 offset-md-2" style="margin-bottom: 1rem;">
                         <button class="btn btn-success btnDorado btnConvenio" style="width: -webkit-fill-available;"
-                            data-bs-toggle="modal" data-bs-target="#ModalSolicitud" id="btnSolicitarVac">Solicitar <br>
+                            data-bs-toggle="modal" data-bs-target="#ModalSolicitud" id="btnSolicitarVac">Solicitar
+                            <br>
                             vacaciones</button>
                     </div>
                     <div class="col-md-2 offset-md-1" style="margin-bottom: 1rem;">

@@ -5,12 +5,23 @@
             <h1>CAMBIO CONTRASEÑA</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Inicio</a></li>
-                    <li class="breadcrumb-item active">Configuración</li>
-                    <li class="breadcrumb-item active">Cambiar contraseña</li>
+                    <!-- Para dispositivos móviles -->
+                    <li class="breadcrumb-item d-block d-md-none"><a href="{{ route('home') }}">Inicio</a></li>
+                    <li class="breadcrumb-item d-block d-md-none active">Conf</li>
+                    <li class="breadcrumb-item d-block d-md-none active">Cambio de contraseña</li>
+
+                    <!-- Para dispositivos de escritorio -->
+                    <li class="breadcrumb-item d-none d-md-block"><a href="{{ route('home') }}">Inicio</a></li>
+                    <li class="breadcrumb-item d-none d-md-block active">Configuración</li>
+                    <li class="breadcrumb-item d-none d-md-block active">Cambio de contraseña</li>
                 </ol>
             </nav>
-        </div><!-- End Page Title -->
+        </div>
+        <!-- End Page Title -->
+
+        <div id="overlay_load" class="overlay_muya_0">
+            <img src="{{ asset('assets/img/GM-BLANCO-SM.png') }}" alt="login" class="fading-element">
+        </div>
 
         <section class="section dashboard">
             <div class="row">

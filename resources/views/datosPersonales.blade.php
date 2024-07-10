@@ -349,7 +349,7 @@
                                 </button>
 
 
-                                <button class="nav-item nav-item-right nav-link" id="nav-grupoFam-tab"
+                                <button class="nav-item nav-item-bottom nav-link" id="nav-grupoFam-tab"
                                     data-bs-toggle="tab" data-bs-target="#nav-grupoFam-sm" role="tab"
                                     aria-controls="nav-grupoFam" aria-selected="false" tabindex="-1">
                                     Grupo Familiar
